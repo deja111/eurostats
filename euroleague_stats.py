@@ -12,6 +12,7 @@ Primeri:
 """
 import argparse
 import json
+import os
 import sqlite3
 import time
 
@@ -20,7 +21,7 @@ from euroleague_api.boxscore_data import BoxScoreData
 
 SEASON = 2026                       # 2026 = sezona 2026/27
 COMPETITIONS = {"E": "Evroliga", "U": "Evrokup"}
-DB_FILE = "euroleague.db"
+DB_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "euroleague.db")
 
 STAT_COLS = [
     "Minutes", "Points", "FieldGoalsMade2", "FieldGoalsAttempted2",
@@ -62,6 +63,58 @@ def update_schedule(comp, conn=None):
     conn.executemany("INSERT OR REPLACE INTO schedule VALUES (?,?,?,?,?,?,?,?,?,?,?)", rows)
     conn.commit()
     print(f"Raspored: {len(rows)} utakmica ({int(played.sum())} odigrano)")
+
+
+POSITIONS = {"Guards": "G", "Forwards": "F", "Centers": "C"}
+
+
+def update_positions(comp, conn=None):
+    """Zvanicne pozicije (G/F/C) iz Euroleague liste lidera filtrirane po poziciji.
+
+    Lista lidera trazi minimalan broj utakmica, pa za igrace koji fale
+    probamo jos i po klubu.
+    """
+    from euroleague_api.player_stats import PlayerStats
+    conn = conn or get_conn()
+    conn.execute("""CREATE TABLE IF NOT EXISTS positions (
+        comp TEXT, season INTEGER, player_id TEXT, pos TEXT,
+        PRIMARY KEY (comp, season, player_id))""")
+    api = PlayerStats(comp)
+    found = {}
+
+    def fetch(**kw):
+        for name, code in POSITIONS.items():
+            d = api.get_player_stats_leaders_single_season(
+                SEASON, stat_category="GamesPlayed", top_n=500,
+                statistic_mode="Accumulated", position=name, **kw)
+            if d is not None and not d.empty and "playerCode" in d:
+                for pc in d["playerCode"]:
+                    found.setdefault("P" + str(pc).strip().zfill(6), code)
+    fetch()
+    have = {r[0].strip() for r in conn.execute(
+        "SELECT DISTINCT player_id FROM player_games WHERE comp=? AND season=?", (comp, SEASON))}
+    missing = have - set(found)
+    if missing:
+        clubs = [r[0] for r in conn.execute(
+            "SELECT DISTINCT team FROM player_games WHERE comp=? AND season=?", (comp, SEASON))]
+        for club in clubs:
+            try:
+                fetch(club_code=club)
+            except Exception:
+                pass
+    conn.executemany("INSERT OR REPLACE INTO positions VALUES (?,?,?,?)",
+                     [(comp, SEASON, pid, pos) for pid, pos in found.items()])
+    conn.commit()
+    print(f"Pozicije: {len(found)} igraca ({len(have - set(found))} bez zvanicne pozicije)")
+
+
+def load_positions(comps):
+    conn = get_conn()
+    conn.execute("""CREATE TABLE IF NOT EXISTS positions (
+        comp TEXT, season INTEGER, player_id TEXT, pos TEXT,
+        PRIMARY KEY (comp, season, player_id))""")
+    q = f"SELECT * FROM positions WHERE season=? AND comp IN ({','.join('?' * len(comps))})"
+    return pd.read_sql(q, conn, params=(SEASON, *comps))
 
 
 def load_schedule(comps):
@@ -115,6 +168,10 @@ def update(comps):
             conn.commit()
             print(f"Utakmica {gc}: sacuvano {len(rows)} igraca")
         update_extras(comp, conn)
+        try:
+            update_positions(comp, conn)
+        except Exception as e:
+            print(f"Ne mogu da dobijem pozicije ({e})")
 
 
 # ---------- cetvrtine (play-by-play) i sutevi / quarters and shots ----------
@@ -135,6 +192,14 @@ def _extra_tables(conn):
         comp TEXT, season INTEGER, gamecode INTEGER, num INTEGER, player_id TEXT, team TEXT,
         action TEXT, points INTEGER, x REAL, y REAL, minute INTEGER,
         PRIMARY KEY (comp, season, gamecode, num))""")
+    conn.execute(f"""CREATE TABLE IF NOT EXISTS onoff (
+        comp TEXT, season INTEGER, gamecode INTEGER, player_id TEXT, team TEXT,
+        sec REAL, pm INTEGER, c_sec REAL, c_pm INTEGER, {", ".join(c + " INTEGER" for c in CLUTCH_COLS)},
+        PRIMARY KEY (comp, season, gamecode, player_id))""")
+    conn.execute("""CREATE TABLE IF NOT EXISTS lineups (
+        comp TEXT, season INTEGER, gamecode INTEGER, team TEXT, lineup TEXT,
+        sec REAL, pf INTEGER, pa INTEGER,
+        PRIMARY KEY (comp, season, gamecode, team, lineup))""")
     conn.execute("""CREATE TABLE IF NOT EXISTS extra_done (
         comp TEXT, season INTEGER, gamecode INTEGER, kind TEXT,
         PRIMARY KEY (comp, season, gamecode, kind))""")
@@ -158,6 +223,122 @@ def periods_from_pbp(pbp):
     return out[PERIOD_COLS].reset_index()
 
 
+SCORE = {"2FGM": 2, "3FGM": 3, "FTM": 1}
+CLUTCH_COLS = ["c_pts", "c_reb", "c_ast", "c_tov", "c_fgm", "c_fga", "c_ftm", "c_fta"]
+
+
+def _marker_sec(m):
+    try:
+        mm, ss = str(m).split(":")
+        return int(mm) * 60 + int(ss)
+    except ValueError:
+        return None
+
+
+def onoff_from_pbp(pbp):
+    """Iz play-by-play: ko je na terenu, minuti, +/-, petorke i clutch statistika.
+
+    Clutch = 4. cetvrtina (posl. 5 min) i produzeci, razlika <= 5 poena pre akcije.
+    Vraca (igraci_df, petorke_df).
+    """
+    p = pbp.sort_values("TRUE_NUMBEROFPLAY").copy()
+    p["PLAYTYPE"] = p["PLAYTYPE"].astype(str).str.strip()
+    p["PLAYER_ID"] = p["PLAYER_ID"].where(p["PLAYER_ID"].isna(), p["PLAYER_ID"].astype(str).str.strip())
+    p["CODETEAM"] = p["CODETEAM"].where(p["CODETEAM"].isna(), p["CODETEAM"].astype(str).str.strip())
+    teams = [t for t in p["CODETEAM"].dropna().unique()][:2]
+    if len(teams) < 2:
+        return pd.DataFrame(), pd.DataFrame()
+    team_of = p.dropna(subset=["PLAYER_ID", "CODETEAM"]).groupby("PLAYER_ID")["CODETEAM"].first().to_dict()
+
+    pl = {}   # player -> statistika
+    lu = {}   # (team, lineup) -> [sec, pf, pa]
+
+    def P(pid):
+        return pl.setdefault(pid, {"sec": 0.0, "pm": 0, "c_sec": 0.0, "c_pm": 0, **{c: 0 for c in CLUTCH_COLS}})
+
+    on = {t: set() for t in teams}
+    score = {t: 0 for t in teams}
+    last_t = 0.0
+    for per, ev in p.groupby("PERIOD", sort=True):
+        per = int(per)
+        start = 600 * (min(per, 4) - 1) + 300 * max(0, per - 4)
+        length = 600 if per <= 4 else 300
+        # ko pocinje cetvrtinu: prenos sa kraja prethodne + prvi dogadjaj igraca u ovoj cetvrtini
+        first = {}
+        for r in ev.itertuples():
+            if isinstance(r.PLAYER_ID, str) and r.PLAYER_ID in team_of and r.PLAYER_ID not in first:
+                first[r.PLAYER_ID] = r.PLAYTYPE
+        for pid, kind in first.items():
+            t = team_of[pid]
+            if kind == "IN":
+                on[t].discard(pid)
+            else:
+                on[t].add(pid)
+        last_t = float(start)
+        for r in ev.itertuples():
+            ms = _marker_sec(r.MARKERTIME)
+            now = start + (length - ms) if ms is not None else (start if r.PLAYTYPE == "BP" else last_t)
+            now = max(now, last_t)
+            dt = now - last_t
+            rem = (start + length) - last_t
+            clutch_now = per >= 4 and rem <= 300 and abs(score[teams[0]] - score[teams[1]]) <= 5
+            if dt > 0:
+                for t in teams:
+                    key = (t, "|".join(sorted(on[t])))
+                    lu.setdefault(key, [0.0, 0, 0])[0] += dt
+                    for pid in on[t]:
+                        P(pid)["sec"] += dt
+                        if clutch_now:
+                            P(pid)["c_sec"] += dt
+            last_t = now
+            ty, pid, t = r.PLAYTYPE, r.PLAYER_ID, r.CODETEAM
+            if ty == "IN" and pid in team_of:
+                on[team_of[pid]].add(pid)
+                continue
+            if ty == "OUT" and pid in team_of:
+                on[team_of[pid]].discard(pid)
+                continue
+            clutch_ev = per >= 4 and (ms is not None and ms <= 300) and \
+                abs(score[teams[0]] - score[teams[1]]) <= 5
+            if clutch_ev and isinstance(pid, str) and pid in team_of:
+                d = P(pid)
+                d["c_pts"] += SCORE.get(ty, 0)
+                d["c_reb"] += ty in ("D", "O")
+                d["c_ast"] += ty == "AS"
+                d["c_tov"] += ty == "TO"
+                d["c_fgm"] += ty in ("2FGM", "3FGM")
+                d["c_fga"] += ty in ("2FGM", "3FGM", "2FGA", "3FGA")
+                d["c_ftm"] += ty == "FTM"
+                d["c_fta"] += ty in ("FTM", "FTA")
+            if ty in SCORE and t in score:
+                pts = SCORE[ty]
+                score[t] += pts
+                o = teams[1] if t == teams[0] else teams[0]
+                lu.setdefault((t, "|".join(sorted(on[t]))), [0.0, 0, 0])[1] += pts
+                lu.setdefault((o, "|".join(sorted(on[o]))), [0.0, 0, 0])[2] += pts
+                for x in on[t]:
+                    P(x)["pm"] += pts
+                    if clutch_ev:
+                        P(x)["c_pm"] += pts
+                for x in on[o]:
+                    P(x)["pm"] -= pts
+                    if clutch_ev:
+                        P(x)["c_pm"] -= pts
+        # kraj cetvrtine / end of period
+        end = start + length
+        if end > last_t:
+            for t in teams:
+                key = (t, "|".join(sorted(on[t])))
+                lu.setdefault(key, [0.0, 0, 0])[0] += end - last_t
+                for pid in on[t]:
+                    P(pid)["sec"] += end - last_t
+            last_t = end
+    players = pd.DataFrame([{"player_id": k, "team": team_of.get(k), **v} for k, v in pl.items()])
+    lineups = pd.DataFrame([{"team": t, "lineup": l, "sec": v[0], "pf": v[1], "pa": v[2]}
+                            for (t, l), v in lu.items() if l.count("|") == 4])
+    return players, lineups
+
+
 def update_extras(comp, conn):
     """Dopuni cetvrtine i suteve za sve vec sacuvane utakmice kojima fale."""
     from euroleague_api.play_by_play_data import PlayByPlay
@@ -168,15 +349,26 @@ def update_extras(comp, conn):
         (comp, SEASON))]
     done = set(conn.execute("SELECT gamecode, kind FROM extra_done WHERE comp=? AND season=?",
                             (comp, SEASON)))
-    todo = [(g, k) for g in games for k in ("pbp", "shots") if (g, k) not in done]
+    todo = [(g, k) for g in games for k in ("pbp2", "shots") if (g, k) not in done]
     if not todo:
         return
     print(f"Cetvrtine i sutevi: {len(todo)} preuzimanja...")
     pbp_api, shot_api = PlayByPlay(comp), ShotData(comp)
     for gc, kind in todo:
         try:
-            if kind == "pbp":
-                per = periods_from_pbp(pbp_api.get_game_play_by_play_data(SEASON, gc))
+            if kind == "pbp2":
+                raw = pbp_api.get_game_play_by_play_data(SEASON, gc)
+                per = periods_from_pbp(raw)
+                players, lineups = onoff_from_pbp(raw)
+                cols = ["sec", "pm", "c_sec", "c_pm"] + CLUTCH_COLS
+                conn.executemany(
+                    f"INSERT OR REPLACE INTO onoff VALUES ({','.join('?' * (5 + len(cols)))})",
+                    [(comp, SEASON, gc, r["player_id"], r["team"], *[float(r[c]) for c in cols])
+                     for _, r in players.iterrows()])
+                conn.executemany(
+                    "INSERT OR REPLACE INTO lineups VALUES (?,?,?,?,?,?,?,?)",
+                    [(comp, SEASON, gc, r.team, r.lineup, float(r.sec), int(r.pf), int(r.pa))
+                     for r in lineups.itertuples()])
                 conn.executemany(
                     "INSERT OR REPLACE INTO player_periods VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
                     [(comp, SEASON, gc, r.PLAYER_ID, int(r.PERIOD), *[int(getattr(r, c)) for c in PERIOD_COLS])
@@ -201,6 +393,20 @@ def load_periods(comps):
     conn = get_conn()
     _extra_tables(conn)
     q = f"SELECT * FROM player_periods WHERE season=? AND comp IN ({','.join('?' * len(comps))})"
+    return pd.read_sql(q, conn, params=(SEASON, *comps))
+
+
+def load_onoff(comps):
+    conn = get_conn()
+    _extra_tables(conn)
+    q = f"SELECT * FROM onoff WHERE season=? AND comp IN ({','.join('?' * len(comps))})"
+    return pd.read_sql(q, conn, params=(SEASON, *comps))
+
+
+def load_lineups(comps):
+    conn = get_conn()
+    _extra_tables(conn)
+    q = f"SELECT * FROM lineups WHERE season=? AND comp IN ({','.join('?' * len(comps))})"
     return pd.read_sql(q, conn, params=(SEASON, *comps))
 
 
