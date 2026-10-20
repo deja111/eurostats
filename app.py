@@ -135,6 +135,8 @@ div[data-baseweb="select"] > div, div[data-baseweb="input"] > div {border-radius
 [data-testid="stDataFrame"] {border-radius: 14px; overflow: hidden;
     border: 1px solid rgba(128,128,128,0.22);}
 [data-testid="stSidebar"] {border-right: 1px solid rgba(128,128,128,0.22);}
+/* grafikoni ne hvataju vertikalni skrol na telefonu / charts don't capture vertical scroll */
+.vega-embed, .vega-embed canvas, .vega-embed svg {touch-action: pan-y !important;}
 
 @media (max-width: 640px) {
   .block-container {padding: 4.5rem 0.8rem 3rem;}   /* ispod Streamlit trake (Share/Fork) */
@@ -149,6 +151,8 @@ div[data-baseweb="select"] > div, div[data-baseweb="input"] > div {border-radius
   [data-testid="stMetric"] {padding: 10px 12px;}
   [data-testid="stMetricValue"] {font-size: 1.5rem;}
   button[data-baseweb="tab"] {font-size: 0.9rem; padding: 0.4rem 0.6rem;}
+  /* traka desno od tabele za skrolovanje stranice palcem / strip beside tables for page scroll */
+  [data-testid="stDataFrame"] {width: calc(100% - 32px) !important; max-width: calc(100% - 32px) !important;}
 }
 </style>
 """, unsafe_allow_html=True)
@@ -258,7 +262,7 @@ with tab1:
             st.altair_chart(chart, width="stretch")
 
         st.dataframe(g[[opp_c] + list(stats)].rename(columns=stats).round(1),
-                     hide_index=True, width="stretch")
+                     hide_index=True, width="stretch", height=min(300, 38 + 35 * len(g)))
 
 # ---------- lideri / leaders ----------
 with tab2:
@@ -278,10 +282,15 @@ with tab2:
         t = t[t[tr("gp")] >= min_games].sort_values(stat_name, ascending=False).head(15)
         st.subheader(COMP_NAME[lang][comp])
         left, right = st.columns([3, 2])
-        left.dataframe(t[["player", "team", tr("gp"), stat_name]].rename(
+        left.dataframe(t[["player", stat_name, "team", tr("gp")]].rename(
             columns={"player": tr("player"), "team": tr("team")}).round(1),
             hide_index=True, width="stretch")
-        right.bar_chart(t.set_index("player")[stat_name], color=COLOR.get(key))
+        # Altair umesto st.bar_chart (koji ima zum/pomeranje i hvata prst na telefonu)
+        right.altair_chart(alt.Chart(t).mark_bar(color=COLOR.get(key, "#f59e0b")).encode(
+            x=alt.X("player:N", sort=list(t["player"]), title=None, axis=alt.Axis(labelAngle=-45)),
+            y=alt.Y(f"{stat_name}:Q", title=None),
+            tooltip=["player", "team", alt.Tooltip(f"{stat_name}:Q", format=".1f")]),
+            width="stretch")
 
         # ---------- props ----------
 def hit_rate(vals, line):
@@ -372,6 +381,7 @@ with tab3:
             st.markdown(f"**{tr('by_opp')}**")
             vs = g.dropna(subset=["opp"]).groupby("opp").apply(summarize, include_groups=False)
             vs.index.name = opp_c
-            st.dataframe(vs.sort_values("Over %", ascending=False), width="stretch")
+            st.dataframe(vs.sort_values("Over %", ascending=False), width="stretch",
+                         height=min(300, 38 + 35 * len(vs)))
 
             
