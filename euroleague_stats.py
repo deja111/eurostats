@@ -39,7 +39,37 @@ def get_conn():
             player TEXT, team TEXT, stats_json TEXT,
             PRIMARY KEY (comp, season, gamecode, player_id)
         )""")
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS schedule (
+            comp TEXT, season INTEGER, gamecode INTEGER, gameday INTEGER, date TEXT,
+            startime TEXT, homecode TEXT, awaycode TEXT, hometeam TEXT, awayteam TEXT,
+            played INTEGER,
+            PRIMARY KEY (comp, season, gamecode)
+        )""")
     return conn
+
+
+def update_schedule(comp, conn=None):
+    """Raspored cele sezone (odigrane i predstojece utakmice) / full season schedule."""
+    from euroleague_api.schedule import Schedule
+    conn = conn or get_conn()
+    s = Schedule(comp).get_schedule(SEASON)
+    date = pd.to_datetime(s["date"], format="%b %d, %Y", errors="coerce").dt.strftime("%Y-%m-%d")
+    played = s["played"].astype(str).str.lower().isin(["true", "1"]).astype(int)
+    rows = list(zip([comp] * len(s), [SEASON] * len(s), s["game"].astype(int),
+                    s["gameday"].astype(int), date, s["startime"], s["homecode"], s["awaycode"],
+                    s["hometeam"], s["awayteam"], played))
+    conn.executemany("INSERT OR REPLACE INTO schedule VALUES (?,?,?,?,?,?,?,?,?,?,?)", rows)
+    conn.commit()
+    print(f"Raspored: {len(rows)} utakmica ({int(played.sum())} odigrano)")
+
+
+def load_schedule(comps):
+    conn = get_conn()
+    q = f"SELECT * FROM schedule WHERE season=? AND comp IN ({','.join('?' * len(comps))})"
+    s = pd.read_sql(q, conn, params=(SEASON, *comps))
+    s["date"] = pd.to_datetime(s["date"], errors="coerce")
+    return s
 
 
 def played_gamecodes(comp):
@@ -52,6 +82,10 @@ def update(comps):
     conn = get_conn()
     for comp in comps:
         print(f"\n--- {COMPETITIONS[comp]} {SEASON}/{str(SEASON + 1)[-2:]} ---")
+        try:
+            update_schedule(comp, conn)
+        except Exception as e:
+            print(f"Ne mogu da dobijem raspored utakmica ({e})")
         try:
             games = played_gamecodes(comp)
         except Exception as e:

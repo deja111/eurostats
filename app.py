@@ -122,6 +122,15 @@ T2 = {
                       "Visoka vrednost = slabija odbrana za taj prop.",
         "p1": "Igrač 1", "p2": "Igrač 2", "cmp_trend": "{s} po utakmici", "game_n": "Utakmica br.",
         "cmp_pick": "Izaberi dva igrača za poređenje.",
+        "tab_sched": "📅 Raspored", "round": "Kolo", "date": "Datum", "time": "Vreme",
+        "match": "Meč", "res_time": "Rezultat / vreme", "home_allows": "Domaćin prima",
+        "away_allows": "Gost prima", "rest": "Odmor (dani)",
+        "sched_note": "Uz svaki meč: koliko domaćin i gost primaju za izabranu statistiku "
+                      "(u zagradi rang, #1 = prima najviše).",
+        "no_sched": "Raspored još nije učitan. Klikni **Osveži podatke** u meniju levo.",
+        "next_game": "📅 Sledeća utakmica: **{opp}** ({ha}) · {d} {t} · {opp} prima **{v}** {s} "
+                     "po utakmici (rang **{r}/{n}**)",
+        "use_next": "Filtriraj na sledećeg protivnika", "next_none": "Nema zakazanih utakmica.",
     },
     "en": {
         "tab_scan": "🔎 Scanner", "tab_teams": "🛡️ Teams", "tab_cmp": "⚖️ Compare",
@@ -142,6 +151,15 @@ T2 = {
                       "High value = weaker defense for that prop.",
         "p1": "Player 1", "p2": "Player 2", "cmp_trend": "{s} by game", "game_n": "Game #",
         "cmp_pick": "Pick two players to compare.",
+        "tab_sched": "📅 Schedule", "round": "Round", "date": "Date", "time": "Time",
+        "match": "Game", "res_time": "Result / time", "home_allows": "Home allows",
+        "away_allows": "Away allows", "rest": "Rest (days)",
+        "sched_note": "For each game: what the home and away team allow for the chosen stat "
+                      "(rank in brackets, #1 = allows the most).",
+        "no_sched": "Schedule not loaded yet. Click **Refresh data** in the sidebar.",
+        "next_game": "📅 Next game: **{opp}** ({ha}) · {d} {t} · {opp} allows **{v}** {s} "
+                     "per game (rank **{r}/{n}**)",
+        "use_next": "Filter on next opponent", "next_none": "No scheduled games.",
     },
 }
 for _l in T:
@@ -268,6 +286,34 @@ if df.empty:
     st.info(tr("no_data"))
     st.stop()
 
+@st.cache_data(ttl=3600)
+def load_sched(comps: tuple) -> pd.DataFrame:
+    """Raspored iz baze; ako ga nema (npr. nova baza), pokusa jednom da ga povuce."""
+    try:
+        s = es.load_schedule(list(comps))
+        if s.empty:
+            for c in comps:
+                with contextlib.redirect_stdout(io.StringIO()):
+                    es.update_schedule(c)
+            s = es.load_schedule(list(comps))
+        return s
+    except Exception:
+        return pd.DataFrame()
+
+
+sched = load_sched(tuple(comps))
+if not sched.empty:
+    df = df.merge(sched[["comp", "gamecode", "date"]], on=["comp", "gamecode"], how="left")
+else:
+    df["date"] = pd.NaT
+SORT = ["date", "gamecode"]
+played_codes = set(zip(df["comp"], df["gamecode"]))
+
+
+def date_lbl(d, opp):
+    return f"{d:%d.%m.} {opp}" if pd.notna(d) else opp
+
+
 stats = {k: NAMES[lang][k] for k in KEYS if k in df.columns}   # kljuc -> prikazani naziv
 inv = {v: k for k, v in stats.items()}                          # prikazani naziv -> kljuc
 stat_keys = [k for k in stats if k != "Minutes"]
@@ -288,8 +334,24 @@ prop_inv = {v: k for k, v in prop_stats.items()}
 def player_games(label):
     r = players[players["label"] == label].iloc[0]
     g = (df[(df["comp"] == r["comp"]) & (df["player_id"] == r["player_id"])]
-         .sort_values("gamecode").reset_index(drop=True))
+         .sort_values(SORT).reset_index(drop=True))
+    g["rest"] = g["date"].diff().dt.days.astype("Int64")
     return r, g
+
+
+def next_game(comp, team):
+    """Prva neodigrana utakmica tima / team's next unplayed game."""
+    if sched.empty:
+        return None
+    s = sched[(sched["comp"] == comp) & ((sched["homecode"] == team) | (sched["awaycode"] == team))]
+    s = s[[(comp, gc) not in played_codes for gc in s["gamecode"]]]
+    s = s[s["played"] == 0].sort_values(["date", "startime"])
+    if s.empty:
+        return None
+    n = s.iloc[0]
+    home = n["homecode"] == team
+    return {"opp": n["awaycode"] if home else n["homecode"], "home": home,
+            "date": n["date"], "time": n["startime"]}
 
 
 def hit_rate(vals, line, side="Over"):
@@ -329,7 +391,7 @@ def wl(x):
 
 
 tabs = st.tabs([tr("tab_player"), tr("tab_leaders"), tr("tab_props"),
-                tr("tab_scan"), tr("tab_teams"), tr("tab_cmp")])
+                tr("tab_scan"), tr("tab_teams"), tr("tab_cmp"), tr("tab_sched")])
 
 # ---------- igrac / player ----------
 with tabs[0]:
@@ -373,7 +435,7 @@ with tabs[0]:
             c[3].metric(tr("foul4"), f"{100 * n4 / len(g):.0f}%",
                         tr("n_games", o=n4, t=len(g)), delta_color="off")
 
-        g[opp_c] = g["opp"].fillna("?")
+        g[opp_c] = [date_lbl(d, o) for d, o in zip(g["date"], g["opp"].fillna("?"))]
         names = g[opp_c] + g[opp_c].groupby(g[opp_c]).cumcount().map(
             lambda n: "" if n == 0 else f" ({n + 1})")
         g[opp_c] = names
@@ -404,7 +466,7 @@ with tabs[0]:
                 tooltip=[opp_c, stat_c, val_c])
             st.altair_chart(chart, width="stretch")
 
-        log = g[[opp_c] + list(stats)].rename(columns=stats).round(1)
+        log = g[[opp_c] + list(stats) + ["rest"]].rename(columns={**stats, "rest": tr("rest")}).round(1)
         st.dataframe(log, hide_index=True, width="stretch", height=min(300, 38 + 35 * len(g)))
         csv_button(log, row["player"], "dl_player")
 
@@ -450,6 +512,25 @@ def render_props():
         return
     row, g = player_games(pc)
     key = prop_inv[prop_name]
+    opp_key = f"opp_{row['comp']}_{row['player_id']}"
+    opp_opts = ["__all__"] + sorted(g["opp"].dropna().unique())
+
+    # sledeci protivnik / next opponent
+    ta = tgames[tgames["comp"] == row["comp"]].groupby("team")[f"{key}_a"].mean()
+    rank = ta.rank(ascending=False, method="min").astype(int)
+    nxt = next_game(row["comp"], g["team"].iloc[-1])
+    if nxt:
+        o = nxt["opp"]
+        st.info(tr("next_game", opp=o, ha=tr("home") if nxt["home"] else tr("away"),
+                   d=f"{nxt['date']:%d.%m.}" if pd.notna(nxt["date"]) else "", t=nxt["time"] or "",
+                   v=f"{ta.get(o, float('nan')):.1f}", s=prop_name,
+                   r=rank.get(o, "–"), n=len(ta)))
+        # dugme je pre selectbox-a, pa smemo direktno da postavimo njegovu vrednost
+        if o in opp_opts and st.button(tr("use_next"), key=f"use_next_{opp_key}"):
+            st.session_state[opp_key] = o
+    elif not sched.empty:
+        st.caption(tr("next_none"))
+
     default = float(round(g[key].mean() * 2) / 2)
     c3, c4, c5 = st.columns(3)
     line = c3.number_input(tr("line"), value=default, step=0.5,
@@ -458,7 +539,7 @@ def render_props():
     venue = c4.radio(tr("venue"), ["all", "home", "away"], horizontal=True,
                      disabled=not has_home,
                      format_func=lambda x: tr("all_f") if x == "all" else tr(x))
-    opp_sel = c5.selectbox(opp_c, ["__all__"] + sorted(g["opp"].dropna().unique()),
+    opp_sel = c5.selectbox(opp_c, opp_opts, key=opp_key,
                            format_func=lambda x: tr("all") if x == "__all__" else x)
 
     f = g.copy()
@@ -488,13 +569,16 @@ def render_props():
 
     d = f.assign(Game=np.arange(1, len(f) + 1))
     d[res_c] = np.where(f[key] > line, "Over", "Under")
-    d[opp_c] = d["opp"].fillna("?")
+    d[opp_c] = [date_lbl(dt, o) for dt, o in zip(d["date"], d["opp"].fillna("?"))]
+    d[opp_c] = d[opp_c] + d.groupby(opp_c).cumcount().map(lambda n: "" if n == 0 else f" ({n + 1})")
+    d[tr("rest")] = d["rest"]
     bars = alt.Chart(d).mark_bar().encode(
-        x=alt.X("Game:O", title=tr("game_axis")),
+        x=alt.X(f"{opp_c}:N", sort=list(d[opp_c]), title=tr("game_axis"),
+                axis=alt.Axis(labelAngle=-45)),
         y=alt.Y(f"{key}:Q", title=prop_name),
         color=alt.Color(f"{res_c}:N", legend=None,
                         scale=alt.Scale(domain=["Over", "Under"], range=["#22c55e", "#ef4444"])),
-        tooltip=[opp_c, alt.Tooltip(f"{key}:Q", title=prop_name), res_c])
+        tooltip=[opp_c, alt.Tooltip(f"{key}:Q", title=prop_name), res_c, tr("rest")])
     rule = alt.Chart(pd.DataFrame({"l": [line]})).mark_rule(
         strokeDash=[6, 4], color="#f59e0b", size=2).encode(y="l:Q")
     st.altair_chart(bars + rule, width="stretch")
@@ -549,7 +633,7 @@ with tabs[3]:
     smin_m = c6.slider(tr("min_minutes"), 0, 35, 10, key="scan_min_m")
 
     rows = []
-    for (comp, pid), pg in df.sort_values("gamecode").groupby(["comp", "player_id"]):
+    for (comp, pid), pg in df.sort_values(SORT).groupby(["comp", "player_id"]):
         if len(pg) < smin_g or pg["Minutes"].mean() < smin_m:
             continue
         v = pg[skey]
@@ -655,3 +739,50 @@ with tabs[5]:
                             scale=alt.Scale(range=["#3b82f6", "#f59e0b"]),
                             legend=alt.Legend(orient="top")),
             tooltip=[tr("player"), opp_c, val_c]), width="stretch")
+
+# ---------- raspored / schedule ----------
+with tabs[6]:
+    if sched.empty:
+        st.info(tr("no_sched"))
+    else:
+        st.caption(tr("sched_note"))
+        c1, c2 = st.columns(2)
+        rs_name = c1.selectbox(stat_c, list(prop_stats.values()), key="sched_stat")
+        rs_key = prop_inv[rs_name]
+        for comp in comps:
+            s = sched[sched["comp"] == comp].copy()
+            if s.empty:
+                continue
+            s["is_played"] = [(comp, gc) in played_codes or p == 1
+                              for gc, p in zip(s["gamecode"], s["played"])]
+            rounds = sorted(s["gameday"].unique())
+            upcoming = s.loc[~s["is_played"], "gameday"]
+            default_r = int(upcoming.min()) if not upcoming.empty else int(max(rounds))
+            rnd = c2.selectbox(tr("round"), rounds, index=rounds.index(default_r),
+                               key=f"sched_round_{comp}")
+            s = s[s["gameday"] == rnd].sort_values(["date", "startime"])
+
+            ta = tgames[tgames["comp"] == comp].groupby("team")[f"{rs_key}_a"].mean()
+            rank = ta.rank(ascending=False, method="min")
+            pts = tgames[tgames["comp"] == comp].set_index(["gamecode", "team"])["Points"]
+
+            def allow(team):
+                return f"{ta[team]:.1f} (#{int(rank[team])})" if team in ta.index else "–"
+
+            def res_or_time(r):
+                try:
+                    return f"{int(pts[(r.gamecode, r.homecode)])}–{int(pts[(r.gamecode, r.awaycode)])}"
+                except KeyError:
+                    return r.startime or ""
+
+            tbl = pd.DataFrame({
+                tr("date"): s["date"].dt.strftime("%d.%m.").fillna(""),
+                tr("match"): s["homecode"] + " – " + s["awaycode"],
+                tr("res_time"): [res_or_time(r) for r in s.itertuples()],
+                tr("home_allows"): s["homecode"].map(allow),
+                tr("away_allows"): s["awaycode"].map(allow),
+            })
+            st.subheader(f"{COMP_NAME[lang][comp]} · {tr('round')} {rnd}")
+            st.dataframe(tbl, hide_index=True, width="stretch",
+                         height=min(420, 38 + 35 * len(tbl)))
+            csv_button(tbl, f"raspored_{comp}_kolo{rnd}", f"dl_sched_{comp}")
