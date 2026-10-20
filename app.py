@@ -27,6 +27,15 @@ COLOR = {"Points": "#22c55e", "TotalRebounds": "#ef4444", "Assistances": "#3b82f
          "Steals": "#f59e0b", "BlocksFavour": "#a855f7", "Valuation": "#14b8a6", "Minutes": "#94a3b8"}
 DOT = {"Points": "🟢", "TotalRebounds": "🔴", "Assistances": "🔵",
        "Steals": "🟠", "BlocksFavour": "🟣", "Valuation": "🟦", "Minutes": "⚪"}
+# dodatne props statistike (izvedene kolone) / extra prop stats (derived columns)
+COMBOS = {"PRA": ["Points", "TotalRebounds", "Assistances"], "PR": ["Points", "TotalRebounds"],
+          "PA": ["Points", "Assistances"], "RA": ["TotalRebounds", "Assistances"]}
+EXTRA_NAMES = {
+    "sr": {"3PM": "Trojke (pogođene)", "PRA": "Poeni+Skokovi+Asist.", "PR": "Poeni+Skokovi",
+           "PA": "Poeni+Asist.", "RA": "Skokovi+Asist.", "Turnovers": "Izgubljene"},
+    "en": {"3PM": "3-pointers made", "PRA": "Pts+Reb+Ast", "PR": "Pts+Reb",
+           "PA": "Pts+Ast", "RA": "Reb+Ast", "Turnovers": "Turnovers"},
+}
 LIGE = {"E": ["E"], "U": ["U"]}
 COMP_NAME = {"sr": {"E": "Evroliga", "U": "Evrokup"}, "en": {"E": "EuroLeague", "U": "EuroCup"}}
 
@@ -99,7 +108,7 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 .stApp {font-family: 'Inter', sans-serif;}
-.block-container {padding-top: 1.8rem; max-width: 1200px;}
+.block-container {padding-top: 4.5rem; max-width: 1200px;}
 footer {visibility: hidden;}
 
 .hero {display: flex; align-items: center; gap: 18px; padding: 22px 26px; margin-bottom: 1.2rem;
@@ -128,7 +137,7 @@ div[data-baseweb="select"] > div, div[data-baseweb="input"] > div {border-radius
 [data-testid="stSidebar"] {border-right: 1px solid rgba(128,128,128,0.22);}
 
 @media (max-width: 640px) {
-  .block-container {padding: 1rem 0.8rem 3rem;}
+  .block-container {padding: 4.5rem 0.8rem 3rem;}   /* ispod Streamlit trake (Share/Fork) */
   .hero {padding: 14px 16px; gap: 12px; border-radius: 16px;}
   .hero svg {width: 40px; height: 40px;}
   .hero-title {font-size: 1.5rem;}
@@ -150,6 +159,11 @@ def load(comps: tuple) -> pd.DataFrame:
     df = es.load_df(list(comps))
     if df.empty:
         return df
+    for name, parts in COMBOS.items():
+        if all(p in df.columns for p in parts):
+            df[name] = df[parts].sum(axis=1)
+    if "FieldGoalsMade3" in df.columns:
+        df["3PM"] = df["FieldGoalsMade3"]
     pairs = df[["comp", "gamecode", "team"]].drop_duplicates()
     opp = pairs.merge(pairs, on=["comp", "gamecode"], suffixes=("", "_o"))
     opp = opp[opp["team"] != opp["team_o"]].rename(columns={"team_o": "opp"})
@@ -281,10 +295,13 @@ with tab3:
     c1, c2 = st.columns([3, 2])
     pc = c1.selectbox(tr("player"), players["label"], index=None,
                       placeholder=tr("placeholder"), key="p3")
-    prop_name = c2.selectbox(stat_c, [stats[k] for k in stat_keys], key="s3")
+    prop_stats = {k: stats[k] for k in stat_keys}
+    prop_stats.update({k: v for k, v in EXTRA_NAMES[lang].items() if k in df.columns})
+    prop_inv = {v: k for k, v in prop_stats.items()}
+    prop_name = c2.selectbox(stat_c, list(prop_stats.values()), key="s3")
     if pc:
         row = players[players["label"] == pc].iloc[0]
-        key = inv[prop_name]
+        key = prop_inv[prop_name]
         g = (df[(df["comp"] == row["comp"]) & (df["player_id"] == row["player_id"])]
              .sort_values("gamecode").reset_index(drop=True))
         default = float(round(g[key].mean() * 2) / 2)
