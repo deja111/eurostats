@@ -34,17 +34,24 @@ EXTRA_NAMES = {
     "sr": {"3PM": "Trojke (pogođene)", "PRA": "Poeni+Skokovi+Asist.", "PR": "Poeni+Skokovi",
            "PA": "Poeni+Asist.", "RA": "Skokovi+Asist.", "Turnovers": "Izgubljene",
            "3PA": "Trojke (pokušane)", "OffensiveRebounds": "Skokovi u napadu",
-           "DefensiveRebounds": "Skokovi u odbrani", "FoulsCommited": "Faulovi"},
+           "DefensiveRebounds": "Skokovi u odbrani", "FoulsCommited": "Faulovi",
+           "PTS_Q1": "Poeni 1. četvrtina", "PTS_H1": "Poeni 1. poluvreme",
+           "REB_H1": "Skokovi 1. poluvreme", "AST_H1": "Asist. 1. poluvreme",
+           "PRA_H1": "P+S+A 1. poluvreme", "3PM_H1": "Trojke 1. poluvreme"},
     "en": {"3PM": "3-pointers made", "PRA": "Pts+Reb+Ast", "PR": "Pts+Reb",
            "PA": "Pts+Ast", "RA": "Reb+Ast", "Turnovers": "Turnovers",
            "3PA": "3-pointers attempted", "OffensiveRebounds": "Offensive rebounds",
-           "DefensiveRebounds": "Defensive rebounds", "FoulsCommited": "Fouls"},
+           "DefensiveRebounds": "Defensive rebounds", "FoulsCommited": "Fouls",
+           "PTS_Q1": "Points 1st quarter", "PTS_H1": "Points 1st half",
+           "REB_H1": "Rebounds 1st half", "AST_H1": "Assists 1st half",
+           "PRA_H1": "P+R+A 1st half", "3PM_H1": "3PM 1st half"},
 }
 # podrazumevane linije za skener / default scanner lines
 DEFAULT_LINE = {"Points": 12.5, "TotalRebounds": 5.5, "Assistances": 3.5, "Steals": 0.5,
                 "BlocksFavour": 0.5, "Valuation": 12.5, "3PM": 1.5, "PRA": 20.5, "PR": 16.5,
                 "PA": 15.5, "RA": 8.5, "Turnovers": 1.5, "3PA": 3.5, "OffensiveRebounds": 1.5,
-                "DefensiveRebounds": 3.5, "FoulsCommited": 2.5}
+                "DefensiveRebounds": 3.5, "FoulsCommited": 2.5, "PTS_Q1": 2.5, "PTS_H1": 5.5,
+                "REB_H1": 2.5, "AST_H1": 1.5, "PRA_H1": 10.5, "3PM_H1": 0.5}
 LIGE = {"E": ["E"], "U": ["U"]}
 COMP_NAME = {"sr": {"E": "Evroliga", "U": "Evrokup"}, "en": {"E": "EuroLeague", "U": "EuroCup"}}
 
@@ -104,7 +111,7 @@ T = {
 }
 T2 = {
     "sr": {
-        "tab_scan": "🔎 Skener", "tab_teams": "🛡️ Timovi", "tab_cmp": "⚖️ Poređenje",
+        "tab_scan": "🔎 Skener", "tab_teams": "🛡️ Timovi", "tab_cmp": "⚖️ Poređenje", "tab_round": "⭐ Pregled kola", "tab_without": "🔄 Bez saigrača",
         "shooting": "Šut", "minutes_h": "Minuti i faulovi", "tpa": "3PA po utakm.",
         "min_avg": "Minuti (prosek)", "min_l3": "Minuti (posl. 3)", "per36": "Poeni na 36 min",
         "foul4": "Utakmice sa 4+ faula", "min_chart": "Minuti po utakmici", "rolling": "Prosek posl. 3",
@@ -133,7 +140,7 @@ T2 = {
         "use_next": "Filtriraj na sledećeg protivnika", "next_none": "Nema zakazanih utakmica.",
     },
     "en": {
-        "tab_scan": "🔎 Scanner", "tab_teams": "🛡️ Teams", "tab_cmp": "⚖️ Compare",
+        "tab_scan": "🔎 Scanner", "tab_teams": "🛡️ Teams", "tab_cmp": "⚖️ Compare", "tab_round": "⭐ Round preview", "tab_without": "🔄 Without teammate",
         "shooting": "Shooting", "minutes_h": "Minutes & fouls", "tpa": "3PA per game",
         "min_avg": "Minutes (avg)", "min_l3": "Minutes (last 3)", "per36": "Points per 36",
         "foul4": "Games with 4+ fouls", "min_chart": "Minutes by game", "rolling": "Last-3 average",
@@ -162,8 +169,69 @@ T2 = {
         "use_next": "Filter on next opponent", "next_none": "No scheduled games.",
     },
 }
+T3 = {
+    "sr": {
+        "median": "Medijana", "min": "Najmanje", "max": "Najviše", "spread": "Varijacija (±)",
+        "spread_help": "Standardna devijacija: koliko igrač prosečno odstupa od proseka",
+        "by_rest": "Po odmoru", "rest_short": "1–2 dana", "rest_long": "3+ dana",
+        "efficiency": "Efikasnost", "ts": "TS%", "efg": "eFG%", "ast_to": "Asist./izgubljene",
+        "ts_help": "Šut uključujući slobodna bacanja: poeni / (2 × (šutevi + 0.44 × bacanja))",
+        "efg_help": "Šut iz igre gde trojka vredi 1.5 puta više",
+        "form": "🔥 Ko je u formi", "form_up": "Iznad proseka", "form_down": "Ispod proseka",
+        "last3": "Posl. 3", "season_avg": "Sezona",
+        "form_note": "Prosek poslednje 3 utakmice u odnosu na celu sezonu (min. 4 utakmice).",
+        "absent": "Igrač koji ne igra", "with": "Sa njim", "without": "Bez njega",
+        "gp_with": "Utakm. sa", "gp_without": "Utakm. bez",
+        "without_note": "Izostanak = igrač nije u zapisniku utakmice svog tima. "
+                        "Ako je došao u tim tokom sezone, ranije utakmice se računaju kao izostanak.",
+        "no_absence": "{p} je odigrao sve utakmice svog tima – nema poređenja.",
+        "round_note": "Igrači iz sledećeg kola sa visokim procentom za izabranu liniju, "
+                      "protiv protivnika koji je slab (Over) ili jak (Under) za tu statistiku.",
+        "min_hit": "Min. % (posl. 5)", "top_def": "Rang protivnika do",
+        "top_def_help": "Over: protivnik je među N koji najviše primaju. Under: među N koji najmanje primaju.",
+        "opp_rank_s": "Rang prot.", "no_round": "Nema igrača za ove filtere u sledećem kolu.",
+        "by_quarter": "Po četvrtinama (prosek)", "quarter": "Četvrtina", "ot": "Produžeci",
+        "shot_map": "Mapa šuteva", "made": "Pogođen", "missed": "Promašen", "zone": "Zona",
+        "z_paint": "Reket", "z_mid": "Srednja distanca", "z_corner": "Trojka iz ugla",
+        "z_above": "Trojka (luk)", "att": "Pokušaji", "made_n": "Pogođeno", "share": "Udeo",
+        "no_extra": "Podaci po četvrtinama i šutevi još nisu preuzeti. Klikni **Osveži podatke** "
+                    "(prvi put traje duže).",
+        "standings": "🏅 Tabela lige", "pos": "#", "won": "P", "lost": "I", "last5": "Posl. 5",
+        "pdiff": "Koš razlika", "no_standings": "Tabela trenutno nije dostupna.",
+    },
+    "en": {
+        "median": "Median", "min": "Min", "max": "Max", "spread": "Spread (±)",
+        "spread_help": "Standard deviation: how far the player typically is from his average",
+        "by_rest": "By rest", "rest_short": "1–2 days", "rest_long": "3+ days",
+        "efficiency": "Efficiency", "ts": "TS%", "efg": "eFG%", "ast_to": "Ast/TO",
+        "ts_help": "Shooting incl. free throws: points / (2 × (FGA + 0.44 × FTA))",
+        "efg_help": "Field-goal % where a three counts 1.5 times",
+        "form": "🔥 Who's in form", "form_up": "Above average", "form_down": "Below average",
+        "last3": "Last 3", "season_avg": "Season",
+        "form_note": "Last-3-games average vs. the full season (min. 4 games).",
+        "absent": "Player who sits out", "with": "With him", "without": "Without him",
+        "gp_with": "GP with", "gp_without": "GP without",
+        "without_note": "Absence = the player is not in his team's box score. "
+                        "If he joined mid-season, earlier games count as absences.",
+        "no_absence": "{p} played every game for his team – nothing to compare.",
+        "round_note": "Players in the next round with a high hit rate for the chosen line, "
+                      "facing an opponent that is weak (Over) or strong (Under) for that stat.",
+        "min_hit": "Min. % (last 5)", "top_def": "Opponent rank up to",
+        "top_def_help": "Over: opponent is among the N that allow the most. Under: among the N that allow the least.",
+        "opp_rank_s": "Opp. rank", "no_round": "No players match these filters in the next round.",
+        "by_quarter": "By quarter (average)", "quarter": "Quarter", "ot": "Overtime",
+        "shot_map": "Shot chart", "made": "Made", "missed": "Missed", "zone": "Zone",
+        "z_paint": "Paint", "z_mid": "Mid-range", "z_corner": "Corner three",
+        "z_above": "Three (arc)", "att": "Attempts", "made_n": "Made", "share": "Share",
+        "no_extra": "Quarter and shot data not downloaded yet. Click **Refresh data** "
+                    "(first time takes longer).",
+        "standings": "🏅 Standings", "pos": "#", "won": "W", "lost": "L", "last5": "Last 5",
+        "pdiff": "Point diff", "no_standings": "Standings are not available right now.",
+    },
+}
 for _l in T:
     T[_l].update(T2[_l])
+    T[_l].update(T3[_l])
 
 LOGO = (
     '<svg width="{s}" height="{s}" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">'
@@ -306,6 +374,42 @@ if not sched.empty:
     df = df.merge(sched[["comp", "gamecode", "date"]], on=["comp", "gamecode"], how="left")
 else:
     df["date"] = pd.NaT
+
+
+@st.cache_data(ttl=300)
+def load_periods(comps: tuple) -> pd.DataFrame:
+    try:
+        return es.load_periods(list(comps))
+    except Exception:
+        return pd.DataFrame()
+
+
+@st.cache_data(ttl=300)
+def load_shots(comps: tuple) -> pd.DataFrame:
+    try:
+        s = es.load_shots(list(comps))
+        s["player_id"] = s["player_id"].str.strip()
+        return s
+    except Exception:
+        return pd.DataFrame()
+
+
+periods = load_periods(tuple(comps))
+if not periods.empty:
+    periods["player_id"] = periods["player_id"].str.strip()
+    grp = ["comp", "gamecode", "player_id"]
+    q1 = periods[periods["period"] == 1].groupby(grp)[["PTS"]].sum().rename(columns={"PTS": "PTS_Q1"})
+    h1 = periods[periods["period"] <= 2].groupby(grp)[["PTS", "REB", "AST", "FG3M"]].sum()
+    h1 = h1.rename(columns={"PTS": "PTS_H1", "REB": "REB_H1", "AST": "AST_H1", "FG3M": "3PM_H1"})
+    h1["PRA_H1"] = h1["PTS_H1"] + h1["REB_H1"] + h1["AST_H1"]
+    per_g = q1.join(h1, how="outer").reset_index()
+    pbp_games = set(zip(periods["comp"], periods["gamecode"]))
+    df["_pid"] = df["player_id"].str.strip()
+    df = df.merge(per_g.rename(columns={"player_id": "_pid"}), on=["comp", "gamecode", "_pid"], how="left")
+    has_pbp = [(c, gc) in pbp_games for c, gc in zip(df["comp"], df["gamecode"])]
+    per_cols = ["PTS_Q1", "PTS_H1", "REB_H1", "AST_H1", "PRA_H1", "3PM_H1"]
+    df.loc[has_pbp, per_cols] = df.loc[has_pbp, per_cols].fillna(0)   # bez akcija u pbp = 0
+shots = load_shots(tuple(comps))
 SORT = ["date", "gamecode"]
 played_codes = set(zip(df["comp"], df["gamecode"]))
 
@@ -355,6 +459,7 @@ def next_game(comp, team):
 
 
 def hit_rate(vals, line, side="Over"):
+    vals = vals.dropna()
     n = len(vals)
     o = int((vals > line).sum() if side == "Over" else (vals < line).sum())
     return o, n
@@ -373,10 +478,11 @@ def csv_button(frame, name, key):
 def team_games(frame: pd.DataFrame) -> pd.DataFrame:
     """Jedan red po timu po utakmici: sta je dao (k) i sta je primio (k_a)."""
     cols = [k for k in prop_stats if k in frame.columns]
-    agg = {k: "sum" for k in cols}
+    grp = frame.groupby(["comp", "gamecode", "team"])
+    tg = grp[cols].sum(min_count=1)          # NaN ostaje NaN (npr. nema play-by-play)
     if "Home" in frame.columns:
-        agg["Home"] = "max"
-    tg = frame.groupby(["comp", "gamecode", "team"]).agg(agg).reset_index()
+        tg["Home"] = grp["Home"].max()
+    tg = tg.reset_index()
     tg = tg.merge(tg[["comp", "gamecode", "team"] + cols], on=["comp", "gamecode"], suffixes=("", "_a"))
     tg = tg[tg["team"] != tg["team_a"]].rename(columns={"team_a": "opp"})
     tg["win"] = tg["Points"] > tg["Points_a"]
@@ -386,15 +492,41 @@ def team_games(frame: pd.DataFrame) -> pd.DataFrame:
 tgames = team_games(df)
 
 
+def court_lines():
+    """Linije polovine terena (FIBA, cm), kos u (0, 0)."""
+    segs, base, top = [], -157.5, 1000
+    def add(name, xs, ys):
+        segs.extend({"seg": name, "i": i, "x": x, "y": y} for i, (x, y) in enumerate(zip(xs, ys)))
+    add("outer", [-750, -750, 750, 750, -750], [top, base, base, top, top])
+    add("paint", [-245, -245, 245, 245], [base, 422.5, 422.5, base])
+    t = np.linspace(0, np.pi, 40)
+    add("ft", 180 * np.cos(t), 422.5 + 180 * np.sin(t))
+    a0 = np.arcsin(141.5 / 675)
+    t = np.linspace(a0, np.pi - a0, 80)
+    add("three", np.r_[660, 675 * np.cos(t), -660], np.r_[base, 675 * np.sin(t), base])
+    t = np.linspace(0, 2 * np.pi, 30)
+    add("rim", 22.5 * np.cos(t), 22.5 * np.sin(t))
+    add("board", [-90, 90], [-37.5, -37.5])
+    t = np.linspace(0, np.pi, 30)
+    add("ra", 125 * np.cos(t), 125 * np.sin(t))
+    return pd.DataFrame(segs)
+
+
+def shot_zone(r):
+    if str(r["action"]).startswith("3"):
+        return tr("z_corner") if r["y"] < 141.5 else tr("z_above")
+    return tr("z_paint") if abs(r["x"]) <= 245 and r["y"] <= 422.5 else tr("z_mid")
+
+
 def wl(x):
     return f"{int(x.sum())}-{int((~x).sum())}"
 
 
-tabs = st.tabs([tr("tab_player"), tr("tab_leaders"), tr("tab_props"),
-                tr("tab_scan"), tr("tab_teams"), tr("tab_cmp"), tr("tab_sched")])
+TAB_KEYS = ["player", "leaders", "props", "round", "scan", "sched", "teams", "without", "cmp"]
+TAB = dict(zip(TAB_KEYS, st.tabs([tr(f"tab_{k}") for k in TAB_KEYS])))
 
 # ---------- igrac / player ----------
-with tabs[0]:
+with TAB["player"]:
     choice = st.selectbox(tr("search"), players["label"], index=None,
                           placeholder=tr("placeholder"))
     if choice:
@@ -422,6 +554,18 @@ with tabs[0]:
                     f"{s.get('FreeThrowsMade', 0):.0f}/{s.get('FreeThrowsAttempted', 0):.0f}",
                     delta_color="off")
         c[3].metric(tr("tpa"), f"{g['3PA'].mean():.1f}" if "3PA" in g else "—")
+
+        # efikasnost / efficiency
+        st.markdown(f"**{tr('efficiency')}**")
+        fga = s.get("FieldGoalsAttempted2", 0) + s.get("FieldGoalsAttempted3", 0)
+        fta = s.get("FreeThrowsAttempted", 0)
+        c = st.columns(3)
+        c[0].metric(tr("ts"), pct(s["Points"], 2 * (fga + 0.44 * fta)), help=tr("ts_help"))
+        c[1].metric(tr("efg"), pct(s.get("FieldGoalsMade2", 0) + 1.5 * s.get("FieldGoalsMade3", 0), fga),
+                    help=tr("efg_help"))
+        tov = s.get("Turnovers", 0)
+        c[2].metric(tr("ast_to"), f"{s['Assistances'] / tov:.1f}" if tov else "—",
+                    f"{s['Assistances']:.0f}/{tov:.0f}", delta_color="off")
 
         # minuti i faulovi / minutes & fouls
         st.markdown(f"**{tr('minutes_h')}**")
@@ -470,8 +614,54 @@ with tabs[0]:
         st.dataframe(log, hide_index=True, width="stretch", height=min(300, 38 + 35 * len(g)))
         csv_button(log, row["player"], "dl_player")
 
+        # po cetvrtinama / by quarter
+        pid = str(row["player_id"]).strip()
+        pp = periods[(periods["comp"] == row["comp"]) & (periods["player_id"] == pid)] \
+            if not periods.empty else pd.DataFrame()
+        st.markdown(f"**{tr('by_quarter')}**")
+        if periods.empty:
+            st.caption(tr("no_extra"))
+        else:
+            n_pbp = len({gc for c, gc in pbp_games if c == row["comp"]} & set(g["gamecode"]))
+            if n_pbp and not pp.empty:
+                q = pp.assign(_q=np.where(pp["period"] <= 4, "Q" + pp["period"].astype(str), tr("ot")))
+                qt = (q.groupby("_q")[["PTS", "REB", "AST", "FG3M"]].sum() / n_pbp).round(1)
+                order = ["Q1", "Q2", "Q3", "Q4"] + ([tr("ot")] if tr("ot") in qt.index else [])
+                qt = qt.reindex(order, fill_value=0)
+                qt = qt.rename(columns={"PTS": stats["Points"], "REB": stats["TotalRebounds"],
+                                        "AST": stats["Assistances"], "FG3M": EXTRA_NAMES[lang]["3PM"]})
+                qt.index.name = tr("quarter")
+                st.dataframe(qt, width="stretch")
+
+        # mapa suteva / shot chart
+        st.markdown(f"**{tr('shot_map')}**")
+        ps = shots[(shots["comp"] == row["comp"]) & (shots["player_id"] == pid)] \
+            if not shots.empty else pd.DataFrame()
+        if shots.empty:
+            st.caption(tr("no_extra"))
+        elif not ps.empty:
+            ps = ps.assign(**{res_c: np.where(ps["action"].str.endswith("M"), tr("made"), tr("missed"))})
+            ps[tr("zone")] = ps.apply(shot_zone, axis=1)
+            court = alt.Chart(court_lines()).mark_line(color="#64748b", strokeWidth=1.5).encode(
+                x=alt.X("x:Q", scale=alt.Scale(domain=[-760, 760], nice=False), axis=None),
+                y=alt.Y("y:Q", scale=alt.Scale(domain=[-170, 1000], nice=False), axis=None),
+                detail="seg:N", order="i:Q")
+            dots = alt.Chart(ps).mark_point(filled=True, size=70, opacity=0.85).encode(
+                x="x:Q", y="y:Q",
+                color=alt.Color(f"{res_c}:N", title=None, legend=alt.Legend(orient="top"),
+                                scale=alt.Scale(domain=[tr("made"), tr("missed")], range=["#22c55e", "#ef4444"])),
+                shape=alt.Shape(f"{res_c}:N", legend=None,
+                                scale=alt.Scale(domain=[tr("made"), tr("missed")], range=["circle", "cross"])),
+                tooltip=[tr("zone"), res_c, alt.Tooltip("minute:Q", title="Min")])
+            st.altair_chart((court + dots).properties(width=340, height=262), width="content")
+            zt = ps.groupby(tr("zone")).agg(**{tr("att"): (res_c, "size"),
+                                              tr("made_n"): (res_c, lambda x: int((x == tr("made")).sum()))})
+            zt["%"] = (100 * zt[tr("made_n")] / zt[tr("att")]).round().astype(int).astype(str) + "%"
+            zt[tr("share")] = (100 * zt[tr("att")] / zt[tr("att")].sum()).round().astype(int).astype(str) + "%"
+            st.dataframe(zt, width="stretch")
+
 # ---------- lideri / leaders ----------
-with tabs[1]:
+with TAB["leaders"]:
     c1, c2, c3 = st.columns(3)
     stat_name = c1.selectbox(stat_c, list(stats.values()))
     min_games = c2.slider(tr("min_games"), 1, max(1, int(df.groupby("player_id").size().max())), 3)
@@ -500,6 +690,25 @@ with tabs[1]:
             tooltip=["player", "team", alt.Tooltip(f"{stat_name}:Q", format=".1f")]),
             width="stretch")
 
+    # forma: posl. 3 vs sezona / form: last 3 vs season
+    st.subheader(tr("form"))
+    st.caption(tr("form_note"))
+    fr = []
+    for (comp, pid), pg in df.sort_values(SORT).groupby(["comp", "player_id"]):
+        if len(pg) < max(4, min_games):
+            continue
+        l3, sa = pg[key].tail(3).mean(), pg[key].mean()
+        fr.append({tr("player"): pg["player"].iloc[-1], tr("team"): pg["team"].iloc[-1],
+                   tr("last3"): round(l3, 1), tr("season_avg"): round(sa, 1),
+                   tr("diff"): round(l3 - sa, 1)})
+    if fr:
+        fr = pd.DataFrame(fr).sort_values(tr("diff"), ascending=False)
+        f1, f2 = st.columns(2)
+        f1.markdown(f"**📈 {tr('form_up')}**")
+        f1.dataframe(fr.head(10), hide_index=True, width="stretch")
+        f2.markdown(f"**📉 {tr('form_down')}**")
+        f2.dataframe(fr.tail(10).iloc[::-1], hide_index=True, width="stretch")
+
 
 # ---------- props ----------
 def render_props():
@@ -516,7 +725,7 @@ def render_props():
     opp_opts = ["__all__"] + sorted(g["opp"].dropna().unique())
 
     # sledeci protivnik / next opponent
-    ta = tgames[tgames["comp"] == row["comp"]].groupby("team")[f"{key}_a"].mean()
+    ta = tgames[tgames["comp"] == row["comp"]].groupby("team")[f"{key}_a"].mean().dropna()
     rank = ta.rank(ascending=False, method="min").astype(int)
     nxt = next_game(row["comp"], g["team"].iloc[-1])
     if nxt:
@@ -547,7 +756,8 @@ def render_props():
         f = f[f["Home"] == (1 if venue == "home" else 0)]
     if opp_sel != "__all__":
         f = f[f["opp"] == opp_sel]
-    f = f.reset_index(drop=True)
+    f = f.dropna(subset=[key]).reset_index(drop=True)
+    g = g.dropna(subset=[key]).reset_index(drop=True)
     if f.empty:
         st.warning(tr("no_games"))
         return
@@ -566,6 +776,12 @@ def render_props():
     streak = len(list(next(groupby(over_flags[::-1]))[1]))
     cols[4].metric(tr("streak"), f"{streak} x {'Over' if over_flags[-1] else 'Under'}",
                    tr("avg_n", x=f"{f[key].mean():.1f}"), delta_color="off")
+    # stabilnost / consistency
+    cols = st.columns(4)
+    cols[0].metric(tr("median"), f"{f[key].median():g}")
+    cols[1].metric(tr("min"), f"{f[key].min():g}")
+    cols[2].metric(tr("max"), f"{f[key].max():g}")
+    cols[3].metric(tr("spread"), f"{f[key].std(ddof=0):.1f}", help=tr("spread_help"))
 
     d = f.assign(Game=np.arange(1, len(f) + 1))
     d[res_c] = np.where(f[key] > line, "Over", "Under")
@@ -598,11 +814,19 @@ def render_props():
             st.dataframe(sp, width="stretch")
         else:
             st.caption(tr("no_home"))
+        # po odmoru (prva utakmica nema podatak) / by rest days
+        gr = g.dropna(subset=["rest"])
+        if not gr.empty:
+            st.markdown(f"**{tr('by_rest')}**")
+            rs = gr.assign(_r=np.where(gr["rest"] <= 2, tr("rest_short"), tr("rest_long"))).groupby(
+                "_r").apply(summarize, include_groups=False)
+            rs.index.name = tr("rest")
+            st.dataframe(rs, width="stretch")
     with sc2:
         st.markdown(f"**{tr('by_opp')}**")
         vs = g.dropna(subset=["opp"]).groupby("opp").apply(summarize, include_groups=False)
         # koliko taj protivnik prima te statistike (timski) i rang / what the opponent allows
-        ta = tgames[tgames["comp"] == row["comp"]].groupby("team")[f"{key}_a"].mean()
+        ta = tgames[tgames["comp"] == row["comp"]].groupby("team")[f"{key}_a"].mean().dropna()
         rank = ta.rank(ascending=False, method="min").astype(int)
         vs[tr("opp_allows")] = vs.index.map(ta).round(1)
         vs[tr("opp_rank")] = vs.index.map(rank).astype("Int64")
@@ -613,11 +837,11 @@ def render_props():
                          help=tr("opp_rank_help"))})
 
 
-with tabs[2]:
+with TAB["props"]:
     render_props()
 
 # ---------- skener / scanner ----------
-with tabs[3]:
+with TAB["scan"]:
     st.caption(tr("scan_note") + " " + tr("props_note"))
     c1, c2, c3 = st.columns(3)
     sname = c1.selectbox(stat_c, list(prop_stats.values()), key="scan_stat")
@@ -636,9 +860,11 @@ with tabs[3]:
     for (comp, pid), pg in df.sort_values(SORT).groupby(["comp", "player_id"]):
         if len(pg) < smin_g or pg["Minutes"].mean() < smin_m:
             continue
-        v = pg[skey]
+        v = pg[skey].dropna()
+        if v.empty:
+            continue
         rec = {tr("player"): pg["player"].iloc[-1], tr("team"): pg["team"].iloc[-1],
-               tr("gp"): len(pg), tr("avg"): round(v.mean(), 1)}
+               tr("gp"): len(v), tr("avg"): round(v.mean(), 1)}
         for lbl, n in sort_opts.items():
             o, tot = hit_rate(v.tail(n) if n else v, sline, side)
             rec[lbl] = round(100 * o / tot)
@@ -660,7 +886,40 @@ with tabs[3]:
         csv_button(scan, f"skener_{skey}_{sline:g}_{side}", "dl_scan")
 
 # ---------- timovi / teams ----------
-with tabs[4]:
+@st.cache_data(ttl=3600)
+def load_standings(comp: str, rnd: int) -> pd.DataFrame:
+    try:
+        return es.load_standings(comp, rnd)
+    except Exception:
+        return pd.DataFrame()
+
+
+def form_icons(v):
+    if isinstance(v, str):
+        v = [c for c in v if c in "WL"]
+    return "".join("🟢" if c == "W" else "🔴" for c in (v or []))
+
+
+with TAB["teams"]:
+    st.subheader(tr("standings"))
+    for comp in comps:
+        if sched.empty:
+            break
+        done_r = sched[(sched["comp"] == comp) & (sched["played"] == 1)]["gameday"]
+        last_r = int(done_r.max()) if not done_r.empty else 1
+        stn = load_standings(comp, last_r)
+        if stn.empty:
+            st.caption(tr("no_standings"))
+            continue
+        tbl = pd.DataFrame({
+            tr("pos"): stn["position"], tr("team"): stn["club.code"],
+            tr("gp"): stn["gamesPlayed"], tr("won"): stn["gamesWon"], tr("lost"): stn["gamesLost"],
+            tr("pdiff"): stn["pointsDifference"], tr("home_rec"): stn["homeRecord"],
+            tr("away_rec"): stn["awayRecord"], tr("last5"): stn["last5Form"].map(form_icons),
+        })
+        st.caption(f"{COMP_NAME[lang][comp]} · {tr('round')} {last_r}")
+        st.dataframe(tbl, hide_index=True, width="stretch", height=min(420, 38 + 35 * len(tbl)))
+    st.divider()
     st.caption(tr("teams_note"))
     tname = st.selectbox(stat_c, list(prop_stats.values()), key="team_stat")
     tkey = prop_inv[tname]
@@ -694,7 +953,7 @@ with tabs[4]:
             tooltip=[tr("team"), tr("allowed"), tr("scored"), tr("record")]), width="stretch")
 
 # ---------- poredjenje / compare ----------
-with tabs[5]:
+with TAB["cmp"]:
     c1, c2 = st.columns(2)
     a = c1.selectbox(tr("p1"), players["label"], index=None, placeholder=tr("placeholder"), key="cmp1")
     b = c2.selectbox(tr("p2"), players["label"], index=None, placeholder=tr("placeholder"), key="cmp2")
@@ -741,7 +1000,7 @@ with tabs[5]:
             tooltip=[tr("player"), opp_c, val_c]), width="stretch")
 
 # ---------- raspored / schedule ----------
-with tabs[6]:
+with TAB["sched"]:
     if sched.empty:
         st.info(tr("no_sched"))
     else:
@@ -762,7 +1021,7 @@ with tabs[6]:
                                key=f"sched_round_{comp}")
             s = s[s["gameday"] == rnd].sort_values(["date", "startime"])
 
-            ta = tgames[tgames["comp"] == comp].groupby("team")[f"{rs_key}_a"].mean()
+            ta = tgames[tgames["comp"] == comp].groupby("team")[f"{rs_key}_a"].mean().dropna()
             rank = ta.rank(ascending=False, method="min")
             pts = tgames[tgames["comp"] == comp].set_index(["gamecode", "team"])["Points"]
 
@@ -786,3 +1045,114 @@ with tabs[6]:
             st.dataframe(tbl, hide_index=True, width="stretch",
                          height=min(420, 38 + 35 * len(tbl)))
             csv_button(tbl, f"raspored_{comp}_kolo{rnd}", f"dl_sched_{comp}")
+
+# ---------- bez saigraca / without teammate ----------
+with TAB["without"]:
+    st.caption(tr("without_note"))
+    c1, c2, c3 = st.columns(3)
+    w_team = c1.selectbox(tr("team"), sorted(df["team"].unique()), key="wo_team")
+    td = df[df["team"] == w_team]
+    n_team = td["gamecode"].nunique()
+    roster = td.groupby(["player_id", "player"]).size().reset_index(name="n")
+    roster["missed"] = roster["n"] < n_team
+    # prvo oni koji su propustili utakmice, pa po broju odigranih / absentees first
+    roster = roster.sort_values(["missed", "n"], ascending=False).set_index("player_id")
+    absent = c2.selectbox(tr("absent"), list(roster.index), key=f"wo_abs_{w_team}",
+                          format_func=lambda p: f"{roster.loc[p, 'player']} ({roster.loc[p, 'n']}/{n_team})")
+    wo_opts = {**prop_stats, "Minutes": stats.get("Minutes", "Minutes")}
+    wo_name = c3.selectbox(stat_c, list(wo_opts.values()), key="wo_stat")
+    wo_key = {v: k for k, v in wo_opts.items()}[wo_name]
+
+    all_g = set(td["gamecode"])
+    with_g = set(td.loc[td["player_id"] == absent, "gamecode"])
+    without_g = all_g - with_g
+    aname = roster.loc[absent, "player"]
+    if not without_g:
+        st.info(tr("no_absence", p=aname))
+    else:
+        # tim u celini / team as a whole
+        tt = tgames[(tgames["team"] == w_team)]
+        tw, two = tt[tt["gamecode"].isin(with_g)], tt[tt["gamecode"].isin(without_g)]
+        c = st.columns(3)
+        c[0].metric(f"{w_team} – {tr('with')}", wl(tw["win"]) if len(tw) else "—",
+                    f"{tw['Points'].mean():.1f} {stats['Points']}" if len(tw) else None, delta_color="off")
+        c[1].metric(f"{w_team} – {tr('without')}", wl(two["win"]),
+                    f"{two['Points'].mean():.1f} {stats['Points']}", delta_color="off")
+        c[2].metric(tr("gp_without"), len(without_g))
+
+        rows = []
+        for (pid, pname), pg in td[td["player_id"] != absent].groupby(["player_id", "player"]):
+            a = pg.loc[pg["gamecode"].isin(with_g), wo_key].dropna()
+            b = pg.loc[pg["gamecode"].isin(without_g), wo_key].dropna()
+            if a.empty or b.empty:
+                continue
+            rows.append({tr("player"): pname, tr("with"): round(a.mean(), 1),
+                         tr("without"): round(b.mean(), 1), tr("diff"): round(b.mean() - a.mean(), 1),
+                         tr("gp_with"): len(a), tr("gp_without"): len(b)})
+        if rows:
+            wt = pd.DataFrame(rows).sort_values(tr("diff"), ascending=False)
+            st.markdown(f"**{wo_name}: {tr('without').lower()} {aname}**")
+            st.dataframe(wt, hide_index=True, width="stretch", height=min(420, 38 + 35 * len(wt)),
+                         column_config={tr("diff"): st.column_config.NumberColumn(format="%+.1f")})
+            csv_button(wt, f"bez_{aname}_{wo_key}", "dl_without")
+
+# ---------- pregled kola / round preview ----------
+with TAB["round"]:
+    if sched.empty:
+        st.info(tr("no_sched"))
+    else:
+        st.caption(tr("round_note") + " " + tr("props_note"))
+        c1, c2, c3 = st.columns(3)
+        r_name = c1.selectbox(stat_c, list(prop_stats.values()), key="rp_stat")
+        r_key = prop_inv[r_name]
+        r_line = c2.number_input(tr("line"), value=DEFAULT_LINE.get(r_key, 5.5), step=0.5,
+                                 key=f"rp_line_{r_key}")
+        r_side = c3.radio(tr("side"), ["Over", "Under"], horizontal=True, key="rp_side")
+        c4, c5, c6 = st.columns(3)
+        r_hit = c4.slider(tr("min_hit"), 0, 100, 60, step=10, key="rp_hit")
+        r_top = c5.slider(tr("top_def"), 1, 20, 8, key="rp_top", help=tr("top_def_help"))
+        r_min = c6.slider(tr("min_minutes"), 0, 35, 15, key="rp_min")
+
+        hist = df.sort_values(SORT)
+        last_team = hist.groupby(["comp", "player_id"]).tail(1).set_index(["comp", "player_id"])["team"]
+        out = []
+        for comp in comps:
+            s = sched[sched["comp"] == comp]
+            s = s[[(comp, gc) not in played_codes and p == 0 for gc, p in zip(s["gamecode"], s["played"])]]
+            if s.empty:
+                continue
+            rnd = s["gameday"].min()
+            s = s[s["gameday"] == rnd].sort_values(["date", "startime"])
+            ta = tgames[tgames["comp"] == comp].groupby("team")[f"{r_key}_a"].mean().dropna()
+            rank = ta.rank(ascending=(r_side == "Under"), method="min")
+            hc = hist[hist["comp"] == comp]
+            for m in s.itertuples():
+                match = f"{m.date:%d.%m.} {m.homecode}–{m.awaycode}" if pd.notna(m.date) else \
+                    f"{m.homecode}–{m.awaycode}"
+                for team, opp in ((m.homecode, m.awaycode), (m.awaycode, m.homecode)):
+                    if opp not in rank.index or rank[opp] > r_top:
+                        continue
+                    pids = last_team[last_team == team].index.get_level_values(1)
+                    for pid, pg in hc[hc["player_id"].isin(pids)].groupby("player_id"):
+                        v = pg[r_key].dropna()
+                        if len(v) < 3 or pg["Minutes"].mean() < r_min:
+                            continue
+                        o5, t5 = hit_rate(v.tail(5), r_line, r_side)
+                        if 100 * o5 / t5 < r_hit:
+                            continue
+                        oa, tall = hit_rate(v, r_line, r_side)
+                        out.append({tr("match"): match, tr("player"): pg["player"].iloc[-1],
+                                    tr("team"): team, tr("l5p"): round(100 * o5 / t5),
+                                    tr("seasp"): round(100 * oa / tall), tr("avg"): round(v.mean(), 1),
+                                    tr("opponent"): f"{opp} (#{int(rank[opp])})"})
+            st.subheader(f"{COMP_NAME[lang][comp]} · {tr('round')} {rnd} · {r_name} {r_side} {r_line:g}")
+        if not out:
+            st.info(tr("no_round"))
+        else:
+            rp = pd.DataFrame(out).sort_values([tr("l5p"), tr("seasp")], ascending=False)
+            rp = rp[[tr("player"), tr("l5p"), tr("seasp"), tr("opponent"), tr("match"),
+                     tr("avg"), tr("team")]]
+            st.dataframe(rp, hide_index=True, width="stretch", height=min(480, 38 + 35 * len(rp)),
+                         column_config={k: st.column_config.NumberColumn(format="%d%%")
+                                        for k in (tr("l5p"), tr("seasp"))})
+            csv_button(rp, f"pregled_kola_{r_key}_{r_line:g}_{r_side}", "dl_round")

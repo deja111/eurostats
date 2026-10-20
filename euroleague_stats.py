@@ -97,7 +97,6 @@ def update(comps):
         new_games = [g for g in games if g not in done]
         if not new_games:
             print("Nema novih utakmica.")
-            continue
 
         box = BoxScoreData(comp)
         for gc in new_games:
@@ -115,6 +114,106 @@ def update(comps):
                 "INSERT OR REPLACE INTO player_games VALUES (?,?,?,?,?,?,?)", rows)
             conn.commit()
             print(f"Utakmica {gc}: sacuvano {len(rows)} igraca")
+        update_extras(comp, conn)
+
+
+# ---------- cetvrtine (play-by-play) i sutevi / quarters and shots ----------
+PBP_STATS = {  # PLAYTYPE -> (kolona, vrednost)
+    "2FGM": ("PTS", 2), "3FGM": ("PTS", 3), "FTM": ("PTS", 1),
+    "D": ("REB", 1), "O": ("REB", 1), "AS": ("AST", 1), "ST": ("STL", 1),
+    "FV": ("BLK", 1), "TO": ("TOV", 1),
+}
+PERIOD_COLS = ["PTS", "REB", "AST", "STL", "BLK", "TOV", "FG3M"]
+
+
+def _extra_tables(conn):
+    conn.execute("""CREATE TABLE IF NOT EXISTS player_periods (
+        comp TEXT, season INTEGER, gamecode INTEGER, player_id TEXT, period INTEGER,
+        PTS INTEGER, REB INTEGER, AST INTEGER, STL INTEGER, BLK INTEGER, TOV INTEGER, FG3M INTEGER,
+        PRIMARY KEY (comp, season, gamecode, player_id, period))""")
+    conn.execute("""CREATE TABLE IF NOT EXISTS shots (
+        comp TEXT, season INTEGER, gamecode INTEGER, num INTEGER, player_id TEXT, team TEXT,
+        action TEXT, points INTEGER, x REAL, y REAL, minute INTEGER,
+        PRIMARY KEY (comp, season, gamecode, num))""")
+    conn.execute("""CREATE TABLE IF NOT EXISTS extra_done (
+        comp TEXT, season INTEGER, gamecode INTEGER, kind TEXT,
+        PRIMARY KEY (comp, season, gamecode, kind))""")
+
+
+def periods_from_pbp(pbp):
+    """Play-by-play -> statistika igraca po cetvrtinama (5+ = produzeci)."""
+    p = pbp.dropna(subset=["PLAYER_ID"]).copy()
+    p["PLAYER_ID"] = p["PLAYER_ID"].astype(str).str.strip()
+    p["PLAYTYPE"] = p["PLAYTYPE"].astype(str).str.strip()
+    p = p[p["PLAYTYPE"].isin(PBP_STATS)]
+    p["col"] = p["PLAYTYPE"].map(lambda t: PBP_STATS[t][0])
+    p["val"] = p["PLAYTYPE"].map(lambda t: PBP_STATS[t][1])
+    out = p.pivot_table(index=["PLAYER_ID", "PERIOD"], columns="col", values="val",
+                        aggfunc="sum", fill_value=0)
+    out["FG3M"] = (p[p["PLAYTYPE"] == "3FGM"].groupby(["PLAYER_ID", "PERIOD"]).size()
+                   .reindex(out.index, fill_value=0))
+    for c in PERIOD_COLS:
+        if c not in out.columns:
+            out[c] = 0
+    return out[PERIOD_COLS].reset_index()
+
+
+def update_extras(comp, conn):
+    """Dopuni cetvrtine i suteve za sve vec sacuvane utakmice kojima fale."""
+    from euroleague_api.play_by_play_data import PlayByPlay
+    from euroleague_api.shot_data import ShotData
+    _extra_tables(conn)
+    games = [r[0] for r in conn.execute(
+        "SELECT DISTINCT gamecode FROM player_games WHERE comp=? AND season=? ORDER BY gamecode",
+        (comp, SEASON))]
+    done = set(conn.execute("SELECT gamecode, kind FROM extra_done WHERE comp=? AND season=?",
+                            (comp, SEASON)))
+    todo = [(g, k) for g in games for k in ("pbp", "shots") if (g, k) not in done]
+    if not todo:
+        return
+    print(f"Cetvrtine i sutevi: {len(todo)} preuzimanja...")
+    pbp_api, shot_api = PlayByPlay(comp), ShotData(comp)
+    for gc, kind in todo:
+        try:
+            if kind == "pbp":
+                per = periods_from_pbp(pbp_api.get_game_play_by_play_data(SEASON, gc))
+                conn.executemany(
+                    "INSERT OR REPLACE INTO player_periods VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+                    [(comp, SEASON, gc, r.PLAYER_ID, int(r.PERIOD), *[int(getattr(r, c)) for c in PERIOD_COLS])
+                     for r in per.itertuples()])
+            else:
+                sh = shot_api.get_game_shot_data(SEASON, gc)
+                if not sh.empty:
+                    sh = sh[sh["ID_ACTION"].isin(["2FGM", "2FGA", "3FGM", "3FGA"])]
+                    conn.executemany(
+                        "INSERT OR REPLACE INTO shots VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                        [(comp, SEASON, gc, int(r.NUM_ANOT), str(r.ID_PLAYER).strip(), str(r.TEAM).strip(),
+                          r.ID_ACTION, int(r.POINTS), float(r.COORD_X), float(r.COORD_Y), int(r.MINUTE))
+                         for r in sh.itertuples()])
+            conn.execute("INSERT OR REPLACE INTO extra_done VALUES (?,?,?,?)", (comp, SEASON, gc, kind))
+            conn.commit()
+        except Exception as e:
+            print(f"Utakmica {gc} ({kind}): preskacem ({e})")
+    print("Cetvrtine i sutevi: gotovo")
+
+
+def load_periods(comps):
+    conn = get_conn()
+    _extra_tables(conn)
+    q = f"SELECT * FROM player_periods WHERE season=? AND comp IN ({','.join('?' * len(comps))})"
+    return pd.read_sql(q, conn, params=(SEASON, *comps))
+
+
+def load_shots(comps):
+    conn = get_conn()
+    _extra_tables(conn)
+    q = f"SELECT * FROM shots WHERE season=? AND comp IN ({','.join('?' * len(comps))})"
+    return pd.read_sql(q, conn, params=(SEASON, *comps))
+
+
+def load_standings(comp, round_number):
+    from euroleague_api.standings import Standings
+    return Standings(comp).get_standings(SEASON, round_number)
 
 
 def load_df(comps):
