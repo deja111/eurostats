@@ -112,7 +112,7 @@ T = {
 }
 T2 = {
     "sr": {
-        "tab_scan": "🔎 Skener", "tab_teams": "🛡️ Timovi", "tab_cmp": "⚖️ Poređenje", "tab_round": "⭐ Pregled kola", "tab_without": "🔄 Bez saigrača",
+        "tab_scan": "🔎 Skener", "tab_teams": "🛡️ Timovi", "tab_cmp": "⚖️ Poređenje", "tab_round": "⭐ Pregled kola", "tab_picks": "🔥 Predlozi", "tab_without": "🔄 Bez saigrača",
         "shooting": "Šut", "minutes_h": "Minuti i faulovi", "tpa": "3PA po utakm.",
         "min_avg": "Minuti (prosek)", "min_l3": "Minuti (posl. 3)", "per36": "Poeni na 36 min",
         "foul4": "Utakmice sa 4+ faula", "min_chart": "Minuti po utakmici", "rolling": "Prosek posl. 3",
@@ -141,7 +141,7 @@ T2 = {
         "use_next": "Filtriraj na sledećeg protivnika", "next_none": "Nema zakazanih utakmica.",
     },
     "en": {
-        "tab_scan": "🔎 Scanner", "tab_teams": "🛡️ Teams", "tab_cmp": "⚖️ Compare", "tab_round": "⭐ Round preview", "tab_without": "🔄 Without teammate",
+        "tab_scan": "🔎 Scanner", "tab_teams": "🛡️ Teams", "tab_cmp": "⚖️ Compare", "tab_round": "⭐ Round preview", "tab_picks": "🔥 Picks", "tab_without": "🔄 Without teammate",
         "shooting": "Shooting", "minutes_h": "Minutes & fouls", "tpa": "3PA per game",
         "min_avg": "Minutes (avg)", "min_l3": "Minutes (last 3)", "per36": "Points per 36",
         "foul4": "Games with 4+ fouls", "min_chart": "Minutes by game", "rolling": "Last-3 average",
@@ -216,6 +216,29 @@ T3 = {
         "pos1_G": "Bek", "pos1_F": "Krilo", "pos1_C": "Centar", "pos_short": "Poz.",
         "pos_est": "procena", "pos_manual": "ručno",
         "dvp": "🎯 Odbrana po poziciji (DvP)",
+        "rank_col": "Rang ({p})",
+        "sig": "Predlog", "sig_score": "Jačina", "reasons": "Zašto", "line_s": "Linija",
+        "sig_fire": "🔥 Over (jak)", "sig_over": "🟢 Over", "sig_none": "⚪ Bez signala",
+        "sig_under": "🔴 Under", "sig_ice": "🧊 Under (jak)", "sig_few": "⚪ Malo utakmica",
+        "r_hit": "{o}/{t} preko", "r_med": "medijana {m:g} vs {l:g}", "r_opp": "{o} #{r} {p}",
+        "r_min": "minuti {d:+.1f}", "r_ven": "{v}: prosek {a:.1f}",
+        "sig_note": "Predlog je statistički signal iz dosadašnjih utakmica (hit-rate, medijana, "
+                    "protivnik po poziciji, minuti, kuća/gost), ne garancija. 🔥 / 🧊 = skoro svi "
+                    "pokazatelji se slažu. Uzorak je mali na početku sezone.",
+        "line_mode": "Linija", "line_fixed": "Ista za sve", "line_avg": "Prosek igrača (≈ kladionica)",
+        "show": "Prikaži", "show_all": "Sve", "show_strong": "Samo 🔥 / 🧊",
+        "picks_count": "🔥 {f} jakih Over · 🟢 {o} Over · 🔴 {u} Under · 🧊 {i} jakih Under",
+        "no_picks": "Nema igrača za sledeće kolo sa ovim filterima.",
+        "tot_sig": "Predlog (total)",
+        "dvp_legend": "**Kako čitati tabelu:**\n\n"
+                      "- **Bekovi / Krila / Centri:** koliko poena (ili izabrane statistike) tim prosečno "
+                      "primi po utakmici od **svih** protivničkih igrača na toj poziciji zajedno.\n"
+                      "- **Rang:** mesto tima za tu poziciju, od 1 do {n}. "
+                      "**Rang 1 = prima najviše** (najslabija odbrana protiv te pozicije, dobar meč za Over). "
+                      "**Rang {n} = prima najmanje** (najjača odbrana, teži meč, bolje za Under).\n"
+                      "- Timovi koji primaju isto dele isti rang.\n\n"
+                      "*Primer:* ako tim ima **Rang (bek) 1**, protivnički bekovi protiv njega u proseku "
+                      "postižu više nego protiv bilo kog drugog tima.",
         "dvp_note": "Koliko tim po utakmici primi od svih protivničkih igrača na toj poziciji "
                     "(zbir). #1 = prima najviše. Pozicije su zvanične Euroleague (bek/krilo/centar); "
                     "igračima bez zvanične pozicije je procenjena iz statistike, a pozicije.csv ima prednost.",
@@ -268,6 +291,28 @@ T3 = {
         "pos1_G": "Guard", "pos1_F": "Forward", "pos1_C": "Center", "pos_short": "Pos.",
         "pos_est": "estimate", "pos_manual": "manual",
         "dvp": "🎯 Defense vs position (DvP)",
+        "rank_col": "Rank ({p})",
+        "sig": "Pick", "sig_score": "Strength", "reasons": "Why", "line_s": "Line",
+        "sig_fire": "🔥 Over (strong)", "sig_over": "🟢 Over", "sig_none": "⚪ No signal",
+        "sig_under": "🔴 Under", "sig_ice": "🧊 Under (strong)", "sig_few": "⚪ Few games",
+        "r_hit": "{o}/{t} over", "r_med": "median {m:g} vs {l:g}", "r_opp": "{o} #{r} {p}",
+        "r_min": "minutes {d:+.1f}", "r_ven": "{v}: avg {a:.1f}",
+        "sig_note": "A pick is a statistical signal from games so far (hit rate, median, "
+                    "opponent vs position, minutes, home/away), not a guarantee. 🔥 / 🧊 = nearly all "
+                    "indicators agree. Sample is small early in the season.",
+        "line_mode": "Line", "line_fixed": "Same for all", "line_avg": "Player average (≈ bookmaker)",
+        "show": "Show", "show_all": "All", "show_strong": "Only 🔥 / 🧊",
+        "picks_count": "🔥 {f} strong Over · 🟢 {o} Over · 🔴 {u} Under · 🧊 {i} strong Under",
+        "no_picks": "No players in the next round match these filters.",
+        "tot_sig": "Pick (total)",
+        "dvp_legend": "**How to read the table:**\n\n"
+                      "- **Guards / Forwards / Centers:** how much (points or the chosen stat) a team allows "
+                      "per game to **all** opposing players at that position combined.\n"
+                      "- **Rank:** the team's place for that position, 1 to {n}. "
+                      "**Rank 1 = allows the most** (weakest defense vs that position, good spot for an Over). "
+                      "**Rank {n} = allows the least** (toughest defense, better for an Under).\n"
+                      "- Teams that allow the same share the same rank.\n\n"
+                      "*Example:* a team with **Rank (guard) 1** gives up more to opposing guards than any other team.",
         "dvp_note": "What a team allows per game to all opposing players at that position (sum). "
                     "#1 = allows the most. Positions are official EuroLeague (guard/forward/center); "
                     "players without one get an estimate from their stats, and pozicije.csv overrides both.",
@@ -682,6 +727,78 @@ def dvp_rank(comp, key, pos, ascending=False):
     return v, v.rank(ascending=ascending, method="min")
 
 
+def team_rank(comp, key):
+    ta = tgames[tgames["comp"] == comp].groupby("team")[f"{key}_a"].mean().dropna()
+    return ta, ta.rank(ascending=False, method="min")
+
+
+def signal(pg, key, line, comp, nxt=None):
+    """Over/Under signal za sledecu utakmicu igraca.
+
+    pg = utakmice igraca (sortirane), nxt = next_game(...) ili None.
+    Vraca dict: score (-100..100, + = Over), label, reasons (lista teksta).
+    Tezine: hit-rate 30%, medijana 25%, protivnik 20%, teren 15%, minuti 10%.
+    """
+    v = pg[key].dropna()
+    n = len(v)
+    if n < 5:
+        return {"score": 0, "label": tr("sig_few"), "reasons": [], "hit": None}
+    parts, reasons = [], []
+    sd = max(float(v.std(ddof=0)), 1.0)
+
+    last = v.tail(10)
+    h = float((last > line).mean())
+    parts.append((0.30, (h - 0.5) * 2))
+    reasons.append((h - 0.5, tr("r_hit", o=int((last > line).sum()), t=len(last))))
+
+    med = float(v.median())
+    parts.append((0.25, float(np.clip((med - line) / sd, -1, 1))))
+    reasons.append((med - line, tr("r_med", m=med, l=line)))
+
+    if nxt:
+        o = nxt["opp"]
+        pos = _pp.get(str(pg["player_id"].iloc[-1]).strip(), (None, None))[0]
+        vals, rk = dvp_rank(comp, key, pos) if pos else (pd.Series(dtype=float), pd.Series(dtype=float))
+        plabel = tr(f"pos1_{pos}").lower() if pos else ""
+        if o not in rk.index:
+            vals, rk = team_rank(comp, key)
+            plabel = ""
+        if o in rk.index and len(rk) > 1:
+            N = len(rk)
+            x = (N + 1 - 2 * float(rk[o])) / (N - 1)
+            parts.append((0.20, x))
+            reasons.append((x, tr("r_opp", o=o, r=int(rk[o]), p=plabel).strip()))
+        if "Home" in pg:
+            ven = pg[pg["Home"] == (1 if nxt["home"] else 0)][key].dropna()
+            if len(ven) >= 2:
+                x = float(np.clip((ven.mean() - line) / sd, -1, 1))
+                parts.append((0.15, x))
+                reasons.append((x, tr("r_ven", v=tr("home") if nxt["home"] else tr("away"), a=ven.mean())))
+
+    mins = pg["Minutes"].dropna()
+    if len(mins) >= 4:
+        dm = float(mins.tail(3).mean() - mins.mean())
+        x = float(np.clip(dm / max(0.15 * mins.mean(), 2.0), -1, 1))
+        parts.append((0.10, x))
+        if abs(dm) >= 1:
+            reasons.append((x, tr("r_min", d=dm)))
+
+    score = 100 * sum(w * x for w, x in parts) / sum(w for w, _ in parts)
+    if score >= 55 and h >= 0.7:
+        label = tr("sig_fire")
+    elif score >= 25:
+        label = tr("sig_over")
+    elif score <= -55 and h <= 0.3:
+        label = tr("sig_ice")
+    elif score <= -25:
+        label = tr("sig_under")
+    else:
+        label = tr("sig_none")
+    direction = 1 if score >= 0 else -1
+    txt = [("✔ " if np.sign(x) == direction else "✘ ") + r for x, r in reasons if x != 0]
+    return {"score": int(round(score)), "label": label, "reasons": txt, "hit": h}
+
+
 def court_lines():
     """Linije polovine terena (FIBA, cm), kos u (0, 0)."""
     segs, base, top = [], -157.5, 1000
@@ -712,7 +829,7 @@ def wl(x):
     return f"{int(x.sum())}-{int((~x).sum())}"
 
 
-TAB_KEYS = ["player", "leaders", "props", "round", "scan", "sched", "teams", "without", "cmp"]
+TAB_KEYS = ["player", "leaders", "props", "picks", "round", "scan", "sched", "teams", "without", "cmp"]
 TAB = dict(zip(TAB_KEYS, st.tabs([tr(f"tab_{k}") for k in TAB_KEYS])))
 
 # ---------- igrac / player ----------
@@ -974,7 +1091,7 @@ def render_props():
     elif not sched.empty:
         st.caption(tr("next_none"))
 
-    default = float(round(g[key].mean() * 2) / 2)
+    default = float(np.floor(g[key].mean()) + 0.5)   # .5 linija kao kod kladionica
     c3, c4, c5 = st.columns(3)
     line = c3.number_input(tr("line"), value=default, step=0.5,
                            key=f"line_{row['player_id']}_{key}")
@@ -997,6 +1114,12 @@ def render_props():
         return
 
     st.subheader(f"{row['player']} – {prop_name} {line:g}")
+    if nxt:
+        sg = signal(g, key, line, row["comp"], nxt)
+        box = st.success if sg["score"] >= 25 else st.error if sg["score"] <= -25 else st.info
+        box(f"**{tr('sig')}: {sg['label']}** ({tr('sig_score').lower()} {sg['score']:+d})  \n"
+            + " · ".join(sg["reasons"]))
+        st.caption(tr("sig_note"))
     cols = st.columns(5)
     for c, n in zip(cols[:3], (5, 10, 20)):
         o, tot = hit_rate(f[key].tail(n), line)
@@ -1105,6 +1228,8 @@ with TAB["scan"]:
         flags = (v > sline if side == "Over" else v < sline).tolist()[::-1]
         rec[tr("streak_s")] = len(list(next(groupby(flags))[1])) if flags[0] else 0
         rec[tr("pos_short")] = pos_label(pid, short=True)
+        _sg = signal(pg, skey, sline, comp, next_game(comp, pg["team"].iloc[-1]))
+        rec[tr("sig")] = _sg["label"]
         rows.append(rec)
     if not rows:
         st.info(tr("no_players"))
@@ -1112,7 +1237,7 @@ with TAB["scan"]:
         scan = pd.DataFrame(rows).sort_values([sort_by, tr("avg")],
                                               ascending=[False, side == "Under"])
         # procenti odmah posle imena da se vide na telefonu / % columns first for phones
-        order = ([tr("player"), sort_by] + [x for x in sort_opts if x != sort_by]
+        order = ([tr("player"), tr("sig"), sort_by] + [x for x in sort_opts if x != sort_by]
                  + [tr("avg"), tr("streak_s"), tr("pos_short"), tr("team"), tr("gp")])
         scan = scan[order]
         st.dataframe(scan, hide_index=True, width="stretch", height=420,
@@ -1192,6 +1317,9 @@ with TAB["teams"]:
         st.caption(tr("no_pos"))
     else:
         st.caption(tr("dvp_note"))
+        n_teams = df.loc[df["comp"].isin(comps), "team"].nunique()
+        with st.expander("ℹ️ " + ("Legenda" if lang == "sr" else "Legend"), expanded=True):
+            st.markdown(tr("dvp_legend", n=n_teams))
         for comp in comps:
             if tkey not in dvp.columns:
                 break
@@ -1199,7 +1327,7 @@ with TAB["teams"]:
             for ps in ("G", "F", "C"):
                 v, r = dvp_rank(comp, tkey, ps)
                 cols_[tr(f"pos_{ps}")] = v.round(1)
-                cols_[f"# {tr(f'pos1_{ps}')}"] = r.astype("Int64")
+                cols_[tr("rank_col", p=tr(f"pos1_{ps}").lower())] = r.astype("Int64")
             dt_ = pd.DataFrame(cols_)
             if dt_.empty:
                 continue
@@ -1335,10 +1463,12 @@ with TAB["sched"]:
             t1, t2 = st.columns(2)
             part = t1.radio(tr("half_opt"), list(parts), horizontal=True, key=f"tot_part_{comp}")
             pk = parts[part]
-            tl = t2.number_input(tr("total_line"), value=165.5 if pk == "Points" else 82.5, step=0.5,
-                                 key=f"tot_line_{comp}_{pk}")
             tc = tgames[tgames["comp"] == comp].dropna(subset=[pk, f"{pk}_a"])
             tc = tc.assign(_tot=tc[pk] + tc[f"{pk}_a"])
+            # podrazumevana linija = prosek ukupnih poena u ligi (zaokruzeno na .5)
+            avg_tot = float(tc["_tot"].mean()) if not tc.empty else (165.0 if pk == "Points" else 82.0)
+            tl = t2.number_input(tr("total_line"), value=float(np.floor(avg_tot) + 0.5), step=0.5,
+                                 key=f"tot_line_{comp}_{pk}")
             sc_, al_ = tc.groupby("team")[pk].mean(), tc.groupby("team")[f"{pk}_a"].mean()
             over = tc.groupby("team")["_tot"].apply(lambda x: round(100 * (x > tl).mean()))
             rows_t = []
@@ -1347,7 +1477,14 @@ with TAB["sched"]:
                 if h not in sc_.index or a not in sc_.index:
                     continue
                 hp, ap = (sc_[h] + al_[a]) / 2, (sc_[a] + al_[h]) / 2
-                rows_t.append({tr("match"): f"{h} – {a}", tr("proj"): round(hp + ap, 1),
+                x1 = float(np.clip((hp + ap - tl) / 8, -1, 1))
+                x2 = (over[h] + over[a]) / 100 - 1
+                sc = 100 * (0.5 * x1 + 0.5 * x2)
+                lab = (tr("sig_fire") if sc >= 55 and min(over[h], over[a]) >= 70 else
+                       tr("sig_over") if sc >= 25 else
+                       tr("sig_ice") if sc <= -55 and max(over[h], over[a]) <= 30 else
+                       tr("sig_under") if sc <= -25 else tr("sig_none"))
+                rows_t.append({tr("match"): f"{h} – {a}", tr("tot_sig"): lab, tr("proj"): round(hp + ap, 1),
                                tr("home_over"): over[h], tr("away_over"): over[a],
                                tr("home_proj"): round(hp, 1), tr("away_proj"): round(ap, 1),
                                tr("res_time"): res_or_time(m) if pk == "Points" else ""})
@@ -1470,15 +1607,85 @@ with TAB["round"]:
                         out.append({tr("match"): match, tr("player"): pg["player"].iloc[-1],
                                     tr("team"): team, tr("l5p"): round(100 * o5 / t5),
                                     tr("seasp"): round(100 * oa / tall), tr("avg"): round(v.mean(), 1),
-                                    tr("opponent"): opp_lbl, tr("pos_short"): pos_label(pid, short=True)})
+                                    tr("opponent"): opp_lbl, tr("pos_short"): pos_label(pid, short=True),
+                                    tr("sig"): signal(pg, r_key, r_line, comp,
+                                                      {"opp": opp, "home": team == m.homecode,
+                                                       "date": m.date, "time": m.startime})["label"]})
             st.subheader(f"{COMP_NAME[lang][comp]} · {tr('round')} {rnd} · {r_name} {r_side} {r_line:g}")
         if not out:
             st.info(tr("no_round"))
         else:
             rp = pd.DataFrame(out).sort_values([tr("l5p"), tr("seasp")], ascending=False)
-            rp = rp[[tr("player"), tr("l5p"), tr("seasp"), tr("opponent"), tr("match"),
+            rp = rp[[tr("player"), tr("sig"), tr("l5p"), tr("seasp"), tr("opponent"), tr("match"),
                      tr("avg"), tr("pos_short"), tr("team")]]
             st.dataframe(rp, hide_index=True, width="stretch", height=min(480, 38 + 35 * len(rp)),
                          column_config={k: st.column_config.NumberColumn(format="%d%%")
                                         for k in (tr("l5p"), tr("seasp"))})
             csv_button(rp, f"pregled_kola_{r_key}_{r_line:g}_{r_side}", "dl_round")
+
+# ---------- predlozi / picks ----------
+with TAB["picks"]:
+    st.caption(tr("sig_note"))
+    if sched.empty:
+        st.info(tr("no_sched"))
+    else:
+        c1, c2, c3 = st.columns(3)
+        k_name = c1.selectbox(stat_c, list(prop_stats.values()), key="pk_stat")
+        k_key = prop_inv[k_name]
+        k_mode = c2.radio(tr("line_mode"), [tr("line_avg"), tr("line_fixed")], key="pk_mode")
+        k_line = c3.number_input(tr("line"), value=DEFAULT_LINE.get(k_key, 5.5), step=0.5,
+                                 key=f"pk_line_{k_key}", disabled=k_mode != tr("line_fixed"))
+        c4, c5, c6 = st.columns(3)
+        show_opts = [tr("show_all"), "Over", "Under", tr("show_strong")]
+        k_show = c4.radio(tr("show"), show_opts, horizontal=True, key="pk_show")
+        k_min = c5.slider(tr("min_minutes"), 0, 35, 15, key="pk_min")
+        k_g = c6.slider(tr("min_games"), 5, 20, 5, key="pk_g")
+
+        hist = df.sort_values(SORT)
+        rows_k = []
+        for (comp, pid), pg in hist.groupby(["comp", "player_id"]):
+            v = pg[k_key].dropna()
+            if len(v) < k_g or pg["Minutes"].mean() < k_min:
+                continue
+            team = pg["team"].iloc[-1]
+            nxt = next_game(comp, team)
+            if not nxt:
+                continue
+            line = float(np.floor(v.mean()) + 0.5) if k_mode != tr("line_fixed") else float(k_line)
+            sg = signal(pg, k_key, line, comp, nxt)
+            rows_k.append({
+                tr("sig"): sg["label"], tr("player"): pg["player"].iloc[-1], tr("line_s"): line,
+                tr("sig_score"): sg["score"], tr("l10p"): round(100 * sg["hit"]) if sg["hit"] is not None else None,
+                tr("median"): v.median(), tr("avg"): round(v.mean(), 1),
+                tr("opponent"): f"{nxt['opp']} ({tr('home') if nxt['home'] else tr('away')}, "
+                                f"{nxt['date']:%d.%m.})" if pd.notna(nxt["date"]) else nxt["opp"],
+                tr("reasons"): " · ".join(sg["reasons"]),
+                tr("pos_short"): pos_label(pid, short=True), tr("team"): team,
+            })
+        if not rows_k:
+            st.info(tr("no_picks"))
+        else:
+            pk = pd.DataFrame(rows_k)
+            labels = pk[tr("sig")]
+            st.markdown(tr("picks_count", f=(labels == tr("sig_fire")).sum(), o=(labels == tr("sig_over")).sum(),
+                           u=(labels == tr("sig_under")).sum(), i=(labels == tr("sig_ice")).sum()))
+            if k_show == "Over":
+                pk = pk[pk[tr("sig_score")] >= 25].sort_values(tr("sig_score"), ascending=False)
+            elif k_show == "Under":
+                pk = pk[pk[tr("sig_score")] <= -25].sort_values(tr("sig_score"))
+            elif k_show == tr("show_strong"):
+                pk = pk[labels.loc[pk.index].isin([tr("sig_fire"), tr("sig_ice")])]
+                pk = pk.reindex(pk[tr("sig_score")].abs().sort_values(ascending=False).index)
+            else:
+                pk = pk.reindex(pk[tr("sig_score")].abs().sort_values(ascending=False).index)
+            if pk.empty:
+                st.info(tr("no_picks"))
+            else:
+                st.dataframe(pk, hide_index=True, width="stretch", height=min(560, 38 + 35 * len(pk)),
+                             column_config={
+                                 tr("sig_score"): st.column_config.NumberColumn(
+                                     format="%+d", help="-100 … +100 (+ = Over)"),
+                                 tr("l10p"): st.column_config.NumberColumn(format="%d%%"),
+                                 tr("line_s"): st.column_config.NumberColumn(format="%.1f"),
+                                 tr("reasons"): st.column_config.TextColumn(width="large")})
+                csv_button(pk, f"predlozi_{k_key}", "dl_picks")
