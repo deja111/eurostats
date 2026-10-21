@@ -12,6 +12,7 @@ import argparse
 import json
 import os
 import re
+import time
 import unicodedata
 from datetime import datetime, timezone
 
@@ -20,8 +21,28 @@ import requests
 import euroleague_stats as es
 
 BASE = "https://www.euroleaguebasketball.net"
-HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                         "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                  "(KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9,sr;q=0.8",
+    "Referer": "https://www.euroleaguebasketball.net/euroleague/",
+    "Cache-Control": "no-cache",
+}
+SESSION = requests.Session()
+SESSION.headers.update(HEADERS)
+
+
+def get(url, tries=4):
+    """GET sa ponovnim pokusajem: sajt ponekad vrati 429 (previse zahteva) ili 5xx."""
+    for i in range(tries):
+        r = SESSION.get(url, timeout=30)
+        if r.status_code not in (429, 500, 502, 503, 504) or i == tries - 1:
+            r.raise_for_status()
+            return r
+        pause = int(r.headers.get("Retry-After", 0) or 0) or (20, 60, 120)[min(i, 2)]
+        print(f"  sajt vratio {r.status_code}, cekam {pause} s...")
+        time.sleep(pause)
 OUT_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "povrede.json")
 
 # status iz potvrdjene recenice kluba (redosled je bitan)
@@ -66,9 +87,8 @@ def strip_md(s):
 
 
 # ---------- preuzimanje / fetching ----------
-def find_report_url(session=requests):
-    r = session.get(f"{BASE}/euroleague/news/", headers=HEADERS, timeout=30)
-    r.raise_for_status()
+def find_report_url():
+    r = get(f"{BASE}/euroleague/news/")
     for blok in re.findall(r'<script[^>]*application/ld\+json[^>]*>(.*?)</script>', r.text, re.S):
         try:
             data = json.loads(blok)
@@ -248,9 +268,7 @@ def main():
             if not url:
                 print("Nema izvestaja o povredama na stranici sa vestima.")
                 return
-            r = requests.get(url, headers=HEADERS, timeout=30)
-            r.raise_for_status()
-            html = r.text
+            html = get(url).text
         save(build(html, url))
     except Exception as e:      # sajt nedostupan ili promenjen izgled: zadrzi stari povrede.json
         print(f"Povrede: ne mogu da procitam izvestaj ({e}). Stari podaci ostaju.")
