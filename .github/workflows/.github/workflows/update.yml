@@ -1,0 +1,48 @@
+# Automatsko osvezavanje podataka (Evroliga + Evrokup).
+# Pokrece "python euroleague_stats.py update" i cuva euroleague.db u repo,
+# pa Streamlit Cloud uvek ima sveze podatke bez klika na "Osvezi podatke".
+# Vremena su u UTC: 22:30 UTC = 00:30 po Beogradu (leto), posle vecernjih utakmica,
+# i 05:00 UTC = 07:00 ujutru, za utakmice koje su kasno zavrsene.
+name: Osvezi podatke
+
+on:
+  schedule:
+    - cron: "30 22 * * *"
+    - cron: "0 5 * * *"
+  workflow_dispatch:        # dugme "Run workflow" za rucno pokretanje
+
+permissions:
+  contents: write           # da sme da sacuva bazu u repo
+
+concurrency:
+  group: osvezi-podatke
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instaliraj pakete
+        run: pip install -r requirements.txt
+
+      - name: Povuci nove utakmice
+        run: python euroleague_stats.py update
+
+      - name: Sacuvaj bazu u repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add euroleague.db
+          if git diff --cached --quiet; then
+            echo "Nema promena."
+          else
+            git commit -m "Automatsko osvezavanje podataka"
+            git push
+          fi
