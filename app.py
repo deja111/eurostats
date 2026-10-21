@@ -436,6 +436,47 @@ if st.sidebar.button(tr("refresh"), width="stretch"):
         st.code(buf.getvalue() or tr("no_output"))
 
 df = load(tuple(comps))
+
+
+# skracenice timova (zvanicna sifra -> prikaz); skracenice.csv ih moze promeniti
+DEFAULT_ABBR = {
+    "E": {"PAN": "PAO", "ULK": "FBT", "OLY": "OLY", "PAM": "VBC", "RED": "CZV", "HTA": "HTA", "VIR": "VIR", "DUB": "DUB",
+          "MAD": "RMB", "BAR": "BAR", "BES": "BJK", "PAR": "PAR", "IST": "EFS", "ZAL": "ZAL", "MUN": "BAY", "TEL": "MTA",
+          "ASV": "ASV", "PRS": "PBB", "MIL": "MIL", "BAS": "KBA"},
+    "U": {"ARI": "ARI", "JER": "JLM", "RIG": "RIG", "LEM": "MSB", "BGS": "BUR", "TRT": "DER", "RTK": "ROS", "LJU": "COL",
+          "VNC": "URV", "TNF": "LLT", "CLU": "UBT", "FRA": "SKY", "SIA": "SIA", "LLI": "LDN", "MRO": "RMA", "TTK": "TTA",
+          "NAP": "NAP", "BUR": "TOF", "NIN": "CHE", "BUD": "BUD", "WRO": "WKS", "TRN": "TRE", "KLA": "NEP", "BOU": "JLB",
+          "BAH": "BKS", "LKB": "LIE", "ULM": "ULM", "PAO": "PBC", "MAN": "MAN", "BCR": "ROM", "BOS": "BOS", "BLK": "BLK"},
+}
+
+
+def load_abbr():
+    """Skracenice: ugradjene (DEFAULT_ABBR) + skracenice.csv pored app.py, koji ima prednost.
+
+    skracenice.csv kolone: liga,stara,nova[,tim]. Menja se samo prikaz, ne baza.
+    """
+    out = {(liga, k): v for liga, m in DEFAULT_ABBR.items() for k, v in m.items()}
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "skracenice.csv")
+    try:
+        m = pd.read_csv(path, dtype=str).fillna("")
+        out.update({(r.liga.strip(), r.stara.strip()): r.nova.strip()
+                    for r in m.itertuples() if r.nova.strip()})
+    except Exception:
+        pass
+    return out
+
+
+ABBR = load_abbr()
+
+
+def remap(frame, cols, comp_col="comp"):
+    """Zameni zvanicne sifre timova skracenicama iz skracenice.csv (u datom DataFrame-u)."""
+    if not ABBR or frame is None or frame.empty:
+        return frame
+    for c in cols:
+        if c in frame.columns:
+            frame[c] = [ABBR.get((cp, x), x) for cp, x in zip(frame[comp_col], frame[c])]
+    return frame
 hero_sub = tr("hero_sub", liga=liga, a=season_a, b=season_b)
 st.markdown(
     f'<div class="hero">{LOGO.format(s=56)}<div><div class="hero-title">Euro<span>Stats</span></div>'
@@ -445,6 +486,7 @@ st.markdown(
 if df.empty:
     st.info(tr("no_data"))
     st.stop()
+df = remap(df, ["team", "opp"])
 
 @st.cache_data(ttl=3600)
 def load_sched(comps: tuple) -> pd.DataFrame:
@@ -461,7 +503,7 @@ def load_sched(comps: tuple) -> pd.DataFrame:
         return pd.DataFrame()
 
 
-sched = load_sched(tuple(comps))
+sched = remap(load_sched(tuple(comps)), ["homecode", "awaycode"])
 if not sched.empty:
     df = df.merge(sched[["comp", "gamecode", "date"]], on=["comp", "gamecode"], how="left")
 else:
@@ -515,6 +557,7 @@ def load_onoff(comps: tuple):
 
 
 onoff, lineups = load_onoff(tuple(comps))
+onoff, lineups = remap(onoff, ["team"]), remap(lineups, ["team"])
 
 POS_MAP = {"PG": "G", "SG": "G", "G": "G", "SF": "F", "PF": "F", "F": "F", "C": "C"}
 
@@ -1272,7 +1315,8 @@ with TAB["teams"]:
             st.caption(tr("no_standings"))
             continue
         tbl = pd.DataFrame({
-            tr("pos"): stn["position"], tr("team"): stn["club.code"],
+            tr("pos"): stn["position"],
+            tr("team"): [ABBR.get((comp, x), x) for x in stn["club.code"]],
             tr("gp"): stn["gamesPlayed"], tr("won"): stn["gamesWon"], tr("lost"): stn["gamesLost"],
             tr("pdiff"): stn["pointsDifference"], tr("home_rec"): stn["homeRecord"],
             tr("away_rec"): stn["awayRecord"], tr("last5"): stn["last5Form"].map(form_icons),
