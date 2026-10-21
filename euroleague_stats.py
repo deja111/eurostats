@@ -32,6 +32,31 @@ STAT_COLS = [
 ]
 
 
+# ---------- ljubazni zahtevi / polite requests ----------
+# Euroleague server vraca "429 Too Many Requests" ako se salje previse zahteva zaredom.
+MIN_GAP = 1.5          # sekundi izmedju dva zahteva
+MAX_EXTRAS = 60        # najvise cetvrtina/suteva po ligi u jednom pokretanju (ostatak sledeci put)
+_last_call = [0.0]
+
+
+def polite(fn, *args, **kwargs):
+    """Pozovi Euroleague API sa pauzom izmedju zahteva i ponovnim pokusajem posle 429."""
+    for attempt in range(5):
+        wait = MIN_GAP - (time.time() - _last_call[0])
+        if wait > 0:
+            time.sleep(wait)
+        _last_call[0] = time.time()
+        try:
+            return fn(*args, **kwargs)
+        except Exception as e:
+            if "429" in str(e) and attempt < 4:
+                pause = 10 * (attempt + 1) ** 2          # 10, 40, 90, 160 s
+                print(f"  server trazi pauzu (429), cekam {pause} s...")
+                time.sleep(pause)
+                continue
+            raise
+
+
 def get_conn():
     conn = sqlite3.connect(DB_FILE)
     conn.execute("""
@@ -54,7 +79,7 @@ def update_schedule(comp, conn=None):
     """Raspored cele sezone (odigrane i predstojece utakmice) / full season schedule."""
     from euroleague_api.schedule import Schedule
     conn = conn or get_conn()
-    s = Schedule(comp).get_schedule(SEASON)
+    s = polite(Schedule(comp).get_schedule, SEASON)
     date = pd.to_datetime(s["date"], format="%b %d, %Y", errors="coerce").dt.strftime("%Y-%m-%d")
     played = s["played"].astype(str).str.lower().isin(["true", "1"]).astype(int)
     rows = list(zip([comp] * len(s), [SEASON] * len(s), s["game"].astype(int),
@@ -79,12 +104,17 @@ def update_positions(comp, conn=None):
     conn.execute("""CREATE TABLE IF NOT EXISTS positions (
         comp TEXT, season INTEGER, player_id TEXT, pos TEXT,
         PRIMARY KEY (comp, season, player_id))""")
+    conn.execute("CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY, value TEXT)")
+    row = conn.execute("SELECT value FROM meta WHERE key=?", (f"positions_{comp}_{SEASON}",)).fetchone()
+    if row and time.time() - float(row[0]) < 20 * 3600:
+        print("Pozicije: osvezene u poslednjih 20 h, preskacem.")
+        return
     api = PlayerStats(comp)
     found = {}
 
     def fetch(**kw):
         for name, code in POSITIONS.items():
-            d = api.get_player_stats_leaders_single_season(
+            d = polite(api.get_player_stats_leaders_single_season,
                 SEASON, stat_category="GamesPlayed", top_n=500,
                 statistic_mode="Accumulated", position=name, **kw)
             if d is not None and not d.empty and "playerCode" in d:
@@ -104,6 +134,8 @@ def update_positions(comp, conn=None):
                 pass
     conn.executemany("INSERT OR REPLACE INTO positions VALUES (?,?,?,?)",
                      [(comp, SEASON, pid, pos) for pid, pos in found.items()])
+    if found:
+        conn.execute("INSERT OR REPLACE INTO meta VALUES (?,?)", (f"positions_{comp}_{SEASON}", str(time.time())))
     conn.commit()
     print(f"Pozicije: {len(found)} igraca ({len(have - set(found))} bez zvanicne pozicije)")
 
@@ -126,7 +158,7 @@ def load_schedule(comps):
 
 
 def played_gamecodes(comp):
-    meta = BoxScoreData(comp).get_gamecodes_season(SEASON)
+    meta = polite(BoxScoreData(comp).get_gamecodes_season, SEASON)
     played = meta["played"].astype(str).str.lower().isin(["true", "1"])
     return sorted(meta.loc[played, "gameCode"].astype(int).tolist())
 
@@ -154,7 +186,7 @@ def update(comps):
         box = BoxScoreData(comp)
         for gc in new_games:
             try:
-                df = box.get_players_boxscore_stats(SEASON, gc)
+                df = polite(box.get_players_boxscore_stats, SEASON, gc)
             except Exception as e:
                 print(f"Utakmica {gc}: preskacem ({e})")
                 continue
@@ -352,12 +384,14 @@ def update_extras(comp, conn):
     todo = [(g, k) for g in games for k in ("pbp2", "shots") if (g, k) not in done]
     if not todo:
         return
-    print(f"Cetvrtine i sutevi: {len(todo)} preuzimanja...")
+    left = max(0, len(todo) - MAX_EXTRAS)
+    todo = todo[:MAX_EXTRAS]
+    print(f"Cetvrtine i sutevi: {len(todo)} preuzimanja" + (f" (jos {left} sledeci put)" if left else "") + "...")
     pbp_api, shot_api = PlayByPlay(comp), ShotData(comp)
     for gc, kind in todo:
         try:
             if kind == "pbp2":
-                raw = pbp_api.get_game_play_by_play_data(SEASON, gc)
+                raw = polite(pbp_api.get_game_play_by_play_data, SEASON, gc)
                 per = periods_from_pbp(raw)
                 players, lineups = onoff_from_pbp(raw)
                 cols = ["sec", "pm", "c_sec", "c_pm"] + CLUTCH_COLS
@@ -374,7 +408,7 @@ def update_extras(comp, conn):
                     [(comp, SEASON, gc, r.PLAYER_ID, int(r.PERIOD), *[int(getattr(r, c)) for c in PERIOD_COLS])
                      for r in per.itertuples()])
             else:
-                sh = shot_api.get_game_shot_data(SEASON, gc)
+                sh = polite(shot_api.get_game_shot_data, SEASON, gc)
                 if not sh.empty:
                     sh = sh[sh["ID_ACTION"].isin(["2FGM", "2FGA", "3FGM", "3FGA"])]
                     conn.executemany(
