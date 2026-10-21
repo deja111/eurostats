@@ -1,0 +1,46 @@
+# Povrede igraca: svaki sat procita zvanicni Euroleague izvestaj (Injury report)
+# i sacuva povrede.json u repo, ali samo kad se nesto promenilo.
+# Isti "concurrency" kao "Osvezi podatke", pa se dve akcije nikad ne izvrsavaju istovremeno.
+name: Povrede
+
+on:
+  schedule:
+    - cron: "17 * * * *"      # svaki sat u :17 (UTC)
+  workflow_dispatch:          # dugme "Run workflow" za rucno pokretanje
+
+permissions:
+  contents: write
+
+concurrency:
+  group: osvezi-podatke
+  cancel-in-progress: false
+
+jobs:
+  povrede:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instaliraj pakete
+        run: pip install euroleague-api pandas requests
+
+      - name: Procitaj izvestaj o povredama
+        run: python povrede.py
+
+      - name: Sacuvaj povrede.json u repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add povrede.json
+          if git diff --cached --quiet; then
+            echo "Nema promena."
+          else
+            git commit -m "Povrede: azuriran izvestaj"
+            git pull --rebase
+            git push
+          fi
