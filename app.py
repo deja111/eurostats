@@ -678,14 +678,28 @@ INJ_STATUS = {"out": "out", "ne igra": "out", "doubtful": "doubtful", "verovatno
 INJ_HIDE = {"out", "doubtful"}
 
 
+@st.cache_data(ttl=3600, show_spinner=False)
+def live_injury_report():
+    """Aplikacija sama cita Euroleague izvestaj, najvise jednom na sat (GitHub serveri su blokirani).
+    Brzo odustaje (1 pokusaj, 8 s) da ne uspori sajt; tada ostaje povrede.json iz repoa."""
+    try:
+        import povrede as pv
+        return pv.fetch_report(tries=1, timeout=8) or {}
+    except Exception:
+        return {}
+
+
 def load_injuries():
-    """povrede.json (automatski, iz Euroleague izvestaja) + povrede.csv (rucno, ima prednost)."""
+    """Izvestaj: sveze procitan sa sajta ili povrede.json; povrede.csv (rucno) ima prednost."""
     here = os.path.dirname(os.path.abspath(__file__))
-    rep_, out = {}, {}
+    out = {}
     try:
         rep_ = json.load(open(os.path.join(here, "povrede.json"), encoding="utf-8"))
     except Exception:
         rep_ = {}
+    live = live_injury_report()
+    if live.get("players") is not None and (live.get("published") or "") >= (rep_.get("published") or ""):
+        rep_ = live
     for p in rep_.get("players", []):
         gc = p.get("gamecode")
         if not p.get("player_id") or (rep_.get("comp", "E"), gc) in played_codes:

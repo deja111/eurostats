@@ -33,10 +33,10 @@ SESSION = requests.Session()
 SESSION.headers.update(HEADERS)
 
 
-def get(url, tries=4):
+def get(url, tries=4, timeout=30):
     """GET sa ponovnim pokusajem: sajt ponekad vrati 429 (previse zahteva) ili 5xx."""
     for i in range(tries):
-        r = SESSION.get(url, timeout=30)
+        r = SESSION.get(url, timeout=timeout)
         if r.status_code not in (429, 500, 502, 503, 504) or i == tries - 1:
             r.raise_for_status()
             return r
@@ -87,8 +87,8 @@ def strip_md(s):
 
 
 # ---------- preuzimanje / fetching ----------
-def find_report_url():
-    r = get(f"{BASE}/euroleague/news/")
+def find_report_url(tries=4, timeout=30):
+    r = get(f"{BASE}/euroleague/news/", tries=tries, timeout=timeout)
     for blok in re.findall(r'<script[^>]*application/ld\+json[^>]*>(.*?)</script>', r.text, re.S):
         try:
             data = json.loads(blok)
@@ -254,6 +254,15 @@ def save(data, path=OUT_FILE):
     json.dump(data, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(f"Povrede: upisano {len(data['players'])} igraca u {path}")
     return True
+
+
+def fetch_report(tries=4, timeout=30):
+    """Procitaj najnoviji izvestaj sa sajta i vrati gotov recnik (ili None ako ga nema)."""
+    url = find_report_url(tries=tries, timeout=timeout)
+    if not url:
+        return None
+    data = build(get(url, tries=tries, timeout=timeout).text, url)
+    return {**data, "fetched": datetime.now(timezone.utc).isoformat(timespec="minutes")}
 
 
 def main():
