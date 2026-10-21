@@ -5,6 +5,7 @@ Pokretanje / Run:  python -m streamlit run app.py
 """
 import contextlib
 import io
+import json
 import os
 from itertools import groupby
 
@@ -230,6 +231,13 @@ T3 = {
         "picks_count": "🔥 {f} jakih Over · 🟢 {o} Over · 🔴 {u} Under · 🧊 {i} jakih Under",
         "no_picks": "Nema igrača za sledeće kolo sa ovim filterima.",
         "tot_sig": "Predlog (total)",
+        "inj_out": "🚑 Ne igra", "inj_doubtful": "🟠 Verovatno ne igra", "inj_questionable": "🟡 Upitan",
+        "inj_gtd": "🟡 Odluka pred meč", "inj_likely_out": "⚠️ Van terena (nepotvrđeno)",
+        "inj_available": "✅ Vraća se", "inj_info": "ℹ️ Napomena", "inj_col": "🚑 Status",
+        "inj_h": "🚑 Povrede za sledeće kolo", "inj_src": "Izvor: [{t}]({u}) · objavljeno {p} · provereno {f}",
+        "inj_manual": "ručno (povrede.csv)", "inj_none": "Izveštaj o povredama još nije preuzet.",
+        "inj_not_sent": "Nije poslao izveštaj", "inj_full": "Svi igrači na raspolaganju",
+        "inj_hide": "Sakrij igrače koji ne igraju",
         "check_h": "🔍 Proveri igrača", "check_list": "📋 Lista za sledeće kolo",
         "check_note": "Izaberi igrača, statistiku i marginu, pa vidi predlog za njegovu sledeću utakmicu.",
         "factor": "Faktor", "weight": "Težina", "vote": "Glas", "detail": "Detalj",
@@ -313,6 +321,13 @@ T3 = {
         "picks_count": "🔥 {f} strong Over · 🟢 {o} Over · 🔴 {u} Under · 🧊 {i} strong Under",
         "no_picks": "No players in the next round match these filters.",
         "tot_sig": "Pick (total)",
+        "inj_out": "🚑 Out", "inj_doubtful": "🟠 Doubtful", "inj_questionable": "🟡 Questionable",
+        "inj_gtd": "🟡 Game-time decision", "inj_likely_out": "⚠️ Sidelined (unconfirmed)",
+        "inj_available": "✅ Returning", "inj_info": "ℹ️ Note", "inj_col": "🚑 Status",
+        "inj_h": "🚑 Injuries for the next round", "inj_src": "Source: [{t}]({u}) · published {p} · checked {f}",
+        "inj_manual": "manual (povrede.csv)", "inj_none": "Injury report not downloaded yet.",
+        "inj_not_sent": "Report not sent", "inj_full": "Full roster available",
+        "inj_hide": "Hide players who are out",
         "check_h": "🔍 Check a player", "check_list": "📋 List for the next round",
         "check_note": "Pick a player, stat and line to see the pick for his next game.",
         "factor": "Factor", "weight": "Weight", "vote": "Vote", "detail": "Detail",
@@ -656,6 +671,63 @@ df["pos_src"] = df["_pid"].map(lambda x: _pp[x][1])
 HAS_POS = df["pos"].notna().any()
 
 
+# ---------- povrede / injuries ----------
+INJ_STATUS = {"out": "out", "ne igra": "out", "doubtful": "doubtful", "verovatno ne igra": "doubtful",
+              "questionable": "questionable", "upitan": "questionable", "gtd": "gtd",
+              "likely_out": "likely_out", "available": "available", "igra": "available", "info": "info"}
+INJ_HIDE = {"out", "doubtful"}
+
+
+def load_injuries():
+    """povrede.json (automatski, iz Euroleague izvestaja) + povrede.csv (rucno, ima prednost)."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    rep_, out = {}, {}
+    try:
+        rep_ = json.load(open(os.path.join(here, "povrede.json"), encoding="utf-8"))
+    except Exception:
+        rep_ = {}
+    for p in rep_.get("players", []):
+        gc = p.get("gamecode")
+        if not p.get("player_id") or (rep_.get("comp", "E"), gc) in played_codes:
+            continue      # nepovezan igrac ili utakmica je vec odigrana
+        out[p["player_id"]] = {"status": p["status"], "note": p.get("note", ""),
+                               "confirmed": p.get("confirmed", False), "src": "report"}
+    try:
+        m = pd.read_csv(os.path.join(here, "povrede.csv"), dtype=str).fillna("")
+        m.columns = [c.strip().lower() for c in m.columns]
+        for r in m.itertuples(index=False):
+            who, st_ = str(r[0]).strip().upper(), INJ_STATUS.get(str(r[1]).strip().lower())
+            pid = who if who in _pp else next((k for k, v in names_up.items() if v == who), None)
+            if pid and st_:
+                out[pid] = {"status": st_, "note": str(r[2]) if len(r) > 2 else "", "confirmed": True,
+                            "src": "manual"}
+    except Exception:
+        pass
+    return rep_, out
+
+
+
+
+def inj_status(pid):
+    return INJ.get(str(pid).strip(), {}).get("status")
+
+
+def inj_badge(pid):
+    st_ = inj_status(pid)
+    return tr(f"inj_{st_}") if st_ and st_ != "info" else ""
+
+
+def inj_box(pid):
+    i = INJ.get(str(pid).strip())
+    if not i:
+        return
+    txt = f"**{tr('inj_' + i['status'])}**" + (f" · {i['note']}" if i.get("note") else "")
+    if i["src"] == "manual":
+        txt += f" ({tr('inj_manual')})"
+    (st.error if i["status"] in INJ_HIDE else st.success if i["status"] == "available"
+     else st.warning if i["status"] != "info" else st.info)(txt)
+
+
 def pos_label(pid, short=False):
     pos, src = _pp.get(str(pid).strip(), (None, None))
     if not pos:
@@ -671,6 +743,7 @@ if not onoff.empty:
         columns={"player_id": "_pid", "pm": "PlusMinus"}), on=["comp", "gamecode", "_pid"], how="left")
 SORT = ["date", "gamecode"]
 played_codes = set(zip(df["comp"], df["gamecode"]))
+INJ_REPORT, INJ = load_injuries()
 
 
 def date_lbl(d, opp):
@@ -905,6 +978,7 @@ with TAB["player"]:
         row, g = player_games(choice)
         pl_pos = pos_label(row["player_id"])
         st.subheader(f"{row['player']} – {row['team']}" + (f" · {pl_pos}" if pl_pos else ""))
+        inj_box(row["player_id"])
         st.caption(tr("averages", n=len(g)))
 
         cols = st.columns(len(stat_keys))
@@ -1155,6 +1229,7 @@ def render_props():
             st.session_state[opp_key] = o
     elif not sched.empty:
         st.caption(tr("next_none"))
+    inj_box(row["player_id"])
 
     default = float(np.floor(g[key].mean()) + 0.5)   # .5 linija kao kod kladionica
     c3, c4, c5 = st.columns(3)
@@ -1293,6 +1368,7 @@ with TAB["scan"]:
         flags = (v > sline if side == "Over" else v < sline).tolist()[::-1]
         rec[tr("streak_s")] = len(list(next(groupby(flags))[1])) if flags[0] else 0
         rec[tr("pos_short")] = pos_label(pid, short=True)
+        rec[tr("inj_col")] = inj_badge(pid)
         _sg = signal(pg, skey, sline, comp, next_game(comp, pg["team"].iloc[-1]))
         rec[tr("sig")] = _sg["label"]
         rows.append(rec)
@@ -1302,7 +1378,7 @@ with TAB["scan"]:
         scan = pd.DataFrame(rows).sort_values([sort_by, tr("avg")],
                                               ascending=[False, side == "Under"])
         # procenti odmah posle imena da se vide na telefonu / % columns first for phones
-        order = ([tr("player"), tr("sig"), sort_by] + [x for x in sort_opts if x != sort_by]
+        order = ([tr("player"), tr("sig"), tr("inj_col"), sort_by] + [x for x in sort_opts if x != sort_by]
                  + [tr("avg"), tr("streak_s"), tr("pos_short"), tr("team"), tr("gp")])
         scan = scan[order]
         st.dataframe(scan, hide_index=True, width="stretch", height=420,
@@ -1478,6 +1554,37 @@ with TAB["sched"]:
     if sched.empty:
         st.info(tr("no_sched"))
     else:
+        with st.expander(tr("inj_h"), expanded=bool(INJ_REPORT)):
+            if not INJ_REPORT:
+                st.caption(tr("inj_none"))
+            else:
+                pub = pd.to_datetime(INJ_REPORT.get("published"), errors="coerce", utc=True)
+                fet = pd.to_datetime(INJ_REPORT.get("fetched"), errors="coerce", utc=True)
+                fmt = lambda x: x.tz_convert("Europe/Belgrade").strftime("%d.%m. %H:%M") if pd.notna(x) else "—"
+                st.caption(tr("inj_src", t=INJ_REPORT.get("title", "Injury report"),
+                              u=INJ_REPORT.get("source") or "https://www.euroleaguebasketball.net/euroleague/news/",
+                              p=fmt(pub), f=fmt(fet)))
+                comp_r = INJ_REPORT.get("comp", "E")
+                rows_i = []
+                for tm in INJ_REPORT.get("teams", []):
+                    if (comp_r, tm.get("gamecode")) in played_codes or comp_r not in comps:
+                        continue
+                    code = ABBR.get((comp_r, tm.get("team")), tm.get("team") or tm.get("label"))
+                    pl = [p for p in INJ_REPORT.get("players", []) if p.get("team") == tm.get("team")
+                          and p.get("status") != "info"]
+                    if not pl:
+                        rows_i.append({tr("team"): code, tr("player"): "",
+                                       "Status": tr("inj_full") if tm.get("full") else
+                                       (tr("inj_not_sent") if not tm.get("reported") else ""), tr("detail"): ""})
+                    for p in pl:
+                        rows_i.append({tr("team"): code, tr("player"): p.get("db_name") or p["name"],
+                                       "Status": tr("inj_" + p["status"]) + ("" if p.get("confirmed") or
+                                                                              p["status"] == "likely_out" else ""),
+                                       tr("detail"): p.get("note", "")})
+                if rows_i:
+                    st.dataframe(pd.DataFrame(rows_i), hide_index=True, width="stretch",
+                                 height=min(420, 38 + 35 * len(rows_i)),
+                                 column_config={tr("detail"): st.column_config.TextColumn(width="large")})
         st.caption(tr("sched_note"))
         c1, c2 = st.columns(2)
         rs_name = c1.selectbox(stat_c, list(prop_stats.values()), key="sched_stat")
@@ -1574,7 +1681,8 @@ with TAB["without"]:
     # prvo oni koji su propustili utakmice, pa po broju odigranih / absentees first
     roster = roster.sort_values(["missed", "n"], ascending=False).set_index("player_id")
     absent = c2.selectbox(tr("absent"), list(roster.index), key=f"wo_abs_{w_team}",
-                          format_func=lambda p: f"{roster.loc[p, 'player']} ({roster.loc[p, 'n']}/{n_team})")
+                          format_func=lambda p: f"{roster.loc[p, 'player']} ({roster.loc[p, 'n']}/{n_team})"
+                                                + (f" {inj_badge(p)}" if inj_badge(p) else ""))
     wo_opts = {**prop_stats, "Minutes": stats.get("Minutes", "Minutes")}
     wo_name = c3.selectbox(stat_c, list(wo_opts.values()), key="wo_stat")
     wo_key = {v: k for k, v in wo_opts.items()}[wo_name]
@@ -1664,7 +1772,7 @@ with TAB["round"]:
                         else:
                             opp_lbl = f"{opp} (#{int(rank[opp])})"
                         v = pg[r_key].dropna()
-                        if len(v) < 3 or pg["Minutes"].mean() < r_min:
+                        if len(v) < 3 or pg["Minutes"].mean() < r_min or inj_status(pid) in INJ_HIDE:
                             continue
                         o5, t5 = hit_rate(v.tail(5), r_line, r_side)
                         if 100 * o5 / t5 < r_hit:
@@ -1676,13 +1784,14 @@ with TAB["round"]:
                                     tr("opponent"): opp_lbl, tr("pos_short"): pos_label(pid, short=True),
                                     tr("sig"): signal(pg, r_key, r_line, comp,
                                                       {"opp": opp, "home": team == m.homecode,
-                                                       "date": m.date, "time": m.startime})["label"]})
+                                                       "date": m.date, "time": m.startime})["label"],
+                                    tr("inj_col"): inj_badge(pid)})
             st.subheader(f"{COMP_NAME[lang][comp]} · {tr('round')} {rnd} · {r_name} {r_side} {r_line:g}")
         if not out:
             st.info(tr("no_round"))
         else:
             rp = pd.DataFrame(out).sort_values([tr("l5p"), tr("seasp")], ascending=False)
-            rp = rp[[tr("player"), tr("sig"), tr("l5p"), tr("seasp"), tr("opponent"), tr("match"),
+            rp = rp[[tr("player"), tr("sig"), tr("inj_col"), tr("l5p"), tr("seasp"), tr("opponent"), tr("match"),
                      tr("avg"), tr("pos_short"), tr("team")]]
             st.dataframe(rp, hide_index=True, width="stretch", height=min(480, 38 + 35 * len(rp)),
                          column_config={k: st.column_config.NumberColumn(format="%d%%")
@@ -1717,6 +1826,7 @@ with TAB["picks"]:
                                     d=f"{q_nxt['date']:%d.%m.}" if pd.notna(q_nxt["date"]) else "")
         box = (st.success if q_sg["score"] >= 25 else st.error if q_sg["score"] <= -25 else st.info)
         box(verdict)
+        inj_box(q_row["player_id"])
         if not q_nxt:
             st.caption(tr("no_next"))
         if q_sg["factors"]:
@@ -1755,6 +1865,7 @@ with TAB["picks"]:
         k_show = c4.radio(tr("show"), show_opts, horizontal=True, key="pk_show")
         k_min = c5.slider(tr("min_minutes"), 0, 35, 15, key="pk_min")
         k_g = c6.slider(tr("min_games"), 5, 20, 5, key="pk_g")
+        k_hide_inj = st.checkbox(tr("inj_hide"), value=True, key="pk_hide_inj")
 
         hist = df.sort_values(SORT)
         rows_k = []
@@ -1764,7 +1875,7 @@ with TAB["picks"]:
                 continue
             team = pg["team"].iloc[-1]
             nxt = next_game(comp, team)
-            if not nxt:
+            if not nxt or (k_hide_inj and inj_status(pid) in INJ_HIDE):
                 continue
             line = float(np.floor(v.mean()) + 0.5) if k_mode != tr("line_fixed") else float(k_line)
             sg = signal(pg, k_key, line, comp, nxt)
@@ -1776,6 +1887,7 @@ with TAB["picks"]:
                                 f"{nxt['date']:%d.%m.})" if pd.notna(nxt["date"]) else nxt["opp"],
                 tr("reasons"): " · ".join(sg["reasons"]),
                 tr("pos_short"): pos_label(pid, short=True), tr("team"): team,
+                tr("inj_col"): inj_badge(pid),
             })
         if not rows_k:
             st.info(tr("no_picks"))
