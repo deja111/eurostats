@@ -277,10 +277,14 @@ def onoff_from_pbp(pbp):
     p["PLAYTYPE"] = p["PLAYTYPE"].astype(str).str.strip()
     p["PLAYER_ID"] = p["PLAYER_ID"].where(p["PLAYER_ID"].isna(), p["PLAYER_ID"].astype(str).str.strip())
     p["CODETEAM"] = p["CODETEAM"].where(p["CODETEAM"].isna(), p["CODETEAM"].astype(str).str.strip())
-    teams = [t for t in p["CODETEAM"].dropna().unique()][:2]
+    # dva tima = dve najcesce sifre medju akcijama igraca (prazne/cudne sifre se ignorisu)
+    pl_rows = p[p["PLAYER_ID"].notna() & p["CODETEAM"].notna()]
+    pl_rows = pl_rows[(pl_rows["PLAYER_ID"].str.len() > 0) & (pl_rows["CODETEAM"].str.len() > 0)]
+    teams = list(pl_rows["CODETEAM"].value_counts().index[:2])
     if len(teams) < 2:
         return pd.DataFrame(), pd.DataFrame()
-    team_of = p.dropna(subset=["PLAYER_ID", "CODETEAM"]).groupby("PLAYER_ID")["CODETEAM"].first().to_dict()
+    pl_rows = pl_rows[pl_rows["CODETEAM"].isin(teams)]
+    team_of = pl_rows.groupby("PLAYER_ID")["CODETEAM"].agg(lambda x: x.value_counts().index[0]).to_dict()
 
     pl = {}   # player -> statistika
     lu = {}   # (team, lineup) -> [sec, pf, pa]
@@ -393,7 +397,11 @@ def update_extras(comp, conn):
             if kind == "pbp2":
                 raw = polite(pbp_api.get_game_play_by_play_data, SEASON, gc)
                 per = periods_from_pbp(raw)
-                players, lineups = onoff_from_pbp(raw)
+                try:   # +/- i petorke su dodatak: ako padnu, cetvrtine se ipak cuvaju
+                    players, lineups = onoff_from_pbp(raw)
+                except Exception as e:
+                    print(f"Utakmica {gc}: +/- i petorke preskacem ({e!r})")
+                    players, lineups = pd.DataFrame(), pd.DataFrame()
                 cols = ["sec", "pm", "c_sec", "c_pm"] + CLUTCH_COLS
                 conn.executemany(
                     f"INSERT OR REPLACE INTO onoff VALUES ({','.join('?' * (5 + len(cols)))})",
@@ -419,7 +427,7 @@ def update_extras(comp, conn):
             conn.execute("INSERT OR REPLACE INTO extra_done VALUES (?,?,?,?)", (comp, SEASON, gc, kind))
             conn.commit()
         except Exception as e:
-            print(f"Utakmica {gc} ({kind}): preskacem ({e})")
+            print(f"Utakmica {gc} ({kind}): preskacem ({e!r})")
     print("Cetvrtine i sutevi: gotovo")
 
 
