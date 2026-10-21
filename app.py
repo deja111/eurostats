@@ -230,6 +230,14 @@ T3 = {
         "picks_count": "🔥 {f} jakih Over · 🟢 {o} Over · 🔴 {u} Under · 🧊 {i} jakih Under",
         "no_picks": "Nema igrača za sledeće kolo sa ovim filterima.",
         "tot_sig": "Predlog (total)",
+        "check_h": "🔍 Proveri igrača", "check_list": "📋 Lista za sledeće kolo",
+        "check_note": "Izaberi igrača, statistiku i marginu, pa vidi predlog za njegovu sledeću utakmicu.",
+        "factor": "Faktor", "weight": "Težina", "vote": "Glas", "detail": "Detalj",
+        "f_hit": "Hit-rate (posl. 10)", "f_med": "Medijana", "f_opp": "Protivnik (DvP)",
+        "f_ven": "Kuća / gost", "f_min": "Minuti (posl. 3)", "neutral": "neutralno",
+        "next_vs": "Sledeća utakmica: **{o}** ({ha}, {d})", "no_next": "Nema zakazane utakmice – "
+        "protivnik i teren nisu uračunati.", "line_each": "Linija = prosek svakog igrača, na .5 "
+        "(npr. prosek 14.3 → 14.5).",
         "dvp_legend": "**Kako čitati tabelu:**\n\n"
                       "- **Bekovi / Krila / Centri:** koliko poena (ili izabrane statistike) tim prosečno "
                       "primi po utakmici od **svih** protivničkih igrača na toj poziciji zajedno.\n"
@@ -305,6 +313,14 @@ T3 = {
         "picks_count": "🔥 {f} strong Over · 🟢 {o} Over · 🔴 {u} Under · 🧊 {i} strong Under",
         "no_picks": "No players in the next round match these filters.",
         "tot_sig": "Pick (total)",
+        "check_h": "🔍 Check a player", "check_list": "📋 List for the next round",
+        "check_note": "Pick a player, stat and line to see the pick for his next game.",
+        "factor": "Factor", "weight": "Weight", "vote": "Vote", "detail": "Detail",
+        "f_hit": "Hit rate (last 10)", "f_med": "Median", "f_opp": "Opponent (DvP)",
+        "f_ven": "Home / away", "f_min": "Minutes (last 3)", "neutral": "neutral",
+        "next_vs": "Next game: **{o}** ({ha}, {d})", "no_next": "No scheduled game – "
+        "opponent and venue are not counted.", "line_each": "Line = each player's average, at .5 "
+        "(e.g. average 14.3 → 14.5).",
         "dvp_legend": "**How to read the table:**\n\n"
                       "- **Guards / Forwards / Centers:** how much (points or the chosen stat) a team allows "
                       "per game to **all** opposing players at that position combined.\n"
@@ -785,18 +801,20 @@ def signal(pg, key, line, comp, nxt=None):
     v = pg[key].dropna()
     n = len(v)
     if n < 5:
-        return {"score": 0, "label": tr("sig_few"), "reasons": [], "hit": None}
-    parts, reasons = [], []
+        return {"score": 0, "label": tr("sig_few"), "reasons": [], "hit": None, "factors": [], "wsum": 1}
+    parts, reasons, factors = [], [], []
     sd = max(float(v.std(ddof=0)), 1.0)
 
     last = v.tail(10)
     h = float((last > line).mean())
     parts.append((0.30, (h - 0.5) * 2))
     reasons.append((h - 0.5, tr("r_hit", o=int((last > line).sum()), t=len(last))))
+    factors.append((tr("f_hit"), 0.30, (h - 0.5) * 2, reasons[-1][1]))
 
     med = float(v.median())
     parts.append((0.25, float(np.clip((med - line) / sd, -1, 1))))
     reasons.append((med - line, tr("r_med", m=med, l=line)))
+    factors.append((tr("f_med"), 0.25, parts[-1][1], reasons[-1][1]))
 
     if nxt:
         o = nxt["opp"]
@@ -811,18 +829,21 @@ def signal(pg, key, line, comp, nxt=None):
             x = (N + 1 - 2 * float(rk[o])) / (N - 1)
             parts.append((0.20, x))
             reasons.append((x, tr("r_opp", o=o, r=int(rk[o]), p=plabel).strip()))
+            factors.append((tr("f_opp"), 0.20, x, reasons[-1][1] + f" · {vals[o]:.1f}/utakm."))
         if "Home" in pg:
             ven = pg[pg["Home"] == (1 if nxt["home"] else 0)][key].dropna()
             if len(ven) >= 2:
                 x = float(np.clip((ven.mean() - line) / sd, -1, 1))
                 parts.append((0.15, x))
                 reasons.append((x, tr("r_ven", v=tr("home") if nxt["home"] else tr("away"), a=ven.mean())))
+                factors.append((tr("f_ven"), 0.15, x, reasons[-1][1]))
 
     mins = pg["Minutes"].dropna()
     if len(mins) >= 4:
         dm = float(mins.tail(3).mean() - mins.mean())
         x = float(np.clip(dm / max(0.15 * mins.mean(), 2.0), -1, 1))
         parts.append((0.10, x))
+        factors.append((tr("f_min"), 0.10, x, tr("r_min", d=dm)))
         if abs(dm) >= 1:
             reasons.append((x, tr("r_min", d=dm)))
 
@@ -839,7 +860,8 @@ def signal(pg, key, line, comp, nxt=None):
         label = tr("sig_none")
     direction = 1 if score >= 0 else -1
     txt = [("✔ " if np.sign(x) == direction else "✘ ") + r for x, r in reasons if x != 0]
-    return {"score": int(round(score)), "label": label, "reasons": txt, "hit": h}
+    return {"score": int(round(score)), "label": label, "reasons": txt, "hit": h,
+            "factors": factors, "wsum": sum(w for w, _ in parts)}
 
 
 def court_lines():
@@ -1136,7 +1158,7 @@ def render_props():
 
     default = float(np.floor(g[key].mean()) + 0.5)   # .5 linija kao kod kladionica
     c3, c4, c5 = st.columns(3)
-    line = c3.number_input(tr("line"), value=default, step=0.5,
+    line = c3.number_input(tr("line"), value=default, step=0.5, format="%.1f",
                            key=f"line_{row['player_id']}_{key}")
     has_home = "Home" in g.columns and g["Home"].notna().any()
     venue = c4.radio(tr("venue"), ["all", "home", "away"], horizontal=True,
@@ -1246,7 +1268,7 @@ with TAB["scan"]:
     c1, c2, c3 = st.columns(3)
     sname = c1.selectbox(stat_c, list(prop_stats.values()), key="scan_stat")
     skey = prop_inv[sname]
-    sline = c2.number_input(tr("line"), value=DEFAULT_LINE.get(skey, 5.5), step=0.5,
+    sline = c2.number_input(tr("line"), value=DEFAULT_LINE.get(skey, 5.5), step=0.5, format="%.1f",
                             key=f"scan_line_{skey}")
     side = c3.radio(tr("side"), ["Over", "Under"], horizontal=True, key="scan_side")
     c4, c5, c6 = st.columns(3)
@@ -1599,7 +1621,7 @@ with TAB["round"]:
         c1, c2, c3 = st.columns(3)
         r_name = c1.selectbox(stat_c, list(prop_stats.values()), key="rp_stat")
         r_key = prop_inv[r_name]
-        r_line = c2.number_input(tr("line"), value=DEFAULT_LINE.get(r_key, 5.5), step=0.5,
+        r_line = c2.number_input(tr("line"), value=DEFAULT_LINE.get(r_key, 5.5), step=0.5, format="%.1f",
                                  key=f"rp_line_{r_key}")
         r_side = c3.radio(tr("side"), ["Over", "Under"], horizontal=True, key="rp_side")
         c4, c5, c6 = st.columns(3)
@@ -1670,6 +1692,51 @@ with TAB["round"]:
 # ---------- predlozi / picks ----------
 with TAB["picks"]:
     st.caption(tr("sig_note"))
+
+    # ---- provera jednog igraca / single player check ----
+    st.subheader(tr("check_h"))
+    st.caption(tr("check_note"))
+    q1, q2, q3 = st.columns([3, 2, 2])
+    q_pl = q1.selectbox(tr("player"), players["label"], index=None, placeholder=tr("placeholder"),
+                        key="pk_one_player")
+    q_name = q2.selectbox(stat_c, list(prop_stats.values()), key="pk_one_stat")
+    q_key = prop_inv[q_name]
+    if q_pl:
+        q_row, q_g = player_games(q_pl)
+        q_v = q_g[q_key].dropna()
+        q_def = float(np.floor(q_v.mean()) + 0.5) if not q_v.empty else 0.5
+        q_line = q3.number_input(tr("line_s"), value=q_def, step=0.5, min_value=0.0, format="%.1f",
+                                 key=f"pk_one_line_{q_row['player_id']}_{q_key}")
+        q_g = q_g.dropna(subset=[q_key]).reset_index(drop=True)
+        q_nxt = next_game(q_row["comp"], q_g["team"].iloc[-1]) if not q_g.empty else None
+        q_sg = signal(q_g, q_key, q_line, q_row["comp"], q_nxt)
+        verdict = f"### {q_sg['label']}\n**{q_row['player']}** · {q_name} **{q_line:g}** · " \
+                  f"{tr('sig_score').lower()} **{q_sg['score']:+d}**"
+        if q_nxt:
+            verdict += "  \n" + tr("next_vs", o=q_nxt["opp"], ha=tr("home") if q_nxt["home"] else tr("away"),
+                                    d=f"{q_nxt['date']:%d.%m.}" if pd.notna(q_nxt["date"]) else "")
+        box = (st.success if q_sg["score"] >= 25 else st.error if q_sg["score"] <= -25 else st.info)
+        box(verdict)
+        if not q_nxt:
+            st.caption(tr("no_next"))
+        if q_sg["factors"]:
+            ft = pd.DataFrame([{
+                tr("factor"): n, tr("weight"): f"{round(100 * w / q_sg['wsum'])}%",
+                tr("vote"): ("🟢 Over" if x > 0.05 else "🔴 Under" if x < -0.05 else f"⚪ {tr('neutral')}"),
+                tr("detail"): d} for n, w, x, d in q_sg["factors"]])
+            st.dataframe(ft, hide_index=True, width="stretch")
+            m1, m2, m3, m4 = st.columns(4)
+            m1.metric(tr("avg"), f"{q_v.mean():.1f}")
+            m2.metric(tr("median"), f"{q_v.median():g}")
+            o5, t5 = hit_rate(q_v.tail(5), q_line)
+            m3.metric(tr("last_n", n=5), f"{100 * o5 / t5:.0f}% Over" if t5 else "—")
+            oa, ta_ = hit_rate(q_v, q_line)
+            m4.metric(tr("season_lbl"), f"{100 * oa / ta_:.0f}% Over" if ta_ else "—")
+    else:
+        q3.number_input(tr("line_s"), value=0.0, disabled=True, key="pk_one_line_empty")
+
+    st.divider()
+    st.subheader(tr("check_list"))
     if sched.empty:
         st.info(tr("no_sched"))
     else:
@@ -1677,8 +1744,12 @@ with TAB["picks"]:
         k_name = c1.selectbox(stat_c, list(prop_stats.values()), key="pk_stat")
         k_key = prop_inv[k_name]
         k_mode = c2.radio(tr("line_mode"), [tr("line_avg"), tr("line_fixed")], key="pk_mode")
-        k_line = c3.number_input(tr("line"), value=DEFAULT_LINE.get(k_key, 5.5), step=0.5,
-                                 key=f"pk_line_{k_key}", disabled=k_mode != tr("line_fixed"))
+        if k_mode == tr("line_fixed"):
+            k_line = c3.number_input(tr("line_s"), value=DEFAULT_LINE.get(k_key, 5.5), step=0.5,
+                                     min_value=0.0, format="%.1f", key=f"pk_line_{k_key}")
+        else:
+            k_line = None
+            c3.caption(tr("line_each"))
         c4, c5, c6 = st.columns(3)
         show_opts = [tr("show_all"), "Over", "Under", tr("show_strong")]
         k_show = c4.radio(tr("show"), show_opts, horizontal=True, key="pk_show")
