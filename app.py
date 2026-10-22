@@ -453,7 +453,7 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 .stApp {font-family: 'Inter', sans-serif;}
-.block-container {padding-top: 3.2rem; max-width: 1200px;}
+.block-container {padding-top: 5rem; max-width: 1200px;}
 footer {visibility: hidden;}
 
 .hero {display: flex; align-items: center; gap: 18px; padding: 22px 26px; margin-bottom: 1.2rem;
@@ -484,7 +484,7 @@ div[data-baseweb="select"] > div, div[data-baseweb="input"] > div {border-radius
 .vega-embed, .vega-embed canvas, .vega-embed svg {touch-action: pan-y !important;}
 
 @media (max-width: 640px) {
-  .block-container {padding: 3.4rem 0.8rem 3rem;}   /* ispod Streamlit trake (Share/Fork) */
+  .block-container {padding: 4.8rem 0.8rem 3rem;}   /* ispod Streamlit trake (Share/Fork) */
   .hero {padding: 14px 16px; gap: 12px; border-radius: 16px;}
   .hero svg {width: 40px; height: 40px;}
   .hero-title {font-size: 1.5rem;}
