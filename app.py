@@ -365,7 +365,20 @@ T3 = {
 T4 = {
     "sr": {
         "nav_home": "🏠\nPočetna", "nav_props": "🎯\nProps", "nav_players": "👤\nIgrači", "nav_league": "🏀\nLiga",
-        "sub_picks": "🔥 Predlozi", "sub_lines": "📋 Linije",
+        "sub_picks": "🔥 Predlozi", "sub_lines": "📋 Linije", "sub_perf": "📊 Učinak",
+        "perf_note": "Svako jutro se sačuvaju svi predlozi za predstojeće utakmice (linija kladionice kad postoji, "
+                     "inače ≈ prosek igrača). Posle utakmice se uporede sa stvarnim učinkom. Računa se smer "
+                     "predloga (Over ako je jačina > 0, Under ako je < 0); igrači koji nisu igrali se ne računaju.",
+        "perf_none": "Još nema sačuvanih predloga. Snimanje počinje sa prvim jutarnjim preuzimanjem linija.",
+        "perf_wait": "Sačuvano {n} predloga za {g} utakmica – učinak se vidi kad se te utakmice odigraju.",
+        "perf_src": "Linije", "perf_src_all": "Sve", "perf_src_book": "📡 Kladionice", "perf_src_avg": "≈ Prosek",
+        "perf_round": "Kolo", "perf_all_rounds": "Sva kola", "perf_by_sig": "Po jačini predloga",
+        "perf_by_stat": "Po statistici", "perf_by_round": "Po kolu", "perf_last": "Poslednji ocenjeni predlozi",
+        "perf_n": "Predloga", "perf_won": "Prošlo", "perf_pct": "Uspešnost", "perf_roi": "Povrat (kvote)",
+        "perf_units": "Jedinice", "perf_all_sig": "Svi sa signalom", "perf_value": "💰 Vrednost ≥ 5%",
+        "perf_actual": "Stvarno", "perf_res": "Rezultat", "perf_dir": "Smer",
+        "perf_roi_help": "Povrat = ulog 1 jedinica na smer predloga po medijani kvota kladionica (samo linije sa kvotama).",
+        "perf_pending": "⏳ Čeka se još {n} predloga (utakmice nisu odigrane).",
         "src_book": "📡 Kladionice", "src_manual": "✍️ Ručni unos", "source": "Izvor linija",
         "all_stats": "Sve", "line_book": "Linije kladionica (📡)",
         "line_book_help": "Samo igrači za koje kladionice već nude liniju.",
@@ -404,7 +417,20 @@ T4 = {
     },
     "en": {
         "nav_home": "🏠\nHome", "nav_props": "🎯\nProps", "nav_players": "👤\nPlayers", "nav_league": "🏀\nLeague",
-        "sub_picks": "🔥 Picks", "sub_lines": "📋 Lines",
+        "sub_picks": "🔥 Picks", "sub_lines": "📋 Lines", "sub_perf": "📊 Track record",
+        "perf_note": "Every morning all picks for upcoming games are saved (bookmaker line when available, otherwise "
+                     "≈ player average). After the game they are compared with the real result. The pick direction "
+                     "counts (Over if strength > 0, Under if < 0); players who did not play are excluded.",
+        "perf_none": "No saved picks yet. Recording starts with the first morning lines fetch.",
+        "perf_wait": "{n} picks saved for {g} games – the record appears once those games are played.",
+        "perf_src": "Lines", "perf_src_all": "All", "perf_src_book": "📡 Bookmakers", "perf_src_avg": "≈ Average",
+        "perf_round": "Round", "perf_all_rounds": "All rounds", "perf_by_sig": "By pick strength",
+        "perf_by_stat": "By stat", "perf_by_round": "By round", "perf_last": "Latest graded picks",
+        "perf_n": "Picks", "perf_won": "Won", "perf_pct": "Hit rate", "perf_roi": "Return (odds)",
+        "perf_units": "Units", "perf_all_sig": "All with a signal", "perf_value": "💰 Value ≥ 5%",
+        "perf_actual": "Actual", "perf_res": "Result", "perf_dir": "Side",
+        "perf_roi_help": "Return = 1 unit on the pick side at the bookmakers' median odds (lines with odds only).",
+        "perf_pending": "⏳ {n} more picks pending (games not played yet).",
         "src_book": "📡 Bookmakers", "src_manual": "✍️ Manual input", "source": "Lines source",
         "all_stats": "All", "line_book": "Bookmaker lines (📡)",
         "line_book_help": "Only players bookmakers already offer a line for.",
@@ -681,7 +707,7 @@ def tr(key, **kw):
     return T[lang][key].format(**kw)
 
 
-SECTIONS = {"home": ["home"], "props": ["picks", "lines", "props", "scan", "round"],
+SECTIONS = {"home": ["home"], "props": ["picks", "lines", "perf", "props", "scan", "round"],
             "players": ["player", "cmp", "without", "leaders"], "league": ["sched", "teams", "injuries"]}
 
 
@@ -1077,7 +1103,8 @@ def next_game(comp, team):
     n = s.iloc[0]
     home = n["homecode"] == team
     return {"opp": n["awaycode"] if home else n["homecode"], "home": home,
-            "date": n["date"], "time": n["startime"]}
+            "date": n["date"], "time": n["startime"], "gamecode": int(n["gamecode"]),
+            "round": int(n["gameday"]) if pd.notna(n.get("gameday")) else None}
 
 
 def hit_rate(vals, line, side="Over"):
@@ -1671,6 +1698,104 @@ def round_picks(comp, keys, lang_, data_sig):
             else:
                 out.append(make_pick(comp, pid, pg, key, float(np.floor(v.mean()) + 0.5), nxt))
     return out
+
+
+# ---------- snimak predloga za ucinak / picks snapshot (pokrece ga GitHub Action) ----------
+HIST_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "predlozi_istorija.csv")
+SNAP_KEYS = ["Points", "TotalRebounds", "Assistances", "PRA", "3PM"]
+HIST_COLS = ["saved", "comp", "season", "round", "gamecode", "date", "time", "player_id", "player", "team", "opp",
+             "home", "stat", "line", "src", "over", "under", "books", "score", "label", "cls", "hit_l10",
+             "ev_side", "ev", "reasons"]
+
+
+def snapshot_picks(comp, days=3):
+    """Svi predlozi za utakmice u narednih `days` dana -> predlozi_istorija.csv (zamenjuje stari snimak tih utakmica)."""
+    today = pd.Timestamp.now().normalize()
+    rows = []
+    hist = df[df["comp"] == comp].sort_values(SORT)
+    for pid, pg in hist.groupby("player_id"):
+        if len(pg) < 5 or pg["Minutes"].mean() < 10 or inj_status(pid) in INJ_HIDE:
+            continue
+        nxt = next_game(comp, pg["team"].iloc[-1])
+        if not nxt or pd.isna(nxt["date"]) or nxt["date"] > today + pd.Timedelta(days=days):
+            continue
+        keys = list(dict.fromkeys(SNAP_KEYS + list(BOOK.get(pid, {}).keys())))
+        for key in keys:
+            if key not in pg or pg[key].dropna().shape[0] < 5:
+                continue
+            bl = book_line(pid, key)
+            if bl:
+                p = eval_line(comp, pid, key, bl["line"], bl.get("over"), bl.get("under"), nxt)
+                if not p:
+                    continue
+                src, books = "book", bl.get("books")
+            else:
+                v = pg[key].dropna()
+                p = {**make_pick(comp, pid, pg, key, float(np.floor(v.mean()) + 0.5), nxt),
+                     "over": None, "under": None, "ev_side": None, "ev": None}
+                src, books = "avg", None
+            rows.append({"saved": pd.Timestamp.now(tz="UTC").strftime("%Y-%m-%d %H:%M"), "comp": comp,
+                         "season": es.SEASON, "round": nxt.get("round"), "gamecode": nxt["gamecode"],
+                         "date": nxt["date"].strftime("%Y-%m-%d"), "time": nxt["time"],
+                         "player_id": str(pid).strip(), "player": p["player"], "team": p["team"], "opp": p["opp"],
+                         "home": int(bool(p["home"])), "stat": key, "line": p["line"], "src": src,
+                         "over": p.get("over"), "under": p.get("under"), "books": books, "score": p["score"],
+                         "label": p["label"], "cls": p["cls"],
+                         "hit_l10": round(p["hit_pct"], 3) if p.get("hit_pct") is not None else None,
+                         "ev_side": p.get("ev_side"), "ev": round(p["ev"], 4) if p.get("ev") is not None else None,
+                         "reasons": " · ".join(p["reasons"])})
+    new = pd.DataFrame(rows, columns=HIST_COLS)
+    try:
+        old = pd.read_csv(HIST_FILE, dtype={"player_id": str})
+    except Exception:
+        old = pd.DataFrame(columns=HIST_COLS)
+    if not new.empty:
+        redo = set(zip(new["comp"], new["gamecode"].astype(int)))
+        keep = [not ((c, int(g)) in redo and (c, int(g)) not in played_codes)
+                for c, g in zip(old["comp"], old["gamecode"])] if not old.empty else []
+        old = old[keep] if len(keep) else old
+    out = pd.concat([old, new], ignore_index=True) if not old.empty else new
+    out.to_csv(HIST_FILE, index=False, encoding="utf-8")
+    print(f"{comp}: sacuvano {len(new)} predloga za {new['gamecode'].nunique() if not new.empty else 0} utakmica "
+          f"(ukupno u istoriji: {len(out)})")
+
+
+if os.environ.get("ES_SNAPSHOT"):
+    snapshot_picks(liga_code)
+    st.stop()
+
+
+# ---------- ucinak predloga / track record ----------
+@st.cache_data(ttl=600, show_spinner=False)
+def load_hist(mtime):
+    try:
+        h = pd.read_csv(HIST_FILE, dtype={"player_id": str})
+    except Exception:
+        return pd.DataFrame(columns=HIST_COLS)
+    h["player_id"] = h["player_id"].astype(str).str.strip()
+    return h
+
+
+def grade_hist(h):
+    """Doda stvarni ucinak i rezultat (True/False) za odigrane utakmice."""
+    if h.empty:
+        return h
+    h = h[h["comp"].isin(comps)].copy()
+    vals = df[["comp", "gamecode", "_pid", "Minutes"] + [k for k in h["stat"].unique() if k in df.columns]]
+    vals = vals.rename(columns={"_pid": "player_id"})
+    long = vals.melt(id_vars=["comp", "gamecode", "player_id", "Minutes"], var_name="stat", value_name="actual")
+    h["gamecode"] = h["gamecode"].astype(int)
+    h = h.merge(long, on=["comp", "gamecode", "player_id", "stat"], how="left")
+    h["played_game"] = [(c, g) in played_codes for c, g in zip(h["comp"], h["gamecode"])]
+    h["dir"] = np.where(h["score"] > 0, "Over", np.where(h["score"] < 0, "Under", ""))
+    ok = h["played_game"] & (h["Minutes"].fillna(0) > 0) & (h["dir"] != "") & h["actual"].notna() \
+        & (h["actual"] != h["line"])
+    h["graded"] = ok
+    h["won"] = np.where(h["dir"] == "Over", h["actual"] > h["line"], h["actual"] < h["line"])
+    odd = np.where(h["dir"] == "Over", h["over"], h["under"])
+    h["odd"] = pd.to_numeric(odd, errors="coerce")
+    h["units"] = np.where(h["odd"].notna(), np.where(h["won"], h["odd"] - 1, -1.0), np.nan)
+    return h
 
 
 # ---------- igrac / player ----------
@@ -2828,3 +2953,85 @@ if PAGE == "lines":
             if len(results) > n_show:
                 st.button(f"{tr('show_more')} ({len(results) - n_show})", key="lines_more", width="stretch",
                           on_click=lambda: st.session_state.update(lines_n=n_show + 30))
+
+
+# ---------- ucinak / track record page ----------
+if PAGE == "perf":
+    st.caption(tr("perf_note"))
+    try:
+        _mt = os.path.getmtime(HIST_FILE)
+    except OSError:
+        _mt = 0
+    H = grade_hist(load_hist(_mt))
+    if H.empty:
+        st.info(tr("perf_none"))
+    else:
+        G = H[H["graded"]]
+        pend = H[~H["played_game"]]
+        if G.empty:
+            st.info(tr("perf_wait", n=len(pend), g=pend["gamecode"].nunique()))
+        else:
+            c1, c2 = st.columns(2)
+            _so = [tr("perf_src_all"), tr("perf_src_book"), tr("perf_src_avg")]
+            src = c1.segmented_control(tr("perf_src"), _so, default=_so[0], key="perf_src") or _so[0]
+            _rs = sorted(G["round"].dropna().astype(int).unique())
+            rsel = c2.selectbox(tr("perf_round"), [tr("perf_all_rounds")] + [str(r) for r in _rs], key="perf_round")
+            if src == _so[1]:
+                G = G[G["src"] == "book"]
+            elif src == _so[2]:
+                G = G[G["src"] == "avg"]
+            if rsel != tr("perf_all_rounds"):
+                G = G[G["round"] == int(rsel)]
+
+            def summ(g):
+                n = len(g)
+                w = int(g["won"].sum())
+                u = g["units"].dropna()
+                return {tr("perf_n"): n, tr("perf_won"): w, tr("perf_pct"): round(100 * w / n) if n else None,
+                        tr("perf_units"): round(float(u.sum()), 2) if len(u) else None,
+                        tr("perf_roi"): round(100 * float(u.sum()) / len(u), 1) if len(u) else None}
+
+            sig = G[G["score"].abs() >= 25]
+            m1, m2, m3 = st.columns(3)
+            s_all = summ(sig)
+            m1.metric(tr("perf_all_sig"), f"{s_all[tr('perf_pct')] or 0}%", f"{s_all[tr('perf_won')]}/{s_all[tr('perf_n')]}",
+                      delta_color="off")
+            strong = G[G["cls"].isin(["fire", "ice"])]
+            s_st = summ(strong)
+            m2.metric("🔥 / 🧊", f"{s_st[tr('perf_pct')] or 0}%", f"{s_st[tr('perf_won')]}/{s_st[tr('perf_n')]}",
+                      delta_color="off")
+            val = G[G["ev"].fillna(-1) >= 0.05]
+            s_v = summ(val)
+            m3.metric(tr("perf_value"), f"{s_v[tr('perf_roi')] if s_v[tr('perf_roi')] is not None else 0:+}%",
+                      f"{s_v[tr('perf_won')]}/{s_v[tr('perf_n')]}", delta_color="off")
+
+            cfg = {tr("perf_pct"): st.column_config.NumberColumn(format="%d%%"),
+                   tr("perf_roi"): st.column_config.NumberColumn(format="%+.1f%%"),
+                   tr("perf_units"): st.column_config.NumberColumn(format="%+.2f")}
+            st.markdown(f"**{tr('perf_by_sig')}**")
+            order = [("fire", tr("sig_fire")), ("over", tr("sig_over")), ("under", tr("sig_under")),
+                     ("ice", tr("sig_ice")), ("none", tr("sig_none"))]
+            t1 = pd.DataFrame([{tr("sig"): lab, **summ(G[G["cls"] == c])} for c, lab in order if (G["cls"] == c).any()])
+            st.dataframe(t1, hide_index=True, width="stretch", column_config=cfg)
+            st.caption(tr("perf_roi_help"))
+            st.markdown(f"**{tr('perf_by_stat')}**")
+            t2 = pd.DataFrame([{stat_c: prop_stats.get(k, k), **summ(g)} for k, g in sig.groupby("stat")])
+            if not t2.empty:
+                st.dataframe(t2.sort_values(tr("perf_n"), ascending=False), hide_index=True, width="stretch",
+                             column_config=cfg)
+            if rsel == tr("perf_all_rounds") and sig["round"].nunique() > 1:
+                st.markdown(f"**{tr('perf_by_round')}**")
+                t3 = pd.DataFrame([{tr("perf_round"): int(r), **summ(g)} for r, g in sig.groupby("round")])
+                st.dataframe(t3, hide_index=True, width="stretch", column_config=cfg)
+            st.markdown(f"**{tr('perf_last')}**")
+            last = sig.sort_values(["date", "time"], ascending=False).head(200)
+            t4 = pd.DataFrame({
+                tr("perf_round"): last["round"], tr("player"): last["player"], tr("team"): last["team"],
+                tr("opponent"): last["opp"], stat_c: [prop_stats.get(k, k) for k in last["stat"]],
+                tr("line_s"): last["line"], tr("sig"): last["label"], tr("perf_dir"): last["dir"],
+                tr("perf_actual"): last["actual"], tr("perf_res"): np.where(last["won"], "✅", "❌"),
+                tr("odds"): last["odd"]})
+            st.dataframe(t4, hide_index=True, width="stretch", height=min(560, 38 + 35 * len(t4)))
+            csv_button(G.drop(columns=["reasons"], errors="ignore"), "ucinak_predloga", "dl_perf")
+        if not pend.empty and not G.empty:
+            st.caption(tr("perf_pending", n=len(pend)))
