@@ -1,1 +1,8 @@
+   [theme.light]
+   primaryColor = "#f59e0b"
 
+   [theme.dark]
+   primaryColor = "#f59e0b"
+
+   [client]
+   toolbarMode = "minimal"
