@@ -6,6 +6,7 @@ Pokretanje / Run:  python -m streamlit run app.py
 import contextlib
 import io
 import json
+import re
 import os
 from itertools import groupby
 
@@ -355,7 +356,29 @@ T3 = {
 T4 = {
     "sr": {
         "nav_home": "🏠\nPočetna", "nav_props": "🎯\nProps", "nav_players": "👤\nIgrači", "nav_league": "🏀\nLiga",
-        "sub_picks": "🔥 Predlozi", "sub_props": "🎯 Igrač", "sub_scan": "🔎 Skener", "sub_round": "⭐ Kolo",
+        "sub_picks": "🔥 Predlozi", "sub_lines": "📋 Linije",
+        "src_book": "📡 Kladionice", "src_manual": "✍️ Ručni unos", "source": "Izvor linija",
+        "all_stats": "Sve", "line_book": "Linije kladionica (📡)",
+        "line_book_help": "Samo igrači za koje kladionice već nude liniju.",
+        "book_none": "Još nema linija kladionica za predstojeće utakmice. Linije se preuzimaju jednom dnevno "
+                     "(obično ujutru na dan utakmice) – do tada koristi ✍️ Ručni unos.",
+        "book_only_el": "Linije kladionica trenutno postoje samo za Evroligu.",
+        "book_note": "Prave linije igrača sa kladionica (prosek ~50 kladionica, OddsPapi), preuzete {t}. "
+                     "Za svaku liniju aplikacija računa da li igrač dolazi Over ili Under.",
+        "book_src": "{n} kladionica", "book_alt": "druge linije:",
+        "lines_note": "Nalepi linije sa kladionice – jedan red po igraču: **igrač, statistika, linija, kvota Over, "
+                      "kvota Under** (kvote nisu obavezne). Radi sa bilo kojom kladionicom; decimalni zarez je u redu.",
+        "lines_input": "Linije", "lines_file": "…ili ubaci CSV fajl", "lines_btn": "Proveri linije",
+        "lines_clear": "Obriši", "lines_example": "Ubaci primer",
+        "lines_unmatched": "Nisam prepoznao ({n}): {x}", "lines_count": "Prepoznato {n} linija",
+        "lines_none": "Nalepi linije iznad (ili klikni **Ubaci primer**) – provera ide odmah.",
+        "lines_sort": "Sortiraj", "sort_value": "💰 Vrednost", "sort_signal": "Jačina predloga",
+        "odds": "Kvota", "book_p": "Kladionica", "our_p": "Naša procena", "value": "Vrednost",
+        "value_tag": "💰 Vredno", "no_value": "nije isplativo", "best_side": "Bolja strana",
+        "value_help": "Kladionica = šansa iz kvota bez marže. Naša procena = procenat pogodaka u posl. 10 utakmica, "
+                      "ublažen ka 50% (mali uzorak). Vrednost = koliko se u proseku vraća na uloženih 100: "
+                      "+10% znači da kvota plaća više nego što bi trebalo po statistici. Gruba procena, ne garancija.",
+        "stat_unknown": "nepoznata statistika", "player_unknown": "nepoznat igrač", "sub_props": "🎯 Igrač", "sub_scan": "🔎 Skener", "sub_round": "⭐ Kolo",
         "sub_player": "👤 Igrač", "sub_cmp": "⚖️ Poređenje", "sub_without": "🔄 Bez saigrača",
         "sub_leaders": "🏆 Lideri", "sub_sched": "📅 Raspored", "sub_teams": "🛡️ Timovi", "sub_injuries": "🚑 Povrede",
         "home_next": "Sledeće kolo · Kolo {r}", "home_games": "{n} utakmica", "home_games_h": "Utakmice",
@@ -372,7 +395,29 @@ T4 = {
     },
     "en": {
         "nav_home": "🏠\nHome", "nav_props": "🎯\nProps", "nav_players": "👤\nPlayers", "nav_league": "🏀\nLeague",
-        "sub_picks": "🔥 Picks", "sub_props": "🎯 Player", "sub_scan": "🔎 Scanner", "sub_round": "⭐ Round",
+        "sub_picks": "🔥 Picks", "sub_lines": "📋 Lines",
+        "src_book": "📡 Bookmakers", "src_manual": "✍️ Manual input", "source": "Lines source",
+        "all_stats": "All", "line_book": "Bookmaker lines (📡)",
+        "line_book_help": "Only players bookmakers already offer a line for.",
+        "book_none": "No bookmaker lines for upcoming games yet. Lines are fetched once a day "
+                     "(usually on game-day morning) – use ✍️ Manual input until then.",
+        "book_only_el": "Bookmaker lines are currently available for EuroLeague only.",
+        "book_note": "Real player lines from bookmakers (consensus of ~50 books, OddsPapi), fetched {t}. "
+                     "For every line the app tells whether the player goes Over or Under.",
+        "book_src": "{n} bookmakers", "book_alt": "other lines:",
+        "lines_note": "Paste bookmaker lines – one row per player: **player, stat, line, Over odds, Under odds** "
+                      "(odds optional). Works with any bookmaker; decimal comma is fine.",
+        "lines_input": "Lines", "lines_file": "…or upload a CSV file", "lines_btn": "Check lines",
+        "lines_clear": "Clear", "lines_example": "Insert example",
+        "lines_unmatched": "Not recognized ({n}): {x}", "lines_count": "Recognized {n} lines",
+        "lines_none": "Paste lines above (or click **Insert example**) – they are checked right away.",
+        "lines_sort": "Sort", "sort_value": "💰 Value", "sort_signal": "Pick strength",
+        "odds": "Odds", "book_p": "Bookmaker", "our_p": "Our estimate", "value": "Value",
+        "value_tag": "💰 Value", "no_value": "no value", "best_side": "Better side",
+        "value_help": "Bookmaker = probability from the odds without margin. Our estimate = hit rate over the last "
+                      "10 games, pulled toward 50% (small sample). Value = average return per 100 staked: +10% means "
+                      "the odds pay more than the stats say they should. Rough estimate, not a guarantee.",
+        "stat_unknown": "unknown stat", "player_unknown": "unknown player", "sub_props": "🎯 Player", "sub_scan": "🔎 Scanner", "sub_round": "⭐ Round",
         "sub_player": "👤 Player", "sub_cmp": "⚖️ Compare", "sub_without": "🔄 Without teammate",
         "sub_leaders": "🏆 Leaders", "sub_sched": "📅 Schedule", "sub_teams": "🛡️ Teams", "sub_injuries": "🚑 Injuries",
         "home_next": "Next round · Round {r}", "home_games": "{n} games", "home_games_h": "Games",
@@ -1164,7 +1209,7 @@ def render_injuries():
 
 
 # ---------- navigacija / navigation ----------
-SECTIONS = {"home": ["home"], "props": ["picks", "props", "scan", "round"],
+SECTIONS = {"home": ["home"], "props": ["picks", "lines", "props", "scan", "round"],
             "players": ["player", "cmp", "without", "leaders"], "league": ["sched", "teams", "injuries"]}
 
 
@@ -1301,7 +1346,7 @@ def make_pick(comp, pid, pg, key, line, nxt):
     }
 
 
-def pick_card(p):
+def pick_card(p, extra=""):
     cls, sc = p["cls"], p["score"]
     w = min(abs(sc), 100) / 2
     left = 50 if sc >= 0 else 50 - w
@@ -1322,7 +1367,7 @@ def pick_card(p):
             f"<div><b>{p['median']:g}</b><span>{esc(tr('median').lower())}</span></div>"
             f"<div><b>{p['avg']:.1f}</b><span>{esc(tr('avg').lower())}</span></div>"
             f"<div><b>{esc(p['dvp'])}</b><span>{esc(p['dvp_lbl'])}</span></div></div>"
-            f"<div class='es-why'>{why}</div>{warn}</div>")
+            f"<div class='es-why'>{why}</div>{warn}{extra}</div>")
 
 
 def pick_row(p):
@@ -1338,9 +1383,121 @@ def pick_row(p):
             f"<div class='es-val'><b class='c-{cls}'>{direction}</b><div>{esc(p['hit'])}</div></div></div>")
 
 
+# ---------- linije kladionica (OddsPapi) / bookmaker lines ----------
+import linije as LN
+
+
+@st.cache_data(ttl=600, show_spinner=False)
+def load_book_file():
+    try:
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "linije_oddspapi.json"),
+                  encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+BOOK_FILE = load_book_file()
+
+
+def build_book():
+    """{player_id: {stat: red}} samo za utakmice koje jos nisu pocele i za izabranu ligu."""
+    if not BOOK_FILE.get("lines") or BOOK_FILE.get("comp", "E") not in comps:
+        return {}
+    now = pd.Timestamp.now(tz="UTC")
+    start = {g["fixtureId"]: pd.to_datetime(g.get("start"), utc=True, errors="coerce")
+             for g in BOOK_FILE.get("games", [])}
+    comp_ = BOOK_FILE.get("comp", "E")
+    hist = df[df["comp"] == comp_].sort_values(SORT).groupby("player_id")
+    roster = [(pid, g["player"].iloc[-1], g["team"].iloc[-1], float(g["Minutes"].mean())) for pid, g in hist]
+    by_name = {LN.norm(n).strip(): pid for pid, n, _, _ in roster}
+    out = {}
+    for r in BOOK_FILE["lines"]:
+        st_ = start.get(r.get("fixtureId"))
+        if st_ is not None and pd.notna(st_) and st_ < now:
+            continue                      # utakmica je vec pocela/odigrana
+        pid = by_name.get(LN.norm(r["player"]).strip()) or LN.match_player(r["player"], roster)
+        if pid and r["stat"] in df.columns:
+            out.setdefault(pid, {})[r["stat"]] = r
+    return out
+
+
+BOOK = build_book()
+
+
+def book_line(pid, key):
+    return BOOK.get(pid, {}).get(key)
+
+
+def eval_line(comp, pid, key, line, over=None, under=None, nxt=None):
+    """Predlog + vrednost kvote za tacnu liniju (isti racun za rucni unos i OddsPapi)."""
+    pg = df[(df["comp"] == comp) & (df["player_id"] == pid)].sort_values(SORT)
+    pg = pg.dropna(subset=[key]).reset_index(drop=True) if key in pg else pg.iloc[0:0]
+    if pg.empty:
+        return None
+    nxt = nxt or next_game(comp, pg["team"].iloc[-1])
+    p = make_pick(comp, pid, pg, key, float(line), nxt)
+    last10 = pg[key].tail(10)
+    p_our = LN.our_prob(int((last10 > line).sum()), len(last10))
+    ev_o = LN.ev(p_our, over)
+    ev_u = LN.ev(1 - p_our, under) if p_our is not None else None
+    side, best = None, None
+    for sd, e in (("Over", ev_o), ("Under", ev_u)):
+        if e is not None and (best is None or e > best):
+            side, best = sd, e
+    return {**p, "over": over, "under": under, "p_our": p_our, "p_book": LN.book_prob(over, under),
+            "ev_side": side, "ev": best}
+
+
+st.markdown("""<style>
+.es-odds {display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-top:9px;}
+.es-odds div {background:rgba(245,158,11,.08); border:1px solid rgba(245,158,11,.22); border-radius:10px;
+    padding:6px 6px; text-align:center;}
+.es-odds span {display:block; font-size:.64rem; opacity:.7;} .es-odds b {font-size:.82rem;}
+.es-odds .val {background:rgba(34,197,94,.12); border-color:rgba(34,197,94,.45);}
+.es-src {font-size:.7rem; opacity:.65; margin-top:6px;}
+@media (max-width:640px) {.es-odds {grid-template-columns:repeat(2,1fr);}}
+</style>""", unsafe_allow_html=True)
+
+
+def odds_block(p):
+    if not (p.get("over") or p.get("under")):
+        return ""
+    o = f"O {p['over']:.2f}" if p.get("over") else "O –"
+    u = f"U {p['under']:.2f}" if p.get("under") else "U –"
+    book = f"{100 * p['p_book']:.0f}% Over" if p.get("p_book") is not None else "–"
+    our = f"{100 * p['p_our']:.0f}% Over" if p.get("p_our") is not None else "–"
+    if p.get("ev") is not None and p["ev"] >= 0.05:
+        val = (f"<div class='val'><span>{esc(tr('value'))}</span>"
+               f"<b class='c-over'>{esc(p['ev_side'])} {100 * p['ev']:+.0f}% 💰</b></div>")
+    elif p.get("ev") is not None:
+        val = f"<div><span>{esc(tr('value'))}</span><b>{esc(p['ev_side'])} {100 * p['ev']:+.0f}%</b></div>"
+    else:
+        val = f"<div><span>{esc(tr('value'))}</span><b>–</b></div>"
+    src = (f"<div class='es-src'>📡 {esc(tr('book_src', n=p['books']))}"
+           f"{' · ' + esc(tr('book_alt')) + ' ' + ' / '.join(f'{x:g}' for x in p['alt_lines']) if len(p.get('alt_lines') or []) > 1 else ''}"
+           f"</div>") if p.get("books") else ""
+    return (f"<div class='es-odds'><div><span>{esc(tr('odds'))}</span><b>{o} · {u}</b></div>"
+            f"<div><span>{esc(tr('book_p'))}</span><b>{book}</b></div>"
+            f"<div><span>{esc(tr('our_p'))}</span><b>{our}</b></div>{val}</div>{src}")
+
+
+@st.cache_data(ttl=600, show_spinner=False)
+def book_results(lang_, sig):
+    """Procena za svaku liniju kladionice (OddsPapi) iz linije_oddspapi.json."""
+    comp_ = BOOK_FILE.get("comp", "E")
+    out = []
+    for pid, stats in BOOK.items():
+        for key, r in stats.items():
+            e = eval_line(comp_, pid, key, r["line"], r.get("over"), r.get("under"))
+            if e:
+                out.append({**e, "books": r.get("books"), "alt_lines": r.get("alt_lines"), "book": True})
+    return out
+
+
 @st.cache_data(ttl=600, show_spinner=False)
 def round_picks(comp, keys, lang_, data_sig):
-    """Predlozi za sledece kolo (linija = prosek igraca na .5) za date statistike."""
+    """Predlozi za sledece kolo (linija kladionice ako postoji, inace ≈ prosek) za date statistike."""
     out = []
     hist = df[df["comp"] == comp].sort_values(SORT)
     for pid, pg in hist.groupby("player_id"):
@@ -1353,7 +1510,13 @@ def round_picks(comp, keys, lang_, data_sig):
             v = pg[key].dropna() if key in pg else pd.Series(dtype=float)
             if len(v) < 5:
                 continue
-            out.append(make_pick(comp, pid, pg, key, float(np.floor(v.mean()) + 0.5), nxt))
+            bl = book_line(pid, key)
+            if bl:   # prava linija kladionice (OddsPapi)
+                r_ = eval_line(comp, pid, key, bl["line"], bl.get("over"), bl.get("under"), nxt)
+                if r_:
+                    out.append({**r_, "book": True})
+            else:
+                out.append(make_pick(comp, pid, pg, key, float(np.floor(v.mean()) + 0.5), nxt))
     return out
 
 
@@ -2216,8 +2379,12 @@ if PAGE == "picks":
                                       label_visibility="collapsed") or show_opts[0]
         with st.expander(tr("filters")):
             c1, c2 = st.columns(2)
-            k_mode = c1.radio(tr("line_mode"), [tr("line_avg"), tr("line_fixed")], key="pk_mode")
-            if k_mode == tr("line_fixed"):
+            _modes = ([tr("line_book")] if BOOK else []) + [tr("line_avg"), tr("line_fixed")]
+            k_mode = c1.radio(tr("line_mode"), _modes, key="pk_mode")
+            if k_mode == tr("line_book"):
+                k_line = None
+                c2.caption(tr("line_book_help"))
+            elif k_mode == tr("line_fixed"):
                 k_line = c2.number_input(tr("line_s"), value=DEFAULT_LINE.get(k_key, 5.5), step=0.5,
                                          min_value=0.0, format="%.1f", key=f"pk_line_{k_key}")
             else:
@@ -2235,6 +2402,14 @@ if PAGE == "picks":
                 continue
             nxt = next_game(comp, pg["team"].iloc[-1])
             if not nxt or (k_hide_inj and inj_status(pid) in INJ_HIDE):
+                continue
+            if k_mode == tr("line_book"):
+                bl = book_line(pid, k_key)
+                if not bl:
+                    continue
+                e = eval_line(comp, pid, k_key, bl["line"], bl.get("over"), bl.get("under"), nxt)
+                if e:
+                    picks_all.append({**e, "books": bl.get("books"), "alt_lines": bl.get("alt_lines")})
                 continue
             line = float(np.floor(v.mean()) + 0.5) if k_mode != tr("line_fixed") else float(k_line)
             picks_all.append(make_pick(comp, pid, pg, k_key, line, nxt))
@@ -2272,7 +2447,7 @@ if PAGE == "picks":
                                  tr("reasons"): st.column_config.TextColumn(width="large")})
             else:
                 n_show = st.session_state.get("pk_n", 20)
-                st.markdown(f"<div class='es-grid'>{''.join(pick_card(p) for p in sel[:n_show])}</div>",
+                st.markdown(f"<div class='es-grid'>{''.join(pick_card(p, odds_block(p)) for p in sel[:n_show])}</div>",
                             unsafe_allow_html=True)
                 if len(sel) > n_show:
                     st.button(f"{tr('show_more')} ({len(sel) - n_show})", key="pk_more", width="stretch",
@@ -2287,7 +2462,7 @@ if PAGE == "injuries":
 if PAGE == "home":
     comp = comps[0]
     rnd, games = next_round_games(comp)
-    data_sig = (len(df), int(df["gamecode"].max()), len(INJ))
+    data_sig = (len(df), int(df["gamecode"].max()), len(INJ), BOOK_FILE.get("fetched"), len(BOOK))
     picks = round_picks(comp, ("Points", "TotalRebounds", "Assistances"), lang, data_sig) if rnd else []
     labels = [p["label"] for p in picks]
     out_list = []
@@ -2360,3 +2535,137 @@ if PAGE == "home":
                         f"<div class='v'>{d:+.1f}</div><div class='x'>{l3:.1f} vs {sa:.1f}</div></div>"
                         for d, n, t, l3, sa in fr[:4])
         st.markdown(f"<div class='es-form'>{boxes}</div>", unsafe_allow_html=True)
+
+# ---------- linije kladionice / bookmaker lines ----------
+if PAGE == "lines":
+    _srcs = [tr("src_book"), tr("src_manual")]
+    l_src = st.segmented_control(tr("source"), _srcs, default=_srcs[0] if BOOK else _srcs[1], key="lines_src",
+                                 label_visibility="collapsed") or (_srcs[0] if BOOK else _srcs[1])
+    results, bad = [], []
+    if l_src == tr("src_book"):
+        if BOOK_FILE.get("comp", "E") not in comps:
+            st.info(tr("book_only_el"))
+        elif not BOOK:
+            st.info(tr("book_none"))
+        else:
+            _t = pd.to_datetime(BOOK_FILE.get("fetched"), utc=True, errors="coerce")
+            _t = _t.tz_convert("Europe/Belgrade").strftime("%d.%m. %H:%M") if pd.notna(_t) else "?"
+            st.caption(tr("book_note", t=_t))
+            allr = book_results(lang, (BOOK_FILE.get("fetched"), len(BOOK), len(df), len(INJ)))
+            _keys = [k for k in prop_stats if any(p["key"] == k for p in allr)]
+            _opts = [tr("all_stats")] + [prop_stats[k] for k in _keys]
+            b_stat = st.pills(stat_c, _opts, default=_opts[0], key="lines_bstat",
+                              label_visibility="collapsed") or _opts[0]
+            _show = [tr("show_all"), "Over", "Under", tr("show_strong"), "💰 " + tr("value")]
+            b_show = st.segmented_control(tr("show"), _show, default=_show[0], key="lines_bshow",
+                                          label_visibility="collapsed") or _show[0]
+            results = [p for p in allr if b_stat == tr("all_stats") or prop_stats.get(p["key"]) == b_stat]
+            if b_show == "Over":
+                results = [p for p in results if p["score"] >= 25]
+            elif b_show == "Under":
+                results = [p for p in results if p["score"] <= -25]
+            elif b_show == tr("show_strong"):
+                results = [p for p in results if p["cls"] in ("fire", "ice")]
+            elif b_show == _show[4]:
+                results = [p for p in results if p["ev"] is not None and p["ev"] >= 0.05]
+            labels = [p["label"] for p in results]
+            st.markdown(tr("picks_count", f=labels.count(tr("sig_fire")), o=labels.count(tr("sig_over")),
+                           u=labels.count(tr("sig_under")), i=labels.count(tr("sig_ice"))))
+            if not results:
+                st.info(tr("no_picks"))
+    else:
+        st.caption(tr("lines_note"))
+        def make_example():
+            """Primer od stvarnih igraca iz sledeceg kola: linija ≈ prosek, kvote 1.85 / 1.90."""
+            rows_ = []
+            for (comp_, pid_), g_ in df.sort_values(SORT).groupby(["comp", "player_id"]):
+                if len(g_) >= 5 and g_["Minutes"].mean() >= 22 and next_game(comp_, g_["team"].iloc[-1]):
+                    rows_.append((g_["Minutes"].mean(), g_))
+            rows_.sort(key=lambda x: -x[0])
+            out_ = []
+            for (mins, g_), (key_, word) in zip(rows_[:5], [("Points", "poeni"), ("Points", "poeni"),
+                                                             ("TotalRebounds", "skokovi"), ("Assistances", "asistencije"),
+                                                             ("PRA", "PRA")]):
+                ln = float(np.floor(g_[key_].mean()) + 0.5)
+                out_.append(f"{short_name(g_['player'].iloc[-1])}, {word}, {ln:g}, 1.85, 1.90")
+            return "\n".join(out_) or "Vezenkov, poeni, 17.5, 1.85, 1.90"
+
+        EXAMPLE = make_example()
+
+        def _set_lines(txt):
+            st.session_state["lines_ta"] = txt
+            st.session_state["lines_saved"] = txt
+
+        if "lines_ta" not in st.session_state:
+            st.session_state["lines_ta"] = st.session_state.get("lines_saved", "")
+        st.text_area(tr("lines_input"), key="lines_ta", height=150, placeholder=EXAMPLE)
+        st.session_state["lines_saved"] = st.session_state["lines_ta"]
+        with st.container(key="row_linesbtn"):
+            b1, b2 = st.columns(2)
+            b1.button(tr("lines_example"), key="lines_ex", on_click=_set_lines, args=(EXAMPLE,))
+            b2.button(tr("lines_clear"), key="lines_clr", on_click=_set_lines, args=("",))
+        up = st.file_uploader(tr("lines_file"), type=["csv", "txt"], key="lines_up")
+        text = st.session_state["lines_ta"]
+        if up is not None:
+            text += "\n" + up.getvalue().decode("utf-8-sig", errors="ignore")
+
+        extra = {re.sub(r"[\s.+\-_/()]", "", LN.norm(v)): k for k, v in prop_stats.items()}
+        rows = LN.parse_text(text, extra)
+        if not rows:
+            st.info(tr("lines_none"))
+        else:
+            last = df.sort_values(SORT).groupby(["comp", "player_id"])
+            roster = [(pid, g["player"].iloc[-1], g["team"].iloc[-1], float(g["Minutes"].mean()))
+                      for (comp_, pid), g in last]
+            comp_of = {pid: comp_ for (comp_, pid), _ in last}
+            for r in rows:
+                if r.get("error"):
+                    bad.append(f"{r['raw']} ({tr('stat_unknown') if r['error'] == 'stat' else tr('player_unknown')})")
+                    continue
+                pid = LN.match_player(r["name"], roster, r["team"])
+                if not pid:
+                    bad.append(f"{r['raw']} ({tr('player_unknown')})")
+                    continue
+                key = r["stat"]
+                if key not in df.columns:
+                    bad.append(f"{r['raw']} ({tr('stat_unknown')})")
+                    continue
+                e = eval_line(comp_of[pid], pid, key, float(r["line"]), r["over"], r["under"])
+                if e is None:
+                    bad.append(f"{r['raw']} ({tr('stat_unknown')})")
+                    continue
+                results.append(e)
+            st.success(tr("lines_count", n=len(results))) if results else None
+            if bad:
+                st.warning(tr("lines_unmatched", n=len(bad), x=" · ".join(bad)))
+    if results:
+        srt = st.segmented_control(tr("lines_sort"), [tr("sort_value"), tr("sort_signal")],
+                                   default=tr("sort_value"), key="lines_sort", label_visibility="collapsed")
+        if srt == tr("sort_signal"):
+            results.sort(key=lambda p: -abs(p["score"]))
+        else:
+            results.sort(key=lambda p: -(p["ev"] if p["ev"] is not None else -9))
+        st.caption(tr("value_help"))
+
+        if st.toggle(tr("as_table"), key="lines_table"):
+            tbl = pd.DataFrame([{
+                tr("player"): p["player"], tr("team"): p["team"], stat_c: p["stat"], tr("line_s"): p["line"],
+                tr("sig"): p["label"], tr("sig_score"): p["score"], "Over": p["over"], "Under": p["under"],
+                tr("book_p"): round(100 * p["p_book"]) if p["p_book"] is not None else None,
+                tr("our_p"): round(100 * p["p_our"]) if p["p_our"] is not None else None,
+                tr("best_side"): p["ev_side"],
+                tr("value"): round(100 * p["ev"], 1) if p["ev"] is not None else None,
+                tr("opponent"): p["opp"], tr("inj_col"): p["inj"]} for p in results])
+            st.dataframe(tbl, hide_index=True, width="stretch", height=min(560, 38 + 35 * len(tbl)),
+                         column_config={tr("book_p"): st.column_config.NumberColumn(format="%d%%"),
+                                        tr("our_p"): st.column_config.NumberColumn(format="%d%%"),
+                                        tr("value"): st.column_config.NumberColumn(format="%+.1f%%"),
+                                        tr("sig_score"): st.column_config.NumberColumn(format="%+d")})
+            csv_button(tbl, "linije_procena", "dl_lines")
+        else:
+            n_show = st.session_state.get("lines_n", 30)
+            st.markdown(f"<div class='es-grid'>{''.join(pick_card(p, odds_block(p)) for p in results[:n_show])}</div>",
+                        unsafe_allow_html=True)
+            if len(results) > n_show:
+                st.button(f"{tr('show_more')} ({len(results) - n_show})", key="lines_more", width="stretch",
+                          on_click=lambda: st.session_state.update(lines_n=n_show + 30))
