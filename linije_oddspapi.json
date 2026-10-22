@@ -1,0 +1,10838 @@
+{
+"comp": "E",
+"fetched": "2026-10-22T09:19+00:00",
+"games": [
+{
+"fixtureId": "id1100013873263060",
+"start": "2026-10-22T17:30:00.000Z",
+"home": "Anadolu Efes SK",
+"away": "Besiktas JK",
+"home_abbr": "EFS",
+"away_abbr": "BJK",
+"lines": 79
+},
+{
+"fixtureId": "id1100013873263068",
+"start": "2026-10-22T18:00:00.000Z",
+"home": "Bayern Munich",
+"away": "Dubai Basketball",
+"home_abbr": "FCB",
+"away_abbr": "DUB",
+"lines": 85
+},
+{
+"fixtureId": "id1100013873263062",
+"start": "2026-10-22T18:05:00.000Z",
+"home": "Maccabi Tel-Aviv",
+"away": "Real Madrid",
+"home_abbr": "MTA",
+"away_abbr": "RMA",
+"lines": 84
+},
+{
+"fixtureId": "id1100013873263064",
+"start": "2026-10-22T18:15:00.000Z",
+"home": "Panathinaikos BC",
+"away": "Baskonia Vitoria-Gasteiz",
+"home_abbr": "PAN",
+"away_abbr": "BVG",
+"lines": 99
+},
+{
+"fixtureId": "id1100013873263066",
+"start": "2026-10-22T18:30:00.000Z",
+"home": "Olimpia Milano",
+"away": "FC Barcelona",
+"home_abbr": "OLM",
+"away_abbr": "FCB",
+"lines": 82
+},
+{
+"fixtureId": "id1100013873263070",
+"start": "2026-10-22T18:45:00.000Z",
+"home": "KK Partizan Belgrade",
+"away": "KK Crvena zvezda Belgrade",
+"home_abbr": "PAR",
+"away_abbr": "CZV",
+"lines": 83
+},
+{
+"fixtureId": "id1100013873263072",
+"start": "2026-10-23T17:00:00.000Z",
+"home": "BC Zalgiris Kaunas",
+"away": "ASVEL Lyon-Villeurbanne",
+"home_abbr": "ZAL",
+"away_abbr": "ASV",
+"lines": 55
+},
+{
+"fixtureId": "id1100013873263074",
+"start": "2026-10-23T18:15:00.000Z",
+"home": "BC Olympiakos Piraeus",
+"away": "Fenerbahce Istanbul",
+"home_abbr": "OPI",
+"away_abbr": "FEN",
+"lines": 99
+},
+{
+"fixtureId": "id1100013873263076",
+"start": "2026-10-23T18:45:00.000Z",
+"home": "Paris Basketball",
+"away": "Valencia Basket",
+"home_abbr": "PAR",
+"away_abbr": "VAL",
+"lines": 65
+}
+],
+"lines": [
+{
+"player": "Brown, Anthony",
+"stat": "3PM",
+"line": 1.5,
+"books": 56,
+"over": 1.91,
+"under": 1.8,
+"best_over": 1.952,
+"best_under": 1.93,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Brown, Anthony",
+"stat": "Assistances",
+"line": 1.5,
+"books": 48,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.87,
+"best_under": 1.91,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Brown, Anthony",
+"stat": "PR",
+"line": 11.5,
+"books": 8,
+"over": 1.88,
+"under": 1.84,
+"best_over": 1.92,
+"best_under": 1.87,
+"alt_lines": [
+11.5,
+12.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Brown, Anthony",
+"stat": "Points",
+"line": 9.5,
+"books": 28,
+"over": 1.95,
+"under": 1.71,
+"best_over": 2.0,
+"best_under": 1.78,
+"alt_lines": [
+8.5,
+9.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Brown, Anthony",
+"stat": "RA",
+"line": 4.5,
+"books": 10,
+"over": 1.98,
+"under": 1.72,
+"best_over": 1.98,
+"best_under": 1.72,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Brown, Anthony",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 53,
+"over": 1.87,
+"under": 1.8,
+"best_over": 2.2,
+"best_under": 1.91,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Dotson, Devon",
+"stat": "3PM",
+"line": 0.5,
+"books": 53,
+"over": 1.5,
+"under": 2.35,
+"best_over": 1.58,
+"best_under": 2.45,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Dotson, Devon",
+"stat": "Assistances",
+"line": 3.5,
+"books": 62,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.92,
+"best_under": 1.91,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Dotson, Devon",
+"stat": "PA",
+"line": 10.5,
+"books": 14,
+"over": 1.88,
+"under": 1.78,
+"best_over": 2.02,
+"best_under": 1.78,
+"alt_lines": [
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Dotson, Devon",
+"stat": "Points",
+"line": 6.5,
+"books": 56,
+"over": 1.83,
+"under": 1.83,
+"best_over": 2.02,
+"best_under": 1.91,
+"alt_lines": [
+5.5,
+6.5,
+7.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Fernando, Bruno",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 2,
+"over": 2.16,
+"under": 1.56,
+"best_over": 2.2,
+"best_under": 1.57,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Fernando, Bruno",
+"stat": "PR",
+"line": 13.5,
+"books": 24,
+"over": 1.95,
+"under": 1.74,
+"best_over": 2.0,
+"best_under": 1.87,
+"alt_lines": [
+11.5,
+12.5,
+13.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Fernando, Bruno",
+"stat": "Points",
+"line": 7.5,
+"books": 61,
+"over": 1.9,
+"under": 1.78,
+"best_over": 1.952,
+"best_under": 1.92,
+"alt_lines": [
+6.5,
+7.5,
+8.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Fernando, Bruno",
+"stat": "Steals",
+"line": 0.5,
+"books": 5,
+"over": 1.7,
+"under": 2.0,
+"best_over": 1.7,
+"best_under": 2.0,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Fernando, Bruno",
+"stat": "TotalRebounds",
+"line": 5.5,
+"books": 69,
+"over": 1.77,
+"under": 1.91,
+"best_over": 1.85,
+"best_under": 2.0,
+"alt_lines": [
+4.5,
+5.5,
+6.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Gabriel, Wenyen",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 2,
+"over": 1.54,
+"under": 2.21,
+"best_over": 1.55,
+"best_under": 2.25,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Gabriel, Wenyen",
+"stat": "PR",
+"line": 9.5,
+"books": 18,
+"over": 1.72,
+"under": 1.95,
+"best_over": 1.78,
+"best_under": 2.02,
+"alt_lines": [
+9.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Gabriel, Wenyen",
+"stat": "Points",
+"line": 5.5,
+"books": 56,
+"over": 1.68,
+"under": 2.05,
+"best_over": 1.8,
+"best_under": 2.2,
+"alt_lines": [
+5.5,
+6.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Gabriel, Wenyen",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 56,
+"over": 1.65,
+"under": 2.05,
+"best_over": 1.73,
+"best_under": 2.2,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Loyd, Jordan",
+"stat": "3PM",
+"line": 1.5,
+"books": 69,
+"over": 1.73,
+"under": 1.95,
+"best_over": 1.8,
+"best_under": 2.209,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Loyd, Jordan",
+"stat": "Assistances",
+"line": 2.5,
+"books": 67,
+"over": 2.0,
+"under": 1.72,
+"best_over": 2.05,
+"best_under": 1.93,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Loyd, Jordan",
+"stat": "PA",
+"line": 14.5,
+"books": 18,
+"over": 1.93,
+"under": 1.75,
+"best_over": 1.97,
+"best_under": 1.75,
+"alt_lines": [
+12.5,
+13.5,
+14.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Loyd, Jordan",
+"stat": "PR",
+"line": 14.5,
+"books": 24,
+"over": 1.91,
+"under": 1.76,
+"best_over": 2.0,
+"best_under": 1.8,
+"alt_lines": [
+12.5,
+13.5,
+14.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Loyd, Jordan",
+"stat": "PRA",
+"line": 16.5,
+"books": 19,
+"over": 1.78,
+"under": 1.88,
+"best_over": 1.85,
+"best_under": 1.91,
+"alt_lines": [
+15.5,
+16.5,
+17.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Loyd, Jordan",
+"stat": "Points",
+"line": 11.5,
+"books": 61,
+"over": 1.9,
+"under": 1.8,
+"best_over": 1.952,
+"best_under": 1.87,
+"alt_lines": [
+10.5,
+11.5,
+12.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Loyd, Jordan",
+"stat": "RA",
+"line": 5.5,
+"books": 10,
+"over": 2.1,
+"under": 1.62,
+"best_over": 2.1,
+"best_under": 1.62,
+"alt_lines": [
+5.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Loyd, Jordan",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 61,
+"over": 1.9,
+"under": 1.8,
+"best_over": 1.952,
+"best_under": 1.95,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Malcolm, Collin",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 10,
+"over": 2.87,
+"under": 1.35,
+"best_over": 2.87,
+"best_under": 1.35,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Malcolm, Collin",
+"stat": "PA",
+"line": 11.5,
+"books": 5,
+"over": 1.9,
+"under": 1.77,
+"best_over": 1.9,
+"best_under": 1.77,
+"alt_lines": [
+10.5,
+11.5,
+12.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Malcolm, Collin",
+"stat": "PR",
+"line": 13.5,
+"books": 11,
+"over": 1.91,
+"under": 1.78,
+"best_over": 1.91,
+"best_under": 1.8,
+"alt_lines": [
+13.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Malcolm, Collin",
+"stat": "Points",
+"line": 9.5,
+"books": 69,
+"over": 2.0,
+"under": 1.72,
+"best_over": 2.05,
+"best_under": 1.83,
+"alt_lines": [
+8.5,
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Malcolm, Collin",
+"stat": "TotalRebounds",
+"line": 4.5,
+"books": 43,
+"over": 2.2,
+"under": 1.57,
+"best_over": 2.2,
+"best_under": 1.81,
+"alt_lines": [
+3.5,
+4.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Malcolm, Collin",
+"stat": "Turnovers",
+"line": 0.5,
+"books": 6,
+"over": 1.5,
+"under": 2.35,
+"best_over": 1.55,
+"best_under": 2.35,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Morgan, Conor",
+"stat": "3PM",
+"line": 1.5,
+"books": 20,
+"over": 2.1,
+"under": 1.62,
+"best_over": 2.116,
+"best_under": 1.65,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Morgan, Conor",
+"stat": "PR",
+"line": 9.5,
+"books": 10,
+"over": 1.85,
+"under": 1.83,
+"best_over": 1.85,
+"best_under": 1.83,
+"alt_lines": [
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Morgan, Conor",
+"stat": "Points",
+"line": 6.5,
+"books": 25,
+"over": 1.75,
+"under": 1.97,
+"best_over": 1.83,
+"best_under": 2.0,
+"alt_lines": [
+5.5,
+6.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Morgan, Conor",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 27,
+"over": 1.9,
+"under": 1.78,
+"best_over": 2.12,
+"best_under": 1.8,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Nowell, Jaylen",
+"stat": "3PM",
+"line": 0.5,
+"books": 46,
+"over": 1.59,
+"under": 2.15,
+"best_over": 1.63,
+"best_under": 2.55,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Nowell, Jaylen",
+"stat": "Assistances",
+"line": 1.5,
+"books": 53,
+"over": 1.57,
+"under": 2.2,
+"best_over": 1.61,
+"best_under": 2.4,
+"alt_lines": [
+1.5,
+2.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Nowell, Jaylen",
+"stat": "PA",
+"line": 11.5,
+"books": 18,
+"over": 1.75,
+"under": 1.9,
+"best_over": 1.9,
+"best_under": 1.91,
+"alt_lines": [
+11.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Nowell, Jaylen",
+"stat": "PR",
+"line": 12.5,
+"books": 18,
+"over": 1.78,
+"under": 1.86,
+"best_over": 1.95,
+"best_under": 1.88,
+"alt_lines": [
+12.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Nowell, Jaylen",
+"stat": "PRA",
+"line": 14.5,
+"books": 13,
+"over": 1.75,
+"under": 1.91,
+"best_over": 1.75,
+"best_under": 1.91,
+"alt_lines": [
+14.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Nowell, Jaylen",
+"stat": "Points",
+"line": 9.5,
+"books": 55,
+"over": 1.87,
+"under": 1.8,
+"best_over": 1.97,
+"best_under": 1.88,
+"alt_lines": [
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Nowell, Jaylen",
+"stat": "RA",
+"line": 4.5,
+"books": 10,
+"over": 1.62,
+"under": 2.1,
+"best_over": 1.62,
+"best_under": 2.1,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Nowell, Jaylen",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 55,
+"over": 1.65,
+"under": 2.05,
+"best_over": 1.71,
+"best_under": 2.2,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Omoruyi, Eugene",
+"stat": "3PM",
+"line": 0.5,
+"books": 53,
+"over": 1.71,
+"under": 1.95,
+"best_over": 1.77,
+"best_under": 2.17,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Omoruyi, Eugene",
+"stat": "Assistances",
+"line": 1.5,
+"books": 8,
+"over": 1.79,
+"under": 1.79,
+"best_over": 1.79,
+"best_under": 1.79,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Omoruyi, Eugene",
+"stat": "Points",
+"line": 6.5,
+"books": 64,
+"over": 1.91,
+"under": 1.78,
+"best_over": 2.0,
+"best_under": 2.0,
+"alt_lines": [
+6.5,
+9.5,
+11.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Payne, Cameron",
+"stat": "3PM",
+"line": 2.5,
+"books": 69,
+"over": 1.9,
+"under": 1.78,
+"best_over": 1.97,
+"best_under": 1.86,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Payne, Cameron",
+"stat": "Assistances",
+"line": 3.5,
+"books": 67,
+"over": 1.67,
+"under": 2.0,
+"best_over": 1.76,
+"best_under": 2.2,
+"alt_lines": [
+2.5,
+3.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Payne, Cameron",
+"stat": "PA",
+"line": 18.5,
+"books": 19,
+"over": 1.75,
+"under": 1.91,
+"best_over": 1.92,
+"best_under": 1.93,
+"alt_lines": [
+18.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Payne, Cameron",
+"stat": "Points",
+"line": 14.5,
+"books": 69,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.95,
+"best_under": 2.0,
+"alt_lines": [
+13.5,
+14.5,
+15.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Payne, Cameron",
+"stat": "Turnovers",
+"line": 2.5,
+"books": 5,
+"over": 1.7,
+"under": 2.0,
+"best_over": 1.7,
+"best_under": 2.0,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Russell, Fatts",
+"stat": "3PM",
+"line": 0.5,
+"books": 42,
+"over": 1.65,
+"under": 2.05,
+"best_over": 1.71,
+"best_under": 2.12,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Russell, Fatts",
+"stat": "Points",
+"line": 5.5,
+"books": 4,
+"over": 1.87,
+"under": 1.87,
+"best_over": 1.9,
+"best_under": 1.9,
+"alt_lines": [
+4.5,
+5.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Saric, Dario",
+"stat": "Assistances",
+"line": 1.5,
+"books": 59,
+"over": 1.69,
+"under": 2.0,
+"best_over": 1.8,
+"best_under": 2.2,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Saric, Dario",
+"stat": "PA",
+"line": 15.5,
+"books": 15,
+"over": 1.82,
+"under": 1.85,
+"best_over": 1.82,
+"best_under": 1.96,
+"alt_lines": [
+15.5,
+16.5,
+17.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Saric, Dario",
+"stat": "PR",
+"line": 19.5,
+"books": 15,
+"over": 1.85,
+"under": 1.82,
+"best_over": 1.85,
+"best_under": 1.9,
+"alt_lines": [
+18.5,
+19.5,
+20.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Saric, Dario",
+"stat": "PRA",
+"line": 21.5,
+"books": 18,
+"over": 1.83,
+"under": 1.82,
+"best_over": 1.85,
+"best_under": 1.87,
+"alt_lines": [
+20.5,
+21.5,
+22.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Saric, Dario",
+"stat": "Points",
+"line": 14.5,
+"books": 51,
+"over": 1.83,
+"under": 1.83,
+"best_over": 2.12,
+"best_under": 1.87,
+"alt_lines": [
+13.5,
+14.5,
+15.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Saric, Dario",
+"stat": "RA",
+"line": 7.5,
+"books": 10,
+"over": 1.75,
+"under": 1.93,
+"best_over": 1.75,
+"best_under": 1.93,
+"alt_lines": [
+7.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Saric, Dario",
+"stat": "TotalRebounds",
+"line": 5.5,
+"books": 69,
+"over": 1.76,
+"under": 1.93,
+"best_over": 1.8,
+"best_under": 2.19,
+"alt_lines": [
+4.5,
+5.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Strazel, Matthew",
+"stat": "3PM",
+"line": 1.5,
+"books": 69,
+"over": 2.15,
+"under": 1.62,
+"best_over": 2.2,
+"best_under": 1.79,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Strazel, Matthew",
+"stat": "Assistances",
+"line": 4.5,
+"books": 59,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.91,
+"best_under": 1.97,
+"alt_lines": [
+3.5,
+4.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Strazel, Matthew",
+"stat": "PA",
+"line": 18.5,
+"books": 24,
+"over": 1.85,
+"under": 1.83,
+"best_over": 1.86,
+"best_under": 1.95,
+"alt_lines": [
+17.5,
+18.5,
+19.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Strazel, Matthew",
+"stat": "PR",
+"line": 16.5,
+"books": 24,
+"over": 1.88,
+"under": 1.8,
+"best_over": 2.06,
+"best_under": 1.88,
+"alt_lines": [
+14.5,
+15.5,
+16.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Strazel, Matthew",
+"stat": "PRA",
+"line": 20.5,
+"books": 18,
+"over": 1.75,
+"under": 1.9,
+"best_over": 1.92,
+"best_under": 1.91,
+"alt_lines": [
+19.5,
+20.5,
+21.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Strazel, Matthew",
+"stat": "Points",
+"line": 13.5,
+"books": 69,
+"over": 1.8,
+"under": 1.9,
+"best_over": 1.87,
+"best_under": 2.02,
+"alt_lines": [
+12.5,
+13.5,
+14.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Strazel, Matthew",
+"stat": "RA",
+"line": 6.5,
+"books": 10,
+"over": 1.67,
+"under": 2.05,
+"best_over": 1.67,
+"best_under": 2.05,
+"alt_lines": [
+6.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Strazel, Matthew",
+"stat": "Steals",
+"line": 0.5,
+"books": 15,
+"over": 1.85,
+"under": 1.82,
+"best_over": 1.85,
+"best_under": 1.83,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Strazel, Matthew",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 51,
+"over": 2.05,
+"under": 1.66,
+"best_over": 2.1,
+"best_under": 1.76,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Strazel, Matthew",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 1.5,
+"under": 2.35,
+"best_over": 1.5,
+"best_under": 2.35,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Wilbekin, Scott",
+"stat": "3PM",
+"line": 2.5,
+"books": 64,
+"over": 2.15,
+"under": 1.6,
+"best_over": 2.3,
+"best_under": 1.69,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Wilbekin, Scott",
+"stat": "Assistances",
+"line": 2.5,
+"books": 62,
+"over": 1.57,
+"under": 2.2,
+"best_over": 1.744,
+"best_under": 2.4,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Wilbekin, Scott",
+"stat": "PA",
+"line": 16.5,
+"books": 14,
+"over": 1.87,
+"under": 1.8,
+"best_over": 2.02,
+"best_under": 1.8,
+"alt_lines": [
+15.5,
+16.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Wilbekin, Scott",
+"stat": "Points",
+"line": 13.5,
+"books": 54,
+"over": 1.91,
+"under": 1.77,
+"best_over": 2.02,
+"best_under": 1.82,
+"alt_lines": [
+12.5,
+13.5,
+14.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Zizic, Ante",
+"stat": "PR",
+"line": 16.5,
+"books": 19,
+"over": 1.85,
+"under": 1.82,
+"best_over": 1.97,
+"best_under": 1.83,
+"alt_lines": [
+16.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Zizic, Ante",
+"stat": "Points",
+"line": 9.5,
+"books": 56,
+"over": 1.8,
+"under": 1.88,
+"best_over": 1.85,
+"best_under": 2.0,
+"alt_lines": [
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Zizic, Ante",
+"stat": "TotalRebounds",
+"line": 6.5,
+"books": 64,
+"over": 1.83,
+"under": 1.83,
+"best_over": 2.0,
+"best_under": 1.91,
+"alt_lines": [
+6.5
+],
+"fixtureId": "id1100013873263060"
+},
+{
+"player": "Bacon, Dwayne",
+"stat": "3PM",
+"line": 1.5,
+"books": 68,
+"over": 2.35,
+"under": 1.5,
+"best_over": 2.47,
+"best_under": 1.658,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Bacon, Dwayne",
+"stat": "Assistances",
+"line": 2.5,
+"books": 60,
+"over": 2.05,
+"under": 1.68,
+"best_over": 2.1,
+"best_under": 1.83,
+"alt_lines": [
+1.5,
+2.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Bacon, Dwayne",
+"stat": "PA",
+"line": 19.5,
+"books": 24,
+"over": 1.88,
+"under": 1.78,
+"best_over": 2.0,
+"best_under": 1.96,
+"alt_lines": [
+18.5,
+19.5,
+20.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Bacon, Dwayne",
+"stat": "PR",
+"line": 19.5,
+"books": 23,
+"over": 1.78,
+"under": 1.9,
+"best_over": 1.9,
+"best_under": 2.12,
+"alt_lines": [
+19.5,
+20.5,
+21.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Bacon, Dwayne",
+"stat": "PRA",
+"line": 22.5,
+"books": 16,
+"over": 1.87,
+"under": 1.8,
+"best_over": 1.87,
+"best_under": 1.92,
+"alt_lines": [
+21.5,
+22.5,
+23.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Bacon, Dwayne",
+"stat": "Points",
+"line": 16.5,
+"books": 69,
+"over": 1.83,
+"under": 1.85,
+"best_over": 1.87,
+"best_under": 2.17,
+"alt_lines": [
+16.5,
+17.5,
+18.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Bacon, Dwayne",
+"stat": "RA",
+"line": 5.5,
+"books": 10,
+"over": 1.91,
+"under": 1.75,
+"best_over": 1.91,
+"best_under": 1.75,
+"alt_lines": [
+5.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Bacon, Dwayne",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 60,
+"over": 1.62,
+"under": 2.12,
+"best_over": 1.69,
+"best_under": 2.3,
+"alt_lines": [
+2.5,
+3.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Bacon, Dwayne",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 2.23,
+"under": 1.55,
+"best_over": 2.23,
+"best_under": 1.55,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Baldwin, Kamar",
+"stat": "3PM",
+"line": 0.5,
+"books": 62,
+"over": 1.71,
+"under": 1.95,
+"best_over": 1.78,
+"best_under": 2.02,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Baldwin, Kamar",
+"stat": "Points",
+"line": 5.5,
+"books": 6,
+"over": 1.8,
+"under": 1.94,
+"best_over": 1.83,
+"best_under": 1.97,
+"alt_lines": [
+5.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Baldwin, Kamar",
+"stat": "TotalRebounds",
+"line": 1.5,
+"books": 54,
+"over": 1.62,
+"under": 2.12,
+"best_over": 1.67,
+"best_under": 2.25,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Beauchamp, MarJon",
+"stat": "3PM",
+"line": 0.5,
+"books": 33,
+"over": 1.42,
+"under": 2.65,
+"best_over": 1.47,
+"best_under": 2.75,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Beauchamp, MarJon",
+"stat": "Assistances",
+"line": 1.5,
+"books": 27,
+"over": 1.61,
+"under": 2.15,
+"best_over": 1.65,
+"best_under": 2.25,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Beauchamp, MarJon",
+"stat": "PA",
+"line": 9.5,
+"books": 19,
+"over": 1.78,
+"under": 1.88,
+"best_over": 1.83,
+"best_under": 1.97,
+"alt_lines": [
+9.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Beauchamp, MarJon",
+"stat": "PR",
+"line": 11.5,
+"books": 19,
+"over": 1.8,
+"under": 1.85,
+"best_over": 1.82,
+"best_under": 2.02,
+"alt_lines": [
+11.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Beauchamp, MarJon",
+"stat": "PRA",
+"line": 13.5,
+"books": 14,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.83,
+"best_under": 1.91,
+"alt_lines": [
+13.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Beauchamp, MarJon",
+"stat": "Points",
+"line": 7.5,
+"books": 37,
+"over": 1.78,
+"under": 1.9,
+"best_over": 1.83,
+"best_under": 2.05,
+"alt_lines": [
+7.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Beauchamp, MarJon",
+"stat": "RA",
+"line": 5.5,
+"books": 10,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.8,
+"best_under": 1.87,
+"alt_lines": [
+5.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Beauchamp, MarJon",
+"stat": "Steals",
+"line": 0.5,
+"books": 10,
+"over": 1.42,
+"under": 2.6,
+"best_over": 1.42,
+"best_under": 2.6,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Beauchamp, MarJon",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 28,
+"over": 1.65,
+"under": 2.1,
+"best_over": 1.98,
+"best_under": 2.3,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Blossomgame, Jaron",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 2,
+"over": 2.79,
+"under": 1.34,
+"best_over": 2.87,
+"best_under": 1.35,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Blossomgame, Jaron",
+"stat": "PR",
+"line": 8.5,
+"books": 10,
+"over": 1.93,
+"under": 1.75,
+"best_over": 1.93,
+"best_under": 1.75,
+"alt_lines": [
+7.5,
+8.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Blossomgame, Jaron",
+"stat": "Points",
+"line": 4.5,
+"books": 55,
+"over": 1.87,
+"under": 1.83,
+"best_over": 1.909,
+"best_under": 1.9,
+"alt_lines": [
+4.5,
+6.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Blossomgame, Jaron",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 56,
+"over": 2.1,
+"under": 1.64,
+"best_over": 2.2,
+"best_under": 1.8,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Da Silva, Oscar",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 10,
+"over": 2.02,
+"under": 1.67,
+"best_over": 2.02,
+"best_under": 1.67,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Diakite, Mamadi",
+"stat": "3PM",
+"line": 0.5,
+"books": 62,
+"over": 1.91,
+"under": 1.77,
+"best_over": 2.02,
+"best_under": 1.8,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Diakite, Mamadi",
+"stat": "PR",
+"line": 9.5,
+"books": 10,
+"over": 1.75,
+"under": 1.93,
+"best_over": 1.75,
+"best_under": 1.93,
+"alt_lines": [
+9.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Diakite, Mamadi",
+"stat": "Points",
+"line": 6.5,
+"books": 65,
+"over": 1.83,
+"under": 1.85,
+"best_over": 1.92,
+"best_under": 1.91,
+"alt_lines": [
+6.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Diakite, Mamadi",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 56,
+"over": 1.69,
+"under": 2.01,
+"best_over": 1.76,
+"best_under": 2.15,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Jessup, Justinian",
+"stat": "Points",
+"line": 4.5,
+"books": 55,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.92,
+"best_under": 1.91,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Jokubaitis, Rokas",
+"stat": "3PM",
+"line": 0.5,
+"books": 66,
+"over": 1.42,
+"under": 2.6,
+"best_over": 1.47,
+"best_under": 2.72,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Jokubaitis, Rokas",
+"stat": "Assistances",
+"line": 3.5,
+"books": 58,
+"over": 2.15,
+"under": 1.62,
+"best_over": 2.2,
+"best_under": 2.05,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Jokubaitis, Rokas",
+"stat": "PA",
+"line": 11.5,
+"books": 13,
+"over": 1.77,
+"under": 1.8,
+"best_over": 1.94,
+"best_under": 2.0,
+"alt_lines": [
+10.5,
+11.5,
+12.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Jokubaitis, Rokas",
+"stat": "Points",
+"line": 8.5,
+"books": 54,
+"over": 1.83,
+"under": 1.84,
+"best_over": 1.92,
+"best_under": 1.95,
+"alt_lines": [
+6.5,
+7.5,
+8.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Jokubaitis, Rokas",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 2.23,
+"under": 1.55,
+"best_over": 2.23,
+"best_under": 1.55,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Kabengele, Mfiondu",
+"stat": "3PM",
+"line": 0.5,
+"books": 33,
+"over": 1.55,
+"under": 2.25,
+"best_over": 1.558,
+"best_under": 2.3,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Kabengele, Mfiondu",
+"stat": "Assistances",
+"line": 0.5,
+"books": 20,
+"over": 1.44,
+"under": 2.52,
+"best_over": 1.45,
+"best_under": 2.55,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Kabengele, Mfiondu",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 7,
+"over": 1.6,
+"under": 2.14,
+"best_over": 1.67,
+"best_under": 2.14,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Kabengele, Mfiondu",
+"stat": "PA",
+"line": 14.5,
+"books": 10,
+"over": 1.78,
+"under": 1.9,
+"best_over": 1.78,
+"best_under": 1.9,
+"alt_lines": [
+14.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Kabengele, Mfiondu",
+"stat": "PR",
+"line": 20.5,
+"books": 23,
+"over": 1.88,
+"under": 1.78,
+"best_over": 2.0,
+"best_under": 1.84,
+"alt_lines": [
+19.5,
+20.5,
+21.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Kabengele, Mfiondu",
+"stat": "PRA",
+"line": 21.5,
+"books": 10,
+"over": 1.87,
+"under": 1.8,
+"best_over": 1.87,
+"best_under": 1.8,
+"alt_lines": [
+21.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Kabengele, Mfiondu",
+"stat": "Points",
+"line": 13.5,
+"books": 40,
+"over": 1.83,
+"under": 1.85,
+"best_over": 1.92,
+"best_under": 1.95,
+"alt_lines": [
+12.5,
+13.5,
+14.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Kabengele, Mfiondu",
+"stat": "RA",
+"line": 7.5,
+"books": 10,
+"over": 1.9,
+"under": 1.78,
+"best_over": 1.9,
+"best_under": 1.78,
+"alt_lines": [
+7.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Kabengele, Mfiondu",
+"stat": "Steals",
+"line": 0.5,
+"books": 5,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.83,
+"best_under": 1.83,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Kabengele, Mfiondu",
+"stat": "TotalRebounds",
+"line": 6.5,
+"books": 31,
+"over": 1.93,
+"under": 1.75,
+"best_over": 1.95,
+"best_under": 2.0,
+"alt_lines": [
+5.5,
+6.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Lucic, Vladimir",
+"stat": "PR",
+"line": 8.5,
+"books": 8,
+"over": 1.97,
+"under": 1.73,
+"best_over": 2.02,
+"best_under": 1.78,
+"alt_lines": [
+8.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Lucic, Vladimir",
+"stat": "Points",
+"line": 5.5,
+"books": 7,
+"over": 1.9,
+"under": 1.82,
+"best_over": 2.0,
+"best_under": 1.85,
+"alt_lines": [
+5.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Lucic, Vladimir",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 55,
+"over": 1.95,
+"under": 1.75,
+"best_over": 2.0,
+"best_under": 1.88,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "McKinley Wright",
+"stat": "3PM",
+"line": 0.5,
+"books": 68,
+"over": 1.62,
+"under": 2.1,
+"best_over": 1.71,
+"best_under": 2.2,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "McKinley Wright",
+"stat": "Assistances",
+"line": 3.5,
+"books": 58,
+"over": 2.1,
+"under": 1.64,
+"best_over": 2.22,
+"best_under": 2.23,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "McKinley Wright",
+"stat": "PA",
+"line": 12.5,
+"books": 16,
+"over": 1.9,
+"under": 1.78,
+"best_over": 1.95,
+"best_under": 1.78,
+"alt_lines": [
+11.5,
+12.5,
+13.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "McKinley Wright",
+"stat": "PR",
+"line": 11.5,
+"books": 24,
+"over": 1.85,
+"under": 1.79,
+"best_over": 2.02,
+"best_under": 1.83,
+"alt_lines": [
+10.5,
+11.5,
+12.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "McKinley Wright",
+"stat": "PRA",
+"line": 14.5,
+"books": 19,
+"over": 1.75,
+"under": 1.91,
+"best_over": 1.8,
+"best_under": 1.92,
+"alt_lines": [
+13.5,
+14.5,
+15.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "McKinley Wright",
+"stat": "Points",
+"line": 8.5,
+"books": 69,
+"over": 1.83,
+"under": 1.87,
+"best_over": 1.92,
+"best_under": 1.95,
+"alt_lines": [
+7.5,
+8.5,
+9.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "McKinley Wright",
+"stat": "RA",
+"line": 5.5,
+"books": 10,
+"over": 1.7,
+"under": 2.0,
+"best_over": 1.7,
+"best_under": 2.0,
+"alt_lines": [
+5.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "McKinley Wright",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 61,
+"over": 1.91,
+"under": 1.8,
+"best_over": 2.2,
+"best_under": 1.94,
+"alt_lines": [
+1.5,
+2.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "McKinley Wright",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.83,
+"best_under": 1.83,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Obst, Andreas",
+"stat": "3PM",
+"line": 2.5,
+"books": 68,
+"over": 2.2,
+"under": 1.6,
+"best_over": 2.4,
+"best_under": 1.744,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Obst, Andreas",
+"stat": "Assistances",
+"line": 1.5,
+"books": 59,
+"over": 1.57,
+"under": 2.25,
+"best_over": 1.63,
+"best_under": 2.45,
+"alt_lines": [
+1.5,
+2.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Obst, Andreas",
+"stat": "PA",
+"line": 13.5,
+"books": 15,
+"over": 1.87,
+"under": 1.8,
+"best_over": 1.98,
+"best_under": 1.8,
+"alt_lines": [
+11.5,
+12.5,
+13.5,
+15.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Obst, Andreas",
+"stat": "Points",
+"line": 11.5,
+"books": 57,
+"over": 1.91,
+"under": 1.77,
+"best_over": 2.0,
+"best_under": 1.9,
+"alt_lines": [
+10.5,
+11.5,
+12.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Okobo, Elie",
+"stat": "3PM",
+"line": 1.5,
+"books": 68,
+"over": 1.8,
+"under": 1.88,
+"best_over": 2.0,
+"best_under": 1.91,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Okobo, Elie",
+"stat": "Assistances",
+"line": 3.5,
+"books": 60,
+"over": 1.71,
+"under": 1.95,
+"best_over": 1.77,
+"best_under": 2.2,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Okobo, Elie",
+"stat": "PA",
+"line": 16.5,
+"books": 16,
+"over": 1.88,
+"under": 1.78,
+"best_over": 1.94,
+"best_under": 1.8,
+"alt_lines": [
+15.5,
+16.5,
+17.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Okobo, Elie",
+"stat": "Points",
+"line": 11.5,
+"books": 51,
+"over": 1.83,
+"under": 1.87,
+"best_over": 1.88,
+"best_under": 2.28,
+"alt_lines": [
+11.5,
+12.5,
+13.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Okobo, Elie",
+"stat": "Steals",
+"line": 0.5,
+"books": 5,
+"over": 1.8,
+"under": 1.86,
+"best_over": 1.8,
+"best_under": 1.86,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Okobo, Elie",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 2.05,
+"under": 1.65,
+"best_over": 2.05,
+"best_under": 1.65,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Petrusev, Filip",
+"stat": "Points",
+"line": 6.5,
+"books": 6,
+"over": 1.84,
+"under": 1.89,
+"best_over": 1.88,
+"best_under": 1.92,
+"alt_lines": [
+6.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Shengelia, Tornike",
+"stat": "PR",
+"line": 9.5,
+"books": 5,
+"over": 1.95,
+"under": 1.72,
+"best_over": 1.95,
+"best_under": 1.72,
+"alt_lines": [
+8.5,
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Shengelia, Tornike",
+"stat": "Points",
+"line": 6.5,
+"books": 63,
+"over": 2.05,
+"under": 1.67,
+"best_over": 2.28,
+"best_under": 1.73,
+"alt_lines": [
+4.5,
+5.5,
+6.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Shengelia, Tornike",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 39,
+"over": 1.91,
+"under": 1.77,
+"best_over": 2.0,
+"best_under": 1.82,
+"alt_lines": [
+2.5,
+3.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Thiemann, John",
+"stat": "PR",
+"line": 15.5,
+"books": 6,
+"over": 1.91,
+"under": 1.76,
+"best_over": 1.91,
+"best_under": 1.8,
+"alt_lines": [
+14.5,
+15.5,
+16.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Thiemann, John",
+"stat": "Points",
+"line": 9.5,
+"books": 11,
+"over": 1.91,
+"under": 1.8,
+"best_over": 2.0,
+"best_under": 1.8,
+"alt_lines": [
+8.5,
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Thiemann, John",
+"stat": "TotalRebounds",
+"line": 5.5,
+"books": 12,
+"over": 1.84,
+"under": 1.81,
+"best_over": 1.926,
+"best_under": 2.0,
+"alt_lines": [
+4.5,
+5.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Washington, Duane",
+"stat": "3PM",
+"line": 2.5,
+"books": 68,
+"over": 2.0,
+"under": 1.7,
+"best_over": 2.25,
+"best_under": 1.837,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Washington, Duane",
+"stat": "Assistances",
+"line": 2.5,
+"books": 68,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.9,
+"best_under": 2.0,
+"alt_lines": [
+1.5,
+2.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Washington, Duane",
+"stat": "PA",
+"line": 19.5,
+"books": 24,
+"over": 1.85,
+"under": 1.82,
+"best_over": 1.97,
+"best_under": 1.96,
+"alt_lines": [
+19.5,
+20.5,
+21.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Washington, Duane",
+"stat": "Points",
+"line": 16.5,
+"books": 61,
+"over": 1.87,
+"under": 1.83,
+"best_over": 1.95,
+"best_under": 2.17,
+"alt_lines": [
+15.5,
+16.5,
+17.5,
+18.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Washington, Duane",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 1.65,
+"under": 2.05,
+"best_over": 1.65,
+"best_under": 2.05,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Wiley, Austin",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 7,
+"over": 1.48,
+"under": 2.4,
+"best_over": 1.48,
+"best_under": 2.57,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Wiley, Austin",
+"stat": "PR",
+"line": 12.5,
+"books": 15,
+"over": 1.93,
+"under": 1.75,
+"best_over": 1.93,
+"best_under": 1.82,
+"alt_lines": [
+11.5,
+12.5,
+13.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Wiley, Austin",
+"stat": "Points",
+"line": 6.5,
+"books": 32,
+"over": 2.0,
+"under": 1.7,
+"best_over": 2.05,
+"best_under": 1.9,
+"alt_lines": [
+5.5,
+6.5,
+7.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Wiley, Austin",
+"stat": "TotalRebounds",
+"line": 5.5,
+"books": 31,
+"over": 1.7,
+"under": 2.0,
+"best_over": 2.1,
+"best_under": 2.05,
+"alt_lines": [
+4.5,
+5.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Wiley, Austin",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 1.8,
+"under": 1.9,
+"best_over": 1.8,
+"best_under": 1.9,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263068"
+},
+{
+"player": "Brissett, Oshea",
+"stat": "3PM",
+"line": 0.5,
+"books": 38,
+"over": 1.44,
+"under": 2.55,
+"best_over": 1.455,
+"best_under": 2.6,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Brissett, Oshea",
+"stat": "PR",
+"line": 12.5,
+"books": 16,
+"over": 1.9,
+"under": 1.78,
+"best_over": 1.95,
+"best_under": 1.85,
+"alt_lines": [
+12.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Brissett, Oshea",
+"stat": "Points",
+"line": 7.5,
+"books": 56,
+"over": 1.8,
+"under": 1.9,
+"best_over": 1.87,
+"best_under": 2.0,
+"alt_lines": [
+7.5,
+8.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Brissett, Oshea",
+"stat": "TotalRebounds",
+"line": 4.5,
+"books": 55,
+"over": 2.1,
+"under": 1.62,
+"best_over": 2.2,
+"best_under": 1.88,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Campazzo, Facundo",
+"stat": "3PM",
+"line": 1.5,
+"books": 68,
+"over": 2.15,
+"under": 1.61,
+"best_over": 2.2,
+"best_under": 1.9,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Campazzo, Facundo",
+"stat": "Assistances",
+"line": 4.5,
+"books": 60,
+"over": 1.65,
+"under": 2.05,
+"best_over": 1.769,
+"best_under": 2.27,
+"alt_lines": [
+3.5,
+4.5,
+5.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Campazzo, Facundo",
+"stat": "PA",
+"line": 14.5,
+"books": 15,
+"over": 1.93,
+"under": 1.75,
+"best_over": 2.03,
+"best_under": 1.75,
+"alt_lines": [
+12.5,
+13.5,
+14.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Campazzo, Facundo",
+"stat": "PR",
+"line": 11.5,
+"books": 15,
+"over": 1.95,
+"under": 1.72,
+"best_over": 2.05,
+"best_under": 1.77,
+"alt_lines": [
+10.5,
+11.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Campazzo, Facundo",
+"stat": "PRA",
+"line": 16.5,
+"books": 10,
+"over": 1.9,
+"under": 1.78,
+"best_over": 1.9,
+"best_under": 1.78,
+"alt_lines": [
+15.5,
+16.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Campazzo, Facundo",
+"stat": "Points",
+"line": 8.5,
+"books": 61,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.833,
+"best_under": 2.0,
+"alt_lines": [
+6.5,
+7.5,
+8.5,
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Campazzo, Facundo",
+"stat": "RA",
+"line": 7.5,
+"books": 10,
+"over": 2.05,
+"under": 1.65,
+"best_over": 2.05,
+"best_under": 1.65,
+"alt_lines": [
+7.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Campazzo, Facundo",
+"stat": "TotalRebounds",
+"line": 1.5,
+"books": 44,
+"over": 1.57,
+"under": 2.2,
+"best_over": 1.63,
+"best_under": 2.43,
+"alt_lines": [
+0.5,
+1.5,
+2.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Campazzo, Facundo",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 1.5,
+"under": 2.35,
+"best_over": 1.5,
+"best_under": 2.35,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Clark, Tre",
+"stat": "3PM",
+"line": 0.5,
+"books": 12,
+"over": 1.4,
+"under": 2.5,
+"best_over": 1.45,
+"best_under": 2.55,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Clark, Tre",
+"stat": "Assistances",
+"line": 3.5,
+"books": 4,
+"over": 1.67,
+"under": 2.05,
+"best_over": 1.7,
+"best_under": 2.1,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Clark, Tre",
+"stat": "Points",
+"line": 10.5,
+"books": 4,
+"over": 1.96,
+"under": 1.73,
+"best_over": 2.0,
+"best_under": 1.76,
+"alt_lines": [
+10.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Clark, Tre",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 4,
+"over": 2.02,
+"under": 1.69,
+"best_over": 2.05,
+"best_under": 1.71,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Colson, Bonzie",
+"stat": "3PM",
+"line": 0.5,
+"books": 46,
+"over": 1.42,
+"under": 2.6,
+"best_over": 1.45,
+"best_under": 2.65,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Colson, Bonzie",
+"stat": "PR",
+"line": 12.5,
+"books": 10,
+"over": 1.75,
+"under": 1.93,
+"best_over": 1.75,
+"best_under": 1.93,
+"alt_lines": [
+12.5,
+13.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Colson, Bonzie",
+"stat": "Points",
+"line": 9.5,
+"books": 65,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.93,
+"best_under": 1.95,
+"alt_lines": [
+9.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Colson, Bonzie",
+"stat": "Steals",
+"line": 0.5,
+"books": 10,
+"over": 1.5,
+"under": 2.37,
+"best_over": 1.5,
+"best_under": 2.37,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Colson, Bonzie",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 55,
+"over": 1.8,
+"under": 1.9,
+"best_over": 1.88,
+"best_under": 2.0,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Feliz, Andres",
+"stat": "3PM",
+"line": 0.5,
+"books": 56,
+"over": 1.44,
+"under": 2.5,
+"best_over": 1.53,
+"best_under": 2.8,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Feliz, Andres",
+"stat": "Assistances",
+"line": 3.5,
+"books": 60,
+"over": 1.73,
+"under": 1.95,
+"best_over": 2.0,
+"best_under": 2.12,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Feliz, Andres",
+"stat": "PA",
+"line": 12.5,
+"books": 16,
+"over": 1.95,
+"under": 1.72,
+"best_over": 1.95,
+"best_under": 1.85,
+"alt_lines": [
+11.5,
+12.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Feliz, Andres",
+"stat": "PR",
+"line": 11.5,
+"books": 16,
+"over": 1.93,
+"under": 1.75,
+"best_over": 1.95,
+"best_under": 1.85,
+"alt_lines": [
+10.5,
+11.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Feliz, Andres",
+"stat": "PRA",
+"line": 15.5,
+"books": 11,
+"over": 1.93,
+"under": 1.75,
+"best_over": 1.95,
+"best_under": 1.75,
+"alt_lines": [
+14.5,
+15.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Feliz, Andres",
+"stat": "Points",
+"line": 8.5,
+"books": 61,
+"over": 2.0,
+"under": 1.72,
+"best_over": 2.05,
+"best_under": 1.85,
+"alt_lines": [
+7.5,
+8.5,
+9.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Feliz, Andres",
+"stat": "RA",
+"line": 6.5,
+"books": 10,
+"over": 1.72,
+"under": 1.95,
+"best_over": 1.72,
+"best_under": 1.95,
+"alt_lines": [
+6.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Feliz, Andres",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 59,
+"over": 1.62,
+"under": 2.1,
+"best_over": 1.714,
+"best_under": 2.37,
+"alt_lines": [
+2.5,
+3.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Feliz, Andres",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 1.95,
+"under": 1.73,
+"best_over": 1.95,
+"best_under": 1.73,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Hoard, Jaylen",
+"stat": "Assistances",
+"line": 0.5,
+"books": 5,
+"over": 1.44,
+"under": 2.67,
+"best_over": 1.46,
+"best_under": 2.72,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Hoard, Jaylen",
+"stat": "PA",
+"line": 10.5,
+"books": 5,
+"over": 1.88,
+"under": 1.82,
+"best_over": 1.92,
+"best_under": 1.87,
+"alt_lines": [
+10.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Hoard, Jaylen",
+"stat": "PR",
+"line": 13.5,
+"books": 20,
+"over": 1.78,
+"under": 1.88,
+"best_over": 1.85,
+"best_under": 1.95,
+"alt_lines": [
+12.5,
+13.5,
+14.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Hoard, Jaylen",
+"stat": "Points",
+"line": 9.5,
+"books": 61,
+"over": 1.95,
+"under": 1.72,
+"best_over": 2.0,
+"best_under": 1.83,
+"alt_lines": [
+8.5,
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Hoard, Jaylen",
+"stat": "TotalRebounds",
+"line": 4.5,
+"books": 60,
+"over": 1.91,
+"under": 1.77,
+"best_over": 2.07,
+"best_under": 1.87,
+"alt_lines": [
+3.5,
+4.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Jantunen, Mikael",
+"stat": "3PM",
+"line": 0.5,
+"books": 11,
+"over": 1.82,
+"under": 1.85,
+"best_over": 1.82,
+"best_under": 2.09,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Jantunen, Mikael",
+"stat": "PR",
+"line": 10.5,
+"books": 5,
+"over": 1.85,
+"under": 1.87,
+"best_over": 1.88,
+"best_under": 1.9,
+"alt_lines": [
+10.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Jantunen, Mikael",
+"stat": "Points",
+"line": 6.5,
+"books": 17,
+"over": 2.02,
+"under": 1.7,
+"best_over": 2.05,
+"best_under": 2.02,
+"alt_lines": [
+5.5,
+6.5,
+7.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Jantunen, Mikael",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 10,
+"over": 2.18,
+"under": 1.61,
+"best_over": 2.42,
+"best_under": 1.66,
+"alt_lines": [
+2.5,
+3.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Luwawu-Cabarrot, Timothe",
+"stat": "3PM",
+"line": 1.5,
+"books": 36,
+"over": 1.77,
+"under": 1.91,
+"best_over": 1.8,
+"best_under": 1.952,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Luwawu-Cabarrot, Timothe",
+"stat": "TotalRebounds",
+"line": 1.5,
+"books": 28,
+"over": 1.91,
+"under": 1.77,
+"best_over": 1.952,
+"best_under": 1.8,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Madar, Yam",
+"stat": "3PM",
+"line": 1.5,
+"books": 40,
+"over": 1.75,
+"under": 1.95,
+"best_over": 1.926,
+"best_under": 2.02,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Madar, Yam",
+"stat": "Assistances",
+"line": 4.5,
+"books": 30,
+"over": 1.7,
+"under": 2.0,
+"best_over": 2.15,
+"best_under": 2.35,
+"alt_lines": [
+4.5,
+5.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Madar, Yam",
+"stat": "PA",
+"line": 18.5,
+"books": 15,
+"over": 1.93,
+"under": 1.75,
+"best_over": 1.93,
+"best_under": 1.86,
+"alt_lines": [
+16.5,
+17.5,
+18.5,
+19.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Madar, Yam",
+"stat": "PR",
+"line": 14.5,
+"books": 11,
+"over": 1.75,
+"under": 1.91,
+"best_over": 1.75,
+"best_under": 1.95,
+"alt_lines": [
+14.5,
+15.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Madar, Yam",
+"stat": "PRA",
+"line": 20.5,
+"books": 11,
+"over": 1.85,
+"under": 1.82,
+"best_over": 1.91,
+"best_under": 1.82,
+"alt_lines": [
+20.5,
+21.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Madar, Yam",
+"stat": "Points",
+"line": 13.5,
+"books": 31,
+"over": 1.9,
+"under": 1.8,
+"best_over": 2.3,
+"best_under": 1.9,
+"alt_lines": [
+10.5,
+11.5,
+12.5,
+13.5,
+14.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Madar, Yam",
+"stat": "RA",
+"line": 7.5,
+"books": 10,
+"over": 1.78,
+"under": 1.9,
+"best_over": 1.78,
+"best_under": 1.9,
+"alt_lines": [
+7.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Madar, Yam",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 27,
+"over": 2.12,
+"under": 1.62,
+"best_over": 2.2,
+"best_under": 1.65,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Madar, Yam",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 2.0,
+"under": 1.7,
+"best_over": 2.0,
+"best_under": 1.7,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Maledon, Theo",
+"stat": "3PM",
+"line": 0.5,
+"books": 9,
+"over": 1.67,
+"under": 2.07,
+"best_over": 1.699,
+"best_under": 2.07,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Maledon, Theo",
+"stat": "Assistances",
+"line": 4.5,
+"books": 60,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.92,
+"best_under": 2.05,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Maledon, Theo",
+"stat": "PA",
+"line": 17.5,
+"books": 16,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.82,
+"best_under": 2.0,
+"alt_lines": [
+17.5,
+18.5,
+19.5,
+20.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Maledon, Theo",
+"stat": "PR",
+"line": 16.5,
+"books": 21,
+"over": 1.9,
+"under": 1.8,
+"best_over": 1.91,
+"best_under": 1.9,
+"alt_lines": [
+15.5,
+16.5,
+17.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Maledon, Theo",
+"stat": "PRA",
+"line": 20.5,
+"books": 16,
+"over": 1.75,
+"under": 1.93,
+"best_over": 1.77,
+"best_under": 2.01,
+"alt_lines": [
+20.5,
+21.5,
+22.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Maledon, Theo",
+"stat": "Points",
+"line": 13.5,
+"books": 50,
+"over": 2.0,
+"under": 1.69,
+"best_over": 2.2,
+"best_under": 1.83,
+"alt_lines": [
+12.5,
+13.5,
+14.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Maledon, Theo",
+"stat": "RA",
+"line": 7.5,
+"books": 10,
+"over": 1.75,
+"under": 1.93,
+"best_over": 1.75,
+"best_under": 1.93,
+"alt_lines": [
+7.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Maledon, Theo",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 60,
+"over": 2.1,
+"under": 1.62,
+"best_over": 2.25,
+"best_under": 1.69,
+"alt_lines": [
+2.5,
+3.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Maledon, Theo",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 1.62,
+"under": 2.1,
+"best_over": 1.62,
+"best_under": 2.1,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Okeke, Chuma",
+"stat": "3PM",
+"line": 1.5,
+"books": 63,
+"over": 2.57,
+"under": 1.42,
+"best_over": 2.75,
+"best_under": 1.6,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Okeke, Chuma",
+"stat": "Assistances",
+"line": 0.5,
+"books": 16,
+"over": 1.5,
+"under": 2.37,
+"best_over": 1.55,
+"best_under": 2.45,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Okeke, Chuma",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 2,
+"over": 2.06,
+"under": 1.61,
+"best_over": 2.1,
+"best_under": 1.62,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Okeke, Chuma",
+"stat": "PA",
+"line": 7.5,
+"books": 15,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.9,
+"best_under": 1.88,
+"alt_lines": [
+7.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Okeke, Chuma",
+"stat": "Points",
+"line": 6.5,
+"books": 64,
+"over": 1.83,
+"under": 1.85,
+"best_over": 1.92,
+"best_under": 2.0,
+"alt_lines": [
+5.5,
+6.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Pradilla, Jaime",
+"stat": "PR",
+"line": 9.5,
+"books": 15,
+"over": 1.85,
+"under": 1.83,
+"best_over": 1.9,
+"best_under": 1.9,
+"alt_lines": [
+9.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Pradilla, Jaime",
+"stat": "Points",
+"line": 6.5,
+"books": 65,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.92,
+"best_under": 1.95,
+"alt_lines": [
+6.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Pradilla, Jaime",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 54,
+"over": 1.69,
+"under": 2.02,
+"best_over": 1.73,
+"best_under": 2.2,
+"alt_lines": [
+2.5,
+3.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Smith Jr., Nick",
+"stat": "3PM",
+"line": 0.5,
+"books": 51,
+"over": 1.46,
+"under": 2.45,
+"best_over": 1.5,
+"best_under": 2.8,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Smith Jr., Nick",
+"stat": "Points",
+"line": 8.5,
+"books": 64,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.91,
+"best_under": 1.91,
+"alt_lines": [
+8.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Sorkin, Roman",
+"stat": "3PM",
+"line": 0.5,
+"books": 53,
+"over": 1.5,
+"under": 2.35,
+"best_over": 1.833,
+"best_under": 2.65,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Sorkin, Roman",
+"stat": "Assistances",
+"line": 1.5,
+"books": 29,
+"over": 2.65,
+"under": 1.4,
+"best_over": 2.75,
+"best_under": 1.629,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Sorkin, Roman",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 7,
+"over": 2.1,
+"under": 1.62,
+"best_over": 2.15,
+"best_under": 1.62,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Sorkin, Roman",
+"stat": "PA",
+"line": 11.5,
+"books": 10,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.8,
+"best_under": 1.87,
+"alt_lines": [
+11.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Sorkin, Roman",
+"stat": "Points",
+"line": 10.5,
+"books": 62,
+"over": 1.87,
+"under": 1.8,
+"best_over": 1.926,
+"best_under": 1.95,
+"alt_lines": [
+9.5,
+10.5,
+11.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Sorkin, Roman",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 6,
+"over": 2.1,
+"under": 1.62,
+"best_over": 2.35,
+"best_under": 1.62,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Tavares, Edy",
+"stat": "Points",
+"line": 9.5,
+"books": 29,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.87,
+"best_under": 1.87,
+"alt_lines": [
+9.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Tavares, Edy",
+"stat": "TotalRebounds",
+"line": 6.5,
+"books": 29,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.833,
+"best_under": 1.95,
+"alt_lines": [
+6.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Theis, Daniel",
+"stat": "PR",
+"line": 11.5,
+"books": 5,
+"over": 1.77,
+"under": 1.95,
+"best_over": 1.82,
+"best_under": 2.0,
+"alt_lines": [
+11.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Theis, Daniel",
+"stat": "Points",
+"line": 7.5,
+"books": 63,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.87,
+"best_under": 1.95,
+"alt_lines": [
+7.5,
+8.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Theis, Daniel",
+"stat": "TotalRebounds",
+"line": 4.5,
+"books": 34,
+"over": 1.91,
+"under": 1.77,
+"best_over": 2.15,
+"best_under": 1.8,
+"alt_lines": [
+3.5,
+4.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Wallace, Keaton",
+"stat": "3PM",
+"line": 0.5,
+"books": 36,
+"over": 1.56,
+"under": 2.25,
+"best_over": 1.59,
+"best_under": 2.3,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Wallace, Keaton",
+"stat": "Assistances",
+"line": 1.5,
+"books": 38,
+"over": 1.71,
+"under": 1.95,
+"best_over": 1.77,
+"best_under": 2.12,
+"alt_lines": [
+1.5,
+2.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Wallace, Keaton",
+"stat": "Points",
+"line": 7.5,
+"books": 28,
+"over": 1.91,
+"under": 1.77,
+"best_over": 1.952,
+"best_under": 1.8,
+"alt_lines": [
+6.5,
+7.5
+],
+"fixtureId": "id1100013873263062"
+},
+{
+"player": "Badio, Brancou",
+"stat": "3PM",
+"line": 0.5,
+"books": 50,
+"over": 1.69,
+"under": 2.0,
+"best_over": 1.74,
+"best_under": 2.26,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Badio, Brancou",
+"stat": "Assistances",
+"line": 1.5,
+"books": 60,
+"over": 1.56,
+"under": 2.25,
+"best_over": 1.741,
+"best_under": 2.4,
+"alt_lines": [
+1.5,
+2.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Badio, Brancou",
+"stat": "PA",
+"line": 8.5,
+"books": 20,
+"over": 1.8,
+"under": 1.89,
+"best_over": 1.83,
+"best_under": 1.97,
+"alt_lines": [
+8.5,
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Badio, Brancou",
+"stat": "Points",
+"line": 6.5,
+"books": 70,
+"over": 1.87,
+"under": 1.8,
+"best_over": 2.0,
+"best_under": 1.95,
+"alt_lines": [
+6.5,
+7.5,
+8.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Baugh, Damion",
+"stat": "3PM",
+"line": 0.5,
+"books": 58,
+"over": 1.65,
+"under": 2.05,
+"best_over": 1.71,
+"best_under": 2.15,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Baugh, Damion",
+"stat": "Assistances",
+"line": 5.5,
+"books": 63,
+"over": 1.95,
+"under": 1.71,
+"best_over": 2.35,
+"best_under": 1.91,
+"alt_lines": [
+5.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Baugh, Damion",
+"stat": "PA",
+"line": 13.5,
+"books": 16,
+"over": 1.75,
+"under": 1.93,
+"best_over": 1.85,
+"best_under": 1.95,
+"alt_lines": [
+13.5,
+14.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Baugh, Damion",
+"stat": "PR",
+"line": 10.5,
+"books": 16,
+"over": 1.75,
+"under": 1.91,
+"best_over": 1.83,
+"best_under": 1.97,
+"alt_lines": [
+10.5,
+11.5,
+12.5,
+13.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Baugh, Damion",
+"stat": "PRA",
+"line": 16.5,
+"books": 11,
+"over": 1.91,
+"under": 1.75,
+"best_over": 1.95,
+"best_under": 1.75,
+"alt_lines": [
+16.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Baugh, Damion",
+"stat": "Points",
+"line": 8.5,
+"books": 70,
+"over": 1.87,
+"under": 1.8,
+"best_over": 1.95,
+"best_under": 1.9,
+"alt_lines": [
+8.5,
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Baugh, Damion",
+"stat": "RA",
+"line": 7.5,
+"books": 10,
+"over": 1.88,
+"under": 1.8,
+"best_over": 1.88,
+"best_under": 1.8,
+"alt_lines": [
+7.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Baugh, Damion",
+"stat": "Steals",
+"line": 0.5,
+"books": 5,
+"over": 1.53,
+"under": 2.28,
+"best_over": 1.53,
+"best_under": 2.28,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Baugh, Damion",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 52,
+"over": 2.25,
+"under": 1.54,
+"best_over": 2.3,
+"best_under": 1.71,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Baugh, Damion",
+"stat": "Turnovers",
+"line": 2.5,
+"books": 5,
+"over": 2.28,
+"under": 1.53,
+"best_over": 2.28,
+"best_under": 1.53,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Faried, Kenneth",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 5,
+"over": 1.48,
+"under": 2.4,
+"best_over": 1.48,
+"best_under": 2.4,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Faried, Kenneth",
+"stat": "PR",
+"line": 13.5,
+"books": 21,
+"over": 1.95,
+"under": 1.72,
+"best_over": 2.27,
+"best_under": 1.77,
+"alt_lines": [
+13.5,
+14.5,
+15.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Faried, Kenneth",
+"stat": "Points",
+"line": 7.5,
+"books": 70,
+"over": 1.9,
+"under": 1.8,
+"best_over": 1.952,
+"best_under": 1.97,
+"alt_lines": [
+7.5,
+8.5,
+9.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Faried, Kenneth",
+"stat": "TotalRebounds",
+"line": 5.5,
+"books": 70,
+"over": 1.91,
+"under": 1.78,
+"best_over": 2.1,
+"best_under": 1.87,
+"alt_lines": [
+5.5,
+6.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Faried, Kenneth",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 2.1,
+"under": 1.62,
+"best_over": 2.1,
+"best_under": 1.62,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Francisco, Sylvain",
+"stat": "3PM",
+"line": 1.5,
+"books": 70,
+"over": 1.62,
+"under": 2.1,
+"best_over": 1.7,
+"best_under": 2.4,
+"alt_lines": [
+1.5,
+2.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Francisco, Sylvain",
+"stat": "Assistances",
+"line": 4.5,
+"books": 68,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.9,
+"best_under": 1.97,
+"alt_lines": [
+4.5,
+5.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Francisco, Sylvain",
+"stat": "PA",
+"line": 19.5,
+"books": 17,
+"over": 1.75,
+"under": 1.91,
+"best_over": 1.8,
+"best_under": 2.0,
+"alt_lines": [
+19.5,
+20.5,
+21.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Francisco, Sylvain",
+"stat": "PR",
+"line": 17.5,
+"books": 21,
+"over": 1.85,
+"under": 1.85,
+"best_over": 1.87,
+"best_under": 1.92,
+"alt_lines": [
+17.5,
+18.5,
+19.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Francisco, Sylvain",
+"stat": "PRA",
+"line": 22.5,
+"books": 16,
+"over": 1.93,
+"under": 1.75,
+"best_over": 1.93,
+"best_under": 1.83,
+"alt_lines": [
+22.5,
+23.5,
+24.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Francisco, Sylvain",
+"stat": "Points",
+"line": 15.5,
+"books": 69,
+"over": 1.9,
+"under": 1.78,
+"best_over": 1.97,
+"best_under": 1.9,
+"alt_lines": [
+14.5,
+15.5,
+16.5,
+17.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Francisco, Sylvain",
+"stat": "RA",
+"line": 6.5,
+"books": 15,
+"over": 1.8,
+"under": 1.88,
+"best_over": 1.8,
+"best_under": 2.1,
+"alt_lines": [
+6.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Francisco, Sylvain",
+"stat": "Steals",
+"line": 0.5,
+"books": 5,
+"over": 1.62,
+"under": 2.1,
+"best_over": 1.62,
+"best_under": 2.1,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Francisco, Sylvain",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 52,
+"over": 2.0,
+"under": 1.69,
+"best_over": 2.4,
+"best_under": 1.75,
+"alt_lines": [
+1.5,
+2.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Francisco, Sylvain",
+"stat": "Turnovers",
+"line": 2.5,
+"books": 5,
+"over": 2.4,
+"under": 1.48,
+"best_over": 2.4,
+"best_under": 1.48,
+"alt_lines": [
+1.5,
+2.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Frisch, Clement",
+"stat": "3PM",
+"line": 0.5,
+"books": 52,
+"over": 1.5,
+"under": 2.36,
+"best_over": 1.54,
+"best_under": 2.47,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Frisch, Clement",
+"stat": "PR",
+"line": 8.5,
+"books": 15,
+"over": 1.87,
+"under": 1.8,
+"best_over": 2.02,
+"best_under": 1.8,
+"alt_lines": [
+8.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Frisch, Clement",
+"stat": "Points",
+"line": 4.5,
+"books": 43,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.87,
+"best_under": 1.95,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Frisch, Clement",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 56,
+"over": 1.91,
+"under": 1.78,
+"best_over": 1.97,
+"best_under": 1.84,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Grant, Jerian",
+"stat": "Assistances",
+"line": 2.5,
+"books": 29,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.98,
+"best_under": 1.91,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Grant, Jerian",
+"stat": "Points",
+"line": 7.5,
+"books": 28,
+"over": 2.25,
+"under": 1.56,
+"best_over": 2.3,
+"best_under": 1.6,
+"alt_lines": [
+4.5,
+7.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Hayes, Nigel",
+"stat": "3PM",
+"line": 1.5,
+"books": 70,
+"over": 1.71,
+"under": 1.98,
+"best_over": 1.87,
+"best_under": 2.1,
+"alt_lines": [
+1.5,
+2.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Hayes, Nigel",
+"stat": "PR",
+"line": 17.5,
+"books": 19,
+"over": 1.78,
+"under": 1.9,
+"best_over": 2.02,
+"best_under": 1.91,
+"alt_lines": [
+16.5,
+17.5,
+18.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Hayes, Nigel",
+"stat": "Points",
+"line": 14.5,
+"books": 64,
+"over": 1.91,
+"under": 1.8,
+"best_over": 1.98,
+"best_under": 1.85,
+"alt_lines": [
+12.5,
+13.5,
+14.5,
+15.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Hayes, Nigel",
+"stat": "Steals",
+"line": 0.5,
+"books": 5,
+"over": 1.48,
+"under": 2.4,
+"best_over": 1.48,
+"best_under": 2.4,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Hayes, Nigel",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 61,
+"over": 2.15,
+"under": 1.6,
+"best_over": 2.2,
+"best_under": 1.72,
+"alt_lines": [
+2.5,
+3.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Hernangomez, Juancho",
+"stat": "3PM",
+"line": 0.5,
+"books": 69,
+"over": 1.5,
+"under": 2.35,
+"best_over": 1.699,
+"best_under": 2.57,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Hernangomez, Juancho",
+"stat": "Assistances",
+"line": 0.5,
+"books": 11,
+"over": 1.57,
+"under": 2.2,
+"best_over": 1.699,
+"best_under": 2.2,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Hernangomez, Juancho",
+"stat": "PA",
+"line": 6.5,
+"books": 10,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.8,
+"best_under": 1.87,
+"alt_lines": [
+6.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Hernangomez, Juancho",
+"stat": "PR",
+"line": 10.5,
+"books": 11,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.8,
+"best_under": 1.91,
+"alt_lines": [
+10.5,
+11.5,
+12.5,
+13.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Hernangomez, Juancho",
+"stat": "PRA",
+"line": 11.5,
+"books": 15,
+"over": 1.82,
+"under": 1.85,
+"best_over": 1.9,
+"best_under": 1.85,
+"alt_lines": [
+10.5,
+11.5,
+12.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Hernangomez, Juancho",
+"stat": "Points",
+"line": 6.5,
+"books": 58,
+"over": 1.83,
+"under": 1.84,
+"best_over": 1.87,
+"best_under": 2.02,
+"alt_lines": [
+5.5,
+6.5,
+7.5,
+8.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Hernangomez, Juancho",
+"stat": "RA",
+"line": 5.5,
+"books": 15,
+"over": 1.78,
+"under": 1.91,
+"best_over": 1.78,
+"best_under": 2.0,
+"alt_lines": [
+5.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Hernangomez, Juancho",
+"stat": "TotalRebounds",
+"line": 4.5,
+"books": 70,
+"over": 1.73,
+"under": 1.96,
+"best_over": 1.82,
+"best_under": 2.1,
+"alt_lines": [
+4.5,
+5.5,
+6.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Kurucs, Rodions",
+"stat": "PR",
+"line": 9.5,
+"books": 5,
+"over": 2.1,
+"under": 1.65,
+"best_over": 2.1,
+"best_under": 1.65,
+"alt_lines": [
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Kurucs, Rodions",
+"stat": "PRA",
+"line": 11.5,
+"books": 5,
+"over": 1.75,
+"under": 1.95,
+"best_over": 1.75,
+"best_under": 1.95,
+"alt_lines": [
+11.5,
+12.5,
+13.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Kurucs, Rodions",
+"stat": "Points",
+"line": 5.5,
+"books": 39,
+"over": 1.71,
+"under": 1.95,
+"best_over": 1.95,
+"best_under": 2.0,
+"alt_lines": [
+5.5,
+6.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Kurucs, Rodions",
+"stat": "RA",
+"line": 6.5,
+"books": 5,
+"over": 2.1,
+"under": 1.65,
+"best_over": 2.1,
+"best_under": 1.65,
+"alt_lines": [
+6.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Kurucs, Rodions",
+"stat": "Steals",
+"line": 0.5,
+"books": 5,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.83,
+"best_under": 1.83,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Kurucs, Rodions",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 34,
+"over": 1.83,
+"under": 1.83,
+"best_over": 2.05,
+"best_under": 1.88,
+"alt_lines": [
+3.5,
+4.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Lawson, A.J.",
+"stat": "3PM",
+"line": 2.5,
+"books": 70,
+"over": 1.83,
+"under": 1.83,
+"best_over": 2.25,
+"best_under": 1.91,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Lawson, A.J.",
+"stat": "Assistances",
+"line": 2.5,
+"books": 59,
+"over": 2.2,
+"under": 1.58,
+"best_over": 2.4,
+"best_under": 1.64,
+"alt_lines": [
+1.5,
+2.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Lawson, A.J.",
+"stat": "PA",
+"line": 15.5,
+"books": 15,
+"over": 1.75,
+"under": 1.93,
+"best_over": 1.75,
+"best_under": 1.95,
+"alt_lines": [
+15.5,
+16.5,
+17.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Lawson, A.J.",
+"stat": "PR",
+"line": 16.5,
+"books": 16,
+"over": 1.88,
+"under": 1.8,
+"best_over": 1.88,
+"best_under": 1.95,
+"alt_lines": [
+16.5,
+17.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Lawson, A.J.",
+"stat": "PRA",
+"line": 18.5,
+"books": 11,
+"over": 1.83,
+"under": 1.85,
+"best_over": 1.83,
+"best_under": 1.91,
+"alt_lines": [
+18.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Lawson, A.J.",
+"stat": "Points",
+"line": 14.5,
+"books": 50,
+"over": 2.0,
+"under": 1.69,
+"best_over": 2.17,
+"best_under": 1.8,
+"alt_lines": [
+13.5,
+14.5,
+15.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Lawson, A.J.",
+"stat": "RA",
+"line": 4.5,
+"books": 10,
+"over": 1.75,
+"under": 1.93,
+"best_over": 1.75,
+"best_under": 1.93,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Lawson, A.J.",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 57,
+"over": 1.91,
+"under": 1.77,
+"best_over": 2.02,
+"best_under": 1.943,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Lawson, A.J.",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 2.5,
+"under": 1.44,
+"best_over": 2.5,
+"best_under": 1.44,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Lessort, Mathias",
+"stat": "Assistances",
+"line": 1.5,
+"books": 44,
+"over": 1.95,
+"under": 1.71,
+"best_over": 2.1,
+"best_under": 1.78,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Lessort, Mathias",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 15,
+"over": 1.53,
+"under": 2.27,
+"best_over": 1.7,
+"best_under": 2.27,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Lessort, Mathias",
+"stat": "PA",
+"line": 13.5,
+"books": 10,
+"over": 1.83,
+"under": 1.85,
+"best_over": 1.83,
+"best_under": 1.85,
+"alt_lines": [
+13.5,
+14.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Lessort, Mathias",
+"stat": "PR",
+"line": 19.5,
+"books": 10,
+"over": 1.85,
+"under": 1.86,
+"best_over": 1.85,
+"best_under": 1.95,
+"alt_lines": [
+18.5,
+19.5,
+20.5,
+21.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Lessort, Mathias",
+"stat": "PRA",
+"line": 20.5,
+"books": 10,
+"over": 1.85,
+"under": 1.83,
+"best_over": 1.85,
+"best_under": 1.83,
+"alt_lines": [
+20.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Lessort, Mathias",
+"stat": "Points",
+"line": 14.5,
+"books": 33,
+"over": 1.95,
+"under": 1.71,
+"best_over": 2.5,
+"best_under": 1.78,
+"alt_lines": [
+11.5,
+12.5,
+13.5,
+14.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Lessort, Mathias",
+"stat": "RA",
+"line": 8.5,
+"books": 10,
+"over": 1.91,
+"under": 1.78,
+"best_over": 1.91,
+"best_under": 1.78,
+"alt_lines": [
+8.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Lessort, Mathias",
+"stat": "Steals",
+"line": 0.5,
+"books": 15,
+"over": 1.42,
+"under": 2.62,
+"best_over": 1.48,
+"best_under": 2.62,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Lessort, Mathias",
+"stat": "TotalRebounds",
+"line": 6.5,
+"books": 49,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.901,
+"best_under": 2.07,
+"alt_lines": [
+6.5,
+7.5,
+8.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Lessort, Mathias",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 2.4,
+"under": 1.48,
+"best_over": 2.4,
+"best_under": 1.48,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Nunn, Kendrick",
+"stat": "3PM",
+"line": 1.5,
+"books": 69,
+"over": 1.5,
+"under": 2.35,
+"best_over": 1.61,
+"best_under": 2.4,
+"alt_lines": [
+1.5,
+2.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Nunn, Kendrick",
+"stat": "Assistances",
+"line": 3.5,
+"books": 67,
+"over": 2.07,
+"under": 1.65,
+"best_over": 2.2,
+"best_under": 1.76,
+"alt_lines": [
+2.5,
+3.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Nunn, Kendrick",
+"stat": "PA",
+"line": 19.5,
+"books": 16,
+"over": 1.82,
+"under": 1.85,
+"best_over": 1.82,
+"best_under": 1.91,
+"alt_lines": [
+19.5,
+20.5,
+21.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Nunn, Kendrick",
+"stat": "PR",
+"line": 18.5,
+"books": 15,
+"over": 1.78,
+"under": 1.88,
+"best_over": 1.85,
+"best_under": 1.88,
+"alt_lines": [
+18.5,
+19.5,
+20.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Nunn, Kendrick",
+"stat": "PRA",
+"line": 22.5,
+"books": 16,
+"over": 1.88,
+"under": 1.78,
+"best_over": 1.95,
+"best_under": 1.83,
+"alt_lines": [
+21.5,
+22.5,
+23.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Nunn, Kendrick",
+"stat": "Points",
+"line": 16.5,
+"books": 69,
+"over": 1.9,
+"under": 1.78,
+"best_over": 1.952,
+"best_under": 1.9,
+"alt_lines": [
+16.5,
+17.5,
+18.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Nunn, Kendrick",
+"stat": "RA",
+"line": 5.5,
+"books": 15,
+"over": 1.7,
+"under": 1.98,
+"best_over": 1.75,
+"best_under": 1.98,
+"alt_lines": [
+5.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Nunn, Kendrick",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 61,
+"over": 1.87,
+"under": 1.8,
+"best_over": 2.0,
+"best_under": 1.84,
+"alt_lines": [
+2.5,
+3.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Nunn, Kendrick",
+"stat": "Turnovers",
+"line": 2.5,
+"books": 5,
+"over": 1.98,
+"under": 1.7,
+"best_over": 1.98,
+"best_under": 1.7,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Sedekerskis, Tadas",
+"stat": "3PM",
+"line": 0.5,
+"books": 58,
+"over": 1.44,
+"under": 2.5,
+"best_over": 1.51,
+"best_under": 2.55,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Sedekerskis, Tadas",
+"stat": "PR",
+"line": 15.5,
+"books": 16,
+"over": 1.9,
+"under": 1.78,
+"best_over": 2.0,
+"best_under": 1.78,
+"alt_lines": [
+14.5,
+15.5,
+16.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Sedekerskis, Tadas",
+"stat": "Points",
+"line": 9.5,
+"books": 64,
+"over": 1.82,
+"under": 1.85,
+"best_over": 1.95,
+"best_under": 1.91,
+"alt_lines": [
+8.5,
+9.5,
+10.5,
+11.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Sedekerskis, Tadas",
+"stat": "TotalRebounds",
+"line": 5.5,
+"books": 62,
+"over": 1.95,
+"under": 1.74,
+"best_over": 2.1,
+"best_under": 1.87,
+"alt_lines": [
+4.5,
+5.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Sloukas, Kostas",
+"stat": "Points",
+"line": 6.5,
+"books": 64,
+"over": 1.87,
+"under": 1.8,
+"best_over": 1.91,
+"best_under": 1.95,
+"alt_lines": [
+6.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Spagnolo, Matteo",
+"stat": "Assistances",
+"line": 2.5,
+"books": 54,
+"over": 1.69,
+"under": 2.0,
+"best_over": 1.83,
+"best_under": 2.2,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Spagnolo, Matteo",
+"stat": "PA",
+"line": 10.5,
+"books": 11,
+"over": 1.83,
+"under": 1.85,
+"best_over": 1.87,
+"best_under": 1.85,
+"alt_lines": [
+10.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Spagnolo, Matteo",
+"stat": "Points",
+"line": 7.5,
+"books": 59,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.87,
+"best_under": 2.0,
+"alt_lines": [
+4.5,
+7.5,
+8.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Stewart, D.J.",
+"stat": "3PM",
+"line": 0.5,
+"books": 25,
+"over": 1.57,
+"under": 2.2,
+"best_over": 1.62,
+"best_under": 2.47,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Stewart, D.J.",
+"stat": "Assistances",
+"line": 1.5,
+"books": 6,
+"over": 2.17,
+"under": 1.58,
+"best_over": 2.17,
+"best_under": 1.658,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Stewart, D.J.",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 7,
+"over": 2.9,
+"under": 1.34,
+"best_over": 2.9,
+"best_under": 1.37,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Stewart, D.J.",
+"stat": "PA",
+"line": 10.5,
+"books": 5,
+"over": 1.85,
+"under": 1.85,
+"best_over": 1.85,
+"best_under": 1.85,
+"alt_lines": [
+10.5,
+11.5,
+12.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Stewart, D.J.",
+"stat": "Points",
+"line": 9.5,
+"books": 40,
+"over": 1.9,
+"under": 1.8,
+"best_over": 1.95,
+"best_under": 1.87,
+"alt_lines": [
+9.5,
+10.5,
+11.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Stewart, D.J.",
+"stat": "Steals",
+"line": 1.5,
+"books": 5,
+"over": 2.4,
+"under": 1.48,
+"best_over": 2.4,
+"best_under": 1.48,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Yabusele, Guerschon",
+"stat": "PR",
+"line": 14.5,
+"books": 6,
+"over": 1.9,
+"under": 1.8,
+"best_over": 1.95,
+"best_under": 1.85,
+"alt_lines": [
+13.5,
+14.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Yabusele, Guerschon",
+"stat": "Points",
+"line": 9.5,
+"books": 33,
+"over": 2.05,
+"under": 1.65,
+"best_over": 2.1,
+"best_under": 1.85,
+"alt_lines": [
+8.5,
+9.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Yabusele, Guerschon",
+"stat": "TotalRebounds",
+"line": 5.5,
+"books": 27,
+"over": 2.15,
+"under": 1.59,
+"best_over": 2.15,
+"best_under": 1.647,
+"alt_lines": [
+4.5,
+5.5
+],
+"fixtureId": "id1100013873263064"
+},
+{
+"player": "Balcerowski, Olek",
+"stat": "Points",
+"line": 6.5,
+"books": 6,
+"over": 1.92,
+"under": 1.76,
+"best_over": 2.0,
+"best_under": 2.01,
+"alt_lines": [
+6.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Balcerowski, Olek",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 4,
+"over": 1.7,
+"under": 2.01,
+"best_over": 1.71,
+"best_under": 2.05,
+"alt_lines": [
+2.5,
+3.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Bolmaro, Leandro",
+"stat": "3PM",
+"line": 0.5,
+"books": 53,
+"over": 1.5,
+"under": 2.35,
+"best_over": 1.599,
+"best_under": 2.47,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Bolmaro, Leandro",
+"stat": "Assistances",
+"line": 2.5,
+"books": 37,
+"over": 1.77,
+"under": 1.91,
+"best_over": 1.98,
+"best_under": 2.0,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Bolmaro, Leandro",
+"stat": "PR",
+"line": 11.5,
+"books": 16,
+"over": 1.85,
+"under": 1.82,
+"best_over": 1.92,
+"best_under": 1.87,
+"alt_lines": [
+11.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Bolmaro, Leandro",
+"stat": "Points",
+"line": 8.5,
+"books": 57,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.926,
+"best_under": 1.91,
+"alt_lines": [
+8.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Bolmaro, Leandro",
+"stat": "Steals",
+"line": 0.5,
+"books": 10,
+"over": 1.62,
+"under": 2.12,
+"best_over": 1.62,
+"best_under": 2.12,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Bolmaro, Leandro",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 63,
+"over": 1.69,
+"under": 2.05,
+"best_over": 1.74,
+"best_under": 2.2,
+"alt_lines": [
+2.5,
+3.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Booker, Devin",
+"stat": "Points",
+"line": 6.5,
+"books": 6,
+"over": 1.83,
+"under": 1.9,
+"best_over": 1.87,
+"best_under": 1.92,
+"alt_lines": [
+6.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Brizuela, Dario",
+"stat": "Points",
+"line": 7.5,
+"books": 28,
+"over": 2.0,
+"under": 1.69,
+"best_over": 2.05,
+"best_under": 1.76,
+"alt_lines": [
+7.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Burnell, Jason",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 61,
+"over": 2.2,
+"under": 1.57,
+"best_over": 2.25,
+"best_under": 1.67,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Cole, RJ",
+"stat": "Assistances",
+"line": 2.5,
+"books": 67,
+"over": 1.69,
+"under": 2.02,
+"best_over": 1.76,
+"best_under": 2.2,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Cole, RJ",
+"stat": "PA",
+"line": 11.5,
+"books": 21,
+"over": 1.93,
+"under": 1.75,
+"best_over": 2.08,
+"best_under": 2.05,
+"alt_lines": [
+9.5,
+10.5,
+11.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Cole, RJ",
+"stat": "Points",
+"line": 7.5,
+"books": 46,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.87,
+"best_under": 1.95,
+"alt_lines": [
+6.5,
+7.5,
+8.5,
+9.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Cole, RJ",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 2.1,
+"under": 1.62,
+"best_over": 2.1,
+"best_under": 1.62,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Evbuomwan, Tosan",
+"stat": "TotalRebounds",
+"line": 4.5,
+"books": 61,
+"over": 2.0,
+"under": 1.69,
+"best_over": 2.1,
+"best_under": 1.82,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Gibson, Umoja",
+"stat": "3PM",
+"line": 1.5,
+"books": 28,
+"over": 1.54,
+"under": 2.27,
+"best_over": 2.05,
+"best_under": 2.45,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Gibson, Umoja",
+"stat": "Assistances",
+"line": 2.5,
+"books": 15,
+"over": 1.65,
+"under": 2.2,
+"best_over": 1.76,
+"best_under": 2.2,
+"alt_lines": [
+2.5,
+3.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Gibson, Umoja",
+"stat": "PA",
+"line": 13.5,
+"books": 5,
+"over": 1.8,
+"under": 1.92,
+"best_over": 1.83,
+"best_under": 1.97,
+"alt_lines": [
+13.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Gibson, Umoja",
+"stat": "Points",
+"line": 10.5,
+"books": 16,
+"over": 1.8,
+"under": 1.88,
+"best_over": 1.83,
+"best_under": 2.02,
+"alt_lines": [
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Guduric, Marko",
+"stat": "3PM",
+"line": 1.5,
+"books": 69,
+"over": 2.58,
+"under": 1.42,
+"best_over": 2.65,
+"best_under": 1.56,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Guduric, Marko",
+"stat": "Assistances",
+"line": 2.5,
+"books": 68,
+"over": 1.87,
+"under": 1.8,
+"best_over": 2.0,
+"best_under": 1.901,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Guduric, Marko",
+"stat": "PA",
+"line": 10.5,
+"books": 15,
+"over": 1.75,
+"under": 1.93,
+"best_over": 1.75,
+"best_under": 1.93,
+"alt_lines": [
+9.5,
+10.5,
+11.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Guduric, Marko",
+"stat": "Points",
+"line": 8.5,
+"books": 61,
+"over": 2.0,
+"under": 1.72,
+"best_over": 2.05,
+"best_under": 1.97,
+"alt_lines": [
+7.5,
+8.5,
+9.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Hall, Devon",
+"stat": "3PM",
+"line": 1.5,
+"books": 63,
+"over": 2.62,
+"under": 1.4,
+"best_over": 2.65,
+"best_under": 1.5,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Hall, Devon",
+"stat": "Assistances",
+"line": 3.5,
+"books": 68,
+"over": 1.62,
+"under": 2.1,
+"best_over": 1.7,
+"best_under": 2.2,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Hall, Devon",
+"stat": "PA",
+"line": 13.5,
+"books": 21,
+"over": 1.82,
+"under": 1.85,
+"best_over": 1.92,
+"best_under": 1.91,
+"alt_lines": [
+12.5,
+13.5,
+14.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Hall, Devon",
+"stat": "PR",
+"line": 12.5,
+"books": 21,
+"over": 1.87,
+"under": 1.8,
+"best_over": 1.92,
+"best_under": 1.87,
+"alt_lines": [
+11.5,
+12.5,
+13.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Hall, Devon",
+"stat": "PRA",
+"line": 16.5,
+"books": 16,
+"over": 1.83,
+"under": 1.85,
+"best_over": 1.9,
+"best_under": 1.91,
+"alt_lines": [
+15.5,
+16.5,
+17.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Hall, Devon",
+"stat": "Points",
+"line": 9.5,
+"books": 61,
+"over": 1.9,
+"under": 1.8,
+"best_over": 1.952,
+"best_under": 1.9,
+"alt_lines": [
+8.5,
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Hall, Devon",
+"stat": "RA",
+"line": 6.5,
+"books": 10,
+"over": 1.67,
+"under": 2.02,
+"best_over": 1.67,
+"best_under": 2.02,
+"alt_lines": [
+6.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Hall, Devon",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 69,
+"over": 1.67,
+"under": 2.05,
+"best_over": 1.78,
+"best_under": 2.2,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Hall, Devon",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 2.28,
+"under": 1.53,
+"best_over": 2.28,
+"best_under": 1.53,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Martin, Tyrese",
+"stat": "3PM",
+"line": 1.5,
+"books": 64,
+"over": 2.35,
+"under": 1.5,
+"best_over": 2.4,
+"best_under": 1.87,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Martin, Tyrese",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 2,
+"over": 2.76,
+"under": 1.35,
+"best_over": 2.82,
+"best_under": 1.36,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Martin, Tyrese",
+"stat": "PR",
+"line": 12.5,
+"books": 16,
+"over": 1.93,
+"under": 1.75,
+"best_over": 1.97,
+"best_under": 1.83,
+"alt_lines": [
+12.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Martin, Tyrese",
+"stat": "Points",
+"line": 7.5,
+"books": 56,
+"over": 1.8,
+"under": 1.89,
+"best_over": 1.87,
+"best_under": 2.02,
+"alt_lines": [
+7.5,
+8.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Martin, Tyrese",
+"stat": "TotalRebounds",
+"line": 4.5,
+"books": 64,
+"over": 2.2,
+"under": 1.57,
+"best_over": 2.25,
+"best_under": 1.98,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Mathews, Garrison",
+"stat": "3PM",
+"line": 1.5,
+"books": 63,
+"over": 1.62,
+"under": 2.1,
+"best_over": 1.69,
+"best_under": 2.42,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Mathews, Garrison",
+"stat": "Points",
+"line": 9.5,
+"books": 55,
+"over": 1.83,
+"under": 1.85,
+"best_over": 1.87,
+"best_under": 1.92,
+"alt_lines": [
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Nebo, Josh",
+"stat": "Assistances",
+"line": 1.5,
+"books": 36,
+"over": 2.2,
+"under": 1.57,
+"best_over": 2.25,
+"best_under": 1.63,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Nebo, Josh",
+"stat": "PA",
+"line": 9.5,
+"books": 10,
+"over": 1.95,
+"under": 1.72,
+"best_over": 1.95,
+"best_under": 1.72,
+"alt_lines": [
+9.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Nebo, Josh",
+"stat": "PR",
+"line": 14.5,
+"books": 16,
+"over": 1.93,
+"under": 1.75,
+"best_over": 1.97,
+"best_under": 1.83,
+"alt_lines": [
+14.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Nebo, Josh",
+"stat": "PRA",
+"line": 15.5,
+"books": 10,
+"over": 1.93,
+"under": 1.75,
+"best_over": 1.93,
+"best_under": 1.75,
+"alt_lines": [
+15.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Nebo, Josh",
+"stat": "Points",
+"line": 8.5,
+"books": 56,
+"over": 2.0,
+"under": 1.7,
+"best_over": 2.05,
+"best_under": 1.8,
+"alt_lines": [
+8.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Nebo, Josh",
+"stat": "RA",
+"line": 6.5,
+"books": 10,
+"over": 1.7,
+"under": 1.98,
+"best_over": 1.7,
+"best_under": 1.98,
+"alt_lines": [
+6.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Nebo, Josh",
+"stat": "TotalRebounds",
+"line": 5.5,
+"books": 63,
+"over": 1.69,
+"under": 2.0,
+"best_over": 1.74,
+"best_under": 2.2,
+"alt_lines": [
+5.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Parra, Joel",
+"stat": "3PM",
+"line": 0.5,
+"books": 58,
+"over": 1.44,
+"under": 2.5,
+"best_over": 1.51,
+"best_under": 2.6,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Parra, Joel",
+"stat": "Assistances",
+"line": 1.5,
+"books": 68,
+"over": 1.91,
+"under": 1.78,
+"best_over": 2.05,
+"best_under": 1.92,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Parra, Joel",
+"stat": "PA",
+"line": 9.5,
+"books": 16,
+"over": 1.93,
+"under": 1.75,
+"best_over": 2.0,
+"best_under": 1.8,
+"alt_lines": [
+8.5,
+9.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Parra, Joel",
+"stat": "PR",
+"line": 10.5,
+"books": 21,
+"over": 1.77,
+"under": 1.93,
+"best_over": 1.78,
+"best_under": 2.02,
+"alt_lines": [
+9.5,
+10.5,
+11.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Parra, Joel",
+"stat": "PRA",
+"line": 12.5,
+"books": 11,
+"over": 1.85,
+"under": 1.82,
+"best_over": 1.85,
+"best_under": 1.87,
+"alt_lines": [
+12.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Parra, Joel",
+"stat": "Points",
+"line": 7.5,
+"books": 61,
+"over": 1.87,
+"under": 1.8,
+"best_over": 1.91,
+"best_under": 1.9,
+"alt_lines": [
+6.5,
+7.5,
+8.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Parra, Joel",
+"stat": "RA",
+"line": 4.5,
+"books": 10,
+"over": 1.72,
+"under": 1.95,
+"best_over": 1.72,
+"best_under": 1.95,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Parra, Joel",
+"stat": "Steals",
+"line": 1.5,
+"books": 5,
+"over": 2.7,
+"under": 1.38,
+"best_over": 2.7,
+"best_under": 1.38,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Parra, Joel",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 69,
+"over": 2.1,
+"under": 1.65,
+"best_over": 2.2,
+"best_under": 1.833,
+"alt_lines": [
+2.5,
+3.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Peters, Alec",
+"stat": "3PM",
+"line": 1.5,
+"books": 69,
+"over": 2.2,
+"under": 1.59,
+"best_over": 2.25,
+"best_under": 1.8,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Peters, Alec",
+"stat": "Assistances",
+"line": 0.5,
+"books": 15,
+"over": 1.42,
+"under": 2.6,
+"best_over": 1.43,
+"best_under": 2.85,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Peters, Alec",
+"stat": "PA",
+"line": 10.5,
+"books": 15,
+"over": 1.8,
+"under": 1.88,
+"best_over": 1.85,
+"best_under": 1.95,
+"alt_lines": [
+10.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Peters, Alec",
+"stat": "PR",
+"line": 14.5,
+"books": 20,
+"over": 1.94,
+"under": 1.73,
+"best_over": 1.95,
+"best_under": 1.85,
+"alt_lines": [
+13.5,
+14.5,
+15.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Peters, Alec",
+"stat": "PRA",
+"line": 15.5,
+"books": 10,
+"over": 1.93,
+"under": 1.75,
+"best_over": 1.93,
+"best_under": 1.75,
+"alt_lines": [
+15.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Peters, Alec",
+"stat": "Points",
+"line": 9.5,
+"books": 62,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.87,
+"best_under": 1.95,
+"alt_lines": [
+8.5,
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Peters, Alec",
+"stat": "RA",
+"line": 5.5,
+"books": 10,
+"over": 1.93,
+"under": 1.75,
+"best_over": 1.93,
+"best_under": 1.75,
+"alt_lines": [
+5.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Peters, Alec",
+"stat": "TotalRebounds",
+"line": 4.5,
+"books": 69,
+"over": 1.91,
+"under": 1.77,
+"best_over": 2.17,
+"best_under": 1.91,
+"alt_lines": [
+3.5,
+4.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Punter, Kevin",
+"stat": "3PM",
+"line": 1.5,
+"books": 69,
+"over": 1.83,
+"under": 1.83,
+"best_over": 2.0,
+"best_under": 2.03,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Punter, Kevin",
+"stat": "Assistances",
+"line": 2.5,
+"books": 68,
+"over": 2.15,
+"under": 1.59,
+"best_over": 2.4,
+"best_under": 1.741,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Punter, Kevin",
+"stat": "PA",
+"line": 17.5,
+"books": 15,
+"over": 1.91,
+"under": 1.78,
+"best_over": 2.18,
+"best_under": 1.78,
+"alt_lines": [
+15.5,
+16.5,
+17.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Punter, Kevin",
+"stat": "PR",
+"line": 16.5,
+"books": 17,
+"over": 1.78,
+"under": 1.9,
+"best_over": 2.02,
+"best_under": 1.9,
+"alt_lines": [
+15.5,
+16.5,
+17.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Punter, Kevin",
+"stat": "PRA",
+"line": 19.5,
+"books": 10,
+"over": 1.9,
+"under": 1.78,
+"best_over": 1.9,
+"best_under": 1.78,
+"alt_lines": [
+18.5,
+19.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Punter, Kevin",
+"stat": "Points",
+"line": 14.5,
+"books": 46,
+"over": 1.8,
+"under": 1.87,
+"best_over": 2.02,
+"best_under": 1.91,
+"alt_lines": [
+13.5,
+14.5,
+15.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Punter, Kevin",
+"stat": "RA",
+"line": 4.5,
+"books": 10,
+"over": 2.05,
+"under": 1.65,
+"best_over": 2.05,
+"best_under": 1.65,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Punter, Kevin",
+"stat": "Steals",
+"line": 0.5,
+"books": 5,
+"over": 1.5,
+"under": 2.35,
+"best_over": 1.5,
+"best_under": 2.35,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Punter, Kevin",
+"stat": "TotalRebounds",
+"line": 1.5,
+"books": 69,
+"over": 1.57,
+"under": 2.2,
+"best_over": 1.719,
+"best_under": 2.4,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Robinson, Justin",
+"stat": "3PM",
+"line": 1.5,
+"books": 69,
+"over": 1.69,
+"under": 2.0,
+"best_over": 1.74,
+"best_under": 2.22,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Robinson, Justin",
+"stat": "Assistances",
+"line": 3.5,
+"books": 68,
+"over": 2.2,
+"under": 1.6,
+"best_over": 2.25,
+"best_under": 1.833,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Robinson, Justin",
+"stat": "PA",
+"line": 15.5,
+"books": 17,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.83,
+"best_under": 2.02,
+"alt_lines": [
+15.5,
+16.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Robinson, Justin",
+"stat": "Points",
+"line": 12.5,
+"books": 61,
+"over": 2.0,
+"under": 1.72,
+"best_over": 2.05,
+"best_under": 1.95,
+"alt_lines": [
+11.5,
+12.5,
+13.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Robinson, Justin",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 1.62,
+"under": 2.1,
+"best_over": 1.62,
+"best_under": 2.1,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Umude, Stanley",
+"stat": "Points",
+"line": 5.5,
+"books": 5,
+"over": 1.92,
+"under": 1.82,
+"best_over": 1.97,
+"best_under": 1.83,
+"alt_lines": [
+5.5,
+6.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Wright, Moses",
+"stat": "PR",
+"line": 19.5,
+"books": 21,
+"over": 1.8,
+"under": 1.88,
+"best_over": 1.9,
+"best_under": 1.95,
+"alt_lines": [
+18.5,
+19.5,
+20.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Wright, Moses",
+"stat": "Points",
+"line": 13.5,
+"books": 62,
+"over": 1.8,
+"under": 1.9,
+"best_over": 1.85,
+"best_under": 2.0,
+"alt_lines": [
+12.5,
+13.5,
+14.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Wright, Moses",
+"stat": "TotalRebounds",
+"line": 5.5,
+"books": 69,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.85,
+"best_under": 2.0,
+"alt_lines": [
+4.5,
+5.5
+],
+"fixtureId": "id1100013873263066"
+},
+{
+"player": "Allman Jr., Kyle",
+"stat": "3PM",
+"line": 0.5,
+"books": 15,
+"over": 1.53,
+"under": 2.3,
+"best_over": 1.55,
+"best_under": 2.3,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Allman Jr., Kyle",
+"stat": "Assistances",
+"line": 1.5,
+"books": 30,
+"over": 1.65,
+"under": 2.04,
+"best_over": 1.82,
+"best_under": 2.1,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Allman Jr., Kyle",
+"stat": "PA",
+"line": 8.5,
+"books": 20,
+"over": 1.91,
+"under": 1.75,
+"best_over": 1.95,
+"best_under": 1.85,
+"alt_lines": [
+8.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Allman Jr., Kyle",
+"stat": "PR",
+"line": 7.5,
+"books": 15,
+"over": 1.7,
+"under": 1.98,
+"best_over": 1.74,
+"best_under": 1.98,
+"alt_lines": [
+7.5,
+8.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Allman Jr., Kyle",
+"stat": "Points",
+"line": 6.5,
+"books": 32,
+"over": 1.88,
+"under": 1.8,
+"best_over": 1.91,
+"best_under": 1.95,
+"alt_lines": [
+5.5,
+6.5,
+7.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Allman Jr., Kyle",
+"stat": "RA",
+"line": 3.5,
+"books": 10,
+"over": 1.95,
+"under": 1.72,
+"best_over": 1.95,
+"best_under": 1.72,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Allman Jr., Kyle",
+"stat": "TotalRebounds",
+"line": 1.5,
+"books": 30,
+"over": 1.87,
+"under": 1.8,
+"best_over": 1.91,
+"best_under": 1.92,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Baldwin Jr., Patrick",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 2,
+"over": 1.46,
+"under": 2.37,
+"best_over": 1.47,
+"best_under": 2.42,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Butler, Jared",
+"stat": "3PM",
+"line": 2.5,
+"books": 67,
+"over": 2.4,
+"under": 1.5,
+"best_over": 2.45,
+"best_under": 1.55,
+"alt_lines": [
+1.5,
+2.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Butler, Jared",
+"stat": "Assistances",
+"line": 2.5,
+"books": 60,
+"over": 1.83,
+"under": 1.85,
+"best_over": 1.88,
+"best_under": 2.2,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Butler, Jared",
+"stat": "PA",
+"line": 14.5,
+"books": 15,
+"over": 1.87,
+"under": 1.8,
+"best_over": 2.0,
+"best_under": 1.8,
+"alt_lines": [
+13.5,
+14.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Butler, Jared",
+"stat": "Points",
+"line": 11.5,
+"books": 61,
+"over": 1.91,
+"under": 1.8,
+"best_over": 2.02,
+"best_under": 1.85,
+"alt_lines": [
+10.5,
+11.5,
+12.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Butler, Jared",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 2.1,
+"under": 1.62,
+"best_over": 2.1,
+"best_under": 1.62,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Carter, Tyson",
+"stat": "3PM",
+"line": 0.5,
+"books": 52,
+"over": 1.5,
+"under": 2.36,
+"best_over": 1.54,
+"best_under": 2.47,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Carter, Tyson",
+"stat": "Assistances",
+"line": 2.5,
+"books": 55,
+"over": 1.83,
+"under": 1.85,
+"best_over": 2.25,
+"best_under": 2.0,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Carter, Tyson",
+"stat": "PA",
+"line": 7.5,
+"books": 15,
+"over": 1.78,
+"under": 1.9,
+"best_over": 1.83,
+"best_under": 1.97,
+"alt_lines": [
+7.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Carter, Tyson",
+"stat": "Points",
+"line": 4.5,
+"books": 43,
+"over": 1.77,
+"under": 1.91,
+"best_over": 1.82,
+"best_under": 2.12,
+"alt_lines": [
+4.5,
+5.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Davidovac, Dejan",
+"stat": "Points",
+"line": 4.5,
+"books": 5,
+"over": 1.82,
+"under": 1.92,
+"best_over": 1.85,
+"best_under": 1.95,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Dobric, Ognjen",
+"stat": "Points",
+"line": 4.5,
+"books": 43,
+"over": 1.95,
+"under": 1.71,
+"best_over": 2.0,
+"best_under": 1.82,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Hayes, Kevarrius",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 7,
+"over": 1.44,
+"under": 2.5,
+"best_over": 1.44,
+"best_under": 2.52,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Hayes, Kevarrius",
+"stat": "PR",
+"line": 14.5,
+"books": 20,
+"over": 1.78,
+"under": 1.88,
+"best_over": 1.84,
+"best_under": 2.0,
+"alt_lines": [
+13.5,
+14.5,
+15.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Hayes, Kevarrius",
+"stat": "Points",
+"line": 9.5,
+"books": 61,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.95,
+"best_under": 1.91,
+"alt_lines": [
+7.5,
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Hayes, Kevarrius",
+"stat": "TotalRebounds",
+"line": 4.5,
+"books": 48,
+"over": 1.71,
+"under": 1.95,
+"best_over": 1.77,
+"best_under": 2.1,
+"alt_lines": [
+3.5,
+4.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Izundu, Ebuka",
+"stat": "PR",
+"line": 9.5,
+"books": 5,
+"over": 1.73,
+"under": 2.0,
+"best_over": 1.77,
+"best_under": 2.05,
+"alt_lines": [
+9.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Izundu, Ebuka",
+"stat": "Points",
+"line": 5.5,
+"books": 5,
+"over": 1.88,
+"under": 1.85,
+"best_over": 1.92,
+"best_under": 1.88,
+"alt_lines": [
+5.5,
+7.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Izundu, Ebuka",
+"stat": "TotalRebounds",
+"line": 4.5,
+"books": 6,
+"over": 1.89,
+"under": 1.83,
+"best_over": 1.95,
+"best_under": 2.01,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Jones, Carlik",
+"stat": "3PM",
+"line": 0.5,
+"books": 58,
+"over": 1.65,
+"under": 2.05,
+"best_over": 1.73,
+"best_under": 2.26,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Jones, Carlik",
+"stat": "Assistances",
+"line": 5.5,
+"books": 42,
+"over": 2.2,
+"under": 1.57,
+"best_over": 2.25,
+"best_under": 1.65,
+"alt_lines": [
+4.5,
+5.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Jones, Carlik",
+"stat": "PA",
+"line": 20.5,
+"books": 16,
+"over": 1.91,
+"under": 1.78,
+"best_over": 2.0,
+"best_under": 1.78,
+"alt_lines": [
+18.5,
+19.5,
+20.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Jones, Carlik",
+"stat": "PR",
+"line": 17.5,
+"books": 21,
+"over": 1.84,
+"under": 1.83,
+"best_over": 1.95,
+"best_under": 1.85,
+"alt_lines": [
+17.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Jones, Carlik",
+"stat": "PRA",
+"line": 22.5,
+"books": 16,
+"over": 1.78,
+"under": 1.88,
+"best_over": 1.81,
+"best_under": 1.91,
+"alt_lines": [
+22.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Jones, Carlik",
+"stat": "Points",
+"line": 14.5,
+"books": 70,
+"over": 1.77,
+"under": 1.92,
+"best_over": 1.83,
+"best_under": 2.0,
+"alt_lines": [
+13.5,
+14.5,
+15.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Jones, Carlik",
+"stat": "RA",
+"line": 7.5,
+"books": 10,
+"over": 1.8,
+"under": 1.88,
+"best_over": 1.8,
+"best_under": 1.88,
+"alt_lines": [
+7.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Jones, Carlik",
+"stat": "Steals",
+"line": 0.5,
+"books": 15,
+"over": 1.5,
+"under": 2.37,
+"best_over": 1.5,
+"best_under": 2.37,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Jones, Carlik",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 60,
+"over": 1.83,
+"under": 1.83,
+"best_over": 2.05,
+"best_under": 1.98,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Jones, Carlik",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.83,
+"best_under": 1.83,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Jones, Chris",
+"stat": "3PM",
+"line": 0.5,
+"books": 5,
+"over": 1.32,
+"under": 3.0,
+"best_over": 1.32,
+"best_under": 3.0,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Jones, Chris",
+"stat": "Assistances",
+"line": 5.5,
+"books": 59,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.9,
+"best_under": 1.91,
+"alt_lines": [
+4.5,
+5.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Jones, Chris",
+"stat": "PA",
+"line": 13.5,
+"books": 21,
+"over": 1.8,
+"under": 1.85,
+"best_over": 2.05,
+"best_under": 1.95,
+"alt_lines": [
+12.5,
+13.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Jones, Chris",
+"stat": "PR",
+"line": 10.5,
+"books": 11,
+"over": 1.82,
+"under": 1.85,
+"best_over": 1.83,
+"best_under": 1.87,
+"alt_lines": [
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Jones, Chris",
+"stat": "PRA",
+"line": 16.5,
+"books": 11,
+"over": 1.9,
+"under": 1.78,
+"best_over": 1.9,
+"best_under": 1.83,
+"alt_lines": [
+16.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Jones, Chris",
+"stat": "Points",
+"line": 7.5,
+"books": 59,
+"over": 1.91,
+"under": 1.8,
+"best_over": 1.97,
+"best_under": 2.0,
+"alt_lines": [
+6.5,
+7.5,
+8.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Jones, Chris",
+"stat": "RA",
+"line": 7.5,
+"books": 10,
+"over": 1.67,
+"under": 2.02,
+"best_over": 1.67,
+"best_under": 2.02,
+"alt_lines": [
+7.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Jones, Chris",
+"stat": "Steals",
+"line": 0.5,
+"books": 5,
+"over": 1.7,
+"under": 2.0,
+"best_over": 1.7,
+"best_under": 2.0,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Jones, Chris",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 59,
+"over": 2.0,
+"under": 1.71,
+"best_over": 2.05,
+"best_under": 1.76,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Jones, Chris",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 2.0,
+"under": 1.7,
+"best_over": 2.0,
+"best_under": 1.7,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Kramer, David",
+"stat": "Points",
+"line": 5.5,
+"books": 5,
+"over": 1.87,
+"under": 1.87,
+"best_over": 1.9,
+"best_under": 1.9,
+"alt_lines": [
+5.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Moneke, Chima",
+"stat": "3PM",
+"line": 1.5,
+"books": 63,
+"over": 1.69,
+"under": 2.0,
+"best_over": 2.05,
+"best_under": 2.1,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Moneke, Chima",
+"stat": "PR",
+"line": 18.5,
+"books": 20,
+"over": 1.81,
+"under": 1.88,
+"best_over": 1.89,
+"best_under": 1.9,
+"alt_lines": [
+17.5,
+18.5,
+19.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Moneke, Chima",
+"stat": "Points",
+"line": 13.5,
+"books": 70,
+"over": 1.8,
+"under": 1.9,
+"best_over": 1.926,
+"best_under": 2.0,
+"alt_lines": [
+12.5,
+13.5,
+14.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Moneke, Chima",
+"stat": "TotalRebounds",
+"line": 4.5,
+"books": 60,
+"over": 1.69,
+"under": 2.0,
+"best_over": 1.77,
+"best_under": 2.2,
+"alt_lines": [
+3.5,
+4.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Nwora, Jordan",
+"stat": "3PM",
+"line": 1.5,
+"books": 68,
+"over": 1.87,
+"under": 1.8,
+"best_over": 1.97,
+"best_under": 1.91,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Nwora, Jordan",
+"stat": "PR",
+"line": 19.5,
+"books": 15,
+"over": 1.78,
+"under": 1.9,
+"best_over": 1.78,
+"best_under": 2.0,
+"alt_lines": [
+19.5,
+20.5,
+21.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Nwora, Jordan",
+"stat": "Points",
+"line": 15.5,
+"books": 51,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.92,
+"best_under": 1.91,
+"alt_lines": [
+13.5,
+14.5,
+15.5,
+16.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Nwora, Jordan",
+"stat": "TotalRebounds",
+"line": 5.5,
+"books": 50,
+"over": 2.1,
+"under": 1.62,
+"best_over": 2.2,
+"best_under": 1.67,
+"alt_lines": [
+4.5,
+5.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Ojeleye, Semi",
+"stat": "3PM",
+"line": 0.5,
+"books": 58,
+"over": 1.71,
+"under": 1.95,
+"best_over": 1.82,
+"best_under": 2.26,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Ojeleye, Semi",
+"stat": "PR",
+"line": 14.5,
+"books": 16,
+"over": 1.78,
+"under": 1.91,
+"best_over": 1.8,
+"best_under": 2.02,
+"alt_lines": [
+13.5,
+14.5,
+15.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Ojeleye, Semi",
+"stat": "Points",
+"line": 9.5,
+"books": 43,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.87,
+"best_under": 1.95,
+"alt_lines": [
+8.5,
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Ojeleye, Semi",
+"stat": "TotalRebounds",
+"line": 4.5,
+"books": 60,
+"over": 1.73,
+"under": 1.96,
+"best_over": 2.1,
+"best_under": 2.07,
+"alt_lines": [
+3.5,
+4.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Pajola, Alessandro",
+"stat": "3PM",
+"line": 0.5,
+"books": 52,
+"over": 1.6,
+"under": 2.15,
+"best_over": 1.98,
+"best_under": 2.2,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Pajola, Alessandro",
+"stat": "Assistances",
+"line": 4.5,
+"books": 53,
+"over": 2.0,
+"under": 1.69,
+"best_over": 2.12,
+"best_under": 1.74,
+"alt_lines": [
+3.5,
+4.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Pajola, Alessandro",
+"stat": "PA",
+"line": 8.5,
+"books": 5,
+"over": 1.74,
+"under": 1.97,
+"best_over": 1.78,
+"best_under": 2.05,
+"alt_lines": [
+8.5,
+9.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Pajola, Alessandro",
+"stat": "Points",
+"line": 4.5,
+"books": 34,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.901,
+"best_under": 1.95,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Pajola, Alessandro",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 29,
+"over": 1.91,
+"under": 1.77,
+"best_over": 2.2,
+"best_under": 1.8,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Stevens, Lamar",
+"stat": "3PM",
+"line": 1.5,
+"books": 62,
+"over": 2.3,
+"under": 1.54,
+"best_over": 2.42,
+"best_under": 1.61,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Stevens, Lamar",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 10,
+"over": 1.85,
+"under": 1.82,
+"best_over": 1.85,
+"best_under": 1.82,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Stevens, Lamar",
+"stat": "PR",
+"line": 14.5,
+"books": 16,
+"over": 1.87,
+"under": 1.8,
+"best_over": 1.88,
+"best_under": 1.9,
+"alt_lines": [
+14.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Stevens, Lamar",
+"stat": "Points",
+"line": 10.5,
+"books": 64,
+"over": 1.91,
+"under": 1.8,
+"best_over": 2.02,
+"best_under": 1.95,
+"alt_lines": [
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Stevens, Lamar",
+"stat": "TotalRebounds",
+"line": 4.5,
+"books": 44,
+"over": 2.0,
+"under": 1.69,
+"best_over": 2.2,
+"best_under": 1.8,
+"alt_lines": [
+3.5,
+4.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Tanaskovic, Nikola",
+"stat": "PR",
+"line": 11.5,
+"books": 16,
+"over": 1.95,
+"under": 1.72,
+"best_over": 1.95,
+"best_under": 1.97,
+"alt_lines": [
+11.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Tanaskovic, Nikola",
+"stat": "Points",
+"line": 7.5,
+"books": 64,
+"over": 1.87,
+"under": 1.8,
+"best_over": 2.0,
+"best_under": 1.95,
+"alt_lines": [
+6.5,
+7.5,
+8.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Tanaskovic, Nikola",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 55,
+"over": 1.71,
+"under": 1.98,
+"best_over": 1.77,
+"best_under": 2.37,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Thompson, Ethan",
+"stat": "Points",
+"line": 7.5,
+"books": 65,
+"over": 1.76,
+"under": 1.95,
+"best_over": 1.82,
+"best_under": 2.02,
+"alt_lines": [
+7.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Vildoza, Luca",
+"stat": "3PM",
+"line": 0.5,
+"books": 68,
+"over": 1.5,
+"under": 2.37,
+"best_over": 1.571,
+"best_under": 2.65,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Vildoza, Luca",
+"stat": "Assistances",
+"line": 2.5,
+"books": 60,
+"over": 1.65,
+"under": 2.0,
+"best_over": 1.769,
+"best_under": 2.25,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Vildoza, Luca",
+"stat": "PA",
+"line": 10.5,
+"books": 16,
+"over": 1.78,
+"under": 1.9,
+"best_over": 1.92,
+"best_under": 1.9,
+"alt_lines": [
+10.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Vildoza, Luca",
+"stat": "Points",
+"line": 7.5,
+"books": 69,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.92,
+"best_under": 1.91,
+"alt_lines": [
+6.5,
+7.5,
+8.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Vildoza, Luca",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 2.0,
+"under": 1.7,
+"best_over": 2.0,
+"best_under": 1.7,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Weiler-Babb, Nick",
+"stat": "Assistances",
+"line": 4.5,
+"books": 58,
+"over": 2.2,
+"under": 1.57,
+"best_over": 2.3,
+"best_under": 1.65,
+"alt_lines": [
+3.5,
+4.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Weiler-Babb, Nick",
+"stat": "PA",
+"line": 7.5,
+"books": 5,
+"over": 1.71,
+"under": 2.02,
+"best_over": 1.75,
+"best_under": 2.07,
+"alt_lines": [
+7.5,
+8.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Weiler-Babb, Nick",
+"stat": "PR",
+"line": 6.5,
+"books": 5,
+"over": 1.7,
+"under": 2.02,
+"best_over": 1.74,
+"best_under": 2.07,
+"alt_lines": [
+6.5,
+7.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Weiler-Babb, Nick",
+"stat": "RA",
+"line": 7.5,
+"books": 10,
+"over": 2.0,
+"under": 1.7,
+"best_over": 2.0,
+"best_under": 1.7,
+"alt_lines": [
+7.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Weiler-Babb, Nick",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 40,
+"over": 1.62,
+"under": 2.1,
+"best_over": 1.69,
+"best_under": 2.35,
+"alt_lines": [
+2.5,
+3.5
+],
+"fixtureId": "id1100013873263070"
+},
+{
+"player": "Besson, Hugo",
+"stat": "PR",
+"line": 12.5,
+"books": 26,
+"over": 1.78,
+"under": 1.92,
+"best_over": 1.85,
+"best_under": 1.97,
+"alt_lines": [
+12.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Besson, Hugo",
+"stat": "Points",
+"line": 10.5,
+"books": 55,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.92,
+"best_under": 1.87,
+"alt_lines": [
+10.5,
+11.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Besson, Hugo",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 53,
+"over": 2.2,
+"under": 1.57,
+"best_over": 2.37,
+"best_under": 1.6,
+"alt_lines": [
+1.5,
+2.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Bolomboy, Joel",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 2,
+"over": 2.33,
+"under": 1.48,
+"best_over": 2.37,
+"best_under": 1.5,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Bolomboy, Joel",
+"stat": "PR",
+"line": 10.5,
+"books": 25,
+"over": 1.85,
+"under": 1.85,
+"best_over": 2.02,
+"best_under": 1.87,
+"alt_lines": [
+10.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Bolomboy, Joel",
+"stat": "Points",
+"line": 4.5,
+"books": 54,
+"over": 1.87,
+"under": 1.81,
+"best_over": 1.95,
+"best_under": 1.85,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Bolomboy, Joel",
+"stat": "TotalRebounds",
+"line": 5.5,
+"books": 53,
+"over": 1.87,
+"under": 1.8,
+"best_over": 1.97,
+"best_under": 1.87,
+"alt_lines": [
+5.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Brown, Sterling",
+"stat": "3PM",
+"line": 2.5,
+"books": 53,
+"over": 2.25,
+"under": 1.56,
+"best_over": 2.42,
+"best_under": 1.6,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Brown, Sterling",
+"stat": "PR",
+"line": 14.5,
+"books": 26,
+"over": 1.78,
+"under": 1.91,
+"best_over": 1.85,
+"best_under": 2.0,
+"alt_lines": [
+14.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Brown, Sterling",
+"stat": "Points",
+"line": 12.5,
+"books": 55,
+"over": 1.91,
+"under": 1.77,
+"best_over": 1.97,
+"best_under": 1.85,
+"alt_lines": [
+11.5,
+12.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Brown, Sterling",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 53,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.92,
+"best_under": 1.88,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Crowder, Jae",
+"stat": "3PM",
+"line": 0.5,
+"books": 52,
+"over": 1.87,
+"under": 1.8,
+"best_over": 1.95,
+"best_under": 1.85,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Crowder, Jae",
+"stat": "Assistances",
+"line": 3.5,
+"books": 53,
+"over": 2.2,
+"under": 1.57,
+"best_over": 2.35,
+"best_under": 1.61,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Crowder, Jae",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 10,
+"over": 2.0,
+"under": 1.7,
+"best_over": 2.0,
+"best_under": 1.7,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Crowder, Jae",
+"stat": "PA",
+"line": 12.5,
+"books": 20,
+"over": 1.88,
+"under": 1.79,
+"best_over": 1.93,
+"best_under": 1.85,
+"alt_lines": [
+11.5,
+12.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Crowder, Jae",
+"stat": "PR",
+"line": 13.5,
+"books": 26,
+"over": 1.83,
+"under": 1.85,
+"best_over": 1.92,
+"best_under": 1.95,
+"alt_lines": [
+13.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Crowder, Jae",
+"stat": "PRA",
+"line": 16.5,
+"books": 21,
+"over": 1.83,
+"under": 1.87,
+"best_over": 1.85,
+"best_under": 1.9,
+"alt_lines": [
+16.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Crowder, Jae",
+"stat": "Points",
+"line": 8.5,
+"books": 55,
+"over": 1.8,
+"under": 1.9,
+"best_over": 1.833,
+"best_under": 2.0,
+"alt_lines": [
+8.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Crowder, Jae",
+"stat": "RA",
+"line": 7.5,
+"books": 10,
+"over": 1.75,
+"under": 1.93,
+"best_over": 1.75,
+"best_under": 1.93,
+"alt_lines": [
+7.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Crowder, Jae",
+"stat": "Steals",
+"line": 0.5,
+"books": 10,
+"over": 1.52,
+"under": 2.3,
+"best_over": 1.52,
+"best_under": 2.3,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Crowder, Jae",
+"stat": "TotalRebounds",
+"line": 4.5,
+"books": 53,
+"over": 1.83,
+"under": 1.85,
+"best_over": 1.9,
+"best_under": 1.95,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Edwards, Carsen",
+"stat": "3PM",
+"line": 2.5,
+"books": 37,
+"over": 1.57,
+"under": 2.2,
+"best_over": 1.6,
+"best_under": 2.25,
+"alt_lines": [
+2.5,
+3.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Edwards, Carsen",
+"stat": "Assistances",
+"line": 2.5,
+"books": 53,
+"over": 2.35,
+"under": 1.53,
+"best_over": 2.4,
+"best_under": 1.57,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Edwards, Carsen",
+"stat": "PA",
+"line": 22.5,
+"books": 11,
+"over": 1.85,
+"under": 1.85,
+"best_over": 1.91,
+"best_under": 1.85,
+"alt_lines": [
+21.5,
+22.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Edwards, Carsen",
+"stat": "Points",
+"line": 19.5,
+"books": 55,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.88,
+"best_under": 1.95,
+"alt_lines": [
+19.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Gach, Both",
+"stat": "3PM",
+"line": 0.5,
+"books": 53,
+"over": 1.56,
+"under": 2.25,
+"best_over": 1.6,
+"best_under": 2.42,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Gach, Both",
+"stat": "PR",
+"line": 8.5,
+"books": 25,
+"over": 1.85,
+"under": 1.85,
+"best_over": 1.9,
+"best_under": 1.9,
+"alt_lines": [
+8.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Gach, Both",
+"stat": "Points",
+"line": 6.5,
+"books": 55,
+"over": 1.83,
+"under": 1.85,
+"best_over": 1.87,
+"best_under": 1.97,
+"alt_lines": [
+6.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Gach, Both",
+"stat": "TotalRebounds",
+"line": 1.5,
+"books": 53,
+"over": 1.8,
+"under": 1.91,
+"best_over": 1.833,
+"best_under": 2.0,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Grigonis, Marius",
+"stat": "Points",
+"line": 8.5,
+"books": 55,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.9,
+"best_under": 1.9,
+"alt_lines": [
+8.5,
+9.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Lee, Saben",
+"stat": "Assistances",
+"line": 4.5,
+"books": 52,
+"over": 2.2,
+"under": 1.58,
+"best_over": 2.25,
+"best_under": 1.65,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Mills, Patty",
+"stat": "3PM",
+"line": 1.5,
+"books": 52,
+"over": 1.77,
+"under": 1.92,
+"best_over": 1.8,
+"best_under": 2.05,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Mills, Patty",
+"stat": "Assistances",
+"line": 2.5,
+"books": 52,
+"over": 2.1,
+"under": 1.62,
+"best_over": 2.25,
+"best_under": 1.65,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Mills, Patty",
+"stat": "PA",
+"line": 15.5,
+"books": 20,
+"over": 1.79,
+"under": 1.89,
+"best_over": 1.85,
+"best_under": 1.95,
+"alt_lines": [
+14.5,
+15.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Mills, Patty",
+"stat": "Points",
+"line": 12.5,
+"books": 54,
+"over": 1.8,
+"under": 1.88,
+"best_over": 1.88,
+"best_under": 1.95,
+"alt_lines": [
+12.5,
+13.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Sleva, Dustin",
+"stat": "3PM",
+"line": 0.5,
+"books": 37,
+"over": 1.44,
+"under": 2.55,
+"best_over": 1.455,
+"best_under": 2.65,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Sleva, Dustin",
+"stat": "PR",
+"line": 8.5,
+"books": 25,
+"over": 1.78,
+"under": 1.88,
+"best_over": 1.9,
+"best_under": 1.95,
+"alt_lines": [
+8.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Sleva, Dustin",
+"stat": "Points",
+"line": 4.5,
+"books": 54,
+"over": 1.8,
+"under": 1.88,
+"best_over": 1.833,
+"best_under": 1.97,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Sleva, Dustin",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 53,
+"over": 1.71,
+"under": 1.95,
+"best_over": 1.75,
+"best_under": 2.15,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Tubelis, Azuolas",
+"stat": "PR",
+"line": 16.5,
+"books": 26,
+"over": 1.84,
+"under": 1.83,
+"best_over": 1.97,
+"best_under": 1.87,
+"alt_lines": [
+16.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Tubelis, Azuolas",
+"stat": "Points",
+"line": 11.5,
+"books": 55,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.97,
+"best_under": 1.87,
+"alt_lines": [
+11.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Tubelis, Azuolas",
+"stat": "TotalRebounds",
+"line": 4.5,
+"books": 53,
+"over": 1.69,
+"under": 2.0,
+"best_over": 1.78,
+"best_under": 2.15,
+"alt_lines": [
+4.5,
+5.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Ulanovas, Edgaras",
+"stat": "3PM",
+"line": 0.5,
+"books": 46,
+"over": 2.95,
+"under": 1.33,
+"best_over": 3.0,
+"best_under": 1.36,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Valanciunas, Jonas",
+"stat": "Assistances",
+"line": 2.5,
+"books": 53,
+"over": 2.1,
+"under": 1.64,
+"best_over": 2.17,
+"best_under": 1.68,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Valanciunas, Jonas",
+"stat": "BlocksFavour",
+"line": 1.5,
+"books": 2,
+"over": 2.58,
+"under": 1.39,
+"best_over": 2.65,
+"best_under": 1.4,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Valanciunas, Jonas",
+"stat": "PA",
+"line": 14.5,
+"books": 20,
+"over": 1.93,
+"under": 1.75,
+"best_over": 1.95,
+"best_under": 1.75,
+"alt_lines": [
+14.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Valanciunas, Jonas",
+"stat": "PR",
+"line": 20.5,
+"books": 20,
+"over": 1.92,
+"under": 1.75,
+"best_over": 1.95,
+"best_under": 1.78,
+"alt_lines": [
+19.5,
+20.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Valanciunas, Jonas",
+"stat": "PRA",
+"line": 22.5,
+"books": 20,
+"over": 1.83,
+"under": 1.85,
+"best_over": 1.85,
+"best_under": 1.85,
+"alt_lines": [
+10.5,
+22.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Valanciunas, Jonas",
+"stat": "Points",
+"line": 11.5,
+"books": 54,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.95,
+"best_under": 1.9,
+"alt_lines": [
+11.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Valanciunas, Jonas",
+"stat": "RA",
+"line": 10.5,
+"books": 10,
+"over": 1.78,
+"under": 1.9,
+"best_over": 1.78,
+"best_under": 1.9,
+"alt_lines": [
+10.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Valanciunas, Jonas",
+"stat": "TotalRebounds",
+"line": 8.5,
+"books": 52,
+"over": 1.91,
+"under": 1.77,
+"best_over": 2.1,
+"best_under": 1.85,
+"alt_lines": [
+8.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Waters, Tremont",
+"stat": "3PM",
+"line": 1.5,
+"books": 53,
+"over": 1.83,
+"under": 1.83,
+"best_over": 2.05,
+"best_under": 1.95,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Waters, Tremont",
+"stat": "Assistances",
+"line": 2.5,
+"books": 53,
+"over": 2.25,
+"under": 1.56,
+"best_over": 2.4,
+"best_under": 1.6,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Waters, Tremont",
+"stat": "PA",
+"line": 11.5,
+"books": 20,
+"over": 1.86,
+"under": 1.79,
+"best_over": 1.91,
+"best_under": 1.85,
+"alt_lines": [
+10.5,
+11.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Waters, Tremont",
+"stat": "Points",
+"line": 8.5,
+"books": 55,
+"over": 1.8,
+"under": 1.91,
+"best_over": 1.833,
+"best_under": 1.97,
+"alt_lines": [
+8.5
+],
+"fixtureId": "id1100013873263072"
+},
+{
+"player": "Baldwin, Wade",
+"stat": "3PM",
+"line": 0.5,
+"books": 57,
+"over": 1.5,
+"under": 2.4,
+"best_over": 1.53,
+"best_under": 2.57,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Baldwin, Wade",
+"stat": "Assistances",
+"line": 5.5,
+"books": 58,
+"over": 1.87,
+"under": 1.8,
+"best_over": 1.95,
+"best_under": 1.95,
+"alt_lines": [
+4.5,
+5.5,
+6.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Baldwin, Wade",
+"stat": "PA",
+"line": 17.5,
+"books": 26,
+"over": 1.85,
+"under": 1.83,
+"best_over": 2.0,
+"best_under": 1.85,
+"alt_lines": [
+16.5,
+17.5,
+18.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Baldwin, Wade",
+"stat": "PR",
+"line": 14.5,
+"books": 26,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.85,
+"best_under": 2.0,
+"alt_lines": [
+14.5,
+15.5,
+16.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Baldwin, Wade",
+"stat": "PRA",
+"line": 20.5,
+"books": 26,
+"over": 1.85,
+"under": 1.82,
+"best_over": 1.9,
+"best_under": 1.85,
+"alt_lines": [
+20.5,
+21.5,
+22.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Baldwin, Wade",
+"stat": "Points",
+"line": 11.5,
+"books": 60,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.95,
+"best_under": 1.91,
+"alt_lines": [
+11.5,
+12.5,
+13.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Baldwin, Wade",
+"stat": "RA",
+"line": 8.5,
+"books": 15,
+"over": 1.85,
+"under": 1.83,
+"best_over": 1.85,
+"best_under": 1.85,
+"alt_lines": [
+8.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Baldwin, Wade",
+"stat": "Steals",
+"line": 0.5,
+"books": 5,
+"over": 1.62,
+"under": 2.1,
+"best_over": 1.62,
+"best_under": 2.1,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Baldwin, Wade",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 53,
+"over": 1.71,
+"under": 2.0,
+"best_over": 1.75,
+"best_under": 2.12,
+"alt_lines": [
+2.5,
+3.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Baldwin, Wade",
+"stat": "Turnovers",
+"line": 2.5,
+"books": 5,
+"over": 2.1,
+"under": 1.62,
+"best_over": 2.1,
+"best_under": 1.62,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Bingham, Marcus",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 15,
+"over": 1.55,
+"under": 2.25,
+"best_over": 1.55,
+"best_under": 2.5,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Bingham, Marcus",
+"stat": "PR",
+"line": 10.5,
+"books": 21,
+"over": 1.85,
+"under": 1.83,
+"best_over": 1.87,
+"best_under": 1.85,
+"alt_lines": [
+10.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Bingham, Marcus",
+"stat": "Points",
+"line": 5.5,
+"books": 55,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.91,
+"best_under": 1.97,
+"alt_lines": [
+5.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Bingham, Marcus",
+"stat": "TotalRebounds",
+"line": 4.5,
+"books": 58,
+"over": 1.8,
+"under": 1.88,
+"best_over": 1.85,
+"best_under": 2.05,
+"alt_lines": [
+4.5,
+5.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Clyburn, William",
+"stat": "3PM",
+"line": 1.5,
+"books": 58,
+"over": 1.91,
+"under": 1.77,
+"best_over": 2.1,
+"best_under": 1.85,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Clyburn, William",
+"stat": "Assistances",
+"line": 1.5,
+"books": 57,
+"over": 1.62,
+"under": 2.1,
+"best_over": 1.7,
+"best_under": 2.25,
+"alt_lines": [
+1.5,
+2.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Clyburn, William",
+"stat": "PA",
+"line": 10.5,
+"books": 25,
+"over": 1.75,
+"under": 1.93,
+"best_over": 1.95,
+"best_under": 2.1,
+"alt_lines": [
+9.5,
+10.5,
+11.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Clyburn, William",
+"stat": "PRA",
+"line": 12.5,
+"books": 5,
+"over": 2.0,
+"under": 1.72,
+"best_over": 2.0,
+"best_under": 1.72,
+"alt_lines": [
+12.5,
+13.5,
+14.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Clyburn, William",
+"stat": "Points",
+"line": 8.5,
+"books": 60,
+"over": 1.8,
+"under": 1.89,
+"best_over": 1.95,
+"best_under": 2.02,
+"alt_lines": [
+7.5,
+8.5,
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Clyburn, William",
+"stat": "RA",
+"line": 3.5,
+"books": 5,
+"over": 1.72,
+"under": 2.0,
+"best_over": 1.72,
+"best_under": 2.0,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Clyburn, William",
+"stat": "Steals",
+"line": 0.5,
+"books": 5,
+"over": 1.53,
+"under": 2.28,
+"best_over": 1.53,
+"best_under": 2.28,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Clyburn, William",
+"stat": "TotalRebounds",
+"line": 1.5,
+"books": 33,
+"over": 1.59,
+"under": 2.15,
+"best_over": 1.647,
+"best_under": 2.42,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Clyburn, William",
+"stat": "Turnovers",
+"line": 0.5,
+"books": 5,
+"over": 1.44,
+"under": 2.5,
+"best_over": 1.44,
+"best_under": 2.5,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Forrest, Trent",
+"stat": "Assistances",
+"line": 2.5,
+"books": 5,
+"over": 2.1,
+"under": 1.62,
+"best_over": 2.1,
+"best_under": 1.62,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Forrest, Trent",
+"stat": "Points",
+"line": 4.5,
+"books": 5,
+"over": 2.1,
+"under": 1.62,
+"best_over": 2.1,
+"best_under": 1.62,
+"alt_lines": [
+4.5,
+5.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Horton-Tucker, Talen",
+"stat": "3PM",
+"line": 0.5,
+"books": 58,
+"over": 1.55,
+"under": 2.3,
+"best_over": 1.6,
+"best_under": 2.5,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Horton-Tucker, Talen",
+"stat": "Assistances",
+"line": 2.5,
+"books": 38,
+"over": 2.0,
+"under": 1.69,
+"best_over": 2.05,
+"best_under": 1.87,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Horton-Tucker, Talen",
+"stat": "PA",
+"line": 16.5,
+"books": 6,
+"over": 2.4,
+"under": 1.5,
+"best_over": 2.4,
+"best_under": 1.83,
+"alt_lines": [
+14.5,
+15.5,
+16.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Horton-Tucker, Talen",
+"stat": "PR",
+"line": 17.5,
+"books": 26,
+"over": 1.85,
+"under": 1.82,
+"best_over": 2.3,
+"best_under": 1.87,
+"alt_lines": [
+15.5,
+16.5,
+17.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Horton-Tucker, Talen",
+"stat": "PRA",
+"line": 20.5,
+"books": 6,
+"over": 2.4,
+"under": 1.5,
+"best_over": 2.4,
+"best_under": 1.83,
+"alt_lines": [
+18.5,
+19.5,
+20.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Horton-Tucker, Talen",
+"stat": "Points",
+"line": 13.5,
+"books": 60,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.95,
+"best_under": 1.92,
+"alt_lines": [
+12.5,
+13.5,
+14.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Horton-Tucker, Talen",
+"stat": "RA",
+"line": 6.5,
+"books": 5,
+"over": 2.1,
+"under": 1.65,
+"best_over": 2.1,
+"best_under": 1.65,
+"alt_lines": [
+6.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Horton-Tucker, Talen",
+"stat": "Steals",
+"line": 0.5,
+"books": 5,
+"over": 1.62,
+"under": 2.1,
+"best_over": 1.62,
+"best_under": 2.1,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Horton-Tucker, Talen",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 58,
+"over": 1.71,
+"under": 1.95,
+"best_over": 1.8,
+"best_under": 2.05,
+"alt_lines": [
+3.5,
+4.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Horton-Tucker, Talen",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 1.48,
+"under": 2.4,
+"best_over": 1.48,
+"best_under": 2.4,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Jones, Tyrique",
+"stat": "PR",
+"line": 9.5,
+"books": 10,
+"over": 1.91,
+"under": 1.75,
+"best_over": 1.91,
+"best_under": 1.75,
+"alt_lines": [
+9.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Jones, Tyrique",
+"stat": "Points",
+"line": 5.5,
+"books": 55,
+"over": 1.95,
+"under": 1.75,
+"best_over": 2.0,
+"best_under": 1.85,
+"alt_lines": [
+5.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Jones, Tyrique",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 53,
+"over": 1.69,
+"under": 2.0,
+"best_over": 1.74,
+"best_under": 2.1,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Joseph, Cory",
+"stat": "3PM",
+"line": 0.5,
+"books": 47,
+"over": 1.5,
+"under": 2.35,
+"best_over": 1.55,
+"best_under": 2.42,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Key, Braxton",
+"stat": "Assistances",
+"line": 0.5,
+"books": 25,
+"over": 1.45,
+"under": 2.5,
+"best_over": 1.49,
+"best_under": 2.62,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Key, Braxton",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 7,
+"over": 2.1,
+"under": 1.62,
+"best_over": 2.1,
+"best_under": 1.65,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Key, Braxton",
+"stat": "PA",
+"line": 10.5,
+"books": 25,
+"over": 1.85,
+"under": 1.85,
+"best_over": 1.85,
+"best_under": 1.87,
+"alt_lines": [
+10.5,
+11.5,
+12.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Key, Braxton",
+"stat": "Points",
+"line": 9.5,
+"books": 60,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.9,
+"best_under": 1.92,
+"alt_lines": [
+8.5,
+9.5,
+10.5,
+11.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Key, Braxton",
+"stat": "Steals",
+"line": 0.5,
+"books": 15,
+"over": 1.5,
+"under": 2.37,
+"best_over": 1.5,
+"best_under": 2.7,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Key, Braxton",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 2.5,
+"under": 1.44,
+"best_over": 2.5,
+"best_under": 1.44,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Melli, Nicolo",
+"stat": "3PM",
+"line": 0.5,
+"books": 57,
+"over": 1.44,
+"under": 2.5,
+"best_over": 1.53,
+"best_under": 2.87,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Melli, Nicolo",
+"stat": "PR",
+"line": 9.5,
+"books": 25,
+"over": 1.82,
+"under": 1.85,
+"best_over": 1.85,
+"best_under": 1.9,
+"alt_lines": [
+9.5,
+10.5,
+11.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Melli, Nicolo",
+"stat": "Points",
+"line": 5.5,
+"books": 60,
+"over": 1.86,
+"under": 1.83,
+"best_over": 1.95,
+"best_under": 1.95,
+"alt_lines": [
+5.5,
+6.5,
+7.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Melli, Nicolo",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 58,
+"over": 1.71,
+"under": 1.98,
+"best_over": 1.75,
+"best_under": 2.1,
+"alt_lines": [
+3.5,
+4.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Miller-McIntyre, Codi",
+"stat": "3PM",
+"line": 1.5,
+"books": 5,
+"over": 1.98,
+"under": 1.7,
+"best_over": 1.98,
+"best_under": 1.7,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Miller-McIntyre, Codi",
+"stat": "Assistances",
+"line": 6.5,
+"books": 58,
+"over": 1.91,
+"under": 1.78,
+"best_over": 1.97,
+"best_under": 1.98,
+"alt_lines": [
+5.5,
+6.5,
+7.5,
+8.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Miller-McIntyre, Codi",
+"stat": "PA",
+"line": 19.5,
+"books": 26,
+"over": 1.88,
+"under": 1.8,
+"best_over": 1.95,
+"best_under": 1.85,
+"alt_lines": [
+19.5,
+20.5,
+21.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Miller-McIntyre, Codi",
+"stat": "PR",
+"line": 16.5,
+"books": 26,
+"over": 1.84,
+"under": 1.85,
+"best_over": 2.0,
+"best_under": 1.87,
+"alt_lines": [
+15.5,
+16.5,
+17.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Miller-McIntyre, Codi",
+"stat": "PRA",
+"line": 23.5,
+"books": 26,
+"over": 1.88,
+"under": 1.8,
+"best_over": 2.0,
+"best_under": 1.85,
+"alt_lines": [
+10.5,
+22.5,
+23.5,
+24.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Miller-McIntyre, Codi",
+"stat": "Points",
+"line": 12.5,
+"books": 60,
+"over": 1.83,
+"under": 1.83,
+"best_over": 1.98,
+"best_under": 1.95,
+"alt_lines": [
+11.5,
+12.5,
+13.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Miller-McIntyre, Codi",
+"stat": "RA",
+"line": 10.5,
+"books": 15,
+"over": 1.88,
+"under": 1.8,
+"best_over": 1.88,
+"best_under": 1.85,
+"alt_lines": [
+10.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Miller-McIntyre, Codi",
+"stat": "Steals",
+"line": 0.5,
+"books": 5,
+"over": 1.48,
+"under": 2.4,
+"best_over": 1.48,
+"best_under": 2.4,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Miller-McIntyre, Codi",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 58,
+"over": 1.65,
+"under": 2.05,
+"best_over": 1.72,
+"best_under": 2.15,
+"alt_lines": [
+3.5,
+4.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Miller-McIntyre, Codi",
+"stat": "Turnovers",
+"line": 3.5,
+"books": 5,
+"over": 2.1,
+"under": 1.62,
+"best_over": 2.1,
+"best_under": 1.62,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Milutinov, Nikola",
+"stat": "Assistances",
+"line": 1.5,
+"books": 57,
+"over": 2.15,
+"under": 1.59,
+"best_over": 2.2,
+"best_under": 1.66,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Milutinov, Nikola",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 5,
+"over": 2.1,
+"under": 1.62,
+"best_over": 2.1,
+"best_under": 1.62,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Milutinov, Nikola",
+"stat": "PA",
+"line": 9.5,
+"books": 25,
+"over": 1.85,
+"under": 1.85,
+"best_over": 1.95,
+"best_under": 1.85,
+"alt_lines": [
+8.5,
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Milutinov, Nikola",
+"stat": "PR",
+"line": 15.5,
+"books": 25,
+"over": 1.93,
+"under": 1.75,
+"best_over": 2.2,
+"best_under": 1.85,
+"alt_lines": [
+13.5,
+14.5,
+15.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Milutinov, Nikola",
+"stat": "PRA",
+"line": 16.5,
+"books": 25,
+"over": 1.85,
+"under": 1.85,
+"best_over": 2.0,
+"best_under": 1.85,
+"alt_lines": [
+15.5,
+16.5,
+17.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Milutinov, Nikola",
+"stat": "Points",
+"line": 8.5,
+"books": 59,
+"over": 2.0,
+"under": 1.7,
+"best_over": 2.1,
+"best_under": 1.78,
+"alt_lines": [
+7.5,
+8.5,
+9.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Milutinov, Nikola",
+"stat": "RA",
+"line": 8.5,
+"books": 10,
+"over": 1.98,
+"under": 1.72,
+"best_over": 1.98,
+"best_under": 1.72,
+"alt_lines": [
+7.5,
+8.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Milutinov, Nikola",
+"stat": "TotalRebounds",
+"line": 6.5,
+"books": 58,
+"over": 1.77,
+"under": 1.93,
+"best_over": 1.85,
+"best_under": 2.0,
+"alt_lines": [
+6.5,
+7.5,
+8.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Ndiaye, Mbaye",
+"stat": "3PM",
+"line": 0.5,
+"books": 53,
+"over": 1.77,
+"under": 1.92,
+"best_over": 1.8,
+"best_under": 2.05,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Ndiaye, Mbaye",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 7,
+"over": 1.48,
+"under": 2.4,
+"best_over": 1.5,
+"best_under": 2.4,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Ndiaye, Mbaye",
+"stat": "PR",
+"line": 13.5,
+"books": 5,
+"over": 1.75,
+"under": 1.95,
+"best_over": 1.75,
+"best_under": 1.95,
+"alt_lines": [
+13.5,
+14.5,
+15.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Ndiaye, Mbaye",
+"stat": "Points",
+"line": 9.5,
+"books": 55,
+"over": 1.87,
+"under": 1.8,
+"best_over": 1.92,
+"best_under": 1.87,
+"alt_lines": [
+9.5,
+10.5,
+11.5,
+12.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Ndiaye, Mbaye",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 5,
+"over": 1.95,
+"under": 1.75,
+"best_over": 1.95,
+"best_under": 1.75,
+"alt_lines": [
+3.5,
+4.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Papanikolaou, Kostas",
+"stat": "3PM",
+"line": 0.5,
+"books": 57,
+"over": 1.44,
+"under": 2.5,
+"best_over": 1.5,
+"best_under": 2.72,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Papanikolaou, Kostas",
+"stat": "Points",
+"line": 5.5,
+"books": 60,
+"over": 2.0,
+"under": 1.69,
+"best_over": 2.1,
+"best_under": 1.75,
+"alt_lines": [
+4.5,
+5.5,
+6.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Shields, Shavon",
+"stat": "3PM",
+"line": 1.5,
+"books": 58,
+"over": 2.2,
+"under": 1.57,
+"best_over": 2.5,
+"best_under": 1.72,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Shields, Shavon",
+"stat": "PR",
+"line": 13.5,
+"books": 26,
+"over": 1.85,
+"under": 1.84,
+"best_over": 1.93,
+"best_under": 1.85,
+"alt_lines": [
+13.5,
+14.5,
+15.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Shields, Shavon",
+"stat": "Points",
+"line": 9.5,
+"books": 55,
+"over": 1.83,
+"under": 1.85,
+"best_over": 1.87,
+"best_under": 2.02,
+"alt_lines": [
+9.5,
+10.5,
+11.5,
+12.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Shields, Shavon",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 53,
+"over": 2.1,
+"under": 1.65,
+"best_over": 2.15,
+"best_under": 1.75,
+"alt_lines": [
+3.5,
+4.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Vezenkov, Sasha",
+"stat": "3PM",
+"line": 1.5,
+"books": 58,
+"over": 2.05,
+"under": 1.67,
+"best_over": 2.15,
+"best_under": 1.72,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Vezenkov, Sasha",
+"stat": "Assistances",
+"line": 0.5,
+"books": 30,
+"over": 1.43,
+"under": 2.58,
+"best_over": 1.5,
+"best_under": 2.7,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Vezenkov, Sasha",
+"stat": "PA",
+"line": 19.5,
+"books": 25,
+"over": 1.85,
+"under": 1.85,
+"best_over": 1.85,
+"best_under": 1.9,
+"alt_lines": [
+19.5,
+20.5,
+21.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Vezenkov, Sasha",
+"stat": "PR",
+"line": 24.5,
+"books": 25,
+"over": 1.85,
+"under": 1.85,
+"best_over": 1.88,
+"best_under": 1.95,
+"alt_lines": [
+24.5,
+25.5,
+26.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Vezenkov, Sasha",
+"stat": "PRA",
+"line": 25.5,
+"books": 25,
+"over": 1.85,
+"under": 1.85,
+"best_over": 1.87,
+"best_under": 1.9,
+"alt_lines": [
+25.5,
+26.5,
+27.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Vezenkov, Sasha",
+"stat": "Points",
+"line": 18.5,
+"books": 60,
+"over": 1.87,
+"under": 1.8,
+"best_over": 1.95,
+"best_under": 1.95,
+"alt_lines": [
+18.5,
+19.5,
+20.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Vezenkov, Sasha",
+"stat": "RA",
+"line": 6.5,
+"books": 10,
+"over": 1.7,
+"under": 1.98,
+"best_over": 1.7,
+"best_under": 1.98,
+"alt_lines": [
+6.5,
+7.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Vezenkov, Sasha",
+"stat": "Steals",
+"line": 0.5,
+"books": 5,
+"over": 1.73,
+"under": 1.95,
+"best_over": 1.73,
+"best_under": 1.95,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Vezenkov, Sasha",
+"stat": "TotalRebounds",
+"line": 5.5,
+"books": 53,
+"over": 1.83,
+"under": 1.85,
+"best_over": 1.87,
+"best_under": 2.0,
+"alt_lines": [
+5.5,
+6.5,
+7.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Vezenkov, Sasha",
+"stat": "Turnovers",
+"line": 0.5,
+"books": 5,
+"over": 1.44,
+"under": 2.5,
+"best_over": 1.44,
+"best_under": 2.5,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Ward, Tyson",
+"stat": "3PM",
+"line": 0.5,
+"books": 58,
+"over": 1.5,
+"under": 2.37,
+"best_over": 1.55,
+"best_under": 2.45,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Ward, Tyson",
+"stat": "Assistances",
+"line": 1.5,
+"books": 53,
+"over": 1.59,
+"under": 2.15,
+"best_over": 1.66,
+"best_under": 2.22,
+"alt_lines": [
+1.5,
+2.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Ward, Tyson",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 2,
+"over": 2.56,
+"under": 1.4,
+"best_over": 2.62,
+"best_under": 1.42,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Ward, Tyson",
+"stat": "PA",
+"line": 10.5,
+"books": 21,
+"over": 1.85,
+"under": 1.78,
+"best_over": 1.95,
+"best_under": 1.85,
+"alt_lines": [
+10.5,
+11.5,
+12.5,
+13.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Ward, Tyson",
+"stat": "PR",
+"line": 12.5,
+"books": 21,
+"over": 1.87,
+"under": 1.78,
+"best_over": 1.95,
+"best_under": 1.85,
+"alt_lines": [
+12.5,
+13.5,
+14.5,
+15.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Ward, Tyson",
+"stat": "PRA",
+"line": 14.5,
+"books": 21,
+"over": 1.85,
+"under": 1.78,
+"best_over": 1.95,
+"best_under": 1.85,
+"alt_lines": [
+14.5,
+16.5,
+17.5,
+18.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Ward, Tyson",
+"stat": "Points",
+"line": 8.5,
+"books": 55,
+"over": 1.91,
+"under": 1.78,
+"best_over": 1.952,
+"best_under": 1.85,
+"alt_lines": [
+8.5,
+9.5,
+10.5,
+11.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Ward, Tyson",
+"stat": "RA",
+"line": 5.5,
+"books": 10,
+"over": 1.7,
+"under": 1.98,
+"best_over": 1.7,
+"best_under": 1.98,
+"alt_lines": [
+5.5,
+6.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Ward, Tyson",
+"stat": "Steals",
+"line": 0.5,
+"books": 5,
+"over": 1.48,
+"under": 2.4,
+"best_over": 1.48,
+"best_under": 2.4,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Ward, Tyson",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 53,
+"over": 1.71,
+"under": 1.95,
+"best_over": 1.82,
+"best_under": 2.05,
+"alt_lines": [
+3.5,
+4.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Ward, Tyson",
+"stat": "Turnovers",
+"line": 1.5,
+"books": 5,
+"over": 2.17,
+"under": 1.58,
+"best_over": 2.17,
+"best_under": 1.58,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263074"
+},
+{
+"player": "Brooks, Armoni",
+"stat": "3PM",
+"line": 2.5,
+"books": 16,
+"over": 1.82,
+"under": 1.85,
+"best_over": 1.87,
+"best_under": 1.92,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Brooks, Armoni",
+"stat": "Assistances",
+"line": 1.5,
+"books": 15,
+"over": 2.3,
+"under": 1.53,
+"best_over": 2.42,
+"best_under": 1.56,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Brooks, Armoni",
+"stat": "PA",
+"line": 13.5,
+"books": 15,
+"over": 1.88,
+"under": 1.78,
+"best_over": 1.92,
+"best_under": 1.87,
+"alt_lines": [
+13.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Brooks, Armoni",
+"stat": "PR",
+"line": 14.5,
+"books": 15,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.85,
+"best_under": 1.95,
+"alt_lines": [
+14.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Brooks, Armoni",
+"stat": "PRA",
+"line": 16.5,
+"books": 10,
+"over": 1.93,
+"under": 1.75,
+"best_over": 1.93,
+"best_under": 1.75,
+"alt_lines": [
+16.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Brooks, Armoni",
+"stat": "Points",
+"line": 11.5,
+"books": 11,
+"over": 1.75,
+"under": 1.93,
+"best_over": 1.77,
+"best_under": 1.95,
+"alt_lines": [
+11.5,
+12.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Brooks, Armoni",
+"stat": "RA",
+"line": 3.5,
+"books": 10,
+"over": 1.65,
+"under": 2.07,
+"best_over": 1.65,
+"best_under": 2.07,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Brooks, Armoni",
+"stat": "TotalRebounds",
+"line": 2.5,
+"books": 16,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.85,
+"best_under": 1.95,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Dokossi, Allan",
+"stat": "Assistances",
+"line": 2.5,
+"books": 16,
+"over": 2.32,
+"under": 1.52,
+"best_over": 2.47,
+"best_under": 1.54,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Dokossi, Allan",
+"stat": "BlocksFavour",
+"line": 0.5,
+"books": 10,
+"over": 1.47,
+"under": 2.42,
+"best_over": 1.47,
+"best_under": 2.42,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Dokossi, Allan",
+"stat": "PA",
+"line": 6.5,
+"books": 15,
+"over": 1.85,
+"under": 1.83,
+"best_over": 1.9,
+"best_under": 1.9,
+"alt_lines": [
+6.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Dokossi, Allan",
+"stat": "PR",
+"line": 9.5,
+"books": 15,
+"over": 1.72,
+"under": 1.98,
+"best_over": 1.8,
+"best_under": 2.0,
+"alt_lines": [
+9.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Dokossi, Allan",
+"stat": "PRA",
+"line": 12.5,
+"books": 10,
+"over": 1.93,
+"under": 1.75,
+"best_over": 1.93,
+"best_under": 1.75,
+"alt_lines": [
+12.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Dokossi, Allan",
+"stat": "Points",
+"line": 4.5,
+"books": 15,
+"over": 2.15,
+"under": 1.6,
+"best_over": 2.15,
+"best_under": 1.71,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Dokossi, Allan",
+"stat": "RA",
+"line": 7.5,
+"books": 10,
+"over": 1.78,
+"under": 1.9,
+"best_over": 1.78,
+"best_under": 1.9,
+"alt_lines": [
+7.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Dokossi, Allan",
+"stat": "TotalRebounds",
+"line": 5.5,
+"books": 16,
+"over": 1.85,
+"under": 1.82,
+"best_over": 1.97,
+"best_under": 1.83,
+"alt_lines": [
+5.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Etienne, Tyson",
+"stat": "3PM",
+"line": 2.5,
+"books": 16,
+"over": 1.57,
+"under": 2.2,
+"best_over": 1.64,
+"best_under": 2.3,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Etienne, Tyson",
+"stat": "Assistances",
+"line": 3.5,
+"books": 16,
+"over": 2.2,
+"under": 1.57,
+"best_over": 2.4,
+"best_under": 1.57,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Etienne, Tyson",
+"stat": "PA",
+"line": 20.5,
+"books": 16,
+"over": 1.93,
+"under": 1.75,
+"best_over": 1.95,
+"best_under": 1.85,
+"alt_lines": [
+20.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Etienne, Tyson",
+"stat": "Points",
+"line": 16.5,
+"books": 10,
+"over": 1.78,
+"under": 1.88,
+"best_over": 1.78,
+"best_under": 1.88,
+"alt_lines": [
+16.5,
+17.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Etienne, Tyson",
+"stat": "Steals",
+"line": 0.5,
+"books": 10,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.8,
+"best_under": 1.87,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Faye, Mouhamed",
+"stat": "Assistances",
+"line": 1.5,
+"books": 16,
+"over": 1.67,
+"under": 2.05,
+"best_over": 1.7,
+"best_under": 2.15,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Faye, Mouhamed",
+"stat": "BlocksFavour",
+"line": 1.5,
+"books": 2,
+"over": 1.58,
+"under": 2.12,
+"best_over": 1.6,
+"best_under": 2.15,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Faye, Mouhamed",
+"stat": "PA",
+"line": 6.5,
+"books": 11,
+"over": 1.7,
+"under": 2.0,
+"best_over": 1.83,
+"best_under": 2.0,
+"alt_lines": [
+6.5,
+7.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Faye, Mouhamed",
+"stat": "PR",
+"line": 9.5,
+"books": 11,
+"over": 1.72,
+"under": 1.95,
+"best_over": 1.83,
+"best_under": 1.95,
+"alt_lines": [
+9.5,
+10.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Faye, Mouhamed",
+"stat": "PRA",
+"line": 11.5,
+"books": 11,
+"over": 1.75,
+"under": 1.91,
+"best_over": 1.87,
+"best_under": 1.91,
+"alt_lines": [
+11.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Faye, Mouhamed",
+"stat": "Points",
+"line": 4.5,
+"books": 11,
+"over": 1.78,
+"under": 1.88,
+"best_over": 1.8,
+"best_under": 1.91,
+"alt_lines": [
+4.5,
+5.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Faye, Mouhamed",
+"stat": "RA",
+"line": 6.5,
+"books": 10,
+"over": 1.82,
+"under": 1.85,
+"best_over": 1.82,
+"best_under": 1.85,
+"alt_lines": [
+6.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Faye, Mouhamed",
+"stat": "TotalRebounds",
+"line": 4.5,
+"books": 16,
+"over": 1.75,
+"under": 1.93,
+"best_over": 1.82,
+"best_under": 1.97,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Herrera, Sebastian",
+"stat": "3PM",
+"line": 2.5,
+"books": 15,
+"over": 1.98,
+"under": 1.7,
+"best_over": 1.98,
+"best_under": 1.85,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Mirotic, Nikola",
+"stat": "3PM",
+"line": 1.5,
+"books": 16,
+"over": 1.62,
+"under": 2.12,
+"best_over": 1.68,
+"best_under": 2.2,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Mirotic, Nikola",
+"stat": "Assistances",
+"line": 0.5,
+"books": 15,
+"over": 1.47,
+"under": 2.42,
+"best_over": 1.51,
+"best_under": 2.55,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Mirotic, Nikola",
+"stat": "PA",
+"line": 14.5,
+"books": 15,
+"over": 1.87,
+"under": 1.8,
+"best_over": 1.97,
+"best_under": 1.83,
+"alt_lines": [
+14.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Mirotic, Nikola",
+"stat": "PR",
+"line": 16.5,
+"books": 15,
+"over": 1.78,
+"under": 1.88,
+"best_over": 1.87,
+"best_under": 1.92,
+"alt_lines": [
+16.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Mirotic, Nikola",
+"stat": "PRA",
+"line": 17.5,
+"books": 10,
+"over": 1.78,
+"under": 1.88,
+"best_over": 1.78,
+"best_under": 1.88,
+"alt_lines": [
+17.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Mirotic, Nikola",
+"stat": "Points",
+"line": 13.5,
+"books": 16,
+"over": 1.88,
+"under": 1.8,
+"best_over": 1.97,
+"best_under": 1.83,
+"alt_lines": [
+13.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Mirotic, Nikola",
+"stat": "RA",
+"line": 4.5,
+"books": 10,
+"over": 1.98,
+"under": 1.7,
+"best_over": 1.98,
+"best_under": 1.7,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Mirotic, Nikola",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 16,
+"over": 2.0,
+"under": 1.7,
+"best_over": 2.1,
+"best_under": 1.8,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Moore, Omari",
+"stat": "Points",
+"line": 4.5,
+"books": 15,
+"over": 1.91,
+"under": 1.75,
+"best_over": 2.0,
+"best_under": 1.82,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Osetkowski, Dylan",
+"stat": "3PM",
+"line": 1.5,
+"books": 15,
+"over": 2.65,
+"under": 1.4,
+"best_over": 2.8,
+"best_under": 1.43,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Osetkowski, Dylan",
+"stat": "Points",
+"line": 5.5,
+"books": 16,
+"over": 1.87,
+"under": 1.8,
+"best_over": 1.97,
+"best_under": 1.83,
+"alt_lines": [
+5.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Puerto, Josep",
+"stat": "3PM",
+"line": 0.5,
+"books": 10,
+"over": 1.4,
+"under": 2.65,
+"best_over": 1.4,
+"best_under": 2.65,
+"alt_lines": [
+0.5,
+1.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Puerto, Josep",
+"stat": "PR",
+"line": 7.5,
+"books": 15,
+"over": 1.88,
+"under": 1.78,
+"best_over": 1.97,
+"best_under": 1.83,
+"alt_lines": [
+7.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Puerto, Josep",
+"stat": "Points",
+"line": 5.5,
+"books": 16,
+"over": 1.85,
+"under": 1.82,
+"best_over": 1.91,
+"best_under": 1.9,
+"alt_lines": [
+5.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Puerto, Josep",
+"stat": "TotalRebounds",
+"line": 1.5,
+"books": 16,
+"over": 1.75,
+"under": 1.93,
+"best_over": 1.8,
+"best_under": 2.0,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Reuvers, Nate",
+"stat": "Points",
+"line": 7.5,
+"books": 16,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.88,
+"best_under": 1.92,
+"alt_lines": [
+7.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Rhoden, Jared",
+"stat": "3PM",
+"line": 0.5,
+"books": 16,
+"over": 1.47,
+"under": 2.42,
+"best_over": 1.52,
+"best_under": 2.52,
+"alt_lines": [
+0.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Rhoden, Jared",
+"stat": "Assistances",
+"line": 2.5,
+"books": 16,
+"over": 2.35,
+"under": 1.5,
+"best_over": 2.4,
+"best_under": 1.57,
+"alt_lines": [
+2.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Rhoden, Jared",
+"stat": "PA",
+"line": 14.5,
+"books": 16,
+"over": 1.85,
+"under": 1.82,
+"best_over": 1.9,
+"best_under": 1.9,
+"alt_lines": [
+14.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Rhoden, Jared",
+"stat": "PR",
+"line": 16.5,
+"books": 11,
+"over": 1.93,
+"under": 1.75,
+"best_over": 1.93,
+"best_under": 1.77,
+"alt_lines": [
+15.5,
+16.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Rhoden, Jared",
+"stat": "PRA",
+"line": 18.5,
+"books": 11,
+"over": 1.9,
+"under": 1.78,
+"best_over": 1.9,
+"best_under": 1.83,
+"alt_lines": [
+18.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Rhoden, Jared",
+"stat": "Points",
+"line": 12.5,
+"books": 16,
+"over": 1.9,
+"under": 1.78,
+"best_over": 2.0,
+"best_under": 1.82,
+"alt_lines": [
+12.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Rhoden, Jared",
+"stat": "RA",
+"line": 5.5,
+"books": 10,
+"over": 1.7,
+"under": 1.98,
+"best_over": 1.7,
+"best_under": 1.98,
+"alt_lines": [
+5.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Rhoden, Jared",
+"stat": "TotalRebounds",
+"line": 3.5,
+"books": 16,
+"over": 1.75,
+"under": 1.91,
+"best_over": 1.83,
+"best_under": 1.97,
+"alt_lines": [
+3.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Shorts, TJ",
+"stat": "Assistances",
+"line": 4.5,
+"books": 5,
+"over": 1.65,
+"under": 2.15,
+"best_over": 1.68,
+"best_under": 2.2,
+"alt_lines": [
+4.5,
+5.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Shorts, TJ",
+"stat": "PA",
+"line": 19.5,
+"books": 6,
+"over": 1.85,
+"under": 1.85,
+"best_over": 1.9,
+"best_under": 1.95,
+"alt_lines": [
+19.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Shorts, TJ",
+"stat": "Points",
+"line": 14.5,
+"books": 6,
+"over": 1.88,
+"under": 1.87,
+"best_over": 1.9,
+"best_under": 1.88,
+"alt_lines": [
+14.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Taylor, Kameron",
+"stat": "3PM",
+"line": 1.5,
+"books": 16,
+"over": 2.45,
+"under": 1.47,
+"best_over": 2.62,
+"best_under": 1.49,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Taylor, Kameron",
+"stat": "Assistances",
+"line": 1.5,
+"books": 16,
+"over": 1.6,
+"under": 2.15,
+"best_over": 1.66,
+"best_under": 2.25,
+"alt_lines": [
+1.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Taylor, Kameron",
+"stat": "PA",
+"line": 13.5,
+"books": 16,
+"over": 1.78,
+"under": 1.91,
+"best_over": 1.88,
+"best_under": 1.92,
+"alt_lines": [
+13.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Taylor, Kameron",
+"stat": "PR",
+"line": 16.5,
+"books": 16,
+"over": 1.78,
+"under": 1.88,
+"best_over": 1.92,
+"best_under": 1.88,
+"alt_lines": [
+16.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Taylor, Kameron",
+"stat": "PRA",
+"line": 18.5,
+"books": 11,
+"over": 1.8,
+"under": 1.87,
+"best_over": 1.83,
+"best_under": 1.87,
+"alt_lines": [
+18.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Taylor, Kameron",
+"stat": "Points",
+"line": 11.5,
+"books": 16,
+"over": 1.75,
+"under": 1.91,
+"best_over": 1.85,
+"best_under": 1.95,
+"alt_lines": [
+11.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Taylor, Kameron",
+"stat": "RA",
+"line": 6.5,
+"books": 10,
+"over": 1.75,
+"under": 1.91,
+"best_over": 1.75,
+"best_under": 1.91,
+"alt_lines": [
+6.5
+],
+"fixtureId": "id1100013873263076"
+},
+{
+"player": "Taylor, Kameron",
+"stat": "TotalRebounds",
+"line": 4.5,
+"books": 16,
+"over": 1.72,
+"under": 1.98,
+"best_over": 1.88,
+"best_under": 1.98,
+"alt_lines": [
+4.5
+],
+"fixtureId": "id1100013873263076"
+}
+]
+}
