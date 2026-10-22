@@ -59,6 +59,40 @@ def extract(odds, meta):
     return found
 
 
+def game_lines(odds, meta):
+    """Glavni hendikep (za domacina, tim 1) i ukupno poena utakmice: linija sa najvise kladionica,
+    kod nereseno ona gde su kvote najblize. Vraca {"spread": -6.5, "total": 172.5} (ili None)."""
+    agg = {}
+    for slug, book in (odds.get("bookmakerOdds") or {}).items():
+        if not book.get("bookmakerIsActive", True) or book.get("suspended"):
+            continue
+        for mid, market in (book.get("markets") or {}).items():
+            m = meta.get(str(mid))
+            if not m or m[0] not in ("spreads", "totals"):
+                continue
+            kind, line, outcomes = m
+            for oid, out in (market.get("outcomes") or {}).items():
+                side = outcomes.get(str(oid))
+                pr = (out.get("players") or {}).get("0") or {}
+                if side and pr.get("active") and pr.get("price"):
+                    agg.setdefault((kind, float(line)), {}).setdefault(slug, {})[side] = float(pr["price"])
+    res = {}
+    for kind, a, b in (("spreads", "1", "2"), ("totals", "Over", "Under")):
+        best = None
+        for (k, line), books in agg.items():
+            if k != kind:
+                continue
+            both = [(v[a], v[b]) for v in books.values() if a in v and b in v and 1.25 <= v[a] <= 3 and 1.25 <= v[b] <= 3]
+            if len(both) < MIN_BOOKS:
+                continue
+            gap = abs(statistics.median(x for x, _ in both) - statistics.median(y for _, y in both))
+            cand = (-len(both), gap, line)
+            if best is None or cand < best:
+                best = cand
+        res["spread" if kind == "spreads" else "total"] = best[2] if best else None
+    return res
+
+
 def consensus(found):
     """Po igracu i statistici: glavna linija (najvise kladionica) + medijana i najbolja kvota."""
     by_ps = {}
@@ -117,11 +151,13 @@ def fetch(key, comp="E", hours=HOURS_AHEAD):
         for r in rows:
             r["fixtureId"] = fx["fixtureId"]
         lines += rows
+        gl = game_lines(odds, meta)
         games.append({"fixtureId": fx["fixtureId"], "start": fx.get("startTime"),
                       "home": fx.get("participant1Name"), "away": fx.get("participant2Name"),
                       "home_abbr": fx.get("participant1Abbr"), "away_abbr": fx.get("participant2Abbr"),
-                      "lines": len(rows)})
-        print(f"{fx.get('participant1Name')} - {fx.get('participant2Name')}: {len(rows)} linija")
+                      "spread": gl.get("spread"), "total": gl.get("total"), "lines": len(rows)})
+        print(f"{fx.get('participant1Name')} - {fx.get('participant2Name')}: {len(rows)} linija, "
+              f"hendikep {gl.get('spread')}, total {gl.get('total')}")
     print(f"Zahteva potroseno: {calls}")
     return {"comp": comp, "fetched": now.isoformat(timespec="minutes"), "games": games, "lines": lines}
 
@@ -139,9 +175,12 @@ def main():
     if a.file:
         with open(a.file, encoding="utf-8") as f:
             odds = json.load(f)
-        rows = consensus(extract(odds, load_meta()))
+        meta = load_meta()
+        rows = consensus(extract(odds, meta))
+        gl = game_lines(odds, meta)
+        print("utakmica:", gl)
         save({"comp": "E", "fetched": datetime.now(timezone.utc).isoformat(timespec="minutes"),
-              "games": [{"fixtureId": odds.get("fixtureId"), "lines": len(rows)}], "lines": rows})
+              "games": [{"fixtureId": odds.get("fixtureId"), "lines": len(rows), **gl}], "lines": rows})
         return
     key = os.environ.get("ODDSPAPI_KEY") or __import__("getpass").getpass("OddsPapi kljuc: ").strip()
     if not key:

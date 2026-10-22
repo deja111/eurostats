@@ -225,9 +225,10 @@ T3 = {
         "sig_under": "🔴 Under", "sig_ice": "🧊 Under (jak)", "sig_few": "⚪ Malo utakmica",
         "r_hit": "{o}/{t} preko", "r_med": "medijana {m:g} vs {l:g}", "r_opp": "{o} #{r} {p}",
         "r_min": "minuti {d:+.1f}", "r_ven": "{v}: prosek {a:.1f}",
-        "sig_note": "Predlog je statistički signal iz dosadašnjih utakmica (hit-rate, medijana, "
-                    "protivnik po poziciji, minuti, kuća/gost, saigrači koji ne igraju), ne garancija. 🔥 / 🧊 = skoro svi "
-                    "pokazatelji se slažu. Uzorak je mali na početku sezone.",
+        "sig_note": "Predlog je šansa za Over iz modela: projekcija (učinak po minutu × očekivani minuti, "
+                    "tempo, protivnik po poziciji, saigrači koji ne igraju, odmor, rizik od ubedljivog meča) "
+                    "60% + posl. 10 utakmica 40%. Nije garancija. 🔥 / 🧊 = šansa bar 68% / najviše 32%. "
+                    "Uzorak je mali na početku sezone.",
         "line_mode": "Linija", "line_fixed": "Ista za sve", "line_avg": "Prosek igrača (≈ kladionica)",
         "show": "Prikaži", "show_all": "Sve", "show_strong": "Samo 🔥 / 🧊",
         "picks_count": "🔥 {f} {jf} Over · 🟢 {o} Over · 🔴 {u} Under · 🧊 {i} {ji} Under",
@@ -245,7 +246,22 @@ T3 = {
         "factor": "Faktor", "weight": "Težina", "vote": "Glas", "detail": "Detalj",
         "f_hit": "Hit-rate (posl. 10)", "f_med": "Medijana", "f_opp": "Protivnik (DvP)",
         "f_ven": "Kuća / gost", "f_min": "Minuti (posl. 3)", "neutral": "neutralno",
-        "f_mate": "Saigrači koji ne igraju", "mate_other": "druga pozicija",
+        "f_mate": "Saigrači koji ne igraju", "mate_other": "druga pozicija", "f_mate_word": " ne igra (",
+        "f_pace": "Tempo", "r_pace": "{v:.0f} poseda vs prosek {l:.0f}", "r_pace_book": "total kladionica {t:g} vs prosek {l:.0f}",
+        "f_miss": "Lopte za skok", "r_miss": "{v:.0f} promašaja po meču vs prosek {l:.0f}",
+        "f_blow": "Rizik od ubedljivog meča", "r_blow": "očekivana razlika {m:+.1f} ({s}), starteri se odmaraju",
+        "r_blow_bench": "očekivana razlika {m:+.1f} ({s}), više minuta za klupu",
+        "r_spread_book": "hendikep kladionica", "r_spread_est": "procena iz razlike koševa",
+        "r_dvp": "{o} prima {v:.1f} vs prosek {l:.1f}",
+        "f_usage": "Broj šuteva", "r_usage": "posl. 5: {a:.1f} šuteva/30 min vs sezona {b:.1f}",
+        "f_shoot": "Šut saigrača", "r_shoot": "tim šutira {a:.0f}% iz igre posl. 3 vs {b:.0f}% sezona",
+        "f_rest": "Odmor", "r_rest": "samo {d} dan od prethodne utakmice",
+        "r_h2h": "protiv {o} ove sezone: {a:.1f} ({n} utak.)", "r_derby": "derbi – obično veća motivacija",
+        "r_fouls": "često u problemu sa faulovima ({f:.1f} na 36 min)",
+        "r_proj": "projekcija {p:.1f} (linija {l:g}) → Over {o:.0f}%",
+        "f_base": "Osnova", "r_base": "{r:.1f} po 30 min × {m:.1f} očekivanih minuta = {b:.1f}",
+        "f_hist": "Istorija", "f_model": "Ukupna šansa", "impact": "Uticaj",
+        "proj_head": "**Projekcija {p:.1f}** · linija {l:g} · **šansa za Over {o:.0f}%**",
         "r_mate": "{n} ne igra ({p}): bez njega {a:.1f} / {m:.0f} min, sa njim {b:.1f} / {mm:.0f} min ({k} utak.)",
         "r_mate_est": "{n} ne igra ({p}): procena +{d:.1f} (≈ +{mn:.0f} min, mali uzorak)",
         "r_mate_old": "{n} ne igra duže vreme – već je uračunato u prosek",
@@ -319,9 +335,9 @@ T3 = {
         "sig_under": "🔴 Under", "sig_ice": "🧊 Under (strong)", "sig_few": "⚪ Few games",
         "r_hit": "{o}/{t} over", "r_med": "median {m:g} vs {l:g}", "r_opp": "{o} #{r} {p}",
         "r_min": "minutes {d:+.1f}", "r_ven": "{v}: avg {a:.1f}",
-        "sig_note": "A pick is a statistical signal from games so far (hit rate, median, "
-                    "opponent vs position, minutes, home/away, absent teammates), not a guarantee. 🔥 / 🧊 = nearly all "
-                    "indicators agree. Sample is small early in the season.",
+        "sig_note": "A pick is the model's chance of Over: projection (per-minute production × expected minutes, "
+                    "pace, opponent vs position, absent teammates, rest, blowout risk) 60% + last 10 games 40%. "
+                    "Not a guarantee. 🔥 / 🧊 = chance at least 68% / at most 32%. Sample is small early in the season.",
         "line_mode": "Line", "line_fixed": "Same for all", "line_avg": "Player average (≈ bookmaker)",
         "show": "Show", "show_all": "All", "show_strong": "Only 🔥 / 🧊",
         "picks_count": "🔥 {f} strong Over · 🟢 {o} Over · 🔴 {u} Under · 🧊 {i} strong Under",
@@ -339,7 +355,22 @@ T3 = {
         "factor": "Factor", "weight": "Weight", "vote": "Vote", "detail": "Detail",
         "f_hit": "Hit rate (last 10)", "f_med": "Median", "f_opp": "Opponent (DvP)",
         "f_ven": "Home / away", "f_min": "Minutes (last 3)", "neutral": "neutral",
-        "f_mate": "Absent teammates", "mate_other": "other position",
+        "f_mate": "Absent teammates", "mate_other": "other position", "f_mate_word": " out (",
+        "f_pace": "Pace", "r_pace": "{v:.0f} possessions vs avg {l:.0f}", "r_pace_book": "bookmaker total {t:g} vs avg {l:.0f}",
+        "f_miss": "Available rebounds", "r_miss": "{v:.0f} misses per game vs avg {l:.0f}",
+        "f_blow": "Blowout risk", "r_blow": "expected margin {m:+.1f} ({s}), starters rest",
+        "r_blow_bench": "expected margin {m:+.1f} ({s}), more bench minutes",
+        "r_spread_book": "bookmaker spread", "r_spread_est": "estimate from point differential",
+        "r_dvp": "{o} allows {v:.1f} vs avg {l:.1f}",
+        "f_usage": "Shot volume", "r_usage": "last 5: {a:.1f} shots/30 min vs season {b:.1f}",
+        "f_shoot": "Teammates' shooting", "r_shoot": "team shooting {a:.0f}% FG last 3 vs {b:.0f}% season",
+        "f_rest": "Rest", "r_rest": "only {d} day since the previous game",
+        "r_h2h": "vs {o} this season: {a:.1f} ({n} g)", "r_derby": "derby – usually extra motivation",
+        "r_fouls": "often in foul trouble ({f:.1f} per 36 min)",
+        "r_proj": "projection {p:.1f} (line {l:g}) → Over {o:.0f}%",
+        "f_base": "Base", "r_base": "{r:.1f} per 30 min × {m:.1f} expected minutes = {b:.1f}",
+        "f_hist": "History", "f_model": "Total chance", "impact": "Impact",
+        "proj_head": "**Projection {p:.1f}** · line {l:g} · **chance of Over {o:.0f}%**",
         "r_mate": "{n} out ({p}): without him {a:.1f} / {m:.0f} min, with him {b:.1f} / {mm:.0f} min ({k} g)",
         "r_mate_est": "{n} out ({p}): estimate +{d:.1f} (≈ +{mn:.0f} min, small sample)",
         "r_mate_old": "{n} out for a while – already in his averages",
@@ -379,6 +410,9 @@ T4 = {
         "perf_actual": "Stvarno", "perf_res": "Rezultat", "perf_dir": "Smer",
         "perf_roi_help": "Povrat = ulog 1 jedinica na smer predloga po medijani kvota kladionica (samo linije sa kvotama).",
         "perf_pending": "⏳ Čeka se još {n} predloga (utakmice nisu odigrane).",
+        "perf_cmp": "Novi model (projekcija) vs stari model (bodovi)", "perf_new": "🆕 Novi model",
+        "perf_old": "Stari model", "perf_model": "Model",
+        "perf_cmp_help": "Isti snimljeni predlozi, ocenjeni po smeru svakog modela (samo predlozi sa signalom tog modela).",
         "src_book": "📡 Kladionice", "src_manual": "✍️ Ručni unos", "source": "Izvor linija",
         "all_stats": "Sve", "line_book": "Linije kladionica (📡)",
         "line_book_help": "Samo igrači za koje kladionice već nude liniju.",
@@ -397,8 +431,8 @@ T4 = {
         "lines_sort": "Sortiraj", "sort_value": "💰 Vrednost", "sort_signal": "Jačina predloga",
         "odds": "Kvota", "book_p": "Kladionica", "our_p": "Naša procena", "value": "Vrednost",
         "value_tag": "💰 Vredno", "no_value": "nije isplativo", "best_side": "Bolja strana",
-        "value_help": "Kladionica = šansa iz kvota bez marže. Naša procena = procenat pogodaka u posl. 10 utakmica, "
-                      "ublažen ka 50% (mali uzorak). Vrednost = koliko se u proseku vraća na uloženih 100: "
+        "value_help": "Kladionica = šansa iz kvota bez marže. Naša procena = šansa iz modela (projekcija "
+                      "+ istorija posl. 10 utakmica). Vrednost = koliko se u proseku vraća na uloženih 100: "
                       "+10% znači da kvota plaća više nego što bi trebalo po statistici. Gruba procena, ne garancija.",
         "stat_unknown": "nepoznata statistika", "player_unknown": "nepoznat igrač", "sub_props": "🎯 Igrač", "sub_scan": "🔎 Skener", "sub_round": "⭐ Kolo",
         "sub_player": "👤 Igrač", "sub_cmp": "⚖️ Poređenje", "sub_without": "🔄 Bez saigrača",
@@ -431,6 +465,9 @@ T4 = {
         "perf_actual": "Actual", "perf_res": "Result", "perf_dir": "Side",
         "perf_roi_help": "Return = 1 unit on the pick side at the bookmakers' median odds (lines with odds only).",
         "perf_pending": "⏳ {n} more picks pending (games not played yet).",
+        "perf_cmp": "New model (projection) vs old model (points)", "perf_new": "🆕 New model",
+        "perf_old": "Old model", "perf_model": "Model",
+        "perf_cmp_help": "Same saved picks, graded by each model's side (only picks with that model's signal).",
         "src_book": "📡 Bookmakers", "src_manual": "✍️ Manual input", "source": "Lines source",
         "all_stats": "All", "line_book": "Bookmaker lines (📡)",
         "line_book_help": "Only players bookmakers already offer a line for.",
@@ -449,8 +486,8 @@ T4 = {
         "lines_sort": "Sort", "sort_value": "💰 Value", "sort_signal": "Pick strength",
         "odds": "Odds", "book_p": "Bookmaker", "our_p": "Our estimate", "value": "Value",
         "value_tag": "💰 Value", "no_value": "no value", "best_side": "Better side",
-        "value_help": "Bookmaker = probability from the odds without margin. Our estimate = hit rate over the last "
-                      "10 games, pulled toward 50% (small sample). Value = average return per 100 staked: +10% means "
+        "value_help": "Bookmaker = probability from the odds without margin. Our estimate = the model's chance "
+                      "(projection + last-10 history). Value = average return per 100 staked: +10% means "
                       "the odds pay more than the stats say they should. Rough estimate, not a guarantee.",
         "stat_unknown": "unknown stat", "player_unknown": "unknown player", "sub_props": "🎯 Player", "sub_scan": "🔎 Scanner", "sub_round": "⭐ Round",
         "sub_player": "👤 Player", "sub_cmp": "⚖️ Compare", "sub_without": "🔄 Without teammate",
@@ -1190,6 +1227,7 @@ PL_MIN = {k: float(g["Minutes"].mean()) for k, g in _played.groupby(["comp", "_p
 PL_NAME = dict(zip(df["_pid"], df["player"]))
 PL_LAST_TEAM = {k: g["team"].iloc[-1] for k, g in _srt.groupby(["comp", "_pid"])}
 MATE_MIN = 15          # saigrac je "bitan" ako igra bar ovoliko minuta
+LAST_MATE_DELTA = [0.0]  # zbir uticaja saigraca (u jedinicama statistike) iz poslednjeg poziva mate_factor
 
 
 def absent_mates(comp, pid, team):
@@ -1212,12 +1250,13 @@ def mate_factor(pg, key, comp, sd):
     team = pg["team"].iloc[-1]
     mates = absent_mates(comp, pid, team)
     if not mates:
+        LAST_MATE_DELTA[0] = 0.0
         return None, [], []
     tgames = TEAM_GAMES.get((comp, team), [])
     my_pos = _pp.get(pid, (None, None))[0]
     own = pg[pg["team"] == team]
     mine = own.dropna(subset=[key])
-    total, reasons, info = 0.0, [], []
+    total, reasons, info, deltas = 0.0, [], [], []
     for mid, stt, mins in mates:
         name = short_name(PL_NAME.get(mid, mid))
         mgames = PL_GAMES.get((comp, mid, team), set())
@@ -1237,6 +1276,7 @@ def mate_factor(pg, key, comp, sd):
             x = float(np.clip((a - b) / sd, -1, 1)) * shrink * w_st
             reasons.append((x, tr("r_mate", n=name, p=plab, a=a, m=float(wo["Minutes"].mean()),
                                   b=b, mm=float(wi["Minutes"].mean()), k=len(wo))))
+            deltas.append((a - b) * shrink * w_st)
         elif same and len(mine) >= 3:
             # procena: deo njegovih minuta prelazi na igrace iste pozicije
             rot = [q for (c, q, t), mm_ in PL_MIN.items()
@@ -1247,16 +1287,18 @@ def mate_factor(pg, key, comp, sd):
             d = extra_min * per_min
             x = float(np.clip(d / sd, 0, 1)) * 0.6 * w_st
             reasons.append((x, tr("r_mate_est", n=name, p=plab, d=d, mn=extra_min)))
+            deltas.append(d * 0.6 * w_st)
         else:
             continue
         total += x
+    LAST_MATE_DELTA[0] = float(sum(deltas))
     if not reasons:
         return None, [], info
     return float(np.clip(total, -1, 1)), reasons, info
 
 
-def signal(pg, key, line, comp, nxt=None):
-    """Over/Under signal za sledecu utakmicu igraca.
+def signal_old(pg, key, line, comp, nxt=None):
+    """STARI MODEL (bodovi). Ostaje radi poredjenja na stranici Ucinak.
 
     pg = utakmice igraca (sortirane), nxt = next_game(...) ili None.
     Vraca dict: score (-100..100, + = Over), label, reasons (lista teksta).
@@ -1304,6 +1346,7 @@ def signal(pg, key, line, comp, nxt=None):
                 factors.append((tr("f_ven"), 0.15, x, reasons[-1][1]))
 
     info = []
+    LAST_MATE_DELTA[0] = 0.0
     if nxt:
         try:
             mx, mreasons, info = mate_factor(pg, key, comp, sd)
@@ -1339,6 +1382,247 @@ def signal(pg, key, line, comp, nxt=None):
     txt += ["ℹ " + r for r in info]
     return {"score": int(round(score)), "label": label, "reasons": txt, "hit": h,
             "factors": factors, "wsum": sum(w for w, _ in parts)}
+
+
+# ---------- NOVI MODEL: projekcija / projection model ----------
+SIG_T = 20            # |jacina| >= 20 (sansa >= 60% / <= 40%) = predlog sa signalom
+_box = _played.copy()
+_box["FGA"] = _box[["FieldGoalsAttempted2", "FieldGoalsAttempted3"]].sum(axis=1, min_count=1)
+_box["FGM"] = _box[["FieldGoalsMade2", "FieldGoalsMade3"]].sum(axis=1, min_count=1)
+TB = _box.groupby(["comp", "gamecode", "team"])[["FGA", "FGM", "FreeThrowsAttempted", "OffensiveRebounds",
+                                                  "Turnovers", "Points"]].sum(min_count=1).reset_index()
+TB["poss"] = TB["FGA"] + 0.44 * TB["FreeThrowsAttempted"] - TB["OffensiveRebounds"] + TB["Turnovers"]
+TB["miss"] = TB["FGA"] - TB["FGM"]
+TB = TB.merge(TB[["comp", "gamecode", "team", "poss", "miss", "Points"]], on=["comp", "gamecode"], suffixes=("", "_o"))
+TB = TB[TB["team"] != TB["team_o"]]
+TB["g_poss"] = (TB["poss"] + TB["poss_o"]) / 2
+TB["g_miss"] = TB["miss"] + TB["miss_o"]
+TB["g_pts"] = TB["Points"] + TB["Points_o"]
+TB["margin"] = TB["Points"] - TB["Points_o"]
+TB = TB.merge(df[["comp", "gamecode", "date"]].drop_duplicates(["comp", "gamecode"]), on=["comp", "gamecode"], how="left")
+TEAM_ENV = TB.groupby(["comp", "team"]).agg(pace=("g_poss", "mean"), miss=("g_miss", "mean"),
+                                            pts=("g_pts", "mean"), net=("margin", "mean"))
+LEAGUE_ENV = TB.groupby("comp").agg(pace=("g_poss", "mean"), miss=("g_miss", "mean"), pts=("g_pts", "mean"))
+TEAM_LAST_DATE = TB.groupby(["comp", "team"])["date"].max().to_dict()
+DERBIES = [{"PAR", "CZV"}, {"OLY", "PAO"}, {"EFS", "FBT"}, {"EFS", "BJK"}, {"FBT", "BJK"}, {"RMB", "BAR"},
+           {"MTA", "HTA"}]
+PTS_KEYS = {"Points", "3PM", "PTS_H1", "PTS_Q1"}
+REB_KEYS = {"TotalRebounds", "OffensiveRebounds", "DefensiveRebounds", "REB_H1"}
+AST_KEYS = {"Assistances", "AST_H1"}
+
+
+def _norm_team(x):
+    stop = {"bc", "kk", "sk", "jk", "bk", "fc", "basket", "basketball", "club", "the", "de", "s.a.d."}
+    return {w for w in re.split(r"[^a-z0-9]+", LN.norm(x)) if w and w not in stop}
+
+
+def _match_games():
+    """Linije utakmica sa kladionica (hendikep, total) -> {(comp, gamecode): {...}}."""
+    out = {}
+    comp_ = BOOK_FILE.get("comp", "E")
+    games = BOOK_FILE.get("games") or []
+    if not games or sched.empty:
+        return out
+    sc = sched[sched["comp"] == comp_]
+    for g in games:
+        if g.get("spread") is None and g.get("total") is None:
+            continue
+        t = pd.to_datetime(g.get("start"), utc=True, errors="coerce")
+        if pd.isna(t):
+            continue
+        day = t.tz_convert("Europe/Belgrade").normalize().tz_localize(None)
+        cand = sc[(sc["date"] - day).abs() <= pd.Timedelta(days=1)]
+        best, bs = None, 0
+        for r in cand.itertuples():
+            score_ = 0
+            for mine, theirs, ab in ((r.hometeam, g.get("home"), g.get("home_abbr")),
+                                     (r.awayteam, g.get("away"), g.get("away_abbr"))):
+                a, b = _norm_team(mine), _norm_team(theirs or "")
+                score_ += len(a & b) / max(len(a | b), 1)
+            score_ += 0.5 * ((g.get("home_abbr") == r.homecode) + (g.get("away_abbr") == r.awaycode))
+            if score_ > bs:
+                best, bs = r, score_
+        if best is not None and bs >= 0.6:
+            out[(comp_, int(best.gamecode))] = {"spread": g.get("spread"), "total": g.get("total")}
+    return out
+
+
+
+def _shrink(raw, k, lo, hi):
+    return float(np.clip(1 + k * (raw - 1), lo, hi))
+
+
+def _norm_cdf(z):
+    from math import erf, sqrt
+    return 0.5 * (1 + erf(z / sqrt(2)))
+
+
+def projection(pg, key, comp, nxt):
+    """Ocekivani ucinak za sledecu utakmicu: ucinak po minutu x ocekivani minuti x prilagodjavanja.
+    Vraca dict(proj, base, mexp, adj=[(naziv, delta, tekst)], info=[tekst], sd)."""
+    g = pg[(pg["Minutes"].fillna(0) > 0)].dropna(subset=[key])
+    if len(g) < 3:
+        return None
+    team, pid = g["team"].iloc[-1], str(g["player_id"].iloc[-1]).strip()
+    mins = g["Minutes"].astype(float)
+    last10 = g.tail(10)
+    rate_s = float(g[key].sum()) / max(float(mins.sum()), 1.0)
+    rate_10 = float(last10[key].sum()) / max(float(last10["Minutes"].sum()), 1.0)
+    rate = 0.6 * rate_10 + 0.4 * rate_s
+    l5 = mins.tail(5).to_numpy()
+    w = np.arange(1, len(l5) + 1, dtype=float)
+    m_rec = float((l5 * w).sum() / w.sum())
+    m_exp = 0.6 * m_rec + 0.4 * float(mins.mean())
+    base = rate * m_exp
+    adj, info, f_all = [], [], 1.0
+    o, home = nxt["opp"], nxt["home"]
+    env = TEAM_ENV
+    lg = LEAGUE_ENV.loc[comp] if comp in LEAGUE_ENV.index else None
+    gb = GAME_BOOK.get((comp, nxt.get("gamecode")), {})
+
+    def add(name, f, text):
+        nonlocal f_all
+        if abs(f - 1) < 0.005:
+            return
+        adj.append((name, base * f_all * (f - 1), text))
+        f_all *= f
+
+    if lg is not None and (comp, team) in env.index and (comp, o) in env.index:
+        e1, e2 = env.loc[(comp, team)], env.loc[(comp, o)]
+        if key in REB_KEYS:
+            raw = ((e1["miss"] + e2["miss"]) / 2) / lg["miss"]
+            add(tr("f_miss"), _shrink(raw, 0.7, 0.9, 1.1), tr("r_miss", v=(e1["miss"] + e2["miss"]) / 2, l=lg["miss"]))
+        else:
+            if gb.get("total"):
+                raw = gb["total"] / lg["pts"]
+                txt = tr("r_pace_book", t=gb["total"], l=lg["pts"])
+            else:
+                raw = ((e1["pace"] + e2["pace"]) / 2) / lg["pace"]
+                txt = tr("r_pace", v=(e1["pace"] + e2["pace"]) / 2, l=lg["pace"])
+            add(tr("f_pace"), _shrink(raw, 0.7, 0.9, 1.1), txt)
+        # blowout
+        if gb.get("spread") is not None:
+            margin = -gb["spread"] if home else gb["spread"]
+            src_ = tr("r_spread_book")
+        else:
+            margin = (e1["net"] - e2["net"]) / 2 + (2.5 if home else -2.5)
+            src_ = tr("r_spread_est")
+        m_avg = float(mins.mean())
+        if abs(margin) >= 10:
+            if m_avg >= 24:
+                add(tr("f_blow"), 1 - min(0.06, (abs(margin) - 8) * 0.01), tr("r_blow", m=margin, s=src_))
+            elif m_avg < 16:
+                add(tr("f_blow"), 1.03, tr("r_blow_bench", m=margin, s=src_))
+    # protivnik po poziciji (DvP)
+    pos = _pp.get(pid, (None, None))[0]
+    vals, _ = dvp_rank(comp, key, pos) if pos else (pd.Series(dtype=float), None)
+    k_ = 0.5
+    if o not in vals.index:
+        vals, _ = team_rank(comp, key)
+        k_ = 0.4
+    if o in vals.index and vals.mean() > 0:
+        add(tr("f_opp"), _shrink(float(vals[o] / vals.mean()), k_, 0.85, 1.15),
+            tr("r_dvp", o=o, v=float(vals[o]), l=float(vals.mean())))
+    # broj suteva (za poene)
+    if key in PTS_KEYS or key in ("PRA", "PR", "PA"):
+        u = (g[["FieldGoalsAttempted2", "FieldGoalsAttempted3"]].sum(axis=1) + 0.44 * g["FreeThrowsAttempted"]) / mins
+        if len(u) >= 5 and u.mean() > 0:
+            raw = float(u.tail(5).mean() / u.mean())
+            add(tr("f_usage"), _shrink(raw, 0.5, 0.9, 1.1), tr("r_usage", a=float(u.tail(5).mean() * 30), b=float(u.mean() * 30)))
+    # suterska forma saigraca (za asistencije)
+    if key in AST_KEYS or key in ("PRA", "PA", "RA"):
+        tb = TB[(TB["comp"] == comp) & (TB["team"] == team)].sort_values("date")
+        if len(tb) >= 5:
+            fg_s = tb["FGM"].sum() / max(tb["FGA"].sum(), 1)
+            t3 = tb.tail(3)
+            fg_3 = t3["FGM"].sum() / max(t3["FGA"].sum(), 1)
+            add(tr("f_shoot"), _shrink(fg_3 / fg_s, 0.6, 0.93, 1.07), tr("r_shoot", a=100 * fg_3, b=100 * fg_s))
+    # odmor
+    last_d = TEAM_LAST_DATE.get((comp, team))
+    if last_d is not None and pd.notna(last_d) and pd.notna(nxt["date"]):
+        days = (nxt["date"].normalize() - pd.Timestamp(last_d).normalize()).days
+        if 0 < days <= 1:
+            add(tr("f_rest"), 0.97, tr("r_rest", d=days))
+    proj = base * f_all
+    # saigraci koji ne igraju (u jedinicama statistike)
+    md = LAST_MATE_DELTA[0]
+    if abs(md) >= 0.05:
+        adj.append((tr("f_mate"), md, ""))
+        proj += md
+    # napomene
+    vs = g[g["opp"] == o]
+    if len(vs):
+        info.append(tr("r_h2h", o=o, a=float(vs[key].mean()), n=len(vs)))
+    if {team, o} in DERBIES:
+        info.append(tr("r_derby"))
+    if "FoulsCommited" in g and mins.sum() > 0:
+        f36 = float(g["FoulsCommited"].sum()) / float(mins.sum()) * 36
+        if f36 >= 6.0:
+            info.append(tr("r_fouls", f=f36))
+    sd_emp = float(g[key].std(ddof=1)) if len(g) > 2 else 0.0
+    sd = max(sd_emp, 0.8 * np.sqrt(max(proj, 0.5)), 0.8) * (1 + 1 / len(g))
+    return {"proj": max(proj, 0.0), "base": base, "mexp": m_exp, "adj": adj, "info": info, "sd": sd,
+            "rate": rate}
+
+
+def signal(pg, key, line, comp, nxt=None):
+    """NOVI MODEL: sansa za Over = 60% projekcija (normalna raspodela) + 40% istorija (posl. 10, ublazeno).
+    Vraca isto sto i stari (score -100..100, label, reasons...) + p_over, proj i stari rezultat."""
+    old = signal_old(pg, key, line, comp, nxt)
+    v = pg[key].dropna()
+    n = len(v)
+    base_out = {"old_score": old["score"], "old_cls": sig_class(old["label"]), "p_over": None, "proj": None}
+    if n < 5:
+        return {**old, **base_out}
+    last = v.tail(10)
+    hits = int((last > line).sum())
+    p_hist = (hits + 2) / (len(last) + 4)
+    pr = projection(pg, key, comp, nxt) if nxt else None
+    if pr:
+        thr = line if line != int(line) else line + 0.5
+        p_proj = 1 - _norm_cdf((thr - pr["proj"]) / pr["sd"])
+        p = 0.6 * p_proj + 0.4 * p_hist
+    else:
+        p_proj, p = None, p_hist
+    p = float(np.clip(p, 0.02, 0.98))
+    score = int(round((p - 0.5) * 200))
+    h = hits / len(last)
+    if score >= 36 and h >= 0.6:
+        label = tr("sig_fire")
+    elif score >= SIG_T:
+        label = tr("sig_over")
+    elif score <= -36 and h <= 0.4:
+        label = tr("sig_ice")
+    elif score <= -SIG_T:
+        label = tr("sig_under")
+    else:
+        label = tr("sig_none")
+    direction = 1 if score >= 0 else -1
+    txt, factors = [], []
+    if pr:
+        txt.append("📈 " + tr("r_proj", p=pr["proj"], l=line, o=100 * p))
+        factors.append((tr("f_base"), None, 0, tr("r_base", r=pr["rate"] * 30, m=pr["mexp"], b=pr["base"])))
+        for name, d, t in pr["adj"]:
+            if abs(d) >= 0.05:
+                mark = "✔ " if np.sign(d) == direction else "✘ "
+                txt.append(mark + f"{name} {d:+.1f}" + (f" ({t})" if t and name != tr("f_mate") else ""))
+                factors.append((name, None, d, t))
+    hit_txt = tr("r_hit", o=hits, t=len(last))
+    txt.append(("✔ " if (h - 0.5) * direction > 0 else "✘ ") + hit_txt)
+    med = float(v.median())
+    txt.append(("✔ " if (med - line) * direction > 0 else "✘ ") + tr("r_med", m=med, l=line))
+    md = LAST_MATE_DELTA[0] if pr else 0.0
+    mark = "✔ " if np.sign(md) == direction else "✘ "
+    txt += [mark + r[2:] for r in old["reasons"] if tr("f_mate_word") in r and not r.startswith("ℹ")]
+    factors.append((tr("f_hist"), None, 0, f"{hit_txt} · {tr('r_med', m=med, l=line)} → {100 * p_hist:.0f}% Over"))
+    if p_proj is not None:
+        factors.append((tr("f_model"), None, 0, f"{100 * p_proj:.0f}% × 60% + {100 * p_hist:.0f}% × 40% = {100 * p:.0f}% Over"))
+    info = [r for r in old["reasons"] if r.startswith("ℹ")] + (["ℹ " + i for i in pr["info"]] if pr else [])
+    txt += info
+    return {"score": score, "label": label, "reasons": txt, "hit": h, "factors": factors, "wsum": None,
+            "p_over": p, "proj": pr["proj"] if pr else None, "old_score": old["score"],
+            "old_cls": sig_class(old["label"])}
+
 
 
 def court_lines():
@@ -1520,6 +1804,8 @@ def make_pick(comp, pid, pg, key, line, nxt):
         "median": float(v.median()), "avg": float(v.mean()),
         "dvp": f"#{int(dr[o])}" if o in dr.index else "–", "dvp_lbl": f"DvP {plabel}".strip(),
         "inj": inj_badge(pid), "inj_note": INJ.get(str(pid).strip(), {}).get("note", ""),
+        "p_over": sg.get("p_over"), "proj": sg.get("proj"), "old_score": sg.get("old_score"),
+        "old_cls": sg.get("old_cls"),
     }
 
 
@@ -1578,6 +1864,7 @@ def load_book_file():
 
 
 BOOK_FILE = load_book_file()
+GAME_BOOK = _match_games()
 
 
 def build_book():
@@ -1618,7 +1905,9 @@ def eval_line(comp, pid, key, line, over=None, under=None, nxt=None):
     nxt = nxt or next_game(comp, pg["team"].iloc[-1])
     p = make_pick(comp, pid, pg, key, float(line), nxt)
     last10 = pg[key].tail(10)
-    p_our = LN.our_prob(int((last10 > line).sum()), len(last10))
+    p_our = p.get("p_over")
+    if p_our is None:
+        p_our = LN.our_prob(int((last10 > line).sum()), len(last10))
     ev_o = LN.ev(p_our, over)
     ev_u = LN.ev(1 - p_our, under) if p_our is not None else None
     side, best = None, None
@@ -1705,7 +1994,7 @@ HIST_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "predlozi_i
 SNAP_KEYS = ["Points", "TotalRebounds", "Assistances", "PRA", "3PM"]
 HIST_COLS = ["saved", "comp", "season", "round", "gamecode", "date", "time", "player_id", "player", "team", "opp",
              "home", "stat", "line", "src", "over", "under", "books", "score", "label", "cls", "hit_l10",
-             "ev_side", "ev", "reasons"]
+             "ev_side", "ev", "reasons", "proj", "p_over", "old_score", "old_cls", "model"]
 
 
 def snapshot_picks(comp, days=3):
@@ -1743,7 +2032,10 @@ def snapshot_picks(comp, days=3):
                          "label": p["label"], "cls": p["cls"],
                          "hit_l10": round(p["hit_pct"], 3) if p.get("hit_pct") is not None else None,
                          "ev_side": p.get("ev_side"), "ev": round(p["ev"], 4) if p.get("ev") is not None else None,
-                         "reasons": " · ".join(p["reasons"])})
+                         "reasons": " · ".join(p["reasons"]),
+                         "proj": round(p["proj"], 2) if p.get("proj") is not None else None,
+                         "p_over": round(p["p_over"], 4) if p.get("p_over") is not None else None,
+                         "old_score": p.get("old_score"), "old_cls": p.get("old_cls"), "model": "v2"})
     new = pd.DataFrame(rows, columns=HIST_COLS)
     try:
         old = pd.read_csv(HIST_FILE, dtype={"player_id": str})
@@ -1795,6 +2087,13 @@ def grade_hist(h):
     odd = np.where(h["dir"] == "Over", h["over"], h["under"])
     h["odd"] = pd.to_numeric(odd, errors="coerce")
     h["units"] = np.where(h["odd"].notna(), np.where(h["won"], h["odd"] - 1, -1.0), np.nan)
+    # stari model (snimljen paralelno) radi poredjenja
+    if "old_score" in h:
+        os_ = pd.to_numeric(h["old_score"], errors="coerce")
+        h["old_dir"] = np.where(os_ > 0, "Over", np.where(os_ < 0, "Under", ""))
+        h["old_won"] = np.where(h["old_dir"] == "Over", h["actual"] > h["line"], h["actual"] < h["line"])
+        oodd = pd.to_numeric(np.where(h["old_dir"] == "Over", h["over"], h["under"]), errors="coerce")
+        h["old_units"] = np.where(pd.notna(oodd), np.where(h["old_won"], oodd - 1, -1.0), np.nan)
     return h
 
 
@@ -2090,7 +2389,7 @@ def render_props():
     st.subheader(f"{row['player']} – {prop_name} {line:g}")
     if nxt:
         sg = signal(g, key, line, row["comp"], nxt)
-        box = st.success if sg["score"] >= 25 else st.error if sg["score"] <= -25 else st.info
+        box = st.success if sg["score"] >= SIG_T else st.error if sg["score"] <= -SIG_T else st.info
         box(f"**{tr('sig')}: {sg['label']}** ({tr('sig_score').lower()} {sg['score']:+d})  \n"
             + " · ".join(sg["reasons"]))
         st.caption(tr("sig_note"))
@@ -2627,16 +2926,18 @@ if PAGE == "picks":
             if q_nxt:
                 verdict += "  \n" + tr("next_vs", o=q_nxt["opp"], ha=tr("home") if q_nxt["home"] else tr("away"),
                                         d=f"{q_nxt['date']:%d.%m.}" if pd.notna(q_nxt["date"]) else "")
-            box = (st.success if q_sg["score"] >= 25 else st.error if q_sg["score"] <= -25 else st.info)
+            box = (st.success if q_sg["score"] >= SIG_T else st.error if q_sg["score"] <= -SIG_T else st.info)
             box(verdict)
             inj_box(q_row["player_id"])
             if not q_nxt:
                 st.caption(tr("no_next"))
             if q_sg["factors"]:
                 ft = pd.DataFrame([{
-                    tr("factor"): n, tr("weight"): f"{round(100 * w / q_sg['wsum'])}%",
+                    tr("factor"): n, tr("impact"): (f"{x:+.1f}" if w is None and x else ""),
                     tr("vote"): ("🟢 Over" if x > 0.05 else "🔴 Under" if x < -0.05 else f"⚪ {tr('neutral')}"),
                     tr("detail"): d} for n, w, x, d in q_sg["factors"]])
+                if q_sg.get("proj") is not None:
+                    st.markdown(tr("proj_head", p=q_sg["proj"], l=q_line, o=100 * q_sg["p_over"]))
                 st.dataframe(ft, hide_index=True, width="stretch")
                 m1, m2, m3, m4 = st.columns(4)
                 m1.metric(tr("avg"), f"{q_v.mean():.1f}")
@@ -2704,9 +3005,9 @@ if PAGE == "picks":
             st.markdown(tr("picks_count", f=labels.count(tr("sig_fire")), o=labels.count(tr("sig_over")),
                            u=labels.count(tr("sig_under")), i=labels.count(tr("sig_ice"))))
             if k_show == "Over":
-                sel = sorted([p for p in picks_all if p["score"] >= 25], key=lambda p: -p["score"])
+                sel = sorted([p for p in picks_all if p["score"] >= SIG_T], key=lambda p: -p["score"])
             elif k_show == "Under":
-                sel = sorted([p for p in picks_all if p["score"] <= -25], key=lambda p: p["score"])
+                sel = sorted([p for p in picks_all if p["score"] <= -SIG_T], key=lambda p: p["score"])
             elif k_show == tr("show_strong"):
                 sel = sorted([p for p in picks_all if p["cls"] in ("fire", "ice")], key=lambda p: -abs(p["score"]))
             else:
@@ -2845,9 +3146,9 @@ if PAGE == "lines":
                                           label_visibility="collapsed") or _show[0]
             results = [p for p in allr if b_stat == tr("all_stats") or prop_stats.get(p["key"]) == b_stat]
             if b_show == "Over":
-                results = [p for p in results if p["score"] >= 25]
+                results = [p for p in results if p["score"] >= SIG_T]
             elif b_show == "Under":
-                results = [p for p in results if p["score"] <= -25]
+                results = [p for p in results if p["score"] <= -SIG_T]
             elif b_show == tr("show_strong"):
                 results = [p for p in results if p["cls"] in ("fire", "ice")]
             elif b_show == _show[4]:
@@ -2991,7 +3292,7 @@ if PAGE == "perf":
                         tr("perf_units"): round(float(u.sum()), 2) if len(u) else None,
                         tr("perf_roi"): round(100 * float(u.sum()) / len(u), 1) if len(u) else None}
 
-            sig = G[G["score"].abs() >= 25]
+            sig = G[G["cls"] != "none"]
             m1, m2, m3 = st.columns(3)
             s_all = summ(sig)
             m1.metric(tr("perf_all_sig"), f"{s_all[tr('perf_pct')] or 0}%", f"{s_all[tr('perf_won')]}/{s_all[tr('perf_n')]}",
@@ -3008,6 +3309,21 @@ if PAGE == "perf":
             cfg = {tr("perf_pct"): st.column_config.NumberColumn(format="%d%%"),
                    tr("perf_roi"): st.column_config.NumberColumn(format="%+.1f%%"),
                    tr("perf_units"): st.column_config.NumberColumn(format="%+.2f")}
+            if "old_cls" in G and G["old_cls"].notna().any():
+                st.markdown(f"**{tr('perf_cmp')}**")
+                Gv = G[G["old_cls"].notna()]
+                rows_c = []
+                for lab, sel, wcol, ucol in ((tr("perf_new"), Gv["cls"] != "none", "won", "units"),
+                                             (tr("perf_old"), Gv["old_cls"] != "none", "old_won", "old_units")):
+                    g_ = Gv[sel]
+                    u_ = pd.to_numeric(g_[ucol], errors="coerce").dropna()
+                    n_ = len(g_)
+                    rows_c.append({tr("perf_model"): lab, tr("perf_n"): n_, tr("perf_won"): int(g_[wcol].sum()),
+                                   tr("perf_pct"): round(100 * g_[wcol].mean()) if n_ else None,
+                                   tr("perf_units"): round(float(u_.sum()), 2) if len(u_) else None,
+                                   tr("perf_roi"): round(100 * float(u_.sum()) / len(u_), 1) if len(u_) else None})
+                st.dataframe(pd.DataFrame(rows_c), hide_index=True, width="stretch", column_config=cfg)
+                st.caption(tr("perf_cmp_help"))
             st.markdown(f"**{tr('perf_by_sig')}**")
             order = [("fire", tr("sig_fire")), ("over", tr("sig_over")), ("under", tr("sig_under")),
                      ("ice", tr("sig_ice")), ("none", tr("sig_none"))]
