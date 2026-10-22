@@ -226,7 +226,7 @@ T3 = {
         "r_hit": "{o}/{t} preko", "r_med": "medijana {m:g} vs {l:g}", "r_opp": "{o} #{r} {p}",
         "r_min": "minuti {d:+.1f}", "r_ven": "{v}: prosek {a:.1f}",
         "sig_note": "Predlog je statistički signal iz dosadašnjih utakmica (hit-rate, medijana, "
-                    "protivnik po poziciji, minuti, kuća/gost), ne garancija. 🔥 / 🧊 = skoro svi "
+                    "protivnik po poziciji, minuti, kuća/gost, saigrači koji ne igraju), ne garancija. 🔥 / 🧊 = skoro svi "
                     "pokazatelji se slažu. Uzorak je mali na početku sezone.",
         "line_mode": "Linija", "line_fixed": "Ista za sve", "line_avg": "Prosek igrača (≈ kladionica)",
         "show": "Prikaži", "show_all": "Sve", "show_strong": "Samo 🔥 / 🧊",
@@ -245,6 +245,10 @@ T3 = {
         "factor": "Faktor", "weight": "Težina", "vote": "Glas", "detail": "Detalj",
         "f_hit": "Hit-rate (posl. 10)", "f_med": "Medijana", "f_opp": "Protivnik (DvP)",
         "f_ven": "Kuća / gost", "f_min": "Minuti (posl. 3)", "neutral": "neutralno",
+        "f_mate": "Saigrači koji ne igraju", "mate_other": "druga pozicija",
+        "r_mate": "{n} ne igra ({p}): bez njega {a:.1f} / {m:.0f} min, sa njim {b:.1f} / {mm:.0f} min ({k} utak.)",
+        "r_mate_est": "{n} ne igra ({p}): procena +{d:.1f} (≈ +{mn:.0f} min, mali uzorak)",
+        "r_mate_old": "{n} ne igra duže vreme – već je uračunato u prosek",
         "next_vs": "Sledeća utakmica: **{o}** ({ha}, {d})", "no_next": "Nema zakazane utakmice – "
         "protivnik i teren nisu uračunati.", "line_each": "Linija = prosek svakog igrača, na .5 "
         "(npr. prosek 14.3 → 14.5).",
@@ -316,7 +320,7 @@ T3 = {
         "r_hit": "{o}/{t} over", "r_med": "median {m:g} vs {l:g}", "r_opp": "{o} #{r} {p}",
         "r_min": "minutes {d:+.1f}", "r_ven": "{v}: avg {a:.1f}",
         "sig_note": "A pick is a statistical signal from games so far (hit rate, median, "
-                    "opponent vs position, minutes, home/away), not a guarantee. 🔥 / 🧊 = nearly all "
+                    "opponent vs position, minutes, home/away, absent teammates), not a guarantee. 🔥 / 🧊 = nearly all "
                     "indicators agree. Sample is small early in the season.",
         "line_mode": "Line", "line_fixed": "Same for all", "line_avg": "Player average (≈ bookmaker)",
         "show": "Show", "show_all": "All", "show_strong": "Only 🔥 / 🧊",
@@ -335,6 +339,10 @@ T3 = {
         "factor": "Factor", "weight": "Weight", "vote": "Vote", "detail": "Detail",
         "f_hit": "Hit rate (last 10)", "f_med": "Median", "f_opp": "Opponent (DvP)",
         "f_ven": "Home / away", "f_min": "Minutes (last 3)", "neutral": "neutral",
+        "f_mate": "Absent teammates", "mate_other": "other position",
+        "r_mate": "{n} out ({p}): without him {a:.1f} / {m:.0f} min, with him {b:.1f} / {mm:.0f} min ({k} g)",
+        "r_mate_est": "{n} out ({p}): estimate +{d:.1f} (≈ +{mn:.0f} min, small sample)",
+        "r_mate_old": "{n} out for a while – already in his averages",
         "next_vs": "Next game: **{o}** ({ha}, {d})", "no_next": "No scheduled game – "
         "opponent and venue are not counted.", "line_each": "Line = each player's average, at .5 "
         "(e.g. average 14.3 → 14.5).",
@@ -1146,12 +1154,87 @@ def team_rank(comp, key):
     return ta, ta.rank(ascending=False, method="min")
 
 
+# ---------- saigraci koji ne igraju / absent teammates ----------
+_played = df[df["Minutes"].fillna(0) > 0]
+_srt = _played.sort_values(SORT)
+TEAM_GAMES = {k: list(dict.fromkeys(g["gamecode"])) for k, g in _srt.groupby(["comp", "team"])}
+PL_GAMES = {k: set(g["gamecode"]) for k, g in _played.groupby(["comp", "_pid", "team"])}
+PL_MIN = {k: float(g["Minutes"].mean()) for k, g in _played.groupby(["comp", "_pid", "team"])}
+PL_NAME = dict(zip(df["_pid"], df["player"]))
+PL_LAST_TEAM = {k: g["team"].iloc[-1] for k, g in _srt.groupby(["comp", "_pid"])}
+MATE_MIN = 15          # saigrac je "bitan" ako igra bar ovoliko minuta
+
+
+def absent_mates(comp, pid, team):
+    """Bitni saigraci koji ne igraju / verovatno ne igraju sledecu utakmicu."""
+    out = []
+    for (c, mid, t), mins in PL_MIN.items():
+        if c != comp or t != team or mid == pid or mins < MATE_MIN:
+            continue
+        if PL_LAST_TEAM.get((c, mid)) != team:
+            continue                       # presao u drugi tim
+        stt = inj_status(mid)
+        if stt in ("out", "doubtful"):
+            out.append((mid, stt, mins))
+    return out
+
+
+def mate_factor(pg, key, comp, sd):
+    """Uticaj saigraca koji ne igraju. Vraca (x -1..1 ili None, [(x, tekst)], [info tekst])."""
+    pid = str(pg["player_id"].iloc[-1]).strip()
+    team = pg["team"].iloc[-1]
+    mates = absent_mates(comp, pid, team)
+    if not mates:
+        return None, [], []
+    tgames = TEAM_GAMES.get((comp, team), [])
+    my_pos = _pp.get(pid, (None, None))[0]
+    own = pg[pg["team"] == team]
+    mine = own.dropna(subset=[key])
+    total, reasons, info = 0.0, [], []
+    for mid, stt, mins in mates:
+        name = short_name(PL_NAME.get(mid, mid))
+        mgames = PL_GAMES.get((comp, mid, team), set())
+        recent = tgames[-3:]
+        missed_recent = sum(1 for g in recent if g not in mgames)
+        if len(recent) >= 2 and missed_recent >= 2:
+            info.append(tr("r_mate_old", n=name))        # vec duze ne igra: vec je u proseku
+            continue
+        same = bool(my_pos) and _pp.get(mid, (None, None))[0] == my_pos
+        plab = tr(f"pos1_{my_pos}").lower() if same else tr("mate_other")
+        w_st = 1.0 if stt == "out" else 0.5
+        wo = mine[~mine["gamecode"].isin(mgames)]
+        wi = mine[mine["gamecode"].isin(mgames)]
+        if len(wo) >= 2 and len(wi) >= 3:
+            a, b = float(wo[key].mean()), float(wi[key].mean())
+            shrink = len(wo) / (len(wo) + 2)
+            x = float(np.clip((a - b) / sd, -1, 1)) * shrink * w_st
+            reasons.append((x, tr("r_mate", n=name, p=plab, a=a, m=float(wo["Minutes"].mean()),
+                                  b=b, mm=float(wi["Minutes"].mean()), k=len(wo))))
+        elif same and len(mine) >= 3:
+            # procena: deo njegovih minuta prelazi na igrace iste pozicije
+            rot = [q for (c, q, t), mm_ in PL_MIN.items()
+                   if c == comp and t == team and q != mid and mm_ >= 10 and inj_status(q) not in INJ_HIDE
+                   and PL_LAST_TEAM.get((c, q)) == team and _pp.get(q, (None, None))[0] == my_pos]
+            extra_min = 0.5 * mins / max(len(rot), 1)
+            per_min = float(mine[key].sum()) / max(float(mine["Minutes"].sum()), 1.0)
+            d = extra_min * per_min
+            x = float(np.clip(d / sd, 0, 1)) * 0.6 * w_st
+            reasons.append((x, tr("r_mate_est", n=name, p=plab, d=d, mn=extra_min)))
+        else:
+            continue
+        total += x
+    if not reasons:
+        return None, [], info
+    return float(np.clip(total, -1, 1)), reasons, info
+
+
 def signal(pg, key, line, comp, nxt=None):
     """Over/Under signal za sledecu utakmicu igraca.
 
     pg = utakmice igraca (sortirane), nxt = next_game(...) ili None.
     Vraca dict: score (-100..100, + = Over), label, reasons (lista teksta).
-    Tezine: hit-rate 30%, medijana 25%, protivnik 20%, teren 15%, minuti 10%.
+    Tezine: hit-rate 30%, medijana 25%, protivnik 20%, teren 15%, minuti 10%,
+    saigraci koji ne igraju 20% (samo kad je izostanak nov).
     """
     v = pg[key].dropna()
     n = len(v)
@@ -1193,6 +1276,17 @@ def signal(pg, key, line, comp, nxt=None):
                 reasons.append((x, tr("r_ven", v=tr("home") if nxt["home"] else tr("away"), a=ven.mean())))
                 factors.append((tr("f_ven"), 0.15, x, reasons[-1][1]))
 
+    info = []
+    if nxt:
+        try:
+            mx, mreasons, info = mate_factor(pg, key, comp, sd)
+        except Exception:
+            mx, mreasons = None, []
+        if mx is not None:
+            parts.append((0.20, mx))
+            reasons.extend(mreasons)
+            factors.append((tr("f_mate"), 0.20, mx, " · ".join(r for _, r in mreasons)))
+
     mins = pg["Minutes"].dropna()
     if len(mins) >= 4:
         dm = float(mins.tail(3).mean() - mins.mean())
@@ -1215,6 +1309,7 @@ def signal(pg, key, line, comp, nxt=None):
         label = tr("sig_none")
     direction = 1 if score >= 0 else -1
     txt = [("✔ " if np.sign(x) == direction else "✘ ") + r for x, r in reasons if x != 0]
+    txt += ["ℹ " + r for r in info]
     return {"score": int(round(score)), "label": label, "reasons": txt, "hit": h,
             "factors": factors, "wsum": sum(w for w, _ in parts)}
 
