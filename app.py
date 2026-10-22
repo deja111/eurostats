@@ -4,6 +4,7 @@ Pokretanje / Run:  python -m streamlit run app.py
 (app.py i euroleague_stats.py moraju biti u istom folderu)
 """
 import contextlib
+import html as _html
 import io
 import json
 import re
@@ -537,6 +538,14 @@ div[data-baseweb="select"] > div, div[data-baseweb="input"] > div {border-radius
 .es-game .x {font-size:.72rem; opacity:.85;} .es-game .x b {color:#16a34a;}
 .es-row {display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px solid rgba(128,128,128,.18);}
 .es-row:last-child {border-bottom:0;}
+.es-av {border-radius:50%; object-fit:cover; object-position:top; background:rgba(128,128,128,.15); flex:none;}
+.es-crest {object-fit:contain; vertical-align:-3px; margin-right:3px;}
+.es-ico.has-img {position:relative; background:none !important;}
+.es-ico.has-img .es-av {width:34px !important; height:34px !important;}
+.es-ico.has-img b {position:absolute; right:-6px; bottom:-6px; font-size:.72rem; line-height:1;}
+.es-pick .who {display:flex; gap:10px; align-items:center;}
+.es-ph {display:flex; align-items:center; gap:14px; margin:.4rem 0 .2rem;}
+.es-ph h3 {margin:0; padding:0;}
 .es-ico {width:34px; height:34px; border-radius:10px; display:grid; place-items:center; font-size:1.05rem; flex:none;}
 .i-fire {background:rgba(245,158,11,.16);} .i-over {background:rgba(34,197,94,.14);}
 .i-under {background:rgba(239,68,68,.14);} .i-ice {background:rgba(59,130,246,.16);} .i-none {background:rgba(128,128,128,.12);}
@@ -635,6 +644,7 @@ st.sidebar.markdown(
     unsafe_allow_html=True)
 with st.sidebar.expander("⚙️ Podešavanja / Settings"):
     lang_name = st.radio("Jezik / Language", ["Srpski", "English"], horizontal=True)
+    SHOW_IMG = st.toggle("🖼️ Slike igrača i grbovi / Photos & crests", value=True, key="show_imgs")
 lang = "sr" if lang_name == "Srpski" else "en"
 
 
@@ -841,6 +851,32 @@ def estimate_positions(frame, known):
 
 
 pos_tbl = load_pos(tuple(comps))
+
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def load_imgs(comps: tuple) -> pd.DataFrame:
+    try:
+        return es.load_images(list(comps))
+    except Exception:
+        return pd.DataFrame(columns=["comp", "season", "kind", "code", "url"])
+
+
+_im = load_imgs(tuple(comps))
+PHOTO = {str(r.code).strip(): r.url for r in _im[_im["kind"] == "player"].itertuples()} if SHOW_IMG else {}
+_cr = remap(_im[_im["kind"] == "club"].rename(columns={"code": "team"}).copy(), ["team"])
+CREST = {r.team: r.url for r in _cr.itertuples()} if SHOW_IMG and not _cr.empty else {}
+
+
+def photo(pid, size=40, cls="es-av"):
+    url = PHOTO.get(str(pid).strip())
+    return (f"<img class='{cls}' src='{_html.escape(url, quote=True)}' loading='lazy' alt='' "
+            f"style='width:{size}px;height:{size}px'>") if url else ""
+
+
+def crest(team, size=16):
+    url = CREST.get(team)
+    return (f"<img class='es-crest' src='{_html.escape(url, quote=True)}' loading='lazy' alt='' "
+            f"style='width:{size}px;height:{size}px'>") if url else ""
 official = dict(zip(pos_tbl["player_id"], pos_tbl["pos"])) if not pos_tbl.empty else {}
 manual = manual_positions()
 estimated = estimate_positions(df, official) if official else {}
@@ -1358,9 +1394,10 @@ def pick_card(p, extra=""):
                      for r in p["reasons"])
     warn = f"<div class='es-warn'>{esc(p['inj'])}{' · ' + esc(p['inj_note'][:90]) if p['inj_note'] else ''}</div>" \
         if p["inj"] else ""
-    return (f"<div class='es-pick {cls}'><div class='hd'><div><div class='nm'>{esc(nice_name(p['player']))} "
-            f"<span>{esc(p['team'])}{' · ' + esc(p['pos']) if p['pos'] else ''}</span></div>"
-            f"<div class='sub'>{esc(p['stat'])} <b>{p['line']:g}</b>{vs}</div></div>"
+    return (f"<div class='es-pick {cls}'><div class='hd'><div class='who'>{photo(p.get('pid'), 44)}<div>"
+            f"<div class='nm'>{esc(nice_name(p['player']))} "
+            f"<span>{crest(p['team'], 14)}{esc(p['team'])}{' · ' + esc(p['pos']) if p['pos'] else ''}</span></div>"
+            f"<div class='sub'>{esc(p['stat'])} <b>{p['line']:g}</b>{vs}</div></div></div>"
             f"<div class='es-tag t-{cls}'>{esc(tag)}</div></div>"
             f"<div class='es-bar'><i style='left:{left}%;width:{w}%;background:{SIG_COLOR[cls]}'></i><u></u></div>"
             f"<div class='es-stats'><div><b>{esc(p['hit'])}</b><span>{esc(tr('r_hit', o='', t='').split()[-1])}</span></div>"
@@ -1376,8 +1413,10 @@ def pick_row(p):
     icon = p["label"].split()[0] if p["label"] else "⚪"
     direction = "Over" if p["score"] > 0 else "Under"
     ha = (tr("home") if p["home"] else tr("away")).lower() if p["home"] is not None else ""
-    return (f"<div class='es-row'><div class='es-ico i-{cls}'>{icon}</div><div class='es-main'>"
-            f"<div class='es-name'>{esc(short_name(p['player']))} <span>{esc(p['team'])}"
+    av = photo(p.get("pid"), 34)
+    ico = f"<div class='es-ico i-{cls} has-img'>{av}<b>{icon}</b></div>" if av else f"<div class='es-ico i-{cls}'>{icon}</div>"
+    return (f"<div class='es-row'>{ico}<div class='es-main'>"
+            f"<div class='es-name'>{esc(short_name(p['player']))} <span>{crest(p['team'], 14)}{esc(p['team'])}"
             f"{' · ' + esc(p['pos']) if p['pos'] else ''}</span></div>"
             f"<div class='es-sub'>{esc(p['stat'])} {p['line']:g} · vs {esc(p['opp'])} ({esc(ha)})</div></div>"
             f"<div class='es-val'><b class='c-{cls}'>{direction}</b><div>{esc(p['hit'])}</div></div></div>")
@@ -1527,7 +1566,13 @@ if PAGE == "player":
     if choice:
         row, g = player_games(choice)
         pl_pos = pos_label(row["player_id"])
-        st.subheader(f"{row['player']} – {row['team']}" + (f" · {pl_pos}" if pl_pos else ""))
+        _ph = photo(row["player_id"], 72)
+        if _ph:
+            st.markdown(f"<div class='es-ph'>{_ph}<div><h3>{esc(row['player'])}</h3>"
+                        f"<div>{crest(row['team'], 18)}{esc(row['team'])}{' · ' + esc(pl_pos) if pl_pos else ''}"
+                        f"</div></div></div>", unsafe_allow_html=True)
+        else:
+            st.subheader(f"{row['player']} – {row['team']}" + (f" · {pl_pos}" if pl_pos else ""))
         inj_box(row["player_id"])
         st.caption(tr("averages", n=len(g)))
 
@@ -2497,7 +2542,7 @@ if PAGE == "home":
             proj, lab, line = game_total(comp, m.homecode, m.awaycode)
             tot = (f"{esc(tr('total_s'))} <b>{proj}</b> {esc(lab.split()[0])}" if proj else "")
             cards.append(f"<div class='es-game'><div class='d'>{esc(day_time(m.date, m.startime))}</div>"
-                         f"<div class='m'>{esc(m.homecode)} – {esc(m.awaycode)}</div><div class='x'>{tot}</div></div>")
+                         f"<div class='m'>{crest(m.homecode, 18)}{esc(m.homecode)} – {crest(m.awaycode, 18)}{esc(m.awaycode)}</div><div class='x'>{tot}</div></div>")
         st.markdown(f"<div class='es-games'>{''.join(cards)}</div>", unsafe_allow_html=True)
 
         # najjaci predlozi

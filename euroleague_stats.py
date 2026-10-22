@@ -140,6 +140,52 @@ def update_positions(comp, conn=None):
     print(f"Pozicije: {len(found)} igraca ({len(have - set(found))} bez zvanicne pozicije)")
 
 
+def update_images(comp, conn=None):
+    """Slike igraca (headshot) i grbovi klubova sa Euroleague API-ja (jednom dnevno)."""
+    import requests
+    conn = conn or get_conn()
+    conn.execute("""CREATE TABLE IF NOT EXISTS images (
+        comp TEXT, season INTEGER, kind TEXT, code TEXT, url TEXT,
+        PRIMARY KEY (comp, season, kind, code))""")
+    conn.execute("CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY, value TEXT)")
+    row = conn.execute("SELECT value FROM meta WHERE key=?", (f"images_{comp}_{SEASON}",)).fetchone()
+    if row and time.time() - float(row[0]) < 20 * 3600:
+        print("Slike: osvezene u poslednjih 20 h, preskacem.")
+        return
+    url = f"https://api-live.euroleague.net/v2/competitions/{comp}/seasons/{comp}{SEASON}/people?personType=J"
+    def get():
+        r = requests.get(url, timeout=60)
+        r.raise_for_status()
+        return r.json()
+    data = polite(get)
+    people = data if isinstance(data, list) else data.get("data", [])
+    rows = []
+    for p in people:
+        code = str((p.get("person") or {}).get("code") or "").strip()
+        img = (p.get("images") or {}).get("headshot") or ((p.get("person") or {}).get("images") or {}).get("headshot")
+        if code and img:
+            rows.append((comp, SEASON, "player", "P" + code.zfill(6), img))
+        club = p.get("club") or {}
+        crest = (club.get("images") or {}).get("crest")
+        if club.get("code") and crest:
+            rows.append((comp, SEASON, "club", club["code"], crest))
+    conn.executemany("INSERT OR REPLACE INTO images VALUES (?,?,?,?,?)", rows)
+    if people:
+        conn.execute("INSERT OR REPLACE INTO meta VALUES (?,?)", (f"images_{comp}_{SEASON}", str(time.time())))
+    conn.commit()
+    n_pl = sum(1 for x in rows if x[2] == "player")
+    print(f"Slike: {n_pl} od {len(people)} igraca ima sliku, grbova {len({x[3] for x in rows if x[2] == 'club'})}")
+
+
+def load_images(comps):
+    conn = get_conn()
+    conn.execute("""CREATE TABLE IF NOT EXISTS images (
+        comp TEXT, season INTEGER, kind TEXT, code TEXT, url TEXT,
+        PRIMARY KEY (comp, season, kind, code))""")
+    q = f"SELECT * FROM images WHERE season=? AND comp IN ({','.join('?' * len(comps))})"
+    return pd.read_sql(q, conn, params=(SEASON, *comps))
+
+
 def load_positions(comps):
     conn = get_conn()
     conn.execute("""CREATE TABLE IF NOT EXISTS positions (
@@ -204,6 +250,10 @@ def update(comps):
             update_positions(comp, conn)
         except Exception as e:
             print(f"Ne mogu da dobijem pozicije ({e})")
+        try:
+            update_images(comp, conn)
+        except Exception as e:
+            print(f"Ne mogu da dobijem slike ({e})")
 
 
 # ---------- cetvrtine (play-by-play) i sutevi / quarters and shots ----------
