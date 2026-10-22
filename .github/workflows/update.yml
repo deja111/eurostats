@@ -44,5 +44,6 @@ jobs:
             echo "Nema promena."
           else
             git commit -m "Automatsko osvezavanje podataka"
+            git pull --rebase       # u medjuvremenu je neko drugi menjao repo (upload, linije)
             git push
           fi
