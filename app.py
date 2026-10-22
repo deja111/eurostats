@@ -230,7 +230,7 @@ T3 = {
                     "pokazatelji se slažu. Uzorak je mali na početku sezone.",
         "line_mode": "Linija", "line_fixed": "Ista za sve", "line_avg": "Prosek igrača (≈ kladionica)",
         "show": "Prikaži", "show_all": "Sve", "show_strong": "Samo 🔥 / 🧊",
-        "picks_count": "🔥 {f} jakih Over · 🟢 {o} Over · 🔴 {u} Under · 🧊 {i} jakih Under",
+        "picks_count": "🔥 {f} {jf} Over · 🟢 {o} Over · 🔴 {u} Under · 🧊 {i} {ji} Under",
         "no_picks": "Nema igrača za sledeće kolo sa ovim filterima.",
         "tot_sig": "Predlog (total)",
         "inj_out": "🚑 Ne igra", "inj_doubtful": "🟠 Verovatno ne igra", "inj_questionable": "🟡 Upitan",
@@ -386,7 +386,7 @@ T4 = {
         "home_picks_h": "Najjači predlozi", "home_inj_h": "🚑 Ne igraju", "home_form_h": "🔥 U formi",
         "home_form_sub": "posl. 3 vs sezona · poeni", "go_sched": "Raspored →", "go_picks": "Svi predlozi →",
         "go_inj": "Sve povrede →", "go_form": "Lideri →",
-        "chip_fire": "🔥 {n} jaka Over", "chip_ice": "🧊 {n} jaka Under", "chip_out": "🚑 {n} ne igra",
+        "chip_fire": "🔥 {n} {jn} Over", "chip_ice": "🧊 {n} {jn} Under", "chip_out": "🚑 {n} ne igra",
         "chip_games": "🏀 {g} odigrano · {p} igrača",
         "total_s": "Total", "as_table": "Prikaži kao tabelu", "more": "Ostalo ▾", "show_more": "Prikaži još",
         "filters": "⚙️ Još filtera", "no_next_round": "Nema zakazanih utakmica.", "home_no_picks":
@@ -656,7 +656,20 @@ def load(comps: tuple) -> pd.DataFrame:
 lang = "en" if st.session_state.get("lang_name") == "English" else "sr"
 
 
+def jak(n):
+    """Slaganje sa brojem: 1 jak, 2-4 jaka, 5+ jakih (11-14 jakih)."""
+    n = abs(int(n))
+    if n % 10 == 1 and n % 100 != 11:
+        return "jak"
+    if n % 10 in (2, 3, 4) and n % 100 not in (12, 13, 14):
+        return "jaka"
+    return "jakih"
+
+
 def tr(key, **kw):
+    for a, b in (("n", "jn"), ("f", "jf"), ("i", "ji")):
+        if a in kw and isinstance(kw[a], (int, np.integer)):
+            kw.setdefault(b, jak(kw[a]))
     return T[lang][key].format(**kw)
 
 
