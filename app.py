@@ -453,7 +453,7 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 .stApp {font-family: 'Inter', sans-serif;}
-.block-container {padding-top: 4.5rem; max-width: 1200px;}
+.block-container {padding-top: 3.2rem; max-width: 1200px;}
 footer {visibility: hidden;}
 
 .hero {display: flex; align-items: center; gap: 18px; padding: 22px 26px; margin-bottom: 1.2rem;
@@ -484,7 +484,7 @@ div[data-baseweb="select"] > div, div[data-baseweb="input"] > div {border-radius
 .vega-embed, .vega-embed canvas, .vega-embed svg {touch-action: pan-y !important;}
 
 @media (max-width: 640px) {
-  .block-container {padding: 4.5rem 0.8rem 3rem;}   /* ispod Streamlit trake (Share/Fork) */
+  .block-container {padding: 3.4rem 0.8rem 3rem;}   /* ispod Streamlit trake (Share/Fork) */
   .hero {padding: 14px 16px; gap: 12px; border-radius: 16px;}
   .hero svg {width: 40px; height: 40px;}
   .hero-title {font-size: 1.5rem;}
@@ -508,17 +508,34 @@ div[data-baseweb="select"] > div, div[data-baseweb="input"] > div {border-radius
 .st-key-hdr [data-testid="stColumn"]:last-child {display:flex; justify-content:flex-end;}
 [data-testid="stSegmentedControl"] button, [data-testid="stPills"] button {font-weight:600;}
 
-/* meni: na racunaru red dugmica ispod zaglavlja */
-.st-key-bottomnav {border-bottom:1px solid rgba(128,128,128,.22); padding-bottom:.35rem; margin-bottom:.4rem;}
-.st-key-bottomnav [data-testid="stHorizontalBlock"] {flex-wrap:nowrap !important; gap:.35rem !important;}
-.st-key-bottomnav [data-testid="stColumn"] {min-width:0 !important; flex:1 1 0 !important; width:auto !important;}
-.st-key-bottomnav button {border:none !important; background:transparent !important; box-shadow:none !important;
-    font-weight:600; opacity:.75; min-height:44px;}
-.st-key-bottomnav button:hover {opacity:1; color:#f59e0b !important;}
-.st-key-bottomnav button[kind="primary"], .st-key-bottomnav [data-testid="stBaseButton-primary"] {
-    color:#f59e0b !important; opacity:1; font-weight:800; border-bottom:3px solid #f59e0b !important;
-    border-radius:0 !important;}
-.st-key-bottomnav button p {font-size:1rem;}
+/* glavni meni: "prekidaci" u zaglavlju, aktivan = narandzast */
+.st-key-hdr {padding-bottom:.55rem; border-bottom:1px solid rgba(128,128,128,.22); margin-bottom:.1rem;}
+.st-key-mainnav {background:rgba(128,128,128,.08); border:1px solid rgba(128,128,128,.22); border-radius:12px; padding:3px;}
+.st-key-mainnav [data-testid="stHorizontalBlock"] {flex-wrap:nowrap !important; gap:3px !important;}
+.st-key-mainnav [data-testid="stColumn"] {min-width:0 !important; flex:1 1 0 !important; width:auto !important;}
+.st-key-mainnav button {border:none !important; background:transparent !important; box-shadow:none !important;
+    font-weight:600; opacity:.8; min-height:36px; border-radius:9px !important; padding:2px 6px !important;}
+.st-key-mainnav button p {font-size:.92rem; white-space:nowrap;}
+.st-key-mainnav button:hover {opacity:1; color:#f59e0b !important;}
+.st-key-mainnav [data-testid="stBaseButton-primary"] {background:#f59e0b !important; opacity:1;}
+.st-key-mainnav [data-testid="stBaseButton-primary"] p {color:#111827 !important; font-weight:800;}
+.st-key-hdr [data-testid="stPopover"] button {border:1px solid rgba(128,128,128,.3) !important; border-radius:10px;
+    min-height:36px; padding:0 10px !important;}
+.st-key-hdr [data-testid="stPopover"] button [data-testid="stIconMaterial"] {display:none;}
+.st-key-hdr [data-testid="stPopover"] button {justify-content:center !important; gap:0 !important; min-width:40px;}
+.st-key-hdr [data-testid="stPopover"] button > div {justify-content:center !important;}
+/* blokovi koji sadrze samo <style> ne prave prazan prostor */
+[data-testid="stElementContainer"]:has([data-testid="stMarkdownContainer"] > style:only-child) {display:none;}
+/* podmeni: tanki tabovi sa narandzastom podvlakom */
+div[class*="st-key-sub_"] [data-testid="stButtonGroup"] > div {gap:1.3rem !important; flex-wrap:nowrap !important;
+    overflow-x:auto; scrollbar-width:none; border-bottom:1px solid rgba(128,128,128,.22);}
+div[class*="st-key-sub_"] [data-testid="stButtonGroup"] > div::-webkit-scrollbar {height:0;}
+div[class*="st-key-sub_"] [data-testid="stButtonGroup"] button {border:none !important; background:transparent !important;
+    border-radius:0 !important; padding:.5rem 0 .55rem !important; box-shadow:none !important; flex:none; opacity:.7;}
+div[class*="st-key-sub_"] [data-testid="stButtonGroup"] button p {white-space:nowrap; font-size:.92rem;}
+div[class*="st-key-sub_"] [data-testid="stBaseButton-segmented_controlActive"] {opacity:1;
+    box-shadow:inset 0 -2px 0 #f59e0b !important; background:transparent !important;}
+div[class*="st-key-sub_"] [data-testid="stBaseButton-segmented_controlActive"] * {color:inherit !important; font-weight:700;}
 
 /* kartice / cards (rade i u svetloj i u tamnoj temi) */
 .es-card {background:rgba(128,128,128,.07); border:1px solid rgba(128,128,128,.22); border-radius:16px;
@@ -595,25 +612,22 @@ div[class*="st-key-row_"] button, div[class*="st-key-row_"] button:hover {border
     background:transparent !important; box-shadow:none !important;}
 
 @media (max-width: 640px) {
-  .block-container {padding-bottom: 6.5rem !important;}
-  .st-key-hdr [data-testid="stButtonGroup"] button {padding:.2rem .55rem !important; min-height:2rem;}
-  .st-key-hdr [data-testid="stButtonGroup"] button p {font-size:.78rem !important;}
-  /* podmeni u jednom redu, pomera se prstom ako ne stane */
-  div[class*="st-key-sub_"] [data-testid="stButtonGroup"] > div {flex-wrap:nowrap !important; overflow-x:auto;
-      scrollbar-width:none;}
-  div[class*="st-key-sub_"] [data-testid="stButtonGroup"] > div::-webkit-scrollbar {height:0;}
-  div[class*="st-key-sub_"] [data-testid="stButtonGroup"] button {padding:.3rem .55rem !important; flex:none;}
-  div[class*="st-key-sub_"] [data-testid="stButtonGroup"] button p {font-size:.8rem !important; white-space:nowrap;}
-  .app-logo {font-size:1.2rem;}
+  /* zaglavlje na telefonu: red 1 = logo | liga | ⚙️, red 2 = glavni meni preko cele sirine */
+  .st-key-hdr > div > [data-testid="stHorizontalBlock"] {flex-wrap:wrap !important; row-gap:.5rem !important;}
+  .st-key-hdr > div > [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] {flex:0 1 auto !important;
+      width:auto !important; min-width:0 !important;}
+  .st-key-hdr > div > [data-testid="stHorizontalBlock"] > [data-testid="stColumn"]:nth-child(1) {flex:1 1 auto !important;}
+  .st-key-hdr > div > [data-testid="stHorizontalBlock"] > [data-testid="stColumn"]:nth-child(2) {order:9;
+      flex:1 1 100% !important; width:100% !important;}
+  .st-key-hdr [data-testid="stButtonGroup"] button {padding:.2rem .5rem !important; min-height:2rem;}
+  .st-key-hdr [data-testid="stButtonGroup"] button p {font-size:.75rem !important;}
+  .st-key-hdr [data-testid="stPopover"] button {min-height:2rem; padding:0 8px !important;}
+  .st-key-mainnav button {min-height:46px; padding:2px 0 !important;}
+  .st-key-mainnav button p {font-size:.72rem; line-height:1.2; white-space:pre-line;}
+  div[class*="st-key-sub_"] [data-testid="stButtonGroup"] > div {gap:1rem !important;}
+  div[class*="st-key-sub_"] [data-testid="stButtonGroup"] button p {font-size:.82rem !important;}
+  .app-logo {font-size:1.15rem;}
   .app-logo svg {width:26px; height:26px;}
-  /* meni zalepljen za dno ekrana na telefonu */
-  .st-key-bottomnav {position:fixed; left:0; right:0; bottom:0; z-index:999990; margin:0;
-      padding:4px 6px calc(6px + env(safe-area-inset-bottom)); border-bottom:none;
-      border-top:1px solid rgba(128,128,128,.25); backdrop-filter:blur(10px);}
-  .st-key-bottomnav button {min-height:52px; padding:2px 0 !important;}
-  .st-key-bottomnav button p {font-size:.72rem; line-height:1.25; white-space:pre-line;}
-  .st-key-bottomnav button[kind="primary"], .st-key-bottomnav [data-testid="stBaseButton-primary"] {
-      border-bottom:none !important;}
   .es-grid {grid-template-columns:1fr;}
 }
 </style>
@@ -638,40 +652,52 @@ def load(comps: tuple) -> pd.DataFrame:
     return df.merge(opp, on=["comp", "gamecode", "team"], how="left")
 
 
-# ---------- sidebar ----------
-st.sidebar.markdown(
-    f'<div class="side-logo">{LOGO.format(s=34)}<span>Euro<b>Stats</b></span></div>',
-    unsafe_allow_html=True)
-with st.sidebar.expander("⚙️ Podešavanja / Settings"):
-    lang_name = st.radio("Jezik / Language", ["Srpski", "English"], horizontal=True)
-    SHOW_IMG = st.toggle("🖼️ Slike igrača i grbovi / Photos & crests", value=True, key="show_imgs")
-lang = "sr" if lang_name == "Srpski" else "en"
+# ---------- zaglavlje: logo | glavni meni | liga | podesavanja (varijanta A) ----------
+lang = "en" if st.session_state.get("lang_name") == "English" else "sr"
 
 
 def tr(key, **kw):
     return T[lang][key].format(**kw)
 
 
-with st.container(key="hdr"):
-    _h1, _h2 = st.columns([1, 1], vertical_alignment="center")
-    _h1.markdown(f'<div class="app-logo">{LOGO.format(s=30)}<span>Euro<b>Stats</b></span></div>',
-                 unsafe_allow_html=True)
-    liga_code = _h2.segmented_control(tr("league"), list(LIGE), default="E", key="liga",
-                                      format_func=lambda c: COMP_NAME[lang][c],
-                                      label_visibility="collapsed") or "E"
-comps = LIGE[liga_code]
-liga = COMP_NAME[lang][liga_code]
-season_a, season_b = es.SEASON, str(es.SEASON + 1)[-2:]
-st.sidebar.caption(tr("season", a=season_a, b=season_b))
+SECTIONS = {"home": ["home"], "props": ["picks", "lines", "props", "scan", "round"],
+            "players": ["player", "cmp", "without", "leaders"], "league": ["sched", "teams", "injuries"]}
 
-if st.sidebar.button(tr("refresh"), width="stretch"):
-    buf = io.StringIO()
-    with st.spinner(tr("spinner")), contextlib.redirect_stdout(buf):
-        es.update(comps)
-    st.cache_data.clear()
-    st.sidebar.success(tr("done"))
-    with st.sidebar.expander(tr("details")):
-        st.code(buf.getvalue() or tr("no_output"))
+
+def goto(sec, sub=None):
+    st.session_state["sec"] = sec
+    if sub:
+        st.session_state[f"sub_{sec}"] = sub
+
+
+SEC = st.session_state.setdefault("sec", "home")
+season_a, season_b = es.SEASON, str(es.SEASON + 1)[-2:]
+
+with st.container(key="hdr"):
+    _h_logo, _h_nav, _h_liga, _h_set = st.columns([1.15, 2.6, 1.25, 0.32], vertical_alignment="center")
+    _h_logo.markdown(f'<div class="app-logo">{LOGO.format(s=30)}<span>Euro<b>Stats</b></span></div>',
+                     unsafe_allow_html=True)
+    with _h_nav.container(key="mainnav"):
+        for _c, _k in zip(st.columns(4, gap=None), SECTIONS):
+            _c.button(tr(f"nav_{_k}"), key=f"nav_{_k}", type="primary" if SEC == _k else "secondary",
+                      width="stretch", on_click=goto, args=(_k,))
+    liga_code = _h_liga.segmented_control(tr("league"), list(LIGE), default="E", key="liga",
+                                          format_func=lambda c: COMP_NAME[lang][c],
+                                          label_visibility="collapsed") or "E"
+    comps = LIGE[liga_code]
+    with _h_set.popover("⚙️", width="content"):
+        st.radio("Jezik / Language", ["Srpski", "English"], horizontal=True, key="lang_name")
+        SHOW_IMG = st.toggle("🖼️ Slike igrača i grbovi / Photos & crests", value=True, key="show_imgs")
+        st.caption(tr("season", a=season_a, b=season_b))
+        if st.button(tr("refresh"), width="stretch", key="refresh_btn"):
+            buf = io.StringIO()
+            with st.spinner(tr("spinner")), contextlib.redirect_stdout(buf):
+                es.update(comps)
+            st.cache_data.clear()
+            st.success(tr("done"))
+            with st.expander(tr("details")):
+                st.code(buf.getvalue() or tr("no_output"))
+liga = COMP_NAME[lang][liga_code]
 
 df = load(tuple(comps))
 
@@ -1244,27 +1270,7 @@ def render_injuries():
                          column_config={tr("detail"): st.column_config.TextColumn(width="large")})
 
 
-# ---------- navigacija / navigation ----------
-SECTIONS = {"home": ["home"], "props": ["picks", "lines", "props", "scan", "round"],
-            "players": ["player", "cmp", "without", "leaders"], "league": ["sched", "teams", "injuries"]}
-
-
-def goto(sec, sub=None):
-    st.session_state["sec"] = sec
-    if sub:
-        st.session_state[f"sub_{sec}"] = sub
-
-
-SEC = st.session_state.setdefault("sec", "home")
-_theme = getattr(getattr(st.context, "theme", None), "type", None) or "dark"
-st.markdown(f"<style>@media (max-width: 640px) {{.st-key-bottomnav {{background:"
-            f"{'rgba(255,255,255,.96)' if _theme == 'light' else 'rgba(14,17,23,.96)'};}}}}</style>",
-            unsafe_allow_html=True)
-with st.container(key="bottomnav"):
-    for _c, _k in zip(st.columns(4), SECTIONS):
-        _c.button(tr(f"nav_{_k}"), key=f"nav_{_k}", type="primary" if SEC == _k else "secondary",
-                  width="stretch", on_click=goto, args=(_k,))
-
+# ---------- navigacija / navigation (podmeni) ----------
 if SEC == "home":
     PAGE = "home"
 else:
