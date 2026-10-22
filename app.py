@@ -352,9 +352,46 @@ T3 = {
         "no_pos": "Player positions not downloaded yet. Click **Refresh data**.",
     },
 }
+T4 = {
+    "sr": {
+        "nav_home": "🏠\nPočetna", "nav_props": "🎯\nProps", "nav_players": "👤\nIgrači", "nav_league": "🏀\nLiga",
+        "sub_picks": "🔥 Predlozi", "sub_props": "🎯 Igrač", "sub_scan": "🔎 Skener", "sub_round": "⭐ Kolo",
+        "sub_player": "👤 Igrač", "sub_cmp": "⚖️ Poređenje", "sub_without": "🔄 Bez saigrača",
+        "sub_leaders": "🏆 Lideri", "sub_sched": "📅 Raspored", "sub_teams": "🛡️ Timovi", "sub_injuries": "🚑 Povrede",
+        "home_next": "Sledeće kolo · Kolo {r}", "home_games": "{n} utakmica", "home_games_h": "Utakmice",
+        "home_picks_h": "Najjači predlozi", "home_inj_h": "🚑 Ne igraju", "home_form_h": "🔥 U formi",
+        "home_form_sub": "posl. 3 vs sezona · poeni", "go_sched": "Raspored →", "go_picks": "Svi predlozi →",
+        "go_inj": "Sve povrede →", "go_form": "Lideri →",
+        "chip_fire": "🔥 {n} jaka Over", "chip_ice": "🧊 {n} jaka Under", "chip_out": "🚑 {n} ne igra",
+        "chip_games": "🏀 {g} odigrano · {p} igrača",
+        "total_s": "Total", "as_table": "Prikaži kao tabelu", "more": "Ostalo ▾", "show_more": "Prikaži još",
+        "filters": "⚙️ Još filtera", "no_next_round": "Nema zakazanih utakmica.", "home_no_picks":
+        "Još nema dovoljno utakmica za predloge.", "days": "Pon,Uto,Sre,Čet,Pet,Sub,Ned",
+        "check_one": "🔍 Proveri jednog igrača", "inj_none_round": "Nema prijavljenih povreda za sledeće kolo.",
+        "home_picks_note": "Poeni, skokovi i asistencije · linija ≈ prosek igrača",
+    },
+    "en": {
+        "nav_home": "🏠\nHome", "nav_props": "🎯\nProps", "nav_players": "👤\nPlayers", "nav_league": "🏀\nLeague",
+        "sub_picks": "🔥 Picks", "sub_props": "🎯 Player", "sub_scan": "🔎 Scanner", "sub_round": "⭐ Round",
+        "sub_player": "👤 Player", "sub_cmp": "⚖️ Compare", "sub_without": "🔄 Without teammate",
+        "sub_leaders": "🏆 Leaders", "sub_sched": "📅 Schedule", "sub_teams": "🛡️ Teams", "sub_injuries": "🚑 Injuries",
+        "home_next": "Next round · Round {r}", "home_games": "{n} games", "home_games_h": "Games",
+        "home_picks_h": "Strongest picks", "home_inj_h": "🚑 Out", "home_form_h": "🔥 In form",
+        "home_form_sub": "last 3 vs season · points", "go_sched": "Schedule →", "go_picks": "All picks →",
+        "go_inj": "All injuries →", "go_form": "Leaders →",
+        "chip_fire": "🔥 {n} strong Over", "chip_ice": "🧊 {n} strong Under", "chip_out": "🚑 {n} out",
+        "chip_games": "🏀 {g} played · {p} players",
+        "total_s": "Total", "as_table": "Show as table", "more": "More ▾", "show_more": "Show more",
+        "filters": "⚙️ More filters", "no_next_round": "No scheduled games.", "home_no_picks":
+        "Not enough games for picks yet.", "days": "Mon,Tue,Wed,Thu,Fri,Sat,Sun",
+        "check_one": "🔍 Check one player", "inj_none_round": "No injuries reported for the next round.",
+        "home_picks_note": "Points, rebounds and assists · line ≈ player average",
+    },
+}
 for _l in T:
     T[_l].update(T2[_l])
     T[_l].update(T3[_l])
+    T[_l].update(T4[_l])
 
 LOGO = (
     '<svg width="{s}" height="{s}" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">'
@@ -416,6 +453,115 @@ div[data-baseweb="select"] > div, div[data-baseweb="input"] > div {border-radius
   /* traka desno od tabele za skrolovanje stranice palcem / strip beside tables for page scroll */
   [data-testid="stDataFrame"] {width: calc(100% - 32px) !important; max-width: calc(100% - 32px) !important;}
 }
+
+/* ---------- novi izgled / new look ---------- */
+.app-logo {display:flex; align-items:center; gap:9px; font-size:1.45rem; font-weight:800; line-height:1;}
+.app-logo b {color:#f59e0b;}
+.st-key-hdr [data-testid="stHorizontalBlock"] {flex-wrap:nowrap !important; gap:.5rem !important;}
+.st-key-hdr [data-testid="stColumn"] {min-width:0 !important;}
+.st-key-hdr [data-testid="stColumn"]:last-child {display:flex; justify-content:flex-end;}
+[data-testid="stSegmentedControl"] button, [data-testid="stPills"] button {font-weight:600;}
+
+/* meni: na racunaru red dugmica ispod zaglavlja */
+.st-key-bottomnav {border-bottom:1px solid rgba(128,128,128,.22); padding-bottom:.35rem; margin-bottom:.4rem;}
+.st-key-bottomnav [data-testid="stHorizontalBlock"] {flex-wrap:nowrap !important; gap:.35rem !important;}
+.st-key-bottomnav [data-testid="stColumn"] {min-width:0 !important; flex:1 1 0 !important; width:auto !important;}
+.st-key-bottomnav button {border:none !important; background:transparent !important; box-shadow:none !important;
+    font-weight:600; opacity:.75; min-height:44px;}
+.st-key-bottomnav button:hover {opacity:1; color:#f59e0b !important;}
+.st-key-bottomnav button[kind="primary"], .st-key-bottomnav [data-testid="stBaseButton-primary"] {
+    color:#f59e0b !important; opacity:1; font-weight:800; border-bottom:3px solid #f59e0b !important;
+    border-radius:0 !important;}
+.st-key-bottomnav button p {font-size:1rem;}
+
+/* kartice / cards (rade i u svetloj i u tamnoj temi) */
+.es-card {background:rgba(128,128,128,.07); border:1px solid rgba(128,128,128,.22); border-radius:16px;
+    padding:12px 14px; margin-bottom:10px;}
+.es-hero {background:linear-gradient(135deg, rgba(245,158,11,.14), rgba(59,130,246,.08));
+    border:1px solid rgba(245,158,11,.30); border-radius:18px; padding:14px 16px; margin:.2rem 0 .6rem;}
+.es-hero .t {font-size:.8rem; opacity:.7;} .es-hero .b {font-size:1.2rem; font-weight:800; margin-top:2px;}
+.es-hero .b span {color:#f59e0b;}
+.es-chips {display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;}
+.es-chip {font-size:.75rem; padding:4px 10px; border-radius:12px; background:rgba(245,158,11,.13);
+    border:1px solid rgba(245,158,11,.30); color:#d97706; font-weight:600;}
+.es-games {display:flex; gap:8px; overflow-x:auto; padding:2px 0 8px; -webkit-overflow-scrolling:touch;}
+.es-games::-webkit-scrollbar {height:0;}
+.es-game {min-width:122px; background:rgba(128,128,128,.07); border:1px solid rgba(128,128,128,.22);
+    border-radius:14px; padding:9px 11px; flex:none;}
+.es-game .d {font-size:.7rem; opacity:.65;} .es-game .m {font-weight:800; font-size:.95rem; margin:4px 0 2px;}
+.es-game .x {font-size:.72rem; opacity:.85;} .es-game .x b {color:#16a34a;}
+.es-row {display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px solid rgba(128,128,128,.18);}
+.es-row:last-child {border-bottom:0;}
+.es-ico {width:34px; height:34px; border-radius:10px; display:grid; place-items:center; font-size:1.05rem; flex:none;}
+.i-fire {background:rgba(245,158,11,.16);} .i-over {background:rgba(34,197,94,.14);}
+.i-under {background:rgba(239,68,68,.14);} .i-ice {background:rgba(59,130,246,.16);} .i-none {background:rgba(128,128,128,.12);}
+.es-main {flex:1; min-width:0;}
+.es-name {font-weight:700; font-size:.9rem;} .es-name span {opacity:.6; font-weight:500; font-size:.78rem;}
+.es-sub {font-size:.76rem; opacity:.65; margin-top:1px;}
+.es-val {text-align:right; flex:none;} .es-val b {font-size:.88rem;} .es-val div {font-size:.72rem; opacity:.65;}
+.c-fire {color:#f59e0b;} .c-over {color:#16a34a;} .c-under {color:#dc2626;} .c-ice {color:#3b82f6;}
+.c-none {opacity:.7;}
+.es-st {font-size:.7rem; padding:3px 8px; border-radius:10px; white-space:nowrap; font-weight:600;}
+.s-out {background:rgba(239,68,68,.15); color:#dc2626;} .s-q {background:rgba(234,179,8,.18); color:#ca8a04;}
+.s-l {background:rgba(128,128,128,.15);} .s-ok {background:rgba(34,197,94,.15); color:#16a34a;}
+.es-form {display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:8px;}
+.es-form .es-card {margin:0;} .es-form .n {font-weight:700; font-size:.8rem;}
+.es-form .v {font-size:1.35rem; font-weight:800; color:#16a34a;} .es-form .v.dn {color:#dc2626;}
+.es-form .x {font-size:.7rem; opacity:.65;}
+/* kartica predloga */
+.es-pick {background:rgba(128,128,128,.07); border:1px solid rgba(128,128,128,.22); border-radius:16px;
+    padding:12px 14px;}
+.es-pick.fire {border-color:rgba(245,158,11,.6);} .es-pick.ice {border-color:rgba(59,130,246,.55);}
+.es-pick .hd {display:flex; justify-content:space-between; align-items:flex-start; gap:8px;}
+.es-pick .nm {font-weight:800; font-size:1rem;} .es-pick .nm span {font-weight:500; opacity:.6; font-size:.78rem;}
+.es-pick .sub {font-size:.78rem; opacity:.7; margin-top:2px;}
+.es-tag {font-size:.78rem; font-weight:800; padding:5px 9px; border-radius:10px; white-space:nowrap;}
+.t-fire {background:rgba(245,158,11,.17); color:#d97706;} .t-over {background:rgba(34,197,94,.15); color:#16a34a;}
+.t-under {background:rgba(239,68,68,.15); color:#dc2626;} .t-ice {background:rgba(59,130,246,.17); color:#2563eb;}
+.t-none {background:rgba(128,128,128,.14);}
+.es-bar {height:6px; background:rgba(128,128,128,.18); border-radius:6px; margin:10px 0 6px; position:relative;
+    overflow:hidden;}
+.es-bar i {position:absolute; top:0; bottom:0; border-radius:6px;}
+.es-bar u {position:absolute; left:50%; top:-2px; bottom:-2px; width:1px; background:rgba(128,128,128,.6);}
+.es-stats {display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-top:8px;}
+.es-stats div {background:rgba(128,128,128,.10); border-radius:10px; padding:6px 4px; text-align:center;}
+.es-stats b {display:block; font-size:.9rem;} .es-stats span {font-size:.66rem; opacity:.65;}
+.es-why {font-size:.76rem; margin-top:9px; line-height:1.55; opacity:.9;}
+.es-warn {font-size:.76rem; margin-top:8px; padding:6px 9px; border-radius:9px; background:rgba(234,179,8,.15);}
+.es-grid {display:grid; grid-template-columns:repeat(auto-fill, minmax(330px, 1fr)); gap:10px;}
+.es-h {display:flex; justify-content:space-between; align-items:baseline; margin:1rem 0 .4rem;}
+.es-h b {font-size:1.02rem;}
+
+/* izabrano dugme narandzasto (umesto crvenog) / active state in brand orange */
+[data-testid="stBaseButton-segmented_controlActive"], [data-testid="stBaseButton-pillsActive"] {
+    border-color:#f59e0b !important; background:rgba(245,158,11,.13) !important;}
+[data-testid="stBaseButton-segmented_controlActive"] *, [data-testid="stBaseButton-pillsActive"] * {
+    color:#f59e0b !important;}
+div[class*="st-key-row_"] button, div[class*="st-key-row_"] button:hover {border:none !important;
+    background:transparent !important; box-shadow:none !important;}
+
+@media (max-width: 640px) {
+  .block-container {padding-bottom: 6.5rem !important;}
+  .st-key-hdr [data-testid="stButtonGroup"] button {padding:.2rem .55rem !important; min-height:2rem;}
+  .st-key-hdr [data-testid="stButtonGroup"] button p {font-size:.78rem !important;}
+  /* podmeni u jednom redu, pomera se prstom ako ne stane */
+  div[class*="st-key-sub_"] [data-testid="stButtonGroup"] > div {flex-wrap:nowrap !important; overflow-x:auto;
+      scrollbar-width:none;}
+  div[class*="st-key-sub_"] [data-testid="stButtonGroup"] > div::-webkit-scrollbar {height:0;}
+  div[class*="st-key-sub_"] [data-testid="stButtonGroup"] button {padding:.3rem .55rem !important; flex:none;}
+  div[class*="st-key-sub_"] [data-testid="stButtonGroup"] button p {font-size:.8rem !important; white-space:nowrap;}
+  .app-logo {font-size:1.2rem;}
+  .app-logo svg {width:26px; height:26px;}
+  /* meni zalepljen za dno ekrana na telefonu */
+  .st-key-bottomnav {position:fixed; left:0; right:0; bottom:0; z-index:999990; margin:0;
+      padding:4px 6px calc(6px + env(safe-area-inset-bottom)); border-bottom:none;
+      border-top:1px solid rgba(128,128,128,.25); backdrop-filter:blur(10px);}
+  .st-key-bottomnav button {min-height:52px; padding:2px 0 !important;}
+  .st-key-bottomnav button p {font-size:.72rem; line-height:1.25; white-space:pre-line;}
+  .st-key-bottomnav button[kind="primary"], .st-key-bottomnav [data-testid="stBaseButton-primary"] {
+      border-bottom:none !important;}
+  .es-grid {grid-template-columns:1fr;}
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -451,7 +597,13 @@ def tr(key, **kw):
     return T[lang][key].format(**kw)
 
 
-liga_code = st.sidebar.radio(tr("league"), list(LIGE), format_func=lambda c: COMP_NAME[lang][c])
+with st.container(key="hdr"):
+    _h1, _h2 = st.columns([1, 1], vertical_alignment="center")
+    _h1.markdown(f'<div class="app-logo">{LOGO.format(s=30)}<span>Euro<b>Stats</b></span></div>',
+                 unsafe_allow_html=True)
+    liga_code = _h2.segmented_control(tr("league"), list(LIGE), default="E", key="liga",
+                                      format_func=lambda c: COMP_NAME[lang][c],
+                                      label_visibility="collapsed") or "E"
 comps = LIGE[liga_code]
 liga = COMP_NAME[lang][liga_code]
 season_a, season_b = es.SEASON, str(es.SEASON + 1)[-2:]
@@ -508,11 +660,7 @@ def remap(frame, cols, comp_col="comp"):
         if c in frame.columns:
             frame[c] = [ABBR.get((cp, x), x) for cp, x in zip(frame[comp_col], frame[c])]
     return frame
-hero_sub = tr("hero_sub", liga=liga, a=season_a, b=season_b)
-st.markdown(
-    f'<div class="hero">{LOGO.format(s=56)}<div><div class="hero-title">Euro<span>Stats</span></div>'
-    f'<div class="hero-sub">{hero_sub}</div></div></div>',
-    unsafe_allow_html=True)
+
 
 if df.empty:
     st.info(tr("no_data"))
@@ -768,7 +916,7 @@ stats = {k: NAMES[lang][k] for k in KEYS if k in df.columns}   # kljuc -> prikaz
 inv = {v: k for k, v in stats.items()}                          # prikazani naziv -> kljuc
 stat_keys = [k for k in stats if k != "Minutes"]
 opp_c, stat_c, val_c, res_c = tr("opponent"), tr("statistic"), tr("value"), tr("result")
-st.caption(tr("counts", g=df["gamecode"].nunique(), p=df["player_id"].nunique()))
+
 
 # ---------- zajednicko / shared ----------
 players = (df.groupby(["comp", "player_id", "player", "team"]).size()
@@ -981,11 +1129,236 @@ def wl(x):
     return f"{int(x.sum())}-{int((~x).sum())}"
 
 
-TAB_KEYS = ["player", "leaders", "props", "picks", "round", "scan", "sched", "teams", "without", "cmp"]
-TAB = dict(zip(TAB_KEYS, st.tabs([tr(f"tab_{k}") for k in TAB_KEYS])))
+def render_injuries():
+    """Tabela povreda za sledece kolo (iz izvestaja + povrede.csv)."""
+    if not INJ_REPORT:
+        st.caption(tr("inj_none"))
+    else:
+        pub = pd.to_datetime(INJ_REPORT.get("published"), errors="coerce", utc=True)
+        fet = pd.to_datetime(INJ_REPORT.get("fetched"), errors="coerce", utc=True)
+        fmt = lambda x: x.tz_convert("Europe/Belgrade").strftime("%d.%m. %H:%M") if pd.notna(x) else "—"
+        st.caption(tr("inj_src", t=INJ_REPORT.get("title", "Injury report"),
+                      u=INJ_REPORT.get("source") or "https://www.euroleaguebasketball.net/euroleague/news/",
+                      p=fmt(pub), f=fmt(fet)))
+        comp_r = INJ_REPORT.get("comp", "E")
+        rows_i = []
+        for tm in INJ_REPORT.get("teams", []):
+            if (comp_r, tm.get("gamecode")) in played_codes or comp_r not in comps:
+                continue
+            code = ABBR.get((comp_r, tm.get("team")), tm.get("team") or tm.get("label"))
+            pl = [p for p in INJ_REPORT.get("players", []) if p.get("team") == tm.get("team")
+                  and p.get("status") != "info"]
+            if not pl:
+                rows_i.append({tr("team"): code, tr("player"): "",
+                               "Status": tr("inj_full") if tm.get("full") else
+                               (tr("inj_not_sent") if not tm.get("reported") else ""), tr("detail"): ""})
+            for p in pl:
+                rows_i.append({tr("team"): code, tr("player"): p.get("db_name") or p["name"],
+                               "Status": tr("inj_" + p["status"]) + ("" if p.get("confirmed") or
+                                                                      p["status"] == "likely_out" else ""),
+                               tr("detail"): p.get("note", "")})
+        if rows_i:
+            st.dataframe(pd.DataFrame(rows_i), hide_index=True, width="stretch",
+                         height=min(420, 38 + 35 * len(rows_i)),
+                         column_config={tr("detail"): st.column_config.TextColumn(width="large")})
+
+
+# ---------- navigacija / navigation ----------
+SECTIONS = {"home": ["home"], "props": ["picks", "props", "scan", "round"],
+            "players": ["player", "cmp", "without", "leaders"], "league": ["sched", "teams", "injuries"]}
+
+
+def goto(sec, sub=None):
+    st.session_state["sec"] = sec
+    if sub:
+        st.session_state[f"sub_{sec}"] = sub
+
+
+SEC = st.session_state.setdefault("sec", "home")
+_theme = getattr(getattr(st.context, "theme", None), "type", None) or "dark"
+st.markdown(f"<style>@media (max-width: 640px) {{.st-key-bottomnav {{background:"
+            f"{'rgba(255,255,255,.96)' if _theme == 'light' else 'rgba(14,17,23,.96)'};}}}}</style>",
+            unsafe_allow_html=True)
+with st.container(key="bottomnav"):
+    for _c, _k in zip(st.columns(4), SECTIONS):
+        _c.button(tr(f"nav_{_k}"), key=f"nav_{_k}", type="primary" if SEC == _k else "secondary",
+                  width="stretch", on_click=goto, args=(_k,))
+
+if SEC == "home":
+    PAGE = "home"
+else:
+    _subs, _sk = SECTIONS[SEC], f"sub_{SEC}"
+    if st.session_state.get(_sk) not in _subs:
+        st.session_state[_sk] = st.session_state.get(_sk + "_last", _subs[0])
+    PAGE = st.segmented_control("nav", _subs, key=_sk, format_func=lambda k: tr(f"sub_{k}"),
+                                label_visibility="collapsed") or _subs[0]
+    st.session_state[_sk + "_last"] = PAGE
+
+
+# ---------- novi izgled: pomocne funkcije / new look helpers ----------
+import html as _html
+
+SIG_COLOR = {"fire": "#f59e0b", "over": "#22c55e", "under": "#ef4444", "ice": "#3b82f6", "none": "#94a3b8"}
+st.markdown("""<style>
+div[class*="st-key-row_"] [data-testid="stHorizontalBlock"] {flex-wrap:nowrap !important; align-items:baseline;}
+div[class*="st-key-row_"] [data-testid="stColumn"] {min-width:0 !important;}
+div[class*="st-key-row_"] [data-testid="stColumn"]:last-child {display:flex; justify-content:flex-end;}
+div[class*="st-key-row_"] button {padding:0 !important; min-height:0 !important; color:#f59e0b !important;}
+div[class*="st-key-row_"] button p {font-size:.8rem !important;}
+</style>""", unsafe_allow_html=True)
+
+
+def esc(x):
+    return _html.escape(str(x))
+
+
+def sig_class(label):
+    return {tr("sig_fire"): "fire", tr("sig_over"): "over", tr("sig_under"): "under",
+            tr("sig_ice"): "ice"}.get(label, "none")
+
+
+def short_name(full):
+    last = str(full).split(",")[0].strip()
+    return last.title()
+
+
+def nice_name(full):
+    last, _, first = str(full).partition(",")
+    return f"{first.strip().title()} {last.strip().title()}".strip()
+
+
+def day_time(d, t):
+    if pd.isna(d):
+        return t or ""
+    return f"{tr('days').split(',')[d.weekday()]} {d:%d.%m.} {t or ''}".strip()
+
+
+def section_head(title, btn=None, target=None, key=None, sub=None):
+    with st.container(key=f"row_{key}"):
+        c1, c2 = st.columns([3, 2])
+        c1.markdown(f"**{title}**" + (f"  \n<span style='font-size:.75rem;opacity:.65'>{esc(sub)}</span>"
+                                      if sub else ""), unsafe_allow_html=True)
+        if btn:
+            c2.button(btn, key=f"go_{key}", type="tertiary", on_click=goto, args=target)
+
+
+def next_round_games(comp):
+    """(kolo, utakmice) prvog neodigranog kola."""
+    if sched.empty:
+        return None, pd.DataFrame()
+    s_ = sched[sched["comp"] == comp]
+    s_ = s_[[(comp, gc) not in played_codes and p == 0 for gc, p in zip(s_["gamecode"], s_["played"])]]
+    if s_.empty:
+        return None, s_
+    rnd = int(s_["gameday"].min())
+    return rnd, s_[s_["gameday"] == rnd].sort_values(["date", "startime"])
+
+
+def game_total(comp, h, a, pk="Points", line=None):
+    """Projekcija ukupnih poena i predlog za meč (ista logika kao u Rasporedu)."""
+    tc = tgames[tgames["comp"] == comp].dropna(subset=[pk, f"{pk}_a"])
+    if tc.empty:
+        return None, None, None
+    tc = tc.assign(_tot=tc[pk] + tc[f"{pk}_a"])
+    if line is None:
+        line = float(np.floor(tc["_tot"].mean()) + 0.5)
+    sc_, al_ = tc.groupby("team")[pk].mean(), tc.groupby("team")[f"{pk}_a"].mean()
+    if h not in sc_.index or a not in sc_.index:
+        return None, None, line
+    over = tc.groupby("team")["_tot"].apply(lambda x: 100 * (x > line).mean())
+    proj = (sc_[h] + al_[a]) / 2 + (sc_[a] + al_[h]) / 2
+    x1 = float(np.clip((proj - line) / 8, -1, 1))
+    x2 = (over[h] + over[a]) / 100 - 1
+    sc = 100 * (0.5 * x1 + 0.5 * x2)
+    lab = (tr("sig_fire") if sc >= 55 and min(over[h], over[a]) >= 70 else tr("sig_over") if sc >= 25 else
+           tr("sig_ice") if sc <= -55 and max(over[h], over[a]) <= 30 else tr("sig_under") if sc <= -25
+           else tr("sig_none"))
+    return round(proj, 1), lab, line
+
+
+def make_pick(comp, pid, pg, key, line, nxt):
+    """Jedan predlog sa svim podacima za karticu i tabelu."""
+    v = pg[key].dropna()
+    sg = signal(pg, key, line, comp, nxt)
+    last = v.tail(10)
+    pos = _pp.get(str(pid).strip(), (None, None))[0]
+    dv, dr = dvp_rank(comp, key, pos) if pos else (pd.Series(dtype=float), pd.Series(dtype=float))
+    plabel = tr(f"pos1_{pos}").lower() if pos else ""
+    if not nxt or nxt["opp"] not in dr.index:
+        dv, dr = team_rank(comp, key)
+        plabel = ""
+    o = nxt["opp"] if nxt else None
+    return {
+        "label": sg["label"], "cls": sig_class(sg["label"]), "score": sg["score"], "reasons": sg["reasons"],
+        "player": pg["player"].iloc[-1], "team": pg["team"].iloc[-1], "pid": pid,
+        "pos": pos_label(pid, short=True), "key": key, "stat": prop_stats.get(key, key), "line": line,
+        "opp": o, "home": nxt["home"] if nxt else None,
+        "when": day_time(nxt["date"], nxt["time"]) if nxt else "",
+        "hit": f"{int((last > line).sum())}/{len(last)}", "hit_pct": sg["hit"],
+        "median": float(v.median()), "avg": float(v.mean()),
+        "dvp": f"#{int(dr[o])}" if o in dr.index else "–", "dvp_lbl": f"DvP {plabel}".strip(),
+        "inj": inj_badge(pid), "inj_note": INJ.get(str(pid).strip(), {}).get("note", ""),
+    }
+
+
+def pick_card(p):
+    cls, sc = p["cls"], p["score"]
+    w = min(abs(sc), 100) / 2
+    left = 50 if sc >= 0 else 50 - w
+    direction = "Over" if sc > 0 else "Under" if sc < 0 else "–"
+    tag = p["label"] if cls != "none" else p["label"]
+    ha = (tr("home") if p["home"] else tr("away")) if p["home"] is not None else ""
+    vs = f" · vs {esc(p['opp'])} · {ha} · {esc(p['when'])}" if p["opp"] else ""
+    why = " · ".join(esc(r).replace("✔", "<span class='c-over'>✔</span>").replace("✘", "<span class='c-under'>✘</span>")
+                     for r in p["reasons"])
+    warn = f"<div class='es-warn'>{esc(p['inj'])}{' · ' + esc(p['inj_note'][:90]) if p['inj_note'] else ''}</div>" \
+        if p["inj"] else ""
+    return (f"<div class='es-pick {cls}'><div class='hd'><div><div class='nm'>{esc(nice_name(p['player']))} "
+            f"<span>{esc(p['team'])}{' · ' + esc(p['pos']) if p['pos'] else ''}</span></div>"
+            f"<div class='sub'>{esc(p['stat'])} <b>{p['line']:g}</b>{vs}</div></div>"
+            f"<div class='es-tag t-{cls}'>{esc(tag)}</div></div>"
+            f"<div class='es-bar'><i style='left:{left}%;width:{w}%;background:{SIG_COLOR[cls]}'></i><u></u></div>"
+            f"<div class='es-stats'><div><b>{esc(p['hit'])}</b><span>{esc(tr('r_hit', o='', t='').split()[-1])}</span></div>"
+            f"<div><b>{p['median']:g}</b><span>{esc(tr('median').lower())}</span></div>"
+            f"<div><b>{p['avg']:.1f}</b><span>{esc(tr('avg').lower())}</span></div>"
+            f"<div><b>{esc(p['dvp'])}</b><span>{esc(p['dvp_lbl'])}</span></div></div>"
+            f"<div class='es-why'>{why}</div>{warn}</div>")
+
+
+def pick_row(p):
+    """Kompaktan red za pocetnu stranu."""
+    cls = p["cls"]
+    icon = p["label"].split()[0] if p["label"] else "⚪"
+    direction = "Over" if p["score"] > 0 else "Under"
+    ha = (tr("home") if p["home"] else tr("away")).lower() if p["home"] is not None else ""
+    return (f"<div class='es-row'><div class='es-ico i-{cls}'>{icon}</div><div class='es-main'>"
+            f"<div class='es-name'>{esc(short_name(p['player']))} <span>{esc(p['team'])}"
+            f"{' · ' + esc(p['pos']) if p['pos'] else ''}</span></div>"
+            f"<div class='es-sub'>{esc(p['stat'])} {p['line']:g} · vs {esc(p['opp'])} ({esc(ha)})</div></div>"
+            f"<div class='es-val'><b class='c-{cls}'>{direction}</b><div>{esc(p['hit'])}</div></div></div>")
+
+
+@st.cache_data(ttl=600, show_spinner=False)
+def round_picks(comp, keys, lang_, data_sig):
+    """Predlozi za sledece kolo (linija = prosek igraca na .5) za date statistike."""
+    out = []
+    hist = df[df["comp"] == comp].sort_values(SORT)
+    for pid, pg in hist.groupby("player_id"):
+        if len(pg) < 5 or pg["Minutes"].mean() < 15 or inj_status(pid) in INJ_HIDE:
+            continue
+        nxt = next_game(comp, pg["team"].iloc[-1])
+        if not nxt:
+            continue
+        for key in keys:
+            v = pg[key].dropna() if key in pg else pd.Series(dtype=float)
+            if len(v) < 5:
+                continue
+            out.append(make_pick(comp, pid, pg, key, float(np.floor(v.mean()) + 0.5), nxt))
+    return out
+
 
 # ---------- igrac / player ----------
-with TAB["player"]:
+if PAGE == "player":
     choice = st.selectbox(tr("search"), players["label"], index=None,
                           placeholder=tr("placeholder"))
     if choice:
@@ -1140,7 +1513,7 @@ with TAB["player"]:
             st.dataframe(zt, width="stretch")
 
 # ---------- lideri / leaders ----------
-with TAB["leaders"]:
+if PAGE == "leaders":
     c1, c2, c3 = st.columns(3)
     stat_name = c1.selectbox(stat_c, list(stats.values()))
     min_games = c2.slider(tr("min_games"), 1, max(1, int(df.groupby("player_id").size().max())), 3)
@@ -1348,11 +1721,11 @@ def render_props():
                          help=tr("opp_rank_help"))})
 
 
-with TAB["props"]:
+if PAGE == "props":
     render_props()
 
 # ---------- skener / scanner ----------
-with TAB["scan"]:
+if PAGE == "scan":
     st.caption(tr("scan_note") + " " + tr("props_note"))
     c1, c2, c3 = st.columns(3)
     sname = c1.selectbox(stat_c, list(prop_stats.values()), key="scan_stat")
@@ -1415,7 +1788,7 @@ def form_icons(v):
     return "".join("🟢" if c == "W" else "🔴" for c in (v or []))
 
 
-with TAB["teams"]:
+if PAGE == "teams":
     st.subheader(tr("standings"))
     for comp in comps:
         if sched.empty:
@@ -1517,7 +1890,7 @@ with TAB["teams"]:
                          column_config={tr("lineup"): st.column_config.TextColumn(width="large")})
 
 # ---------- poredjenje / compare ----------
-with TAB["cmp"]:
+if PAGE == "cmp":
     c1, c2 = st.columns(2)
     a = c1.selectbox(tr("p1"), players["label"], index=None, placeholder=tr("placeholder"), key="cmp1")
     b = c2.selectbox(tr("p2"), players["label"], index=None, placeholder=tr("placeholder"), key="cmp2")
@@ -1564,41 +1937,12 @@ with TAB["cmp"]:
             tooltip=[tr("player"), opp_c, val_c]), width="stretch")
 
 # ---------- raspored / schedule ----------
-with TAB["sched"]:
+if PAGE == "sched":
     if sched.empty:
         st.info(tr("no_sched"))
     else:
-        with st.expander(tr("inj_h"), expanded=bool(INJ_REPORT)):
-            if not INJ_REPORT:
-                st.caption(tr("inj_none"))
-            else:
-                pub = pd.to_datetime(INJ_REPORT.get("published"), errors="coerce", utc=True)
-                fet = pd.to_datetime(INJ_REPORT.get("fetched"), errors="coerce", utc=True)
-                fmt = lambda x: x.tz_convert("Europe/Belgrade").strftime("%d.%m. %H:%M") if pd.notna(x) else "—"
-                st.caption(tr("inj_src", t=INJ_REPORT.get("title", "Injury report"),
-                              u=INJ_REPORT.get("source") or "https://www.euroleaguebasketball.net/euroleague/news/",
-                              p=fmt(pub), f=fmt(fet)))
-                comp_r = INJ_REPORT.get("comp", "E")
-                rows_i = []
-                for tm in INJ_REPORT.get("teams", []):
-                    if (comp_r, tm.get("gamecode")) in played_codes or comp_r not in comps:
-                        continue
-                    code = ABBR.get((comp_r, tm.get("team")), tm.get("team") or tm.get("label"))
-                    pl = [p for p in INJ_REPORT.get("players", []) if p.get("team") == tm.get("team")
-                          and p.get("status") != "info"]
-                    if not pl:
-                        rows_i.append({tr("team"): code, tr("player"): "",
-                                       "Status": tr("inj_full") if tm.get("full") else
-                                       (tr("inj_not_sent") if not tm.get("reported") else ""), tr("detail"): ""})
-                    for p in pl:
-                        rows_i.append({tr("team"): code, tr("player"): p.get("db_name") or p["name"],
-                                       "Status": tr("inj_" + p["status"]) + ("" if p.get("confirmed") or
-                                                                              p["status"] == "likely_out" else ""),
-                                       tr("detail"): p.get("note", "")})
-                if rows_i:
-                    st.dataframe(pd.DataFrame(rows_i), hide_index=True, width="stretch",
-                                 height=min(420, 38 + 35 * len(rows_i)),
-                                 column_config={tr("detail"): st.column_config.TextColumn(width="large")})
+        with st.expander(tr("inj_h"), expanded=False):
+            render_injuries()
         st.caption(tr("sched_note"))
         c1, c2 = st.columns(2)
         rs_name = c1.selectbox(stat_c, list(prop_stats.values()), key="sched_stat")
@@ -1684,7 +2028,7 @@ with TAB["sched"]:
                                             for k in (tr("home_over"), tr("away_over"))})
 
 # ---------- bez saigraca / without teammate ----------
-with TAB["without"]:
+if PAGE == "without":
     st.caption(tr("without_note"))
     c1, c2, c3 = st.columns(3)
     w_team = c1.selectbox(tr("team"), sorted(df["team"].unique()), key="wo_team")
@@ -1735,7 +2079,7 @@ with TAB["without"]:
             csv_button(wt, f"bez_{aname}_{wo_key}", "dl_without")
 
 # ---------- pregled kola / round preview ----------
-with TAB["round"]:
+if PAGE == "round":
     if sched.empty:
         st.info(tr("no_sched"))
     else:
@@ -1813,115 +2157,112 @@ with TAB["round"]:
             csv_button(rp, f"pregled_kola_{r_key}_{r_line:g}_{r_side}", "dl_round")
 
 # ---------- predlozi / picks ----------
-with TAB["picks"]:
+if PAGE == "picks":
     st.caption(tr("sig_note"))
+    with st.expander(tr("check_one")):
+        st.caption(tr("check_note"))
+        q1, q2, q3 = st.columns([3, 2, 2])
+        q_pl = q1.selectbox(tr("player"), players["label"], index=None, placeholder=tr("placeholder"),
+                            key="pk_one_player")
+        q_name = q2.selectbox(stat_c, list(prop_stats.values()), key="pk_one_stat")
+        q_key = prop_inv[q_name]
+        if q_pl:
+            q_row, q_g = player_games(q_pl)
+            q_v = q_g[q_key].dropna()
+            q_def = float(np.floor(q_v.mean()) + 0.5) if not q_v.empty else 0.5
+            q_line = q3.number_input(tr("line_s"), value=q_def, step=0.5, min_value=0.0, format="%.1f",
+                                     key=f"pk_one_line_{q_row['player_id']}_{q_key}")
+            q_g = q_g.dropna(subset=[q_key]).reset_index(drop=True)
+            q_nxt = next_game(q_row["comp"], q_g["team"].iloc[-1]) if not q_g.empty else None
+            q_sg = signal(q_g, q_key, q_line, q_row["comp"], q_nxt)
+            verdict = f"### {q_sg['label']}\n**{q_row['player']}** · {q_name} **{q_line:g}** · " \
+                      f"{tr('sig_score').lower()} **{q_sg['score']:+d}**"
+            if q_nxt:
+                verdict += "  \n" + tr("next_vs", o=q_nxt["opp"], ha=tr("home") if q_nxt["home"] else tr("away"),
+                                        d=f"{q_nxt['date']:%d.%m.}" if pd.notna(q_nxt["date"]) else "")
+            box = (st.success if q_sg["score"] >= 25 else st.error if q_sg["score"] <= -25 else st.info)
+            box(verdict)
+            inj_box(q_row["player_id"])
+            if not q_nxt:
+                st.caption(tr("no_next"))
+            if q_sg["factors"]:
+                ft = pd.DataFrame([{
+                    tr("factor"): n, tr("weight"): f"{round(100 * w / q_sg['wsum'])}%",
+                    tr("vote"): ("🟢 Over" if x > 0.05 else "🔴 Under" if x < -0.05 else f"⚪ {tr('neutral')}"),
+                    tr("detail"): d} for n, w, x, d in q_sg["factors"]])
+                st.dataframe(ft, hide_index=True, width="stretch")
+                m1, m2, m3, m4 = st.columns(4)
+                m1.metric(tr("avg"), f"{q_v.mean():.1f}")
+                m2.metric(tr("median"), f"{q_v.median():g}")
+                o5, t5 = hit_rate(q_v.tail(5), q_line)
+                m3.metric(tr("last_n", n=5), f"{100 * o5 / t5:.0f}% Over" if t5 else "—")
+                oa, ta_ = hit_rate(q_v, q_line)
+                m4.metric(tr("season_lbl"), f"{100 * oa / ta_:.0f}% Over" if ta_ else "—")
+        else:
+            q3.number_input(tr("line_s"), value=0.0, disabled=True, key="pk_one_line_empty")
 
-    # ---- provera jednog igraca / single player check ----
-    st.subheader(tr("check_h"))
-    st.caption(tr("check_note"))
-    q1, q2, q3 = st.columns([3, 2, 2])
-    q_pl = q1.selectbox(tr("player"), players["label"], index=None, placeholder=tr("placeholder"),
-                        key="pk_one_player")
-    q_name = q2.selectbox(stat_c, list(prop_stats.values()), key="pk_one_stat")
-    q_key = prop_inv[q_name]
-    if q_pl:
-        q_row, q_g = player_games(q_pl)
-        q_v = q_g[q_key].dropna()
-        q_def = float(np.floor(q_v.mean()) + 0.5) if not q_v.empty else 0.5
-        q_line = q3.number_input(tr("line_s"), value=q_def, step=0.5, min_value=0.0, format="%.1f",
-                                 key=f"pk_one_line_{q_row['player_id']}_{q_key}")
-        q_g = q_g.dropna(subset=[q_key]).reset_index(drop=True)
-        q_nxt = next_game(q_row["comp"], q_g["team"].iloc[-1]) if not q_g.empty else None
-        q_sg = signal(q_g, q_key, q_line, q_row["comp"], q_nxt)
-        verdict = f"### {q_sg['label']}\n**{q_row['player']}** · {q_name} **{q_line:g}** · " \
-                  f"{tr('sig_score').lower()} **{q_sg['score']:+d}**"
-        if q_nxt:
-            verdict += "  \n" + tr("next_vs", o=q_nxt["opp"], ha=tr("home") if q_nxt["home"] else tr("away"),
-                                    d=f"{q_nxt['date']:%d.%m.}" if pd.notna(q_nxt["date"]) else "")
-        box = (st.success if q_sg["score"] >= 25 else st.error if q_sg["score"] <= -25 else st.info)
-        box(verdict)
-        inj_box(q_row["player_id"])
-        if not q_nxt:
-            st.caption(tr("no_next"))
-        if q_sg["factors"]:
-            ft = pd.DataFrame([{
-                tr("factor"): n, tr("weight"): f"{round(100 * w / q_sg['wsum'])}%",
-                tr("vote"): ("🟢 Over" if x > 0.05 else "🔴 Under" if x < -0.05 else f"⚪ {tr('neutral')}"),
-                tr("detail"): d} for n, w, x, d in q_sg["factors"]])
-            st.dataframe(ft, hide_index=True, width="stretch")
-            m1, m2, m3, m4 = st.columns(4)
-            m1.metric(tr("avg"), f"{q_v.mean():.1f}")
-            m2.metric(tr("median"), f"{q_v.median():g}")
-            o5, t5 = hit_rate(q_v.tail(5), q_line)
-            m3.metric(tr("last_n", n=5), f"{100 * o5 / t5:.0f}% Over" if t5 else "—")
-            oa, ta_ = hit_rate(q_v, q_line)
-            m4.metric(tr("season_lbl"), f"{100 * oa / ta_:.0f}% Over" if ta_ else "—")
-    else:
-        q3.number_input(tr("line_s"), value=0.0, disabled=True, key="pk_one_line_empty")
 
-    st.divider()
-    st.subheader(tr("check_list"))
     if sched.empty:
         st.info(tr("no_sched"))
     else:
-        c1, c2, c3 = st.columns(3)
-        k_name = c1.selectbox(stat_c, list(prop_stats.values()), key="pk_stat")
+        _main = [k for k in ("Points", "TotalRebounds", "Assistances", "PRA", "3PM") if k in prop_stats]
+        _opts = [prop_stats[k] for k in _main] + [tr("more")]
+        k_name = st.pills(stat_c, _opts, default=_opts[0], key="pk_stat_p", label_visibility="collapsed") or _opts[0]
+        if k_name == tr("more"):
+            k_name = st.selectbox(stat_c, [v for k, v in prop_stats.items() if k not in _main], key="pk_stat_more")
         k_key = prop_inv[k_name]
-        k_mode = c2.radio(tr("line_mode"), [tr("line_avg"), tr("line_fixed")], key="pk_mode")
-        if k_mode == tr("line_fixed"):
-            k_line = c3.number_input(tr("line_s"), value=DEFAULT_LINE.get(k_key, 5.5), step=0.5,
-                                     min_value=0.0, format="%.1f", key=f"pk_line_{k_key}")
-        else:
-            k_line = None
-            c3.caption(tr("line_each"))
-        c4, c5, c6 = st.columns(3)
         show_opts = [tr("show_all"), "Over", "Under", tr("show_strong")]
-        k_show = c4.radio(tr("show"), show_opts, horizontal=True, key="pk_show")
-        k_min = c5.slider(tr("min_minutes"), 0, 35, 15, key="pk_min")
-        k_g = c6.slider(tr("min_games"), 5, 20, 5, key="pk_g")
-        k_hide_inj = st.checkbox(tr("inj_hide"), value=True, key="pk_hide_inj")
+        k_show = st.segmented_control(tr("show"), show_opts, default=show_opts[0], key="pk_show_s",
+                                      label_visibility="collapsed") or show_opts[0]
+        with st.expander(tr("filters")):
+            c1, c2 = st.columns(2)
+            k_mode = c1.radio(tr("line_mode"), [tr("line_avg"), tr("line_fixed")], key="pk_mode")
+            if k_mode == tr("line_fixed"):
+                k_line = c2.number_input(tr("line_s"), value=DEFAULT_LINE.get(k_key, 5.5), step=0.5,
+                                         min_value=0.0, format="%.1f", key=f"pk_line_{k_key}")
+            else:
+                k_line = None
+                c2.caption(tr("line_each"))
+            c3, c4 = st.columns(2)
+            k_min = c3.slider(tr("min_minutes"), 0, 35, 15, key="pk_min")
+            k_g = c4.slider(tr("min_games"), 5, 20, 5, key="pk_g")
+            k_hide_inj = st.checkbox(tr("inj_hide"), value=True, key="pk_hide_inj")
 
-        hist = df.sort_values(SORT)
-        rows_k = []
-        for (comp, pid), pg in hist.groupby(["comp", "player_id"]):
+        picks_all = []
+        for (comp, pid), pg in df.sort_values(SORT).groupby(["comp", "player_id"]):
             v = pg[k_key].dropna()
             if len(v) < k_g or pg["Minutes"].mean() < k_min:
                 continue
-            team = pg["team"].iloc[-1]
-            nxt = next_game(comp, team)
+            nxt = next_game(comp, pg["team"].iloc[-1])
             if not nxt or (k_hide_inj and inj_status(pid) in INJ_HIDE):
                 continue
             line = float(np.floor(v.mean()) + 0.5) if k_mode != tr("line_fixed") else float(k_line)
-            sg = signal(pg, k_key, line, comp, nxt)
-            rows_k.append({
-                tr("sig"): sg["label"], tr("player"): pg["player"].iloc[-1], tr("line_s"): line,
-                tr("sig_score"): sg["score"], tr("l10p"): round(100 * sg["hit"]) if sg["hit"] is not None else None,
-                tr("median"): v.median(), tr("avg"): round(v.mean(), 1),
-                tr("opponent"): f"{nxt['opp']} ({tr('home') if nxt['home'] else tr('away')}, "
-                                f"{nxt['date']:%d.%m.})" if pd.notna(nxt["date"]) else nxt["opp"],
-                tr("reasons"): " · ".join(sg["reasons"]),
-                tr("pos_short"): pos_label(pid, short=True), tr("team"): team,
-                tr("inj_col"): inj_badge(pid),
-            })
-        if not rows_k:
+            picks_all.append(make_pick(comp, pid, pg, k_key, line, nxt))
+        if not picks_all:
             st.info(tr("no_picks"))
         else:
-            pk = pd.DataFrame(rows_k)
-            labels = pk[tr("sig")]
-            st.markdown(tr("picks_count", f=(labels == tr("sig_fire")).sum(), o=(labels == tr("sig_over")).sum(),
-                           u=(labels == tr("sig_under")).sum(), i=(labels == tr("sig_ice")).sum()))
+            labels = [p["label"] for p in picks_all]
+            st.markdown(tr("picks_count", f=labels.count(tr("sig_fire")), o=labels.count(tr("sig_over")),
+                           u=labels.count(tr("sig_under")), i=labels.count(tr("sig_ice"))))
             if k_show == "Over":
-                pk = pk[pk[tr("sig_score")] >= 25].sort_values(tr("sig_score"), ascending=False)
+                sel = sorted([p for p in picks_all if p["score"] >= 25], key=lambda p: -p["score"])
             elif k_show == "Under":
-                pk = pk[pk[tr("sig_score")] <= -25].sort_values(tr("sig_score"))
+                sel = sorted([p for p in picks_all if p["score"] <= -25], key=lambda p: p["score"])
             elif k_show == tr("show_strong"):
-                pk = pk[labels.loc[pk.index].isin([tr("sig_fire"), tr("sig_ice")])]
-                pk = pk.reindex(pk[tr("sig_score")].abs().sort_values(ascending=False).index)
+                sel = sorted([p for p in picks_all if p["cls"] in ("fire", "ice")], key=lambda p: -abs(p["score"]))
             else:
-                pk = pk.reindex(pk[tr("sig_score")].abs().sort_values(ascending=False).index)
-            if pk.empty:
+                sel = sorted(picks_all, key=lambda p: -abs(p["score"]))
+            pk = pd.DataFrame([{
+                tr("sig"): p["label"], tr("player"): p["player"], tr("line_s"): p["line"],
+                tr("sig_score"): p["score"],
+                tr("l10p"): round(100 * p["hit_pct"]) if p["hit_pct"] is not None else None,
+                tr("median"): p["median"], tr("avg"): round(p["avg"], 1),
+                tr("opponent"): f"{p['opp']} ({tr('home') if p['home'] else tr('away')}, {p['when']})",
+                tr("reasons"): " · ".join(p["reasons"]), tr("pos_short"): p["pos"], tr("team"): p["team"],
+                tr("inj_col"): p["inj"]} for p in sel])
+            if not sel:
                 st.info(tr("no_picks"))
-            else:
+            elif st.toggle(tr("as_table"), key="pk_table"):
                 st.dataframe(pk, hide_index=True, width="stretch", height=min(560, 38 + 35 * len(pk)),
                              column_config={
                                  tr("sig_score"): st.column_config.NumberColumn(
@@ -1929,4 +2270,93 @@ with TAB["picks"]:
                                  tr("l10p"): st.column_config.NumberColumn(format="%d%%"),
                                  tr("line_s"): st.column_config.NumberColumn(format="%.1f"),
                                  tr("reasons"): st.column_config.TextColumn(width="large")})
-                csv_button(pk, f"predlozi_{k_key}", "dl_picks")
+            else:
+                n_show = st.session_state.get("pk_n", 20)
+                st.markdown(f"<div class='es-grid'>{''.join(pick_card(p) for p in sel[:n_show])}</div>",
+                            unsafe_allow_html=True)
+                if len(sel) > n_show:
+                    st.button(f"{tr('show_more')} ({len(sel) - n_show})", key="pk_more", width="stretch",
+                              on_click=lambda: st.session_state.update(pk_n=n_show + 20))
+            csv_button(pk, f"predlozi_{k_key}", "dl_picks")
+
+# ---------- povrede / injuries page ----------
+if PAGE == "injuries":
+    render_injuries()
+
+# ---------- pocetna / home ----------
+if PAGE == "home":
+    comp = comps[0]
+    rnd, games = next_round_games(comp)
+    data_sig = (len(df), int(df["gamecode"].max()), len(INJ))
+    picks = round_picks(comp, ("Points", "TotalRebounds", "Assistances"), lang, data_sig) if rnd else []
+    labels = [p["label"] for p in picks]
+    out_list = []
+    if INJ_REPORT and rnd:
+        round_teams = set(games["homecode"]) | set(games["awaycode"])
+        for p in INJ_REPORT.get("players", []):
+            code = ABBR.get((INJ_REPORT.get("comp", "E"), p.get("team")), p.get("team"))
+            if code in round_teams and p.get("status") in ("out", "doubtful", "likely_out") \
+                    and (INJ_REPORT.get("comp", "E"), p.get("gamecode")) not in played_codes:
+                out_list.append((p.get("db_name") or p["name"], code, p["status"]))
+    for pid, i in INJ.items():   # rucni unos (povrede.csv)
+        if i["src"] == "manual" and i["status"] in INJ_HIDE:
+            out_list.append((names_up.get(pid, pid), "", i["status"]))
+
+    # kartica kola
+    if rnd:
+        first = games.iloc[0]
+        when = day_time(first["date"], "").strip()
+        _cnt = [("chip_fire", labels.count(tr("sig_fire"))), ("chip_ice", labels.count(tr("sig_ice"))),
+                ("chip_out", sum(1 for o in out_list if o[2] == "out"))]
+        chips = [tr(k, n=n) for k, n in _cnt if n]
+        st.markdown(f"<div class='es-hero'><div class='t'>{esc(tr('home_next', r=rnd))} · {esc(liga)}</div>"
+                    f"<div class='b'>{esc(when)} · <span>{esc(tr('home_games', n=len(games)))}</span></div>"
+                    f"<div class='es-chips'>{''.join(f'<span class=es-chip>{esc(c)}</span>' for c in chips)}"
+                    f"<span class='es-chip'>{esc(tr('chip_games', g=df['gamecode'].nunique(), p=df['player_id'].nunique()))}"
+                    f"</span></div></div>", unsafe_allow_html=True)
+
+        # utakmice
+        section_head(tr("home_games_h"), tr("go_sched"), ("league", "sched"), key="games")
+        cards = []
+        for m in games.itertuples():
+            proj, lab, line = game_total(comp, m.homecode, m.awaycode)
+            tot = (f"{esc(tr('total_s'))} <b>{proj}</b> {esc(lab.split()[0])}" if proj else "")
+            cards.append(f"<div class='es-game'><div class='d'>{esc(day_time(m.date, m.startime))}</div>"
+                         f"<div class='m'>{esc(m.homecode)} – {esc(m.awaycode)}</div><div class='x'>{tot}</div></div>")
+        st.markdown(f"<div class='es-games'>{''.join(cards)}</div>", unsafe_allow_html=True)
+
+        # najjaci predlozi
+        section_head(tr("home_picks_h"), tr("go_picks"), ("props", "picks"), key="picks", sub=tr("home_picks_note"))
+        strong = sorted([p for p in picks if p["cls"] != "none"], key=lambda p: -abs(p["score"]))[:6]
+        if strong:
+            st.markdown(f"<div class='es-card'>{''.join(pick_row(p) for p in strong)}</div>", unsafe_allow_html=True)
+        else:
+            st.caption(tr("home_no_picks"))
+
+        # ne igraju
+        section_head(tr("home_inj_h"), tr("go_inj"), ("league", "injuries"), key="inj")
+        if out_list:
+            css = {"out": "s-out", "doubtful": "s-q", "likely_out": "s-l"}
+            rows = "".join(f"<div class='es-row'><div class='es-main'><b>{esc(short_name(n) if ',' in n else n)}</b>"
+                           f"{' · ' + esc(t) if t else ''}</div><span class='es-st {css.get(stt, 's-l')}'>"
+                           f"{esc(tr('inj_' + stt))}</span></div>"
+                           for n, t, stt in sorted(out_list, key=lambda o: (o[2] != "out", o[1]))[:8])
+            st.markdown(f"<div class='es-card'>{rows}</div>", unsafe_allow_html=True)
+        else:
+            st.caption(tr("inj_none_round") if INJ_REPORT else tr("inj_none"))
+    else:
+        st.info(tr("no_next_round"))
+
+    # u formi
+    section_head(tr("home_form_h"), tr("go_form"), ("players", "leaders"), key="form", sub=tr("home_form_sub"))
+    fr = []
+    for pid, pg in df[df["comp"] == comp].sort_values(SORT).groupby("player_id"):
+        if len(pg) >= 4 and pg["Minutes"].mean() >= 12:
+            l3, sa = pg["Points"].tail(3).mean(), pg["Points"].mean()
+            fr.append((l3 - sa, pg["player"].iloc[-1], pg["team"].iloc[-1], l3, sa))
+    fr.sort(reverse=True)
+    if fr:
+        boxes = "".join(f"<div class='es-card'><div class='n'>{esc(short_name(n))} · {esc(t)}</div>"
+                        f"<div class='v'>{d:+.1f}</div><div class='x'>{l3:.1f} vs {sa:.1f}</div></div>"
+                        for d, n, t, l3, sa in fr[:4])
+        st.markdown(f"<div class='es-form'>{boxes}</div>", unsafe_allow_html=True)
