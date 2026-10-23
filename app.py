@@ -239,6 +239,11 @@ T3 = {
         "inj_gtd": "🟡 Odluka pred meč", "inj_likely_out": "⚠️ Van terena (nepotvrđeno)",
         "inj_available": "✅ Vraća se", "inj_info": "ℹ️ Napomena", "inj_col": "🚑 Status",
         "inj_h": "🚑 Povrede za sledeće kolo", "inj_src": "Izvor: [{t}]({u}) · objavljeno {p} · provereno {f}",
+        "inj_live_fail": "Aplikacija trenutno ne uspeva da proveri sajt Evrolige ({e}, pokušano {t}). Prikazuje se "
+                         "poslednji sačuvani izveštaj. Novi možeš da ubaciš sa računara: dupli klik na "
+                         "osvezi_povrede.bat, pa upload povrede.json na GitHub.",
+        "inj_live_ok": "✅ Sajt Evrolige proveren {t}.", "inj_check_now": "🔄 Proveri sajt sada",
+        "inj_check_help": "Sajt je proveren pre manje od sat vremena. Ponovo može za sat, da nas ne blokiraju.",
         "inj_manual": "ručno (povrede.csv)", "inj_none": "Izveštaj o povredama još nije preuzet.",
         "inj_not_sent": "Nije poslao izveštaj", "inj_full": "Svi igrači na raspolaganju",
         "inj_hide": "Sakrij igrače koji ne igraju",
@@ -350,6 +355,11 @@ T3 = {
         "inj_gtd": "🟡 Game-time decision", "inj_likely_out": "⚠️ Sidelined (unconfirmed)",
         "inj_available": "✅ Returning", "inj_info": "ℹ️ Note", "inj_col": "🚑 Status",
         "inj_h": "🚑 Injuries for the next round", "inj_src": "Source: [{t}]({u}) · published {p} · checked {f}",
+        "inj_live_fail": "The app can't reach the EuroLeague site right now ({e}, tried {t}). Showing the last saved "
+                         "report. You can load a new one from your computer: double-click osvezi_povrede.bat, then "
+                         "upload povrede.json to GitHub.",
+        "inj_live_ok": "✅ EuroLeague site checked {t}.", "inj_check_now": "🔄 Check the site now",
+        "inj_check_help": "The site was checked less than an hour ago. Try again in an hour so we don't get blocked.",
         "inj_manual": "manual (povrede.csv)", "inj_none": "Injury report not downloaded yet.",
         "inj_not_sent": "Report not sent", "inj_full": "Full roster available",
         "inj_hide": "Hide players who are out",
@@ -1067,15 +1077,20 @@ INJ_STATUS = {"out": "out", "ne igra": "out", "doubtful": "doubtful", "verovatno
 INJ_HIDE = {"out", "doubtful"}
 
 
-@st.cache_data(ttl=3600, show_spinner=False)
+@st.cache_data(ttl=12 * 3600, show_spinner=False)
 def live_injury_report():
-    """Aplikacija sama cita Euroleague izvestaj, najvise jednom na sat (GitHub serveri su blokirani).
+    """Aplikacija sama cita Euroleague izvestaj, najvise dva puta dnevno (na 12 h), da ne bude blokirana.
     Brzo odustaje (1 pokusaj, 8 s) da ne uspori sajt; tada ostaje povrede.json iz repoa."""
+    now = pd.Timestamp.now(tz="UTC").isoformat(timespec="minutes")
     try:
         import povrede as pv
-        return pv.fetch_report(tries=1, timeout=8) or {}
-    except Exception:
-        return {}
+        r = pv.fetch_report(tries=1, timeout=8)
+        return r or {"_error": "na stranici sa vestima nema izveštaja / no report link found", "_tried": now}
+    except Exception as e:
+        return {"_error": f"{type(e).__name__}: {str(e)[:160]}", "_tried": now}
+
+
+LIVE_STATUS = {}
 
 
 def load_injuries():
@@ -1087,6 +1102,8 @@ def load_injuries():
     except Exception:
         rep_ = {}
     live = live_injury_report()
+    LIVE_STATUS.clear()
+    LIVE_STATUS.update({k: live.get(k) for k in ("_error", "_tried", "fetched")})
     if live.get("players") is not None and (live.get("published") or "") >= (rep_.get("published") or ""):
         rep_ = live
     for p in rep_.get("players", []):
@@ -1813,6 +1830,17 @@ def render_injuries():
         st.caption(tr("inj_src", t=INJ_REPORT.get("title", "Injury report"),
                       u=INJ_REPORT.get("source") or "https://www.euroleaguebasketball.net/euroleague/news/",
                       p=fmt(pub), f=fmt(fet)))
+        if LIVE_STATUS.get("_error"):
+            st.warning(tr("inj_live_fail", e=LIVE_STATUS["_error"],
+                          t=fmt(pd.to_datetime(LIVE_STATUS.get("_tried"), errors="coerce", utc=True))))
+        else:
+            st.caption(tr("inj_live_ok", t=fmt(pd.to_datetime(LIVE_STATUS.get("fetched"), errors="coerce", utc=True))))
+        _last = pd.to_datetime(LIVE_STATUS.get("_tried") or LIVE_STATUS.get("fetched"), errors="coerce", utc=True)
+        _wait = pd.notna(_last) and pd.Timestamp.now(tz="UTC") - _last < pd.Timedelta(hours=1)
+        if st.button(tr("inj_check_now"), key="inj_check", disabled=bool(_wait),
+                     help=tr("inj_check_help") if _wait else None):
+            live_injury_report.clear()
+            st.rerun()
         comp_r = INJ_REPORT.get("comp", "E")
         rows_i = []
         for tm in INJ_REPORT.get("teams", []):
