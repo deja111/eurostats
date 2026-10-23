@@ -673,7 +673,9 @@ div[class*="st-key-sub_"] [data-testid="stBaseButton-segmented_controlActive"] *
 .es-stats {display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-top:8px;}
 .es-stats div {background:rgba(128,128,128,.10); border-radius:10px; padding:6px 4px; text-align:center;}
 .es-stats b {display:block; font-size:.9rem;} .es-stats span {font-size:.66rem; opacity:.65;}
-.es-why {font-size:.76rem; margin-top:9px; line-height:1.55; opacity:.9;}
+.es-why {font-size:.76rem; margin-top:9px; line-height:1.45; opacity:.9; display:flex; flex-direction:column; gap:3px;}
+.es-why > div {padding-left:1.1em; text-indent:-1.1em;}
+.es-why > div.pj {font-weight:700; text-indent:0; padding-left:0; margin-bottom:2px;}
 .es-warn {font-size:.76rem; margin-top:8px; padding:6px 9px; border-radius:9px; background:rgba(234,179,8,.15);}
 .es-grid {display:grid; grid-template-columns:repeat(auto-fill, minmax(330px, 1fr)); gap:10px;}
 .es-h {display:flex; justify-content:space-between; align-items:baseline; margin:1rem 0 .4rem;}
@@ -921,19 +923,36 @@ def load_pos(comps: tuple) -> pd.DataFrame:
         return pd.DataFrame()
 
 
+def _parse_pos(txt):
+    """'G/F', 'SG-SF', 'PF/C', 'C' -> ('G', 'F') / ('F', 'C') / ('C', None)."""
+    parts = [POS_MAP.get(x.strip().upper()) for x in re.split(r"[/\-,; ]+", str(txt)) if x.strip()]
+    parts = [x for x in dict.fromkeys(parts) if x]
+    if not parts:
+        return None
+    return parts[0], (parts[1] if len(parts) > 1 else None)
+
+
 def manual_positions():
-    """pozicije.csv pored app.py: kolone igrac (ime kao u aplikaciji ili ID), pozicija (PG/SG/SF/PF/C ili G/F/C)."""
+    """pozicije.csv pored app.py: kolone igrac (ime kao u aplikaciji ili ID), pozicija.
+    Pozicija moze biti jedna (PG/SG/SF/PF/C ili G/F/C) ili dve: G/F, SG/SF, F/C, PF/C (prva je glavna)."""
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "pozicije.csv")
     if not os.path.exists(path):
         return {}
     try:
-        m = pd.read_csv(path)
+        m = pd.read_csv(path, dtype=str)
         m.columns = [c.strip().lower() for c in m.columns]
         who, what = m.columns[0], m.columns[1]
-        return {str(a).strip().upper(): POS_MAP.get(str(b).strip().upper())
-                for a, b in zip(m[who], m[what]) if POS_MAP.get(str(b).strip().upper())}
+        out = {}
+        for a, b in zip(m[who], m[what]):
+            pp = _parse_pos(b)
+            if pp:
+                out[str(a).strip().upper()] = pp
+        return out
     except Exception:
         return {}
+
+
+POS_SECOND_EST = {}       # procenjena druga pozicija za "swing" igrace
 
 
 def estimate_positions(frame, known):
@@ -957,11 +976,26 @@ def estimate_positions(frame, known):
     mu, sd = f.loc[tr_ids].mean(), f.loc[tr_ids].std().replace(0, 1)
     z = (f - mu) / sd
     zt, yt, wt = z.loc[tr_ids].values, np.array([known[i] for i in tr_ids]), np.sqrt(m.loc[tr_ids].values)
-    out = {}
-    for pid in f.index.difference(tr_ids):
+    out, second = {}, {}
+    for pid in f.index:
+        own = pid in tr_ids
         dist = np.sqrt(((zt - z.loc[pid].values) ** 2).sum(1))
-        idx = np.argsort(dist)[:9]
-        out[pid] = pd.Series(wt[idx] / (dist[idx] + 0.3)).groupby(yt[idx]).sum().idxmax()
+        order = np.argsort(dist)
+        if own:
+            order = order[dist[order] > 1e-9]          # bez samog sebe
+        idx = order[:9]
+        votes = pd.Series(wt[idx] / (dist[idx] + 0.3)).groupby(yt[idx]).sum()
+        share = votes / votes.sum()
+        main = known[pid] if own else share.idxmax()
+        if not own:
+            out[pid] = main
+        # "swing" igrac: druga susedna pozicija sa bar 35% glasova (bek/krilo, krilo/centar)
+        rest = share.drop(main, errors="ignore")
+        if not rest.empty:
+            alt = rest.idxmax()
+            if rest[alt] >= 0.40 and {main, alt} != {"G", "C"}:
+                second[pid] = alt
+    POS_SECOND_EST.update(second)
     return out
 
 
@@ -1001,7 +1035,7 @@ names_up = df.drop_duplicates("_pid").set_index("_pid")["player"].str.upper()
 def player_pos(pid):
     m = manual.get(pid.upper()) or manual.get(names_up.get(pid, ""))
     if m:
-        return m, "manual"
+        return m[0], "manual"
     if pid in official:
         return official[pid], "api"
     if pid in estimated:
@@ -1010,6 +1044,17 @@ def player_pos(pid):
 
 
 _pp = {pid: player_pos(pid) for pid in df["_pid"].unique()}
+
+
+def _second_pos(pid):
+    m = manual.get(pid.upper()) or manual.get(names_up.get(pid, ""))
+    if m:
+        return m[1]                 # rucni unos ima prednost (i kad je samo jedna pozicija)
+    sec = POS_SECOND_EST.get(pid)
+    return sec if sec and sec != _pp.get(pid, (None, None))[0] else None
+
+
+POS2 = {pid: _second_pos(pid) for pid in df["_pid"].unique()}
 df["pos"] = df["_pid"].map(lambda x: _pp[x][0])
 df["pos_src"] = df["_pid"].map(lambda x: _pp[x][1])
 HAS_POS = df["pos"].notna().any()
@@ -1091,6 +1136,9 @@ def pos_label(pid, short=False):
     if not pos:
         return ""
     lbl = tr(f"pos1_{pos}")
+    p2 = POS2.get(str(pid).strip())
+    if p2:
+        lbl += "/" + tr(f"pos1_{p2}")
     if src == "est" and not short:
         lbl += f" ({tr('pos_est')})"
     elif src == "manual" and not short:
@@ -1278,6 +1326,23 @@ def _pos_of(comp, pid):
     return _pp.get(pid, (None, None))[0] or ROSTER_POS.get((comp, pid))
 
 
+def _pos_set(comp, pid):
+    p1 = _pos_of(comp, pid)
+    return {x for x in (p1, POS2.get(pid)) if x}
+
+
+def pos_compat(comp, a, b):
+    """1.0 = dele poziciju (i "swing": bek/krilo deli i beka i krilo), 0.5 = susedne ili nepoznato, 0 = bek-centar."""
+    A, B = _pos_set(comp, a), _pos_set(comp, b)
+    if not A or not B:
+        return 0.5
+    if A & B:
+        return 1.0
+    if any({x, y} != {"G", "C"} for x in A for y in B):
+        return 0.5
+    return 0.0
+
+
 def mate_factor(pg, key, comp, sd, nxt=None):
     """Saigraci: ko NE IGRA (izostanak) i ko SE VRACA posle izostanka.
     Uticaj = (prosek u utakmicama u ocekivanom stanju - prosek posl. 10) x ublazavanje.
@@ -1320,29 +1385,34 @@ def mate_factor(pg, key, comp, sd, nxt=None):
         stt = inj_status(mid) or REPORT_STATUS.get(mid)
         if stt == "available":
             cands[mid] = ("back", 0.6, pm, set(), stt)
-        elif stt in ("likely_out", "doubtful", "gtd", "questionable") and _pos_of(comp, mid) == my_pos:
+        elif stt in ("likely_out", "doubtful", "gtd", "questionable") and pos_compat(comp, pid, mid) >= 1.0:
             RISK[0] = tr("r_risk", n=REPORT_NAME.get(mid) or short_name(PL_NAME.get(mid, mid)),
                          s=tr(f"inj_{stt}").split(" ", 1)[-1].lower())
     total, reasons, info, deltas = 0.0, [], [], []
     best_d = 0.0
     for mid, (kind, w_st, mins, mg, stt) in cands.items():
         name = short_name(PL_NAME[mid]) if mid in PL_NAME else (REPORT_NAME.get(mid) or mid)
-        same = bool(my_pos) and _pos_of(comp, mid) == my_pos
-        plab = tr(f"pos1_{my_pos}").lower() if same else tr("mate_other")
+        m_pos = _pos_of(comp, mid)
+        # povezanost pozicija: ista 1.0, susedna (bek-krilo, krilo-centar) 0.5, bek-centar 0 (nema veze)
+        compat = pos_compat(comp, pid, mid)
+        if compat == 0:
+            continue
+        same = compat >= 1.0
+        plab = "/".join(tr(f"pos1_{x}").lower() for x in (m_pos, POS2.get(mid)) if x) or "?"
         cond = mine[~mine["gamecode"].isin(mg)] if kind == "out" else mine[mine["gamecode"].isin(mg)]
         other = mine[mine["gamecode"].isin(mg)] if kind == "out" else mine[~mine["gamecode"].isin(mg)]
         if len(cond) >= 2 and len(other) >= 2:
             a = float(cond[key].mean())
             shrink = len(cond) / (len(cond) + 2)
-            d = (a - base_mean) * shrink * w_st
-            if abs(d) > abs(best_d) and w_st >= 0.7:
+            d = (a - base_mean) * shrink * w_st * compat
+            if abs(d) > abs(best_d) and w_st >= 0.7 and compat >= 1:
                 best_d, COND_GAMES[0] = d, set(cond["gamecode"])
             txt = tr("r_mate" if kind == "out" else "r_back", n=name, p=plab, a=a, m=float(cond["Minutes"].mean()),
                      b=float(other[key].mean()), mm=float(other["Minutes"].mean()), k=len(cond))
         elif same:
             rot = [q for (c, q, t), mm_ in PL_MIN.items()
                    if c == comp and t == team and q != mid and mm_ >= 10 and inj_status(q) not in ABSENT_W
-                   and PL_LAST_TEAM.get((c, q)) == team and _pos_of(comp, q) == my_pos]
+                   and PL_LAST_TEAM.get((c, q)) == team and pos_compat(comp, q, mid) >= 1.0]
             extra_min = 0.5 * mins / max(len(rot), 1)
             d = extra_min * per_min * 0.6 * w_st * (1 if kind == "out" else -1)
             txt = tr("r_mate_est" if kind == "out" else "r_back_est", n=name, p=plab, d=abs(d), mn=extra_min)
@@ -1681,7 +1751,8 @@ def signal(pg, key, line, comp, nxt=None):
         for name, d, t in pr["adj"]:
             if abs(d) >= 0.05:
                 mark = "✔ " if np.sign(d) == direction else "✘ "
-                txt.append(mark + f"{name} {d:+.1f}" + (f" ({t})" if t and name != tr("f_mate") else ""))
+                if name != tr("f_mate"):      # saigraci se ispisuju pojedinacno ispod
+                    txt.append(mark + f"{name} {d:+.1f}" + (f" ({t})" if t else ""))
                 factors.append((name, None, d, t))
     hit_txt = tr("r_hit", o=hits, t=len(last))
     txt.append(("✔ " if (h - 0.5) * direction > 0 else "✘ ") + hit_txt)
@@ -1893,8 +1964,9 @@ def pick_card(p, extra=""):
     tag = p["label"] if cls != "none" else p["label"]
     ha = (tr("home") if p["home"] else tr("away")) if p["home"] is not None else ""
     vs = f" · vs {esc(p['opp'])} · {ha} · {esc(p['when'])}" if p["opp"] else ""
-    why = " · ".join(esc(r).replace("✔", "<span class='c-over'>✔</span>").replace("✘", "<span class='c-under'>✘</span>")
-                     for r in p["reasons"])
+    why = "".join(f"<div{' class=pj' if r.startswith('📈') else ''}>"
+                  + esc(r).replace("✔", "<span class='c-over'>✔</span>").replace("✘", "<span class='c-under'>✘</span>")
+                  + "</div>" for r in p["reasons"])
     warn = f"<div class='es-warn'>{esc(p['inj'])}{' · ' + esc(p['inj_note'][:90]) if p['inj_note'] else ''}</div>" \
         if p["inj"] else ""
     return (f"<div class='es-pick {cls}'><div class='hd'><div class='who'>{photo(p.get('pid'), 44)}<div>"
