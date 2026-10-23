@@ -1093,6 +1093,79 @@ def live_injury_report():
 LIVE_STATUS = {}
 
 
+def relink_report(rep_):
+    """Ako povrede.py nije povezao timove/igrace (npr. pokrenut sa racunara sa starom bazom),
+    povezi ih ovde: tim po imenu iz utakmica u izvestaju, igrac po imenu iz spiska tima."""
+    if not rep_ or not rep_.get("teams") or all(t.get("team") for t in rep_["teams"]):
+        return rep_
+    comp_r = rep_.get("comp", "E")
+    try:
+        raw = es.load_schedule([comp_r])
+    except Exception:
+        return rep_
+    stop = {"bc", "kk", "sk", "jk", "fc", "basket", "basketball", "club"}
+    tok = lambda x: {w for w in re.split(r"[^a-z0-9]+", LN.norm(x or "")) if w and w not in stop}
+    games = rep_.get("games") or []
+    lab_code = {}
+    for tm in rep_["teams"]:
+        if not tm.get("team"):
+            lab = tok(tm.get("label"))
+            for g in games:
+                if tm.get("game_gc") is not None and g.get("gamecode") != tm.get("game_gc"):
+                    continue
+                for sd, nm in ((0, g.get("home")), (1, g.get("away"))):
+                    if tm.get("side") not in (None, sd) or not lab or not lab <= tok(nm):
+                        continue
+                    r = raw[raw["gamecode"] == g.get("gamecode")]
+                    if not r.empty:
+                        tm["team"] = r["homecode"].iloc[0] if sd == 0 else r["awaycode"].iloc[0]
+                        tm["gamecode"] = int(g["gamecode"])
+                if tm.get("team"):
+                    break
+        lab_code[tm.get("label")] = (tm.get("team"), tm.get("gamecode"))
+    last_team = df.sort_values(SORT).groupby("_pid").tail(1)
+    for p in rep_.get("players", []):
+        if not p.get("team"):
+            t_, g_ = lab_code.get(p.get("label"), (None, None))
+            if not t_:        # stari fajl bez "label": tim ciji opis pominje igraca
+                last = (p.get("name") or "").split()[-1:] or [""]
+                hit = [tm for tm in rep_["teams"] if last[0] and last[0] in (tm.get("summary") or "")]
+                if len(hit) == 1:
+                    t_, g_ = hit[0].get("team"), hit[0].get("gamecode")
+            p["team"], p["gamecode"] = t_, g_
+        if p.get("team") and not p.get("player_id"):
+            code = ABBR.get((comp_r, p["team"]), p["team"])
+            lt = last_team[(last_team["comp"] == comp_r) & (last_team["team"] == code)]
+            ros = [(a_, b_, c_, float(d_ or 0)) for a_, b_, c_, d_ in
+                   zip(lt["_pid"], lt["player"], lt["team"], lt["Minutes"])]
+            pid = LN.match_player(p.get("name", ""), ros)
+            if pid:
+                p["player_id"] = pid
+                p["db_name"] = next((r[1] for r in ros if r[0] == pid), None)
+    return rep_
+
+
+def fix_notes(rep_):
+    """Napomena igraca ponekad dolazi iz starog pasusa ("returned to action in Round 6") iako je sada
+    van terena; tada uzmi recenicu iz opisa njegovog tima koja ga pominje."""
+    bad = re.compile(r"\b(out|doubtful|questionable|sidelined|miss|injur|ruled)\w*", re.I)
+    teams = {t.get("label"): t for t in rep_.get("teams", [])}
+    for p in rep_.get("players", []):
+        if p.get("status") not in ("out", "doubtful", "likely_out") or bad.search(p.get("note") or ""):
+            continue
+        last = (p.get("name") or "").split()[-1:] or [""]
+        tms = [teams[p["label"]]] if p.get("label") in teams else rep_.get("teams", [])
+        for t in tms:
+            for sent in re.split(r"(?<=[.!?])\s+", t.get("summary") or ""):
+                if last[0] and last[0] in sent and bad.search(sent):
+                    p["note"] = sent
+                    break
+            else:
+                continue
+            break
+    return rep_
+
+
 def load_injuries():
     """Izvestaj: sveze procitan sa sajta ili povrede.json; povrede.csv (rucno) ima prednost."""
     here = os.path.dirname(os.path.abspath(__file__))
@@ -1106,6 +1179,10 @@ def load_injuries():
     LIVE_STATUS.update({k: live.get(k) for k in ("_error", "_tried", "fetched")})
     if live.get("players") is not None and (live.get("published") or "") >= (rep_.get("published") or ""):
         rep_ = live
+    try:
+        rep_ = fix_notes(relink_report(rep_))
+    except Exception:
+        pass
     for p in rep_.get("players", []):
         gc = p.get("gamecode")
         if not p.get("player_id") or (rep_.get("comp", "E"), gc) in played_codes:

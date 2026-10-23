@@ -196,16 +196,22 @@ def parse_markdown(md):
 # ---------- povezivanje sa bazom / linking ----------
 def link(teams, games, comp="E"):
     """Dodeli timovima zvanicnu sifru (preko gamecode iz rasporeda), a igracima player_id."""
-    sched = es.load_schedule([comp])
+    try:
+        sched = es.load_schedule([comp])
+    except Exception:          # lokalna baza bez rasporeda: aplikacija ce sama povezati timove
+        sched = None
     code_of = {}
     for g in games:
-        row = sched[sched["gamecode"] == g["gamecode"]]
-        if not row.empty:
+        row = sched[sched["gamecode"] == g["gamecode"]] if sched is not None else None
+        if row is not None and not row.empty:
             code_of[(g["home"].lower(), g["away"].lower())] = (row["homecode"].iloc[0], row["awaycode"].iloc[0],
                                                                g["gamecode"])
-    df = es.load_df([comp])
+    try:
+        df = es.load_df([comp])
+    except Exception:
+        df = None
     roster = {}
-    if not df.empty:
+    if df is not None and not df.empty:
         last = df.sort_values("gamecode").groupby("player_id").tail(1)
         for r in last.itertuples():
             last_name, _, first = r.player.partition(",")
@@ -215,6 +221,8 @@ def link(teams, games, comp="E"):
         h, a, gc = code_of.get(key, (None, None, None))
         tm["team"] = (h, a)[tm["side"]] if h else None
         tm["gamecode"] = gc
+        g_ = next((g for g in games if (g["home"].lower(), g["away"].lower()) == key), None)
+        tm["game_gc"] = g_["gamecode"] if g_ else None
         for p in tm["players"]:
             parts = norm(p["name"])
             cands = roster.get(tm["team"], [])
@@ -232,9 +240,9 @@ def build(html, url=None, comp="E"):
     return {
         "source": url, "title": info["title"], "published": info["published"], "comp": comp,
         "games": info["games"],
-        "teams": [{k: tm[k] for k in ("label", "team", "gamecode", "reported", "full", "summary")}
-                  for tm in teams],
-        "players": [{**p, "team": tm["team"], "gamecode": tm["gamecode"]}
+        "teams": [{**{k: tm[k] for k in ("label", "team", "gamecode", "reported", "full", "summary")},
+                   "side": tm.get("side"), "game_gc": tm.get("game_gc")} for tm in teams],
+        "players": [{**p, "team": tm["team"], "gamecode": tm["gamecode"], "label": tm["label"]}
                     for tm in teams for p in tm["players"]],
     }
 
