@@ -1952,6 +1952,15 @@ else:
                                 label_visibility="collapsed") or _subs[0]
     st.session_state[_sk + "_last"] = PAGE
 
+# kad se promeni stranica, vrati prikaz na vrh (inace ostaje skrolovano dole i izgleda kao da klik nije radio)
+if st.session_state.get("_last_page") != PAGE:
+    if st.session_state.get("_last_page") is not None:
+        import streamlit.components.v1 as _components
+        _components.html("<script>const d=window.parent.document;"
+                         "(d.querySelector('[data-testid=\"stMain\"]')||d.querySelector('section.main')||"
+                         "d.scrollingElement).scrollTo({top:0});window.parent.scrollTo(0,0);</script>", height=0)
+    st.session_state["_last_page"] = PAGE
+
 
 # ---------- novi izgled: pomocne funkcije / new look helpers ----------
 import html as _html
