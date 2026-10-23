@@ -17,6 +17,7 @@ import pandas as pd
 import streamlit as st
 
 import euroleague_stats as es
+import linije as LN
 
 st.set_page_config(page_title="EuroStats", page_icon="📊", layout="wide")
 
@@ -246,7 +247,7 @@ T3 = {
         "factor": "Faktor", "weight": "Težina", "vote": "Glas", "detail": "Detalj",
         "f_hit": "Hit-rate (posl. 10)", "f_med": "Medijana", "f_opp": "Protivnik (DvP)",
         "f_ven": "Kuća / gost", "f_min": "Minuti (posl. 3)", "neutral": "neutralno",
-        "f_mate": "Saigrači koji ne igraju", "mate_other": "druga pozicija", "f_mate_word": " ne igra (",
+        "f_mate": "Saigrači (izostanci / povratci)", "mate_other": "druga pozicija", "f_mate_word": "(",
         "f_pace": "Tempo", "r_pace": "{v:.0f} poseda vs prosek {l:.0f}", "r_pace_book": "total kladionica {t:g} vs prosek {l:.0f}",
         "f_miss": "Lopte za skok", "r_miss": "{v:.0f} promašaja po meču vs prosek {l:.0f}",
         "f_blow": "Rizik od ubedljivog meča", "r_blow": "očekivana razlika {m:+.1f} ({s}), starteri se odmaraju",
@@ -264,7 +265,9 @@ T3 = {
         "proj_head": "**Projekcija {p:.1f}** · linija {l:g} · **šansa za Over {o:.0f}%**",
         "r_mate": "{n} ne igra ({p}): bez njega {a:.1f} / {m:.0f} min, sa njim {b:.1f} / {mm:.0f} min ({k} utak.)",
         "r_mate_est": "{n} ne igra ({p}): procena +{d:.1f} (≈ +{mn:.0f} min, mali uzorak)",
-        "r_mate_old": "{n} ne igra duže vreme – već je uračunato u prosek",
+        "r_back": "{n} se vraća ({p}): sa njim {a:.1f} / {m:.0f} min, bez njega {b:.1f} / {mm:.0f} min ({k} utak.)",
+        "r_back_est": "{n} se vraća ({p}): procena −{d:.1f} (≈ −{mn:.0f} min)",
+        "r_risk": "{n}: {s} – ako zaigra, uzima minute na istoj poziciji, pa je Over manje siguran",
         "next_vs": "Sledeća utakmica: **{o}** ({ha}, {d})", "no_next": "Nema zakazane utakmice – "
         "protivnik i teren nisu uračunati.", "line_each": "Linija = prosek svakog igrača, na .5 "
         "(npr. prosek 14.3 → 14.5).",
@@ -355,7 +358,7 @@ T3 = {
         "factor": "Factor", "weight": "Weight", "vote": "Vote", "detail": "Detail",
         "f_hit": "Hit rate (last 10)", "f_med": "Median", "f_opp": "Opponent (DvP)",
         "f_ven": "Home / away", "f_min": "Minutes (last 3)", "neutral": "neutral",
-        "f_mate": "Absent teammates", "mate_other": "other position", "f_mate_word": " out (",
+        "f_mate": "Teammates (absences / returns)", "mate_other": "other position", "f_mate_word": "(",
         "f_pace": "Pace", "r_pace": "{v:.0f} possessions vs avg {l:.0f}", "r_pace_book": "bookmaker total {t:g} vs avg {l:.0f}",
         "f_miss": "Available rebounds", "r_miss": "{v:.0f} misses per game vs avg {l:.0f}",
         "f_blow": "Blowout risk", "r_blow": "expected margin {m:+.1f} ({s}), starters rest",
@@ -373,7 +376,9 @@ T3 = {
         "proj_head": "**Projection {p:.1f}** · line {l:g} · **chance of Over {o:.0f}%**",
         "r_mate": "{n} out ({p}): without him {a:.1f} / {m:.0f} min, with him {b:.1f} / {mm:.0f} min ({k} g)",
         "r_mate_est": "{n} out ({p}): estimate +{d:.1f} (≈ +{mn:.0f} min, small sample)",
-        "r_mate_old": "{n} out for a while – already in his averages",
+        "r_back": "{n} returns ({p}): with him {a:.1f} / {m:.0f} min, without him {b:.1f} / {mm:.0f} min ({k} g)",
+        "r_back_est": "{n} returns ({p}): estimate −{d:.1f} (≈ −{mn:.0f} min)",
+        "r_risk": "{n}: {s} – if he plays he takes minutes at the same position, so Over is less safe",
         "next_vs": "Next game: **{o}** ({ha}, {d})", "no_next": "No scheduled game – "
         "opponent and venue are not counted.", "line_each": "Line = each player's average, at .5 "
         "(e.g. average 14.3 → 14.5).",
@@ -1228,70 +1233,130 @@ PL_NAME = dict(zip(df["_pid"], df["player"]))
 PL_LAST_TEAM = {k: g["team"].iloc[-1] for k, g in _srt.groupby(["comp", "_pid"])}
 MATE_MIN = 15          # saigrac je "bitan" ako igra bar ovoliko minuta
 LAST_MATE_DELTA = [0.0]  # zbir uticaja saigraca (u jedinicama statistike) iz poslednjeg poziva mate_factor
+COND_GAMES = [None]      # utakmice u "ocekivanom stanju" (npr. bez saigraca koji ne igra) za istoriju
+RISK = [None]            # upozorenje: saigrac iste pozicije sa neizvesnim statusom (moze da uzme minute)
 
 
-def absent_mates(comp, pid, team):
-    """Bitni saigraci koji ne igraju / verovatno ne igraju sledecu utakmicu."""
-    out = []
-    for (c, mid, t), mins in PL_MIN.items():
-        if c != comp or t != team or mid == pid or mins < MATE_MIN:
-            continue
-        if PL_LAST_TEAM.get((c, mid)) != team:
-            continue                       # presao u drugi tim
-        stt = inj_status(mid)
-        if stt in ("out", "doubtful"):
-            out.append((mid, stt, mins))
-    return out
+ABSENT_W = {"out": 1.0, "likely_out": 0.7, "doubtful": 0.5}
 
 
-def mate_factor(pg, key, comp, sd):
-    """Uticaj saigraca koji ne igraju. Vraca (x -1..1 ili None, [(x, tekst)], [info tekst])."""
+@st.cache_data(ttl=3600, show_spinner=False)
+def _load_prev_roster(comps_):
+    try:
+        pv = es.load_prev_season(list(comps_))
+    except Exception:
+        pv = pd.DataFrame()
+    try:
+        ro = es.load_roster(list(comps_))
+    except Exception:
+        ro = pd.DataFrame()
+    return pv, ro
+
+
+_pv, _ro = _load_prev_roster(tuple(comps))
+PREV_MPG = {(r.comp, str(r.player_id).strip()): float(r.mpg) for r in _pv.itertuples()} if not _pv.empty else {}
+ROSTER_POS = {(r.comp, str(r.player_id).strip()): r.pos for r in _ro.itertuples()} if not _ro.empty else {}
+_rep_round = re.search(r"Round (\d+)", INJ_REPORT.get("title") or "")
+REPORT_ROUND = (INJ_REPORT.get("comp", "E"), int(_rep_round.group(1))) if _rep_round else None
+ROSTER_TEAM = {(r.comp, str(r.player_id).strip()): ABBR.get((r.comp, r.club), r.club) for r in _ro.itertuples()} \
+    if not _ro.empty else {}
+ROSTER_NAME = {(r.comp, str(r.player_id).strip()): (r.name or "") for r in _ro.itertuples()} \
+    if not _ro.empty and "name" in _ro else {}
+REPORT_TEAM, REPORT_STATUS, REPORT_NAME = {}, {}, {}
+for p_ in INJ_REPORT.get("players", []):
+    _c = INJ_REPORT.get("comp", "E")
+    _tm = ABBR.get((_c, p_.get("team")), p_.get("team"))
+    _pid = str(p_.get("player_id") or "").strip()
+    if not _pid and p_.get("name"):     # igrac jos nije igrao ove sezone: trazimo ga u spisku tima
+        _cand = [(q, ROSTER_NAME.get((_c, q), ""), _tm, 0.0) for (cc, q), t in ROSTER_TEAM.items() if cc == _c and t == _tm]
+        _pid = LN.match_player(p_["name"], _cand) or ""
+    if _pid:
+        REPORT_TEAM[_pid], REPORT_STATUS[_pid], REPORT_NAME[_pid] = _tm, p_.get("status"), p_.get("name")
+
+
+def _pos_of(comp, pid):
+    return _pp.get(pid, (None, None))[0] or ROSTER_POS.get((comp, pid))
+
+
+def mate_factor(pg, key, comp, sd, nxt=None):
+    """Saigraci: ko NE IGRA (izostanak) i ko SE VRACA posle izostanka.
+    Uticaj = (prosek u utakmicama u ocekivanom stanju - prosek posl. 10) x ublazavanje.
+    Kad nema takvih utakmica: procena preko minuta igraca iste pozicije.
+    Vraca (x -1..1 ili None, [(x, tekst)], [info tekst]); zbir u jedinicama ide u LAST_MATE_DELTA."""
     pid = str(pg["player_id"].iloc[-1]).strip()
     team = pg["team"].iloc[-1]
-    mates = absent_mates(comp, pid, team)
-    if not mates:
-        LAST_MATE_DELTA[0] = 0.0
-        return None, [], []
+    LAST_MATE_DELTA[0] = 0.0
+    RISK[0] = None
+    COND_GAMES[0] = None
     tgames = TEAM_GAMES.get((comp, team), [])
-    my_pos = _pp.get(pid, (None, None))[0]
-    own = pg[pg["team"] == team]
-    mine = own.dropna(subset=[key])
-    total, reasons, info, deltas = 0.0, [], [], []
-    for mid, stt, mins in mates:
-        name = short_name(PL_NAME.get(mid, mid))
-        mgames = PL_GAMES.get((comp, mid, team), set())
-        recent = tgames[-3:]
-        missed_recent = sum(1 for g in recent if g not in mgames)
-        if len(recent) >= 2 and missed_recent >= 2:
-            info.append(tr("r_mate_old", n=name))        # vec duze ne igra: vec je u proseku
+    my_pos = _pos_of(comp, pid)
+    mine = pg[(pg["team"] == team) & (pg["Minutes"].fillna(0) > 0)].dropna(subset=[key])
+    if len(mine) < 3:
+        return None, [], []
+    win = mine.tail(10)
+    base_mean = float(win[key].mean())
+    per_min = float(mine[key].sum()) / max(float(mine["Minutes"].sum()), 1.0)
+    covered = nxt is not None and REPORT_ROUND == (comp, nxt.get("round"))
+    recent = tgames[-3:]
+    cands = {}
+    # 1) bitni saigraci iz ove sezone
+    for (c, mid, t), mins in PL_MIN.items():
+        if c != comp or t != team or mid == pid or mins < MATE_MIN or PL_LAST_TEAM.get((c, mid)) != team:
             continue
-        same = bool(my_pos) and _pp.get(mid, (None, None))[0] == my_pos
+        stt = inj_status(mid)
+        mg = PL_GAMES.get((comp, mid, team), set())
+        missed = sum(1 for g in recent if g not in mg)
+        if stt in ABSENT_W:
+            cands[mid] = ("out", ABSENT_W[stt], mins, mg, stt)
+        elif len(recent) >= 2 and missed >= 2 and (stt == "available" or covered):
+            cands[mid] = ("back", 1.0 if stt == "available" else 0.8, mins, mg, stt)
+    # 2) igraci bez utakmica ove sezone (povratak posle duge povrede, novajlije) iz izvestaja
+    for mid, tm in REPORT_TEAM.items():
+        if tm != team or mid == pid or mid in cands or (comp, mid, team) in PL_GAMES:
+            continue
+        pm = PREV_MPG.get((comp, mid))
+        if not pm or pm < MATE_MIN:
+            continue
+        stt = inj_status(mid) or REPORT_STATUS.get(mid)
+        if stt == "available":
+            cands[mid] = ("back", 0.6, pm, set(), stt)
+        elif stt in ("likely_out", "doubtful", "gtd", "questionable") and _pos_of(comp, mid) == my_pos:
+            RISK[0] = tr("r_risk", n=REPORT_NAME.get(mid) or short_name(PL_NAME.get(mid, mid)),
+                         s=tr(f"inj_{stt}").split(" ", 1)[-1].lower())
+    total, reasons, info, deltas = 0.0, [], [], []
+    best_d = 0.0
+    for mid, (kind, w_st, mins, mg, stt) in cands.items():
+        name = short_name(PL_NAME[mid]) if mid in PL_NAME else (REPORT_NAME.get(mid) or mid)
+        same = bool(my_pos) and _pos_of(comp, mid) == my_pos
         plab = tr(f"pos1_{my_pos}").lower() if same else tr("mate_other")
-        w_st = 1.0 if stt == "out" else 0.5
-        wo = mine[~mine["gamecode"].isin(mgames)]
-        wi = mine[mine["gamecode"].isin(mgames)]
-        if len(wo) >= 2 and len(wi) >= 3:
-            a, b = float(wo[key].mean()), float(wi[key].mean())
-            shrink = len(wo) / (len(wo) + 2)
-            x = float(np.clip((a - b) / sd, -1, 1)) * shrink * w_st
-            reasons.append((x, tr("r_mate", n=name, p=plab, a=a, m=float(wo["Minutes"].mean()),
-                                  b=b, mm=float(wi["Minutes"].mean()), k=len(wo))))
-            deltas.append((a - b) * shrink * w_st)
-        elif same and len(mine) >= 3:
-            # procena: deo njegovih minuta prelazi na igrace iste pozicije
+        cond = mine[~mine["gamecode"].isin(mg)] if kind == "out" else mine[mine["gamecode"].isin(mg)]
+        other = mine[mine["gamecode"].isin(mg)] if kind == "out" else mine[~mine["gamecode"].isin(mg)]
+        if len(cond) >= 2 and len(other) >= 2:
+            a = float(cond[key].mean())
+            shrink = len(cond) / (len(cond) + 2)
+            d = (a - base_mean) * shrink * w_st
+            if abs(d) > abs(best_d) and w_st >= 0.7:
+                best_d, COND_GAMES[0] = d, set(cond["gamecode"])
+            txt = tr("r_mate" if kind == "out" else "r_back", n=name, p=plab, a=a, m=float(cond["Minutes"].mean()),
+                     b=float(other[key].mean()), mm=float(other["Minutes"].mean()), k=len(cond))
+        elif same:
             rot = [q for (c, q, t), mm_ in PL_MIN.items()
-                   if c == comp and t == team and q != mid and mm_ >= 10 and inj_status(q) not in INJ_HIDE
-                   and PL_LAST_TEAM.get((c, q)) == team and _pp.get(q, (None, None))[0] == my_pos]
+                   if c == comp and t == team and q != mid and mm_ >= 10 and inj_status(q) not in ABSENT_W
+                   and PL_LAST_TEAM.get((c, q)) == team and _pos_of(comp, q) == my_pos]
             extra_min = 0.5 * mins / max(len(rot), 1)
-            per_min = float(mine[key].sum()) / max(float(mine["Minutes"].sum()), 1.0)
-            d = extra_min * per_min
-            x = float(np.clip(d / sd, 0, 1)) * 0.6 * w_st
-            reasons.append((x, tr("r_mate_est", n=name, p=plab, d=d, mn=extra_min)))
-            deltas.append(d * 0.6 * w_st)
+            d = extra_min * per_min * 0.6 * w_st * (1 if kind == "out" else -1)
+            txt = tr("r_mate_est" if kind == "out" else "r_back_est", n=name, p=plab, d=abs(d), mn=extra_min)
         else:
             continue
+        if abs(d) < 0.05:
+            continue
+        x = float(np.clip(d / sd, -1, 1))
+        reasons.append((x, txt))
+        deltas.append(d)
         total += x
     LAST_MATE_DELTA[0] = float(sum(deltas))
+    if RISK[0]:
+        info.append(RISK[0])
     if not reasons:
         return None, [], info
     return float(np.clip(total, -1, 1)), reasons, info
@@ -1347,9 +1412,11 @@ def signal_old(pg, key, line, comp, nxt=None):
 
     info = []
     LAST_MATE_DELTA[0] = 0.0
+    RISK[0] = None
+    COND_GAMES[0] = None
     if nxt:
         try:
-            mx, mreasons, info = mate_factor(pg, key, comp, sd)
+            mx, mreasons, info = mate_factor(pg, key, comp, sd, nxt)
         except Exception:
             mx, mreasons = None, []
         if mx is not None:
@@ -1577,6 +1644,13 @@ def signal(pg, key, line, comp, nxt=None):
     last = v.tail(10)
     hits = int((last > line).sum())
     p_hist = (hits + 2) / (len(last) + 4)
+    if COND_GAMES[0] and len(COND_GAMES[0]) >= 2:
+        # saigrac menja ulogu: istorija iz utakmica u istom stanju (npr. bez njega) dobija vecu tezinu
+        cg = pg[pg["gamecode"].isin(COND_GAMES[0])][key].dropna()
+        if len(cg) >= 2:
+            ph_c = (int((cg > line).sum()) + 2) / (len(cg) + 4)
+            wc = len(cg) / (len(cg) + 2)
+            p_hist = wc * ph_c + (1 - wc) * p_hist
     pr = projection(pg, key, comp, nxt) if nxt else None
     if pr:
         thr = line if line != int(line) else line + 0.5
@@ -1584,6 +1658,8 @@ def signal(pg, key, line, comp, nxt=None):
         p = 0.6 * p_proj + 0.4 * p_hist
     else:
         p_proj, p = None, p_hist
+    if RISK[0] and p > 0.5:
+        p = 0.5 + (p - 0.5) * 0.6      # saigrac iste pozicije mozda zaigra -> manje sigurno za Over
     p = float(np.clip(p, 0.02, 0.98))
     score = int(round((p - 0.5) * 200))
     h = hits / len(last)

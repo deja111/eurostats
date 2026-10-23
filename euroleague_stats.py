@@ -159,9 +159,13 @@ def update_images(comp, conn=None):
         return r.json()
     data = polite(get)
     people = data if isinstance(data, list) else data.get("data", [])
-    rows = []
+    rows, roster = [], []
     for p in people:
         code = str((p.get("person") or {}).get("code") or "").strip()
+        club_ = (p.get("club") or {}).get("code")
+        if code and club_ and p.get("active", True):
+            roster.append((comp, SEASON, "P" + code.zfill(6), club_, {1: "G", 2: "F", 3: "C"}.get(p.get("position")),
+                           (p.get("person") or {}).get("name")))
         img = (p.get("images") or {}).get("headshot") or ((p.get("person") or {}).get("images") or {}).get("headshot")
         if code and img:
             rows.append((comp, SEASON, "player", "P" + code.zfill(6), img))
@@ -170,11 +174,70 @@ def update_images(comp, conn=None):
         if club.get("code") and crest:
             rows.append((comp, SEASON, "club", club["code"], crest))
     conn.executemany("INSERT OR REPLACE INTO images VALUES (?,?,?,?,?)", rows)
+    conn.execute("""CREATE TABLE IF NOT EXISTS roster (comp TEXT, season INTEGER, player_id TEXT, club TEXT, pos TEXT,
+        name TEXT, PRIMARY KEY (comp, season, player_id))""")
+    if roster:
+        conn.execute("DELETE FROM roster WHERE comp=? AND season=?", (comp, SEASON))
+        conn.executemany("INSERT OR REPLACE INTO roster VALUES (?,?,?,?,?,?)", roster)
     if people:
         conn.execute("INSERT OR REPLACE INTO meta VALUES (?,?)", (f"images_{comp}_{SEASON}", str(time.time())))
     conn.commit()
     n_pl = sum(1 for x in rows if x[2] == "player")
     print(f"Slike: {n_pl} od {len(people)} igraca ima sliku, grbova {len({x[3] for x in rows if x[2] == 'club'})}")
+
+
+def update_prev_season(comp, conn=None):
+    """Minuti po utakmici iz prosle sezone (za igrace koji jos nisu igrali ove sezone). Jednom nedeljno."""
+    from euroleague_api.player_stats import PlayerStats
+    conn = conn or get_conn()
+    conn.execute("""CREATE TABLE IF NOT EXISTS prev_season (comp TEXT, season INTEGER, player_id TEXT,
+        mpg REAL, gp INTEGER, PRIMARY KEY (comp, season, player_id))""")
+    conn.execute("CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY, value TEXT)")
+    row = conn.execute("SELECT value FROM meta WHERE key=?", (f"prev_{comp}_{SEASON}",)).fetchone()
+    if row and time.time() - float(row[0]) < 7 * 24 * 3600:
+        print("Prosla sezona: vec preuzeta, preskacem.")
+        return
+    d = polite(PlayerStats(comp).get_player_stats_single_season, "traditional", SEASON - 1,
+               statistic_mode="PerGame")
+    if d is None or d.empty:
+        print("Prosla sezona: nema podataka")
+        return
+    cols = {c.lower(): c for c in d.columns}
+    pc = next((cols[c] for c in cols if c.endswith("player.code") or c == "playercode"), None)
+    mc = next((cols[c] for c in cols if "minutes" in c), None)
+    gc = next((cols[c] for c in cols if "gamesplayed" in c), None)
+    if not pc or not mc:
+        print(f"Prosla sezona: nepoznate kolone {list(d.columns)[:15]}")
+        return
+    vals = d[[pc, mc] + ([gc] if gc else [])].copy()
+    out = []
+    for _, r in vals.iterrows():
+        code = str(r[pc]).strip()
+        try:
+            m = float(str(r[mc]).split(":")[0]) + (float(str(r[mc]).split(":")[1]) / 60 if ":" in str(r[mc]) else 0)
+        except ValueError:
+            continue
+        out.append((comp, SEASON - 1, "P" + code.lstrip("P").zfill(6), m, int(r[gc]) if gc and pd.notna(r[gc]) else None))
+    conn.executemany("INSERT OR REPLACE INTO prev_season VALUES (?,?,?,?,?)", out)
+    conn.execute("INSERT OR REPLACE INTO meta VALUES (?,?)", (f"prev_{comp}_{SEASON}", str(time.time())))
+    conn.commit()
+    print(f"Prosla sezona: {len(out)} igraca")
+
+
+def load_prev_season(comps):
+    conn = get_conn()
+    conn.execute("""CREATE TABLE IF NOT EXISTS prev_season (comp TEXT, season INTEGER, player_id TEXT,
+        mpg REAL, gp INTEGER, PRIMARY KEY (comp, season, player_id))""")
+    q = f"SELECT * FROM prev_season WHERE season=? AND comp IN ({','.join('?' * len(comps))})"
+    return pd.read_sql(q, conn, params=(SEASON - 1, *comps))
+
+
+def load_roster(comps):
+    conn = get_conn()
+    conn.execute("""CREATE TABLE IF NOT EXISTS roster (comp TEXT, season INTEGER, player_id TEXT, club TEXT, pos TEXT,
+        name TEXT, PRIMARY KEY (comp, season, player_id))""")
+    q = f"SELECT * FROM roster WHERE season=? AND comp IN ({','.join('?' * len(comps))})"
+    return pd.read_sql(q, conn, params=(SEASON, *comps))
 
 
 def load_images(comps):
@@ -254,6 +317,10 @@ def update(comps):
             update_images(comp, conn)
         except Exception as e:
             print(f"Ne mogu da dobijem slike ({e})")
+        try:
+            update_prev_season(comp, conn)
+        except Exception as e:
+            print(f"Ne mogu da dobijem proslu sezonu ({e})")
 
 
 # ---------- cetvrtine (play-by-play) i sutevi / quarters and shots ----------
