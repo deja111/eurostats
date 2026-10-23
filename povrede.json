@@ -1,7 +1,7 @@
 {
  "source": "https://www.euroleaguebasketball.net/euroleague/news/injury-report-round-7-fantasy/",
- "title": "Injury report, Round 7: Both teams at full strength for Wednesday's opener",
- "published": "2026-10-21T14:37:45.513Z",
+ "title": "Injury report, Round 7: Montero doubtful; Fournier, Williams-Goss out",
+ "published": "2026-10-22T21:47:14.353Z",
  "comp": "E",
  "games": [
   {
@@ -53,170 +53,53 @@
    "home": "Paris Basketball",
    "away": "Valencia Basket",
    "gamecode": 69
-  },
-  {
-   "home": "Panathinaikos",
-   "away": "Tau Ceramica Vitoria-Gasteiz",
-   "gamecode": 227
   }
  ],
  "teams": [
   {
-   "label": "Hapoel",
-   "team": "HTA",
-   "gamecode": 61,
-   "reported": true,
-   "full": true,
-   "summary": "Coach Dimitris Itoudis has his full roster available for Hapoel's game against Virtus on Wednesday, the club has confirmed."
-  },
-  {
-   "label": "Virtus",
-   "team": "VIR",
-   "gamecode": 61,
-   "reported": true,
-   "full": true,
-   "summary": "Coach Alex Mumbru has his full roster available for Virtus's game at Hapoel on Wednesday, the club has confirmed."
-  },
-  {
-   "label": "Efes",
-   "team": "IST",
-   "gamecode": 64,
-   "reported": true,
-   "full": false,
-   "summary": "PJ Dozier, Mike James, Isaia Cordinier and Georgios Papagiannis are ruled out for Efes's game against Besiktas on Thursday, the club has confirmed."
-  },
-  {
-   "label": "Besiktas",
-   "team": "BES",
-   "gamecode": 64,
-   "reported": true,
-   "full": false,
-   "summary": "Lonnie Walker is listed as available ahead of his possible debut while DaQuan Jeffries remains sidelined for Besiktas's game at Efes on Thursday, the club has confirmed."
-  },
-  {
-   "label": "Bayern",
-   "team": "MUN",
-   "gamecode": 65,
-   "reported": false,
-   "full": false,
-   "summary": "Bayern has not yet sent an injury report for its game against Dubai on Thursday."
-  },
-  {
-   "label": "Dubai",
-   "team": "DUB",
-   "gamecode": 65,
-   "reported": false,
-   "full": false,
-   "summary": "Dubai has not yet sent an injury report for its game at Bayern on Thursday."
-  },
-  {
-   "label": "Maccabi",
-   "team": "TEL",
-   "gamecode": 62,
-   "reported": false,
-   "full": false,
-   "summary": "Maccabi has not yet sent an injury report for its game against Real Madrid on Thursday."
-  },
-  {
-   "label": "Real Madrid",
-   "team": "MAD",
-   "gamecode": 62,
-   "reported": false,
-   "full": false,
-   "summary": "Real Madrid has not yet sent an injury report for its game at Maccabi on Thursday."
-  },
-  {
-   "label": "Panathinaikos",
-   "team": "PAN",
-   "gamecode": 67,
-   "reported": false,
-   "full": false,
-   "summary": "Panathinaikos has not yet sent an injury report for its game against Baskonia on Thursday."
-  },
-  {
-   "label": "Baskonia",
-   "team": "BAS",
-   "gamecode": 67,
-   "reported": false,
-   "full": false,
-   "summary": "Baskonia has not yet sent an injury report for its game at Panathinaikos on Thursday."
-  },
-  {
-   "label": "Milan",
-   "team": "MIL",
-   "gamecode": 63,
-   "reported": true,
-   "full": true,
-   "summary": "Coach Peppe Poeta has his full roster available for Milan's game against Barcelona on Thursday, the club has confirmed."
-  },
-  {
-   "label": "Barcelona",
-   "team": "BAR",
-   "gamecode": 63,
-   "reported": true,
-   "full": false,
-   "summary": "Justin Minaya is available once again while Dario Brizuela and Yoan Makoundou are ruled out for Barcelona's game at Milan on Thursday, the club has confirmed."
-  },
-  {
-   "label": "Partizan",
-   "team": "PAR",
-   "gamecode": 66,
-   "reported": true,
-   "full": false,
-   "summary": "Lamar Stevens available once again while Tonye Jekiri, Vanja Marinkovic and Derek Willis are ruled out for Partizan's game against Crvena Zvezda on Thursday, the club has confirmed."
-  },
-  {
-   "label": "Crvena Zvezda",
-   "team": "RED",
-   "gamecode": 66,
-   "reported": false,
-   "full": false,
-   "summary": "Crvena Zvezda has not yet sent an injury report for its game at Partizan on Thursday."
-  },
-  {
    "label": "Zalgiris",
-   "team": "ZAL",
-   "gamecode": 68,
-   "reported": false,
+   "team": null,
+   "gamecode": null,
+   "reported": true,
    "full": false,
-   "summary": "Zalgiris has not yet sent an injury report for its game against ASVEL on Friday."
+   "summary": "Nigel Williams-Goss is ruled out for Zalgiris's game against ASVEL on Friday, according to coach Tomas Masiulis."
   },
   {
    "label": "ASVEL",
-   "team": "ASV",
-   "gamecode": 68,
+   "team": null,
+   "gamecode": null,
    "reported": false,
    "full": false,
    "summary": "ASVEL has not yet sent an injury report for its game at Zalgiris on Friday."
   },
   {
    "label": "Olympiacos",
-   "team": "OLY",
-   "gamecode": 70,
-   "reported": false,
+   "team": null,
+   "gamecode": null,
+   "reported": true,
    "full": false,
-   "summary": "Olympiacos has not yet sent an injury report for its game against Fenerbahce on Friday."
+   "summary": "Jean Montero is doubtful while Evan Fournier and Tyler Dorsey are ruled out for Olympiacos's game against Fenerbahce on Friday, the club has confirmed."
   },
   {
    "label": "Fenerbahce",
-   "team": "ULK",
-   "gamecode": 70,
-   "reported": false,
-   "full": false,
-   "summary": "Fenerbahce has not yet sent an injury report for its game at Olympiacos on Friday."
+   "team": null,
+   "gamecode": null,
+   "reported": true,
+   "full": true,
+   "summary": "Coach Saras Jasikevicius has his full roster available for Fenerbahce's game at Olympiacos on Friday, the club has confirmed."
   },
   {
    "label": "Paris",
-   "team": "PRS",
-   "gamecode": 69,
+   "team": null,
+   "gamecode": null,
    "reported": false,
    "full": false,
    "summary": "Paris has not yet sent an injury report for its game against Valencia on Friday."
   },
   {
    "label": "Valencia",
-   "team": "PAM",
-   "gamecode": 69,
+   "team": null,
+   "gamecode": null,
    "reported": false,
    "full": false,
    "summary": "Valencia has not yet sent an injury report for its game at Paris on Friday."
@@ -224,344 +107,34 @@
  ],
  "players": [
   {
-   "name": "PJ Dozier",
-   "status": "out",
-   "confirmed": true,
-   "note": "PJ Dozier is out for 2-3 weeks with a back injury.",
-   "player_id": "P012742",
-   "db_name": "DOZIER, PJ",
-   "team": "IST",
-   "gamecode": 64
-  },
-  {
-   "name": "Mike James",
-   "status": "out",
-   "confirmed": true,
-   "note": "Mike James suffered an Achilles injury in Round 3 that will see him sidelined for 7-9 months.",
-   "player_id": "P005985",
-   "db_name": "JAMES, MIKE",
-   "team": "IST",
-   "gamecode": 64
-  },
-  {
-   "name": "Isaia Cordinier",
-   "status": "out",
-   "confirmed": true,
-   "note": "Isaia Cordinier remains sidelined after undergoing surgery in May, as was announced on May 18.",
-   "player_id": null,
-   "db_name": null,
-   "team": "IST",
-   "gamecode": 64
-  },
-  {
-   "name": "Georgios Papagiannis",
-   "status": "out",
-   "confirmed": true,
-   "note": "Georgios Papagiannis injured his ACL in October 2025 and has been recovering ever since.",
-   "player_id": null,
-   "db_name": null,
-   "team": "IST",
-   "gamecode": 64
-  },
-  {
-   "name": "Lonnie Walker",
-   "status": "available",
-   "confirmed": true,
-   "note": "New signing Lonnie Walker has been registered and could make his debut in Round 7.",
-   "player_id": null,
-   "db_name": null,
-   "team": "BES",
-   "gamecode": 64
-  },
-  {
-   "name": "DaQuan Jeffries",
-   "status": "out",
-   "confirmed": true,
-   "note": "DaQuan Jeffries suffered a wrist injury in Round 1 and had to undergo surgery. He has missed the last four rounds.",
-   "player_id": "P014785",
-   "db_name": "JEFFRIES, DAQUAN",
-   "team": "BES",
-   "gamecode": 64
-  },
-  {
-   "name": "Tobias Jensen",
-   "status": "info",
-   "confirmed": false,
-   "note": "Tobias Jensen, Rokas Jokubaitis and Johannes Voigtmann were not on the gameday roster in Round 6, but all three played in the German Cup this past weekend.",
-   "player_id": "P010726",
-   "db_name": "JENSEN, TOBIAS",
-   "team": "MUN",
-   "gamecode": 65
-  },
-  {
-   "name": "Dzanan Musa",
-   "status": "likely_out",
-   "confirmed": false,
-   "note": "Dzanan Musa is yet to play so far this season.",
-   "player_id": null,
-   "db_name": null,
-   "team": "DUB",
-   "gamecode": 65
-  },
-  {
-   "name": "Justin Anderson",
-   "status": "likely_out",
-   "confirmed": false,
-   "note": "Justin Anderson is yet to play so far this season.",
-   "player_id": null,
-   "db_name": null,
-   "team": "DUB",
-   "gamecode": 65
-  },
-  {
-   "name": "Gur Lavi",
-   "status": "info",
-   "confirmed": false,
-   "note": "Gur Lavi was not on the gameday roster in Round 6.",
-   "player_id": null,
-   "db_name": null,
-   "team": "TEL",
-   "gamecode": 62
-  },
-  {
-   "name": "Iffe Lundberg",
-   "status": "likely_out",
-   "confirmed": false,
-   "note": "Iffe Lundberg will be out until December with a partial tear of his quadriceps.",
-   "player_id": "P010781",
-   "db_name": "LUNDBERG, IFFE",
-   "team": "TEL",
-   "gamecode": 62
-  },
-  {
-   "name": "Gaby Deck",
-   "status": "info",
-   "confirmed": false,
-   "note": "Gaby Deck (shoulder) last played in Round 3, with coach Pedro Martinez saying ahead of Round 4: \"The injury is more serious than we thought.\"",
-   "player_id": "P009005",
-   "db_name": "DECK, GABRIEL",
-   "team": "MAD",
-   "gamecode": 62
-  },
-  {
-   "name": "Usman Garuba",
-   "status": "info",
-   "confirmed": false,
-   "note": "Usman Garuba suffered an Achilles injury at last May's Final Four.",
-   "player_id": null,
-   "db_name": null,
-   "team": "MAD",
-   "gamecode": 62
-  },
-  {
-   "name": "Kendrick Nunn",
-   "status": "likely_out",
-   "confirmed": false,
-   "note": "Kendrick Nunn and Kostas Sloukas are yet to play so far this season, but both players made their first appearances of the season in the Greek League this past weekend.",
-   "player_id": null,
-   "db_name": null,
-   "team": "PAN",
-   "gamecode": 67
-  },
-  {
-   "name": "Kostas Sloukas",
-   "status": "likely_out",
-   "confirmed": false,
-   "note": "Kendrick Nunn and Kostas Sloukas are yet to play so far this season, but both players made their first appearances of the season in the Greek League this past weekend.",
-   "player_id": null,
-   "db_name": null,
-   "team": "PAN",
-   "gamecode": 67
-  },
-  {
-   "name": "Isaac Bonga",
-   "status": "likely_out",
-   "confirmed": false,
-   "note": "Isaac Bonga, who was ruled out for Round 5, also missed Round 6.",
-   "player_id": "P006760",
-   "db_name": "BONGA, ISAAC",
-   "team": "PAN",
-   "gamecode": 67
-  },
-  {
-   "name": "Nikos Rogkavopoulos",
-   "status": "likely_out",
-   "confirmed": false,
-   "note": "Nikos Rogkavopoulos was sidelined for Round 6.",
-   "player_id": "P011085",
-   "db_name": "ROGKAVOPOULOS, NIKOLAOS",
-   "team": "PAN",
-   "gamecode": 67
-  },
-  {
-   "name": "Markus Howard",
-   "status": "info",
-   "confirmed": false,
-   "note": "Markus Howard officially left the club on October 14.",
-   "player_id": "P011948",
-   "db_name": "HOWARD, MARKUS",
-   "team": "BAS",
-   "gamecode": 67
-  },
-  {
-   "name": "Justin Minaya",
-   "status": "available",
-   "confirmed": true,
-   "note": "Justin Minaya, who missed Rounds 4 and 5, was upgraded to questionable for Round 6 but didn't make the gameday roster.",
-   "player_id": "P015142",
-   "db_name": "MINAYA, JUSTIN",
-   "team": "BAR",
-   "gamecode": 63
-  },
-  {
-   "name": "Dario Brizuela",
-   "status": "out",
-   "confirmed": true,
-   "note": "Dario Brizuela did not play in the Spanish League this past weekend due to muscle discomfort.",
-   "player_id": "P009992",
-   "db_name": "BRIZUELA, DARIO",
-   "team": "BAR",
-   "gamecode": 63
-  },
-  {
-   "name": "Yoan Makoundou",
-   "status": "out",
-   "confirmed": true,
-   "note": "Yoan Makoundou has not played so far this season as he recovers from a knee injury.",
-   "player_id": null,
-   "db_name": null,
-   "team": "BAR",
-   "gamecode": 63
-  },
-  {
-   "name": "Lamar Stevens",
-   "status": "available",
-   "confirmed": true,
-   "note": "Lamar Stevens missed Round 6 due to stomachache, but he is listed as available for Round 7.",
-   "player_id": "P014009",
-   "db_name": "STEVENS, LAMAR",
-   "team": "PAR",
-   "gamecode": 66
-  },
-  {
-   "name": "Tonye Jekiri",
-   "status": "out",
-   "confirmed": true,
-   "note": "Tonye Jekiri is out for at least two weeks with a groin strain.",
-   "player_id": "P009733",
-   "db_name": "JEKIRI, TONYE",
-   "team": "PAR",
-   "gamecode": 66
-  },
-  {
-   "name": "Vanja Marinkovic",
-   "status": "out",
-   "confirmed": true,
-   "note": "Vanja Marinkovic (Achilles) is yet to play this season.",
-   "player_id": null,
-   "db_name": null,
-   "team": "PAR",
-   "gamecode": 66
-  },
-  {
-   "name": "Derek Willis",
-   "status": "out",
-   "confirmed": true,
-   "note": "Derek Willis is expected to be sidelined until late October with an ankle injury.",
-   "player_id": "P009664",
-   "db_name": "WILLIS, DEREK",
-   "team": "PAR",
-   "gamecode": 66
-  },
-  {
-   "name": "Christian Koloko",
-   "status": "likely_out",
-   "confirmed": false,
-   "note": "New signing Christian Koloko has not yet been registered",
-   "player_id": null,
-   "db_name": null,
-   "team": "RED",
-   "gamecode": 66
-  },
-  {
-   "name": "Ebuka Izundu",
-   "status": "likely_out",
-   "confirmed": false,
-   "note": "Ebuka Izundu was ruled out for Rounds 5 and 6 with an ankle injury.",
-   "player_id": "P014029",
-   "db_name": "IZUNDU, EBUKA",
-   "team": "RED",
-   "gamecode": 66
-  },
-  {
-   "name": "Johnathan Motley",
-   "status": "likely_out",
-   "confirmed": false,
-   "note": "Johnathan Motley (thigh) has been out since Round 4.",
-   "player_id": "P011157",
-   "db_name": "MOTLEY, JOHNATHAN",
-   "team": "RED",
-   "gamecode": 66
-  },
-  {
-   "name": "Stefan Miljenovic",
-   "status": "likely_out",
-   "confirmed": false,
-   "note": "Stefan Miljenovic, who didn't play in Round 4, was sidelined for Rounds 5 and 6 with an ankle injury.",
-   "player_id": "P014094",
-   "db_name": "MILJENOVIC, STEFAN",
-   "team": "RED",
-   "gamecode": 66
-  },
-  {
    "name": "Nigel Williams-Goss",
-   "status": "info",
-   "confirmed": false,
+   "status": "out",
+   "confirmed": true,
    "note": "Nigel Williams-Goss returned to action in Round 6.",
-   "player_id": "P007982",
-   "db_name": "WILLIAMS-GOSS, NIGEL",
-   "team": "ZAL",
-   "gamecode": 68
-  },
-  {
-   "name": "Maodo Lo",
-   "status": "info",
-   "confirmed": false,
-   "note": "Maodo Lo was left off the gameday roster in Round 6.",
-   "player_id": "P007032",
-   "db_name": "LO, MAODO",
-   "team": "ZAL",
-   "gamecode": 68
-  },
-  {
-   "name": "Kaodirichi Akobundu-Ehiogu",
-   "status": "info",
-   "confirmed": false,
-   "note": "Kaodirichi Akobundu-Ehiogu did not make the roster for the first five rounds of the season.",
    "player_id": null,
    "db_name": null,
-   "team": "ZAL",
-   "gamecode": 68
+   "team": null,
+   "gamecode": null
   },
   {
    "name": "Patty Mills",
    "status": "info",
    "confirmed": false,
    "note": "Patty Mills did not play in Round 6.",
-   "player_id": "P015163",
-   "db_name": "MILLS, PATTY",
-   "team": "ASV",
-   "gamecode": 68
+   "player_id": null,
+   "db_name": null,
+   "team": null,
+   "gamecode": null
   },
   {
    "name": "Tremont Waters",
    "status": "info",
    "confirmed": false,
    "note": "Tremont Waters did not play in Round 6.",
-   "player_id": "P015165",
-   "db_name": "WATERS, TREMONT",
-   "team": "ASV",
-   "gamecode": 68
+   "player_id": null,
+   "db_name": null,
+   "team": null,
+   "gamecode": null
   },
   {
    "name": "Juhann Begarin",
@@ -570,18 +143,18 @@
    "note": "Juhann Begarin, who joined ASVEL on a short-term deal on October 7, has not yet played for the team in the EuroLeague.",
    "player_id": null,
    "db_name": null,
-   "team": "ASV",
-   "gamecode": 68
+   "team": null,
+   "gamecode": null
   },
   {
    "name": "Edwin Jackson",
    "status": "info",
    "confirmed": false,
    "note": "Edwin Jackson made his first EuroLeague appearance of the season in Round 7.",
-   "player_id": "P000229",
-   "db_name": "JACKSON, EDWIN",
-   "team": "ASV",
-   "gamecode": 68
+   "player_id": null,
+   "db_name": null,
+   "team": null,
+   "gamecode": null
   },
   {
    "name": "Mathis Dossou-Yovo",
@@ -590,49 +163,69 @@
    "note": "Mathis Dossou-Yovo (groin) has been sidelined to start this season.",
    "player_id": null,
    "db_name": null,
-   "team": "ASV",
-   "gamecode": 68
+   "team": null,
+   "gamecode": null
+  },
+  {
+   "name": "Jean Montero",
+   "status": "doubtful",
+   "confirmed": true,
+   "note": "",
+   "player_id": null,
+   "db_name": null,
+   "team": null,
+   "gamecode": null
+  },
+  {
+   "name": "Evan Fournier",
+   "status": "out",
+   "confirmed": true,
+   "note": "",
+   "player_id": null,
+   "db_name": null,
+   "team": null,
+   "gamecode": null
   },
   {
    "name": "Tyler Dorsey",
-   "status": "info",
-   "confirmed": false,
+   "status": "out",
+   "confirmed": true,
    "note": "Tyler Dorsey was not available in Round 6.",
-   "player_id": "P009849",
-   "db_name": "DORSEY, TYLER",
-   "team": "OLY",
-   "gamecode": 70
+   "player_id": null,
+   "db_name": null,
+   "team": null,
+   "gamecode": null
   },
   {
    "name": "Nadir Hifi",
    "status": "info",
    "confirmed": false,
    "note": "Nadir Hifi missed Rounds 5 and 6 last week due to an ankle injury. He also didn't play in the French League this past weekend.",
-   "player_id": "P012640",
-   "db_name": "HIFI, NADIR",
-   "team": "PRS",
-   "gamecode": 69
+   "player_id": null,
+   "db_name": null,
+   "team": null,
+   "gamecode": null
   },
   {
    "name": "TJ Warren",
    "status": "info",
    "confirmed": false,
    "note": "TJ Warren did not play in Round 6.",
-   "player_id": "P015168",
-   "db_name": "WARREN, TJ",
-   "team": "PRS",
-   "gamecode": 69
+   "player_id": null,
+   "db_name": null,
+   "team": null,
+   "gamecode": null
   },
   {
    "name": "Frank Ntilikina",
    "status": "info",
    "confirmed": false,
    "note": "Frank Ntilikina last played in Round 2 and has been out ever since with muscle pain.",
-   "player_id": "P006591",
-   "db_name": "NTILIKINA, FRANK",
-   "team": "PRS",
-   "gamecode": 69
+   "player_id": null,
+   "db_name": null,
+   "team": null,
+   "gamecode": null
   }
  ],
- "fetched": "2026-10-21T16:32+00:00"
+ "fetched": "2026-10-23T08:34+00:00"
 }
